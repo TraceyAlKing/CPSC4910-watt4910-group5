@@ -4,7 +4,7 @@
 #include <cstdlib>
 #include <time.h>
 
-#include "User.h"
+#include "User.hpp"
 
 User::User()
 {
