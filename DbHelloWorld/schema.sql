@@ -3,10 +3,10 @@ CREATE TABLE DRIVER
    id                INT unsigned  NOT NULL AUTO_INCREMENT,
    name              VARCHAR(64)   NOT NULL,
    email             VARCHAR(64)   NOT NULL,
-   password          VARCHAR(64)   NOT NULL,
    phone             INT unsigned  NOT NULL,
    points            INT unsigned  NOT NULL,
-   my_sponsor_id     INT unsigned   NOT NULL,
+   my_sponsor_id     INT unsigned,
+   password          VARCHAR(64)   NOT NULL,
    PRIMARY KEY (id),
    FOREIGN KEY (my_sponsor_id) REFERENCES SPONSOR(id)
 );
