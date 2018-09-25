@@ -1,47 +1,59 @@
-#include <mysqlx/xdevapi.h>
+#include <mysql_connection.h>
+#include <mysql_driver.h>
+
+#include <cppconn/driver.h>
+#include <cppconn/exception.h>
+#include <cppconn/resultset.h>
+#include <cppconn/statement.h>
+#include <stdlib.h>
 #include <iostream>
 
 //https://buffet.cs.clemson.edu/sqldb/u/tracey/CPSC4910-watt-group5/
 
 int main(){
-  // Connect to server using a connection URL
-  //mysqlx::Session mySession("mysql1.cs.clemson.edu/CPSC4910-watt-group5_wp20", 33060, "ufv6yuc8", "CPSC4910-watt-group5_wp20");
+  try {
+    sql::Driver *driver;
+    sql::Connection *con;
+    sql::Statement *stmt;
+    sql::ResultSet *res;
+    sql::ConnectOptionsMap connection_properties;
 
-  //std::string usr = prompt("Username:");
-  //std::string pwd = prompt("Password:");
+    connection_properties["hostName"] = "tcp://mysql1.cs.clemson.edu";
+    connection_properties["userName"] = "ufv6yuc8";
+    connection_properties["password"] = "jtisctbtw123";
+    connection_properties["schema"] = "CPSC4910-watt-group5_wp20";
+    connection_properties["port"] = 3306;
+    connection_properties["OPT_RECONNECT"] = true;
 
-  mysqlx::Session mySession(mysqlx::SessionOption::HOST, "mysql://mysql1.cs.clemson.edu",
-                            mysqlx::SessionOption::PORT, 33060,
-                            mysqlx::SessionOption::USER, "ufv6yuc8",
-                            mysqlx::SessionOption::PWD, "jtisctbtw",
-                            mysqlx::SessionOption::DB, "CPSC4910-watt-group5_wp20");
+    /* Create a connection */
+    driver = get_driver_instance();
+    con = driver->connect(connection_properties);
+    if(con == NULL)
+      return 1;
+    std::cout << "Hi MySQL. Are you there?" << std::endl;
+
+    stmt = con->createStatement();
+    res = stmt->executeQuery("SELECT 'Hello World!' AS _message");
+    while (res->next()) {
+      std::cout << "\t... MySQL replies: ";
+      /* Access column data by alias or column name */
+      std::cout << res->getString("_message") << std::endl;
+      std::cout << "\t... MySQL says it again: ";
+      /* Access column data by numeric offset, 1 is the first column */
+      std::cout << res->getString(1) << std::endl;
+    }
+    delete res;
+    delete stmt;
+    delete con;
 
 
-  mysqlx::Schema myDb = mySession.getSchema("schema.sql");
-
-  // Accessing an existing table
-  mysqlx::Table myTable = myDb.getTable("DRIVER");
-
-  // Insert SQL Table data
-  myTable.insert("name", "email", "phone", "points", "password")
-          .values("Jimmy Jean", "jimmyjeanbeandean@beans.edu", "1864189209", "password123").execute();
-
-  // Find a row in the SQL Table
-  mysqlx::RowResult myResult = myTable.select("id", "name", "email", "phone", "points", "my_sponsor_id", "password")
-     .where("name like :name")
-     .bind("name", "S%").execute();
-
-  // Print result
-  mysqlx::Row row = myResult.fetchOne();
-  std::cout << "             id: " << row[0] << std::endl;
-  std::cout << "           name: " << row[1] << std::endl;
-  std::cout << "          email: " << row[2] << std::endl;
-  std::cout << "          phone: " << row[3] << std::endl;
-  std::cout << "         points: " << row[4] << std::endl;
-  std::cout << "  my_sponsor_id: " << row[5] << std::endl;
-  std::cout << "       password: " << row[6] << std::endl;
-
-  mySession.close();
-
+  } catch (sql::SQLException &e) {
+    std::cout << "# ERR: SQLException in " << __FILE__;
+    std::cout << "(" << __FUNCTION__ << ") on line "
+      << __LINE__ << std::endl;
+    std::cout << "# ERR: " << e.what();
+    std::cout << " (MySQL error code: " << e.getErrorCode();
+    std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
+  }
   return 0;
 }

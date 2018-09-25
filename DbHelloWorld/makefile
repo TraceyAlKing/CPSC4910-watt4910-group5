@@ -8,10 +8,10 @@ OBJS = main.cpp
 CC = clang++ -stdlib=libc++
 
 #COMPILER_FLAGS specifies the additional compilation options we're using
-COMPILER_FLAGS = -std=c++11 -I $(MYSQL_CONCPP_DIR)/include -L $(MYSQL_CONCPP_DIR)/lib64
+COMPILER_FLAGS = -std=c++11 -I $(MYSQL_CONCPP_DIR)/include -I $(MYSQL_CONCPP_DIR)/include/jdbc -L $(MYSQL_CONCPP_DIR)/lib64
 
 #LINKER_FLAGS specifies the libraries we're linking against
-LINKER_FLAGS = -lmysqlcppconn8
+LINKER_FLAGS = -lmysqlcppconn -lboost_filesystem-mt -lboost_thread-mt
 
 #OBJ_NAME specifies the name of our executable
 OBJ_NAME = a.out
