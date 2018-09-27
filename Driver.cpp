@@ -2,7 +2,7 @@
 #include <iostream>
 #include <cstdlib>
 
-#include "Driver.hpp"
+#include "Driver.h"
 
 Driver::Driver()
 {
@@ -23,6 +23,14 @@ void Driver::registerDriver()
 
 	cout << "Points set to 0" << endl;
 	points = 0;
+	
+	cout << "Enter License Number: ";
+	cin >> LNum;
+	
+	cout << "Enter Liscence Plate Number: ";
+	cin >> LPNum[0];
+	
+	LPNumNumber = 1;
 }
 
 int Driver::getPoints()
@@ -40,14 +48,38 @@ void Driver::saveDriver()
 	ofstream myfile;
 	const char* file = getUsername().c_str();
 	myfile.open(file);
+	
+	myfile << "Driver" << "\n";
 
 	myfile << getUsername() << "\n";
 	myfile << getPassword() << "\n";
+	myfile << getName() << "\n";
 	myfile << getEmail() << "\n";
 	myfile << getPhone() << "\n";
 	myfile << getID() << "\n";	
 	myfile << getSponsor() << "\n";
 	myfile << getPoints() << "\n";
+	myfile << getLicenseNum() << "\n";
+	myfile << "ADDRESS" << "\n";
+	
+	int n = getNumAddress();
+	string* addresses = getAddress();
+	for(int p = 0; p < n; p++)
+	{
+		myfile << addresses[p] << "\n";
+	}
+	
+		myfile << "ENDADDRESS" << "\n";
+		
+		myfile << "PLATES" << "\n";
+		n = getLNumNum();
+		int* plates = getPlates();
+		for(int p = 0; p < n; p++)
+		{
+			myfile << LPNum[p] << "\n";
+		}
+		
+		myfile << "ENDPLATES" << "\n";
 }
 
 int Driver::changePoints()
@@ -78,4 +110,25 @@ void Driver::setSponsor(string i)
 void Driver::setPoints(string i)
 {
 	points = atoi(i.c_str());
+}
+
+int Driver::getLicenseNum() 
+{
+	return LNum;
+}
+
+int Driver::getLNumNum()
+{
+	return LPNumNumber;
+}
+
+void Driver::updateLNum()
+{
+	cout << "Enter a new Lisence Number" << endl;
+	cin >> LNum;
+}
+
+int* Driver::getPlates()
+{
+	return LPNum;
 }
