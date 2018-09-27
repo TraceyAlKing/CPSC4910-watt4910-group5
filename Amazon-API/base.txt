@@ -1,0 +1,5 @@
+http://webservices.amazon.com/onca/xml?Service=AWSECommerceService&AWSAccessKeyID=id&AssociateTag=AID
+
+
+
+
