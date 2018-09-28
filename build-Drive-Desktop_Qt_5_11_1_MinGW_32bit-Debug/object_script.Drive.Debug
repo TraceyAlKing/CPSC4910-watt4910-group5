@@ -1,0 +1,12 @@
+INPUT(
+./debug\main.o
+./debug\mainwindow.o
+./debug\secdialog.o
+./debug\driverpage.o
+./debug\driverpage.o
+./debug\designerpage.o
+./debug\moc_mainwindow.o
+./debug\moc_secdialog.o
+./debug\moc_driverpage.o
+./debug\moc_designerpage.o
+);

@@ -1,0 +1,12 @@
+INPUT(
+./release\main.o
+./release\mainwindow.o
+./release\secdialog.o
+./release\driverpage.o
+./release\driverpage.o
+./release\designerpage.o
+./release\moc_mainwindow.o
+./release\moc_secdialog.o
+./release\moc_driverpage.o
+./release\moc_designerpage.o
+);
