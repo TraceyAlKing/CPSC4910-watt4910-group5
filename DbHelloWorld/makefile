@@ -2,7 +2,7 @@
 MYSQL_CONCPP_DIR = /usr/local/mysql-connector-c++
 
 #OBJS specifies which files to compile as part of the project
-OBJS = main.cpp
+OBJS = main.cpp Database.cpp
 
 #CC specifies which compiler we're using
 CC = clang++ -stdlib=libc++
