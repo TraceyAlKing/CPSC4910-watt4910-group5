@@ -1,2 +1,2 @@
 <?xml version="1.0"?>
-<ItemSearchErrorResponse xmlns="http://ecs.amazonaws.com/doc/2005-10-05/"><Error><Code>MissingClientTokenId</Code><Message>Request must contain AWSAccessKeyId.</Message></Error><RequestID>121b3b7b-166b-4f3c-be1f-89dac88a12e4</RequestID></ItemSearchErrorResponse>
+<BrowseNodeLookupErrorResponse xmlns="http://ecs.amazonaws.com/doc/2005-10-05/"><Error><Code>MissingClientTokenId</Code><Message>Request must contain AWSAccessKeyId.</Message></Error><RequestID>57d23fd1-7ebe-41d6-ba60-1209dfa655b0</RequestID></BrowseNodeLookupErrorResponse>
