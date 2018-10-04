@@ -9,54 +9,43 @@
 #include <iostream>
 #include <sstream>
 
-
-enum DB_TABLE{
-   DRIVER = 0,
-   SPONSOR = 1,
-   ADMIN = 2,
-   AMAZON_ITEM = 3,
-   AMAZON_ITEM_IMAGE = 4,
-   CATALOG = 5,
-   CATALOG_AMAZON_ITEM = 6
-};
-enum DB_DRIVER{
-
-};
-enum DB_SPONSOR{
-
-};
-
 class Database{
 public:
    static Database& getInstance();
    //always call init first
    void init();
 
-   //Build your statement with these functions????
-   void select();
-   void where();
-   void entity(DB_TABLE ent);
-
    std::string executeStatement();
 
    //Driver calls
    void createDriver(std::string name, std::string email, std::string password, std::string phone, std::string points);
+   void getDriver(std::string id);
    void removeDriver(std::string id);
    void getDrivers();
    
    //Sponsor calls
    void createSponsor();
-   void getSponsor(int id);
+   void getSponsor(std::string id);
+   void removeSponsor(std::string id);
    void getSponsors();
 
    //Admin calls
-   void getAdmin(int id);
+   void createAdmin();
+   void getAdmin(std::string id);
+   void removeAdmin(std::string id);
+   void getAdmins();
 
    //Amazon Item calls
-   std::array<std::string, 4> getAmazonItem(int id);
+   void createAmazonItem();
+   void getAmazonItem(std::string id);
+   void removeAmazonItem(std::string id);
+   void getAmazonItems();
 
    //Catalog Calls
-   std::array<std::string, 4> getCatalog(int id);
+   void createCatalog();
+   void getCatalog(std::string id);
+   void removeCatalog(std::string id);
+   void getCatalogs();
 
    //DON'T USE THIS ONE, this function is here for testing purposes
    std::string executeUnguardedStatement(std::string str);
