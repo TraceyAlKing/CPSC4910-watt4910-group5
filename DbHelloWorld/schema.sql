@@ -1,15 +1,3 @@
-CREATE TABLE DRIVER
-(
-   id                INT unsigned  NOT NULL AUTO_INCREMENT,
-   name              VARCHAR(64)   NOT NULL,
-   email             VARCHAR(64)   NOT NULL,
-   phone             INT unsigned  NOT NULL,
-   points            INT unsigned  NOT NULL,
-   my_sponsor_id     INT unsigned,
-   password          VARCHAR(64)   NOT NULL,
-   PRIMARY KEY (id),
-   FOREIGN KEY (my_sponsor_id) REFERENCES SPONSOR(id)
-);
 CREATE TABLE SPONSOR
 (
    id                INT unsigned  NOT NULL AUTO_INCREMENT,
@@ -29,6 +17,18 @@ CREATE TABLE ADMIN
    phone             INT unsigned  NOT NULL,
    PRIMARY KEY (id)
 );
+CREATE TABLE DRIVER
+(
+   id                INT unsigned  NOT NULL AUTO_INCREMENT,
+   name              VARCHAR(64)   NOT NULL,
+   email             VARCHAR(64)   NOT NULL,
+   password          VARCHAR(64)   NOT NULL,
+   phone             INT unsigned  NOT NULL,
+   points            INT unsigned  NOT NULL,
+   my_sponsor_id     INT unsigned,
+   PRIMARY KEY (id),
+   FOREIGN KEY (my_sponsor_id) REFERENCES SPONSOR(id)
+);
 CREATE TABLE AMAZON_ITEM
 (
    id                INT unsigned  NOT NULL AUTO_INCREMENT,
@@ -40,7 +40,7 @@ CREATE TABLE AMAZON_ITEM
 );
 CREATE TABLE AMAZON_ITEM_IMAGE
 (
-   url               VARCHAR(1024) NOT NULL
+   image_url         VARCHAR(1024) NOT NULL,
    amazon_item_id    INT unsigned  NOT NULL,
    PRIMARY KEY (url, amazon_item_id),
    FOREIGN KEY (amazon_item_id) REFERENCES AMAZON_ITEM(id)

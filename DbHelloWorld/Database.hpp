@@ -7,7 +7,7 @@
 #include <cppconn/statement.h>
 #include <stdlib.h>
 #include <iostream>
-#include <sstring>
+#include <sstream>
 
 
 enum DB_TABLE{
@@ -18,50 +18,48 @@ enum DB_TABLE{
    AMAZON_ITEM_IMAGE = 4,
    CATALOG = 5,
    CATALOG_AMAZON_ITEM = 6
-}
+};
 enum DB_DRIVER{
 
-}
+};
 enum DB_SPONSOR{
 
-}
+};
 
-//To use the database: 
-// Option 1:
-//    1. call db() or Database::getInstance() to get the database
-//    2. build your statement with the section below
-//    3. call executeStatement();
-//    example:
-//       db().select();
-//       db().entity(DB_TABLE::DRIVER);
-//       db().executeStatement();
-// Option 2: 
-//    1. call db() or Database::getInstance() to get the database
-//    2. call one of the easy getter calls
-//    example:
-//       db().getDriver(1);
 class Database{
 public:
    static Database& getInstance();
    //always call init first
    void init();
 
-   //Build your statement with these functions
+   //Build your statement with these functions????
    void select();
    void where();
    void entity(DB_TABLE ent);
 
-   std::sstring executeStatement();
+   std::string executeStatement();
 
-   //Section 2: Easy get calls
-   std::array<std::string> getDriver(int id);
-   std::array<std::string> getSponsor(int id);
-   std::array<std::string> getAdmin(int id);
-   std::array<std::string> getAmazonItem(int id);
-   std::array<std::string> getCatalog(int id);
+   //Driver calls
+   void createDriver(std::string name, std::string email, std::string password, std::string phone, std::string points);
+   void removeDriver(std::string id);
+   void getDrivers();
+   
+   //Sponsor calls
+   void createSponsor();
+   void getSponsor(int id);
+   void getSponsors();
+
+   //Admin calls
+   void getAdmin(int id);
+
+   //Amazon Item calls
+   std::array<std::string, 4> getAmazonItem(int id);
+
+   //Catalog Calls
+   std::array<std::string, 4> getCatalog(int id);
 
    //DON'T USE THIS ONE, this function is here for testing purposes
-   std::sstring executeUnguardedStatement(std::string str);
+   std::string executeUnguardedStatement(std::string str);
 
    //Misc Functions
    
@@ -74,7 +72,7 @@ private:
    Database(Database& other) = delete;
    Database& operator=(Database& rhs) = delete;
 
-   std::sstring statement_;
+   std::stringstream statement_;
    sql::Driver *driver_;
    sql::Connection *con_;
    sql::Statement *stmt_;
