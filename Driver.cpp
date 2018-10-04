@@ -18,15 +18,15 @@ void Driver::registerDriver()
 {
 	registerUser();
 
-	cout << "Sponsor set to N/A" << endl;
+	//cout << "Sponsor set to N/A" << endl;
 	sponsor = "N/A";
 
-	cout << "Points set to 0" << endl;
+	//cout << "Points set to 0" << endl;
 	points = 0;
 	
 	cout << "Enter License Number: ";
 	cin >> LNum;
-	
+	////
 	cout << "Enter Liscence Plate Number: ";
 	cin >> LPNum[0];
 	
