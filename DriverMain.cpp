@@ -9,8 +9,11 @@ int main(int argc, char *argv[])
 	char regL;
 	cout << "Register (R) or Load (L)?" << endl;
 	bool add = false;
+	bool plt = false;
 	string addr[10];
 	int addrNum = 0;
+ 	string plts[10];
+	int pltNum = 0;
 
 	cin >> regL;
 
@@ -87,14 +90,28 @@ int main(int argc, char *argv[])
 					add = false;
 					d.setAddress(addr,addrNum);
 				}
+				if(str == "ENDPLATES")
+				{
+					plt = false;
+					d.setLPNum(plts,pltNum);
+				}
 				if(add == true)
 				{
 					addr[addrNum] = str;
 					addrNum++;
 				}
+				if(plt == true)
+				{
+					plts[pltNum] = str;
+					pltNum++;
+				}
 				if(str == "ADDRESS")
 				{
 					add = true;
+				}
+				if(str == "PLATES")
+				{
+					plt = true;
 				}
 			}
 			i++;
@@ -109,8 +126,11 @@ int main(int argc, char *argv[])
 
 	string t;
 	string* t2;
+
 	char input;
 	int i;
+	int* i2;
+		
 	long l;
 	int x = 0;
 
@@ -130,6 +150,10 @@ int main(int argc, char *argv[])
 	cout << "Add Address (A)" << endl;
 	cout << "Remove Address (R)" << endl;
 	cout << "Update Name (N)" << endl;
+	cout << "Update License (L)" << endl;
+	cout << "Add License Plate (Z)" << endl;
+	cout << "Remove License Plate (Q)" << endl;
+	cout << "View License Plate (W)" << endl;
 
 	while(x == 0)
 	{
@@ -140,7 +164,27 @@ int main(int argc, char *argv[])
 			t = d.getUsername();
 			cout <<	"Username: " << t << endl;
 		}
-
+		else if(input == 'L')
+		{
+			d.updateLNum();
+		}
+		else if(input == 'Z')
+		{
+			d.addLP();
+		}
+		else if(input == 'Q')
+		{
+			d.removeLP();
+		}
+		else if(input == 'W')
+		{
+			i2 = d.getPlates();
+			i = d.getLNumNum();
+			for(int o = 0; o < i; o++)
+			{
+				cout << "Plate " << o << ": " << i2[o] << endl;
+			}
+		}
 		else if(input == 'P')
 		{
 			t = d.getPassword();
@@ -192,7 +236,7 @@ int main(int argc, char *argv[])
 		{
 			d.changePoints();
 		}
-		if(input == 'V')
+		else if(input == 'V')
 		{		
 			t2 = d.getAddress();
 			i = d.getNumAddress();
@@ -201,14 +245,10 @@ int main(int argc, char *argv[])
 				cout << "Address " << o << ": " << t2[o] << endl;
 			}
 		}
-		if(input == 'N')
+		else if(input == 'N')
 		{
 				cin >> t;
 				d.setUsername(t);
-		}
-		else
-		{
-			cout << "Invalid input..." << endl;
 		}
 		d.saveDriver();
 	}

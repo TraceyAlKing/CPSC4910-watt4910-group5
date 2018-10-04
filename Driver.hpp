@@ -18,6 +18,7 @@ class Driver: public User {
 		~Driver(); 
 		void registerDriver();
 		int getPoints();
+		
 		string getSponsor();
 		int getLicenseNum();
 		int getNumPlates();
@@ -25,12 +26,15 @@ class Driver: public User {
 		void saveDriver();
 		int changePoints();
 
+		void setLNum(int i);
 		void setSponsor(string i);
 		void setPoints(string i);
 		
 		void updateLNum();
-		void addLPNum();
-		void removeLPNum();
+		void addLP();
+		void removeLP();
+		void viewLP();
 		
 		int getLNumNum();
+		void setLPNum(string* i, int j);
 };
