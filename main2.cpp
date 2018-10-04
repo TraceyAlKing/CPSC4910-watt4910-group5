@@ -85,10 +85,6 @@ int main(int argc, char *argv[])
 				{
 					d.setPoints(str);
 				}
-				if(i == 9)
-				{
-					d.setPoints(str);
-				}
 				if(str == "ENDADDRESS")
 				{
 					add = false;
