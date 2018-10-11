@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "Login.hpp"
+//#include "User.hpp"
 
 namespace Ui {
 class MainWindow;
@@ -27,6 +28,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     Login UserLogin;
+//    User CurrUser;
 };
 
 
