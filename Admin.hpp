@@ -5,7 +5,7 @@
 
 using namespace std;
 
-#include "User.hpp"
+#include "Sponsor.hpp"
 
 class Admin: public User {
 	private:
@@ -18,4 +18,25 @@ class Admin: public User {
 			void viewUser();
 			
 			bool checkForUser(string name);
+			
+			void registerSponsor();
+			void registerDriver();
+			
+			void viewAllDrivers();
+			void viewAllSponsors();
+			void viewAllAdmins();
+			
+			void deleteUser();
+			
+			void listOfFiles();
+			
+			void editUser();
+			
+			Sponsor setSponsor(string f);
+			Admin setAdmin(string f);
+			
+			void editAdmin(Admin name);
+			void editSponsor(Sponsor name);
+			void editDriver(Driver name);
+			
 };
