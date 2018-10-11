@@ -24,13 +24,13 @@ public:
    void getDrivers();
    
    //Sponsor calls
-   void createSponsor();
+   void createSponsor(std::string name, std::string email, std::string password, std::string phone, std::string point_value);
    void getSponsor(std::string id);
    void removeSponsor(std::string id);
    void getSponsors();
 
    //Admin calls
-   void createAdmin();
+   void createAdmin(std::string name, std::string email, std::string password, std::string phone);
    void getAdmin(std::string id);
    void removeAdmin(std::string id);
    void getAdmins();
