@@ -36,13 +36,13 @@ public:
    void getAdmins();
 
    //Amazon Item calls
-   void createAmazonItem();
+   void createAmazonItem(std::string name, std::string price, std::string description, std::string url);
    void getAmazonItem(std::string id);
    void removeAmazonItem(std::string id);
    void getAmazonItems();
 
    //Catalog Calls
-   void createCatalog();
+   void createCatalog(std::string my_sponsor_id);
    void getCatalog(std::string id);
    void removeCatalog(std::string id);
    void getCatalogs();

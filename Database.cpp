@@ -401,6 +401,225 @@ void Database::getAdmin(std::string id){
   }
 }
 
+void Database::removeAmazonItem(std::string id){
+  try {
+    //DELETE FROM somelog WHERE user = 'jcole'
+    std::stringstream sstr;
+    sstr << "DELETE FROM AMAZON_ITEM WHERE id = \'";
+    sstr << id << "\';";
+
+    std::cout << "Attempting statement: " << sstr.str() << std::endl;
+    stmt_ = con_->createStatement();
+    stmt_->execute(sstr.str());
+    std::cout << "\t... MySQL replies: Success." << std::endl;
+
+  } catch (sql::SQLException &e) {
+    std::cout << "# ERR: SQLException in " << __FILE__;
+    std::cout << "(" << __FUNCTION__ << ") on line "
+       << __LINE__ << std::endl;
+    std::cout << "# ERR: " << e.what();
+    std::cout << " (MySQL error code: " << e.getErrorCode();
+    std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
+  }
+}
+void Database::getAmazonItems(){
+     try {
+      std::string str = "SELECT * FROM AMAZON_ITEM;";
+      std::cout << "Attempting statement: " << str << std::endl;
+      stmt_ = con_->createStatement();
+      res_ = stmt_->executeQuery(str);
+      std::cout << "\t... MySQL replies: " << std::endl;
+      int count = 0;
+      while (res_->next()) {
+        /* Access column data by alias or column name */
+        std::cout << "\t-------------------------------------------" << std::endl;
+        std::cout << "\tid: "<< res_->getString("id") << std::endl;
+        std::cout << "\tname: "<< res_->getString("name") << std::endl;
+        std::cout << "\tprice: "<< res_->getString("price") << std::endl;
+        std::cout << "\tdescription: "<< res_->getString("description") << std::endl;
+        std::cout << "\turl: "<< res_->getString("url") << std::endl;
+        count++;
+      }
+      std::cout << "\t-------------------------------------------" << std::endl;
+      std::cout << "\tNumber of entries: " << count << std::endl;
+
+      std::cout << "\t... MySQL replies: Success." << std::endl;;
+   } catch (sql::SQLException &e) {
+      std::cout << "# ERR: SQLException in " << __FILE__;
+      std::cout << "(" << __FUNCTION__ << ") on line "
+         << __LINE__ << std::endl;
+      std::cout << "# ERR: " << e.what();
+      std::cout << " (MySQL error code: " << e.getErrorCode();
+      std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
+   }
+}
+void Database::createAmazonItem(std::string name, std::string price, std::string description, std::string url){
+  try {
+
+    std::stringstream sstr;
+    sstr << "INSERT INTO AMAZON_ITEM ( name, price, description, url) ";
+    sstr << "VALUES ( \"" << name << "\", \"" << price << "\", \"";
+    sstr << description << "\", \""<< url << "\" );";
+
+    std::cout << "Attempting statement: " << sstr.str() << std::endl;
+    stmt_ = con_->createStatement();
+    stmt_->execute(sstr.str());
+    std::cout << "\t... MySQL replies: Success." << std::endl;;
+
+  } catch (sql::SQLException &e) {
+    std::cout << "# ERR: SQLException in " << __FILE__;
+    std::cout << "(" << __FUNCTION__ << ") on line "
+       << __LINE__ << std::endl;
+    std::cout << "# ERR: " << e.what();
+    std::cout << " (MySQL error code: " << e.getErrorCode();
+    std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
+  }
+}
+
+void Database::getAmazonItem(std::string id){
+  try {
+    //Build statement
+    std::stringstream sstr;
+    sstr << "SELECT * FROM AMAZON_ITEM WHERE id = " << "\"" << id << "\";";
+
+    //Execute statement
+    std::cout << "Attempting statement: " << sstr.str() << std::endl;
+    stmt_ = con_->createStatement();
+    res_ = stmt_->executeQuery(sstr.str());
+    std::cout << "\t... MySQL replies: " << std::endl;
+
+    //Parse results
+    int count = 0;
+    while (res_->next()) {
+      /* Access column data by alias or column name */
+      std::cout << "\t-------------------------------------------" << std::endl;
+      std::cout << "\tid: "<< res_->getString("id") << std::endl;
+      std::cout << "\tname: "<< res_->getString("name") << std::endl;
+      std::cout << "\tprice: "<< res_->getString("price") << std::endl;
+      std::cout << "\tdescription: "<< res_->getString("description") << std::endl;
+      std::cout << "\turl: "<< res_->getString("url") << std::endl;
+      count++;
+    }
+    std::cout << "\t-------------------------------------------" << std::endl;
+    std::cout << "\tNumber of entries: " << count << std::endl;
+    std::cout << "\t... MySQL replies: Success." << std::endl;
+
+  } catch (sql::SQLException &e) {
+    std::cout << "# ERR: SQLException in " << __FILE__;
+    std::cout << "(" << __FUNCTION__ << ") on line "
+       << __LINE__ << std::endl;
+    std::cout << "# ERR: " << e.what();
+    std::cout << " (MySQL error code: " << e.getErrorCode();
+    std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
+  }
+}
+
+void Database::removeCatalog(std::string id){
+  try {
+    //DELETE FROM somelog WHERE user = 'jcole'
+    std::stringstream sstr;
+    sstr << "DELETE FROM CATALOG WHERE id = \'";
+    sstr << id << "\';";
+
+    std::cout << "Attempting statement: " << sstr.str() << std::endl;
+    stmt_ = con_->createStatement();
+    stmt_->execute(sstr.str());
+    std::cout << "\t... MySQL replies: Success." << std::endl;;
+
+  } catch (sql::SQLException &e) {
+    std::cout << "# ERR: SQLException in " << __FILE__;
+    std::cout << "(" << __FUNCTION__ << ") on line "
+       << __LINE__ << std::endl;
+    std::cout << "# ERR: " << e.what();
+    std::cout << " (MySQL error code: " << e.getErrorCode();
+    std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
+  }
+}
+void Database::getCatalogs(){
+     try {
+      std::string str = "SELECT * FROM CATALOG;";
+      std::cout << "Attempting statement: " << str << std::endl;
+      stmt_ = con_->createStatement();
+      res_ = stmt_->executeQuery(str);
+      std::cout << "\t... MySQL replies: " << std::endl;
+      int count = 0;
+      while (res_->next()) {
+        /* Access column data by alias or column name */
+        std::cout << "\t-------------------------------------------" << std::endl;
+        std::cout << "\tcatalog id: "<< res_->getString("id") << std::endl;
+        std::cout << "\tsponsor id: "<< res_->getString("my_sponsor_id") << std::endl;
+        count++;
+      }
+      std::cout << "\t-------------------------------------------" << std::endl;
+      std::cout << "\tNumber of entries: " << count << std::endl;
+
+      std::cout << "\t... MySQL replies: Success." << std::endl;;
+   } catch (sql::SQLException &e) {
+      std::cout << "# ERR: SQLException in " << __FILE__;
+      std::cout << "(" << __FUNCTION__ << ") on line "
+         << __LINE__ << std::endl;
+      std::cout << "# ERR: " << e.what();
+      std::cout << " (MySQL error code: " << e.getErrorCode();
+      std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
+   }
+}
+
+void Database::getCatalog(std::string id){
+  try {
+    //Build statement
+    std::stringstream sstr;
+    sstr << "SELECT * FROM CATALOG WHERE id = " << "\"" << id << "\";";
+
+    //Execute statement
+    std::cout << "Attempting statement: " << sstr.str() << std::endl;
+    stmt_ = con_->createStatement();
+    res_ = stmt_->executeQuery(sstr.str());
+    std::cout << "\t... MySQL replies: " << std::endl;
+
+    //Parse results
+    int count = 0;
+    while (res_->next()) {
+      /* Access column data by alias or column name */
+      std::cout << "\t-------------------------------------------" << std::endl;
+        std::cout << "\tcatalog id: "<< res_->getString("id") << std::endl;
+        std::cout << "\tsponsor id: "<< res_->getString("my_sponsor_id") << std::endl;
+        count++;
+    }
+    std::cout << "\t-------------------------------------------" << std::endl;
+    std::cout << "\tNumber of entries: " << count << std::endl;
+    std::cout << "\t... MySQL replies: Success." << std::endl;
+
+  } catch (sql::SQLException &e) {
+    std::cout << "# ERR: SQLException in " << __FILE__;
+    std::cout << "(" << __FUNCTION__ << ") on line "
+       << __LINE__ << std::endl;
+    std::cout << "# ERR: " << e.what();
+    std::cout << " (MySQL error code: " << e.getErrorCode();
+    std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
+  }
+}
+void Database::createCatalog(std::string my_sponsor_id){
+  try {
+
+    std::stringstream sstr;
+    sstr << "INSERT INTO CATALOG ( my_sponsor_id) ";
+    sstr << "VALUES ( \"" << my_sponsor_id << "\" );";
+
+    std::cout << "Attempting statement: " << sstr.str() << std::endl;
+    stmt_ = con_->createStatement();
+    stmt_->execute(sstr.str());
+    std::cout << "\t... MySQL replies: Success." << std::endl;;
+
+  } catch (sql::SQLException &e) {
+    std::cout << "# ERR: SQLException in " << __FILE__;
+    std::cout << "(" << __FUNCTION__ << ") on line "
+       << __LINE__ << std::endl;
+    std::cout << "# ERR: " << e.what();
+    std::cout << " (MySQL error code: " << e.getErrorCode();
+    std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
+  }
+}
+
 std::string Database::executeUnguardedStatement(std::string str){
   try {
     std::cout << "Attempting statement: " << str << std::endl;
