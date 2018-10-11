@@ -7,7 +7,6 @@
 using namespace std;
 
 #include "Sponsor.hpp"
-#include "Driver.hpp"
 
 Sponsor::Sponsor()
 {
@@ -116,6 +115,10 @@ bool Sponsor::checkForDriver (string name) {
 							cout << numDrivers << endl;
 							Drivers[numDrivers] = name;
 							numDrivers++;
+							Driver d;
+							d = setDriver(name);
+							d.setSponsor(getUsername());
+							d.saveDriver();
         						return true;
 				}
 			}
@@ -151,3 +154,96 @@ void Sponsor::changePoints()
 	}
 }
 
+Driver Sponsor::setDriver(string f)
+{
+	bool add = false;
+	bool plt = false;
+	string addr[10];
+	int addrNum = 0;
+ 	string plts[10];
+	int pltNum = 0;
+	
+		const char *buff = f.c_str();
+
+		ifstream in(buff);
+		
+		Driver d;
+
+		string str;
+		string typeOfUser;
+
+		int i = 0;
+
+		while(getline(in, str))
+		{
+			if(i == 0)
+			{
+				typeOfUser = str;
+			}
+			if(typeOfUser == "Driver")
+			{
+				if(i == 1)
+				{
+					d.setUsername(str);
+				}
+				if(i == 2)
+				{
+					d.setPassword(str);
+				}
+				if(i == 3)
+				{
+					d.setName(str);
+				}
+				if(i == 4)
+				{
+					d.setEmail(str);
+				}
+				if(i == 5)
+				{
+					d.setPhone(str);
+				}
+				if(i == 6)
+				{
+					d.setID(str);
+				}
+				if(i == 7)
+				{
+					d.setSponsor(str);
+				}
+				if(i == 8)
+				{
+					d.setPoints(str);
+				}
+				if(str == "ENDADDRESS")
+				{
+					add = false;
+					d.setAddress(addr,addrNum);
+				}
+				if(str == "ENDPLATES")
+				{
+					plt = false;
+					d.setLPNum(plts,pltNum);
+				}
+				if(add == true)
+				{
+					addr[addrNum] = str;
+					addrNum++;
+				}
+				if(plt == true)
+				{
+					plts[pltNum] = str;
+					pltNum++;
+				}
+				if(str == "ADDRESS")
+				{
+					add = true;
+				}
+				if(str == "PLATES")
+				{
+					plt = true;
+				}
+			}
+			i++;
+		}
+		return d;
+}
