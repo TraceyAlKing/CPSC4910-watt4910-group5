@@ -5,7 +5,7 @@
 
 using namespace std;
 
-#include "User.hpp"
+#include "Driver.hpp"
 
 class Sponsor: public User {
 		string Drivers[100];
@@ -23,4 +23,5 @@ class Sponsor: public User {
 			bool checkForDriver(string name);
 			int getSponNum();
 			string* getDrivers();
+			Driver setDriver(string f);
 	};
