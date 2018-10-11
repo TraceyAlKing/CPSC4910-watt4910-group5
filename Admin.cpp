@@ -408,19 +408,242 @@ void Admin::editUser()
 					Driver d = s.setDriver(user);
 					editDriver(d);
 				}
+				else if(str == "Sponsor")
+				{
+					cout << "Sponsor " << user << " found" << endl;
+					Sponsor d = setSponsor(user);
+					editSponsor(d);
+				}
+				else if(str == "Admin")
+				{
+					cout << "Admin " << user << " found" << endl;
+					Admin d = setAdmin(user);
+					editAdmin(d);
+				}
 		}
+}
+
+Sponsor Admin::setSponsor(string f)
+{
+	bool add = false;
+	bool drv = false;
+	string addr[10];
+	int addrNum = 0;
+ 	string dvr[100];
+	int dvrNum = 0;
 	
+		const char *buff = f.c_str();
+
+		ifstream in(buff);
+		
+		Sponsor d;
+
+		string str;
+		string typeOfUser;
+
+		int i = 0;
+
+		while(getline(in, str))
+		{
+			if(i == 0)
+			{
+				typeOfUser = str;
+			}
+			if(typeOfUser == "Driver")
+			{
+				if(i == 1)
+				{
+					d.setUsername(str);
+				}
+				if(i == 2)
+				{
+					d.setPassword(str);
+				}
+				if(i == 3)
+				{
+					d.setName(str);
+				}
+				if(i == 4)
+				{
+					d.setEmail(str);
+				}
+				if(i == 5)
+				{
+					d.setPhone(str);
+				}
+				if(i == 6)
+				{
+					d.setID(str);
+				}
+				if(str == "ENDADDRESS")
+				{
+					add = false;
+					d.setAddress(addr,addrNum);
+				}
+				if(str == "ENDSPONS")
+				{
+					drv = false;
+					d.setDrivers(dvr,dvrNum);
+				}
+				if(add == true)
+				{
+					addr[addrNum] = str;
+					addrNum++;
+				}
+				if(drv == true)
+				{
+					dvr[dvrNum] = str;
+					dvrNum++;
+				}
+				if(str == "ADDRESS")
+				{
+					add = true;
+				}
+				if(str == "SPONS2")
+				{
+					drv = true;
+				}
+			}
+			i++;
+		}
+		return d;
+}
+
+Admin Admin::setAdmin(string f)
+{
+	bool add = false;
+	string addr[10];
+	int addrNum = 0;
+	
+		const char *buff = f.c_str();
+
+		ifstream in(buff);
+		
+		Admin d;
+
+		string str;
+		string typeOfUser;
+
+		int i = 0;
+
+		while(getline(in, str))
+		{
+			if(i == 0)
+			{
+				typeOfUser = str;
+			}
+			if(typeOfUser == "Admin")
+			{
+				if(i == 1)
+				{
+					d.setUsername(str);
+				}
+				if(i == 2)
+				{
+					d.setPassword(str);
+				}
+				if(i == 3)
+				{
+					d.setName(str);
+				}
+				if(i == 4)
+				{
+					d.setEmail(str);
+				}
+				if(i == 5)
+				{
+					d.setPhone(str);
+				}
+				if(i == 6)
+				{
+					d.setID(str);
+				}
+				if(str == "ENDADDRESS")
+				{
+					add = false;
+					d.setAddress(addr,addrNum);
+				}
+				if(add == true)
+				{
+					addr[addrNum] = str;
+					addrNum++;
+				}
+				if(str == "ADDRESS")
+				{
+					add = true;
+				}
+			}
+			i++;
+		}
+		return d;
 }
 
 void Admin::editDriver(Driver name)
 {
 	cout << "Choose aspect to edit" << endl;
-	cout << "Password (P)" << endl;	
+	cout << "Password (P)" << endl;
+	cout << "Email (E)" << endl;
+	cout << "Real Name (R)" << endl;
+	cout << "Phone (H)" << endl;
+	cout << "Add Address (A)" << endl;
+	char v;
+	cin >> v;
+	
+	string input;
+	
+	if(v == 'P')
+	{
+		name.changePassword();
+		name.saveDriver();
+	}
+	else if(v == 'E')
+	{
+		cout << "Type in new e-mail" << endl;
+		cin >> input;
+		name.setEmail(input);
+		name.saveDriver();
+	}
+	else if(v == 'E')
+	{
+		cout << "Type in new phone number" << endl;
+		cin >> input;
+		name.setPhone(input);
+		name.saveDriver();
+	}
+	else if(v == 'H')
+	{
+		cout << "Type in new phone number" << endl;
+		cin >> input;
+		name.setPhone(input);
+		name.saveDriver();
+	}
+	else if(v == 'A')
+	{
+		name.addAddress();
+		name.saveDriver();
+	}
+}
+
+void Admin::editAdmin(Admin name)
+{
+	cout << "Choose aspect to edit" << endl;
 	char v;
 	cin >> v;
 	if(v == 'P')
 	{
 		name.changePassword();
-		name.saveDriver();
+		name.saveAdmin();
+	}
+}
+
+void Admin::editSponsor(Sponsor name)
+{
+	cout << "Choose aspect to edit" << endl;
+	char v;
+	cin >> v;
+	if(v == 'P')
+	{
+		name.changePassword();
+		name.saveSponsor();
 	}
 }
