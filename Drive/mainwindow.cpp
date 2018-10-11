@@ -12,6 +12,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->stackedWidget->setCurrentIndex(0);
     ui->stackedWidget->showMaximized();
     ui->groupBox->setFixedSize(600,400);
+
 }
 
 MainWindow::~MainWindow()
@@ -23,27 +24,28 @@ void MainWindow::on_pushButton_Login_2_clicked()
 {
     QString qUsername = ui->lineEdit_Username_2->text();
     QString qPassword = ui->lineEdit_Password_2->text();
-    UserLogin.SetUsername(qUsername.toStdString());
+    std::string username = qUsername.toStdString();
     std::string password = qPassword.toStdString();
 
-    if(UserLogin.Validate(password) == "driver") {
+    int temp = db().login(username, password);
+
+    if(temp == 1) {
         ui->stackedWidget->setCurrentIndex(1);
     }
-    else if(UserLogin.Validate(password) == "sponsor") {
+    else if(temp == 2) {
         ui->stackedWidget->setCurrentIndex(2);
     }
-    else if(UserLogin.Validate(password) == "admin") {
+    else if(temp == 3) {
         ui->stackedWidget->setCurrentIndex(1);
     }
     else {
-        QMessageBox::warning(this,"Login", "Invalid username and/or password");
+        QMessageBox::warning(this,"Login", "Invalid username and/or password", QMessageBox::Ok);
     }
 }
 
 void MainWindow::on_driver_Logout_clicked()
 {
     ui->stackedWidget->setCurrentIndex(0);
-    UserLogin.Logout();
 }
 
 void MainWindow::on_driver_Account_clicked()
@@ -54,7 +56,6 @@ void MainWindow::on_driver_Account_clicked()
 void MainWindow::on_sponsor_Logout_clicked()
 {
     ui->stackedWidget->setCurrentIndex(0);
-    UserLogin.Logout();
 }
 
 void MainWindow::on_sponsor_Account_clicked()
