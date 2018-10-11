@@ -25,9 +25,15 @@ CREATE TABLE DRIVER
    password          VARCHAR(64)   NOT NULL,
    phone             INT unsigned  NOT NULL,
    points            INT unsigned  NOT NULL,
-   my_sponsor_id     INT unsigned,
-   PRIMARY KEY (id),
-   FOREIGN KEY (my_sponsor_id) REFERENCES SPONSOR(id)
+   PRIMARY KEY (id)
+);
+CREATE TABLE DRIVER_SPONSOR
+(
+   driver_id         INT unsigned  NOT NULL,
+   sponsor_id        INT unsigned  NOT NULL,
+   PRIMARY KEY (driver_id, sponsor_id),
+   FOREIGN KEY (driver_id) REFERENCES DRIVER(id),
+   FOREIGN KEY (sponsor_id) REFERENCES SPONSOR(id)
 );
 CREATE TABLE AMAZON_ITEM
 (

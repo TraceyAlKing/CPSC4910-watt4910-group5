@@ -98,7 +98,6 @@ void Database::getDrivers(){
     std::cout << "\temail: "<< res_->getString("email") << std::endl;
     std::cout << "\tpassword: "<< res_->getString("password") << std::endl;
     std::cout << "\tpoints: "<< res_->getString("points") << std::endl;
-    std::cout << "\tsponsor: "<< res_->getString("my_sponsor_id") << std::endl;
     count++;
   }
   std::cout << "\t-------------------------------------------" << std::endl;
@@ -138,7 +137,6 @@ void Database::getDriver(std::string id){
       std::cout << "\temail: "<< res_->getString("email") << std::endl;
       std::cout << "\tpassword: "<< res_->getString("password") << std::endl;
       std::cout << "\tpoints: "<< res_->getString("points") << std::endl;
-      std::cout << "\tsponsor: "<< res_->getString("my_sponsor_id") << std::endl;
       count++;
     }
     std::cout << "\t-------------------------------------------" << std::endl;
