@@ -476,7 +476,8 @@ void Database::createAmazonItem(std::string name, std::string price, std::string
   }
 }
 
-void Database::getAmazonItem(std::string id){
+Item * Database::getAmazonItem(std::string id){
+  Item * ritem;
   try {
     //Build statement
     std::stringstream sstr;
@@ -492,16 +493,9 @@ void Database::getAmazonItem(std::string id){
     int count = 0;
     while (res_->next()) {
       /* Access column data by alias or column name */
-      std::cout << "\t-------------------------------------------" << std::endl;
-      std::cout << "\tid: "<< res_->getString("id") << std::endl;
-      std::cout << "\tname: "<< res_->getString("name") << std::endl;
-      std::cout << "\tprice: "<< res_->getString("price") << std::endl;
-      std::cout << "\tdescription: "<< res_->getString("description") << std::endl;
-      std::cout << "\turl: "<< res_->getString("url") << std::endl;
+      ritem= new Item(std::stoi(res_->getString("id")),res_->getString("name"),res_->getDouble("price"),res_->getString("description"),res_->getString("url"));
       count++;
     }
-    std::cout << "\t-------------------------------------------" << std::endl;
-    std::cout << "\tNumber of entries: " << count << std::endl;
     std::cout << "\t... MySQL replies: Success." << std::endl;
 
   } catch (sql::SQLException &e) {
@@ -512,6 +506,7 @@ void Database::getAmazonItem(std::string id){
     std::cout << " (MySQL error code: " << e.getErrorCode();
     std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
   }
+  return ritem;
 }
 
 void Database::removeCatalog(std::string id){
@@ -564,14 +559,14 @@ void Database::getCatalogs(){
    }
 }
 
-void Database::getCatalog(std::string id){
+Catalog * Database::getCatalog(std::string id){
+  Catalog * rcat;
   try {
     //Build statement
     std::stringstream sstr;
     sstr << "SELECT * FROM CATALOG WHERE id = " << "\"" << id << "\";";
 
     //Execute statement
-    std::cout << "Attempting statement: " << sstr.str() << std::endl;
     stmt_ = con_->createStatement();
     res_ = stmt_->executeQuery(sstr.str());
     std::cout << "\t... MySQL replies: " << std::endl;
@@ -581,12 +576,9 @@ void Database::getCatalog(std::string id){
     while (res_->next()) {
       /* Access column data by alias or column name */
       std::cout << "\t-------------------------------------------" << std::endl;
-        std::cout << "\tcatalog id: "<< res_->getString("id") << std::endl;
-        std::cout << "\tsponsor id: "<< res_->getString("my_sponsor_id") << std::endl;
-        count++;
+      rcat=new Catalog(std::stoi(res_->getString("id")),std::stoi(res_->getString("my_sponsor_id")));
+      count++;
     }
-    std::cout << "\t-------------------------------------------" << std::endl;
-    std::cout << "\tNumber of entries: " << count << std::endl;
     std::cout << "\t... MySQL replies: Success." << std::endl;
 
   } catch (sql::SQLException &e) {
@@ -597,6 +589,7 @@ void Database::getCatalog(std::string id){
     std::cout << " (MySQL error code: " << e.getErrorCode();
     std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
   }
+  return rcat;
 }
 void Database::createCatalog(std::string my_sponsor_id){
   try {

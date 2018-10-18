@@ -8,6 +8,9 @@
 #include <stdlib.h>
 #include <iostream>
 #include <sstream>
+#include <string>
+#include "Item.hpp"
+#include "Catalog.hpp"
 
 class Database{
 public:
@@ -37,13 +40,13 @@ public:
 
    //Amazon Item calls
    void createAmazonItem(std::string name, std::string price, std::string description, std::string url);
-   void getAmazonItem(std::string id);
+   Item * getAmazonItem(std::string id);
    void removeAmazonItem(std::string id);
    void getAmazonItems();
 
    //Catalog Calls
    void createCatalog(std::string my_sponsor_id);
-   void getCatalog(std::string id);
+   Catalog * getCatalog(std::string id);
    void removeCatalog(std::string id);
    void getCatalogs();
 
