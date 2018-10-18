@@ -8,9 +8,15 @@ using namespace std;
 
 #include "Sponsor.hpp"
 
+Sponsor::Sponsor(std::string id, std::string name, std::string email, std::string password,
+		std::string phone, std::string address, std::string point_value) : 
+		User(id, name, email, password, phone, address), point_value_(stoi(point_value))
+{
+
+}
 Sponsor::Sponsor()
 {
-	numDrivers = 0;
+	numDrivers_ = 0;
 }
 
 Sponsor::~Sponsor()
@@ -19,10 +25,11 @@ Sponsor::~Sponsor()
 
 void Sponsor::setDrivers(string* i, int j)
 {
-	numDrivers = j;
+	numDrivers_ = j;
 	for(int k = 0; k < j; k++)
 	{
-		Drivers[k]  = i[k];
+		Drivers_[k]  = i[k];
+		cout << "For loop: " << Drivers_[k] << endl;
 	}
 }
 
@@ -33,7 +40,7 @@ void Sponsor::registerSponsor()
 	
 	cout << "Add drivers later." << endl;
 	
-		numDrivers = 0;
+	numDrivers_ = 0;
 		
 	cout << "Set a total for points: ";
 	
@@ -87,6 +94,11 @@ void Sponsor::addDriver()
 	cout << "What is the username of the driver you want to add?" << endl;
 	cin >> input;
 	bool tf = checkForDriver(input);
+
+	/*check to see if sponsor is N/A*/
+	/*add to list of drivers*/
+	/*change N/A to the sponsor name*/
+	numDrivers_++;	
 }
 
 void Sponsor::removeDriver()
@@ -236,7 +248,7 @@ Sponsor Sponsor::setSponsor(string f)
 
 int Sponsor::getSponNum()
 {
-	return numDrivers;
+	return numDrivers_;
 }
 
 bool Sponsor::checkForDriver (string name) {
@@ -252,15 +264,15 @@ bool Sponsor::checkForDriver (string name) {
 			{
 				if(str == "N/A")
 				{
-					        	fclose(file);
+					      fclose(file);
 							cout << "Driver found and unassigned." << endl;
-							Drivers[numDrivers] = name;
-							numDrivers++;
+							Drivers_[numDrivers] = name;
+							numDrivers_++;
 							Driver d;
 							d = d.setDriver(name);
 							d.setSponsor(to_string(getID()));
 							d.saveDriver();
-        						return true;
+        					return true;
 				}
 			}
 			fclose(file);
@@ -283,13 +295,13 @@ bool Sponsor::checkForDriver (string name) {
 
 string* Sponsor::getDrivers()
 {
-	return Drivers;
+	return Drivers_;
 }
 
 void Sponsor::changePoints()
 {
 	cout << "Choose a Driver." << endl;
-	for(int p = 0; p < numDrivers; p++)
+	for(int p = 0; p < numDrivers_; p++)
 	{
 		
 	}

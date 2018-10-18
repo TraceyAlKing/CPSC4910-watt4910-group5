@@ -6,6 +6,14 @@
 
 #include "User.hpp"
 
+User::User(std::string id, std::string name, std::string email, std::string password,
+		std::string phone, std::string address) : 
+		id_(std::stoi(id)), name_(name), email_(email), password_(password), 
+		phone_(std::stol(phone)), address_()
+{
+	address_[0] = address;
+}
+
 User::User()
 {
 }
@@ -17,34 +25,34 @@ User::~User()
 void User::registerUser()
 {
 	cout << "Enter username: ";
-	cin >> username;
+	cin >> username_;
 
 	cout << "Enter password: ";
-	cin >> password;
+	cin >> password_;
 	
 	cin.ignore();
 	
 	cout << "Enter name: ";
-	getline(cin,name);
+	getline(cin, name_);
 
 	cout << "Enter E-Mail: ";
-	cin >> email;
+	cin >> email_;
 
 	cout << "Enter Phone Number: ";
-	cin >> phone;
+	cin >> phone_;
 
-	if(phone < 99999999 || phone > 100000000000)
+	if(phone_ < 99999999 || phone_ > 100000000000)
 	{
 		cout << "Phone number must be 10 digits" << endl;
-		cin >> phone;
+		cin >> phone_;
 	}
 	
 	cin.ignore();
 	
 	cout << "Enter Address: ";
-	getline(cin,address[0]);
+	getline(cin, address_[0]);
 	
-	addNum = 1;
+	addNum_ = 1;
 
 	srand(time(NULL));
 
@@ -52,81 +60,81 @@ void User::registerUser()
 
 	cout << "User ID randomly set to ";
 	cout << randID << endl;
-	ID = randID;
+	id_ = randID;
 }
 
 string User::getUsername()
 {
-	return username;
+	return username_;
 }
 
 string User::getPassword()
 {
-	return password;
+	return password_;
 }
 
 string User::getEmail()
 {
-	return email;
+	return email_;
 }
 
 long User::getPhone()
 {
-	return phone;
+	return phone_;
 }
 
 int User::getID()
 {
-	return ID;
+	return id_;
 }
 
 string User::getName()
 {
-	return name;
+	return name_;
 }
 
 void User::setUsername(string i)
 {
-	username = i;
+	username_ = i;
 }
 
 void User::setName(string i)
 {
-	name = i;
+	name_ = i;
 }
 
 void User::setPassword(string i)
 {
-	password = i;
+	password_ = i;
 }
 
 void User::setEmail(string i)
 {
-	email = i;
+	email_ = i;
 }
 
 void User::setPhone(string i)
 {
-	phone = atol(i.c_str());
+	phone_ = atol(i.c_str());
 }
 
 void User::setID(string i)
 {
-	ID = atoi(i.c_str());
+	id_ = atoi(i.c_str());
 }
 
 void User::setAddress(string* i, int j)
 {
-	addNum = j;
+	addNum_ = j;
 	for(int k = 0; k < j; k++)
 	{
-		address[k] = i[k];
+		address_[k] = i[k];
 	}
 }
 
 void User::addAddress()
 {
-	if(addNum == 10)
+	if(addNum_ == 10)
 	{
 		cout << "Max number of addresses reached" << endl;
 	}
@@ -134,43 +142,43 @@ void User::addAddress()
 	{
 		cin.ignore();
 		cout << "Enter Address: ";
-		getline(cin,address[addNum]);
-		addNum++;
+		getline(cin, address_[addNum_]);
+		addNum_++;
 	}
-	cout << "Address " << address[addNum-1] << " added" << endl;
+	cout << "Address " << address_[addNum_-1] << " added" << endl;
 }
 
 void User::removeAddress()
 {
 	int input;
 	cout << "Remove which address? " << endl;
-	for(int i = 0; i < addNum; i++)
+	for(int i = 0; i < addNum_; i++)
 	{
-		cout << i << ": " << address[i] << endl;
+		cout << i << ": " << address_[i] << endl;
 	}
 	cin >> input;
-	while(input < 0 || input > addNum)
+	while(input < 0 || input > addNum_)
 	{
 		cout << "Enter a valid number.";
 		cin >> input;
 	}
-	while(input < addNum)
+	while(input < addNum_)
 	{
-		address[input] = address[input+1]; 
+		address_[input] = address_[input+1]; 
 		input++;
 	}
-	address[addNum] = "NULL";
-	addNum--;
+	address_[addNum_] = "NULL";
+	addNum_--;
 }
 
 int User::getNumAddress()
 {
-	return addNum;
+	return addNum_;
 }
 
 string * User::getAddress()
 {
-	return address;
+	return address_;
 }
 
 void User::changePassword()
@@ -178,10 +186,10 @@ void User::changePassword()
 	string oldPass;
 	cout << "Enter old password: ";
 	cin >> oldPass;
-	if(oldPass == password)
+	if(oldPass == password_)
 	{
 			cout << "Enter new password: ";
-			cin >> password;
+			cin >> password_;
 	}
 	else
 	{

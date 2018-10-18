@@ -8,38 +8,39 @@ using namespace std;
 #include "Sponsor.hpp"
 
 class Admin: public User {
-	private:
+private:
 		int i;
-	public:
-			Admin();
-			~Admin();
-			void registerAdmin();
-			void saveAdmin();
-			void viewUser();
-			
-			bool checkForUser(string name);
-			
-			void registerSponsor();
-			void registerDriver();
-			
-			void viewAllDrivers();
-			void viewAllSponsors();
-			void viewAllAdmins();
-			
-			void deleteUser();
-			
-			void listOfFiles();
-			
-			void listOfUsernames();
-			
-			void listOfAdminUsernames();
-			
-			void editUser();
-			
-			Admin setAdmin(string f);
-			
-			void editAdmin(Admin name);
-			void editSponsor(Sponsor name);
-			void editDriver(Driver name);
-			
+public:
+	Admin(std::string id, std::string name, std::string email, std::string password,
+		std::string phone, std::string address);
+	Admin();
+	~Admin();
+	void registerAdmin();
+	void saveAdmin();
+	void viewUser();
+	
+	bool checkForUser(string name);
+	
+	void registerSponsor();
+	void registerDriver();
+	
+	void viewAllDrivers();
+	void viewAllSponsors();
+	void viewAllAdmins();
+	
+	void deleteUser();
+	
+	void listOfFiles();
+	
+	void listOfUsernames();
+	
+	void listOfAdminUsernames();
+	
+	void editUser();
+	
+	Admin setAdmin(string f);
+	
+	void editAdmin(Admin name);
+	void editSponsor(Sponsor name);
+	void editDriver(Driver name);
 };

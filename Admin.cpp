@@ -9,7 +9,8 @@ using namespace std;
 
 #include "Admin.h"
 
-Admin::Admin()
+Admin::Admin(std::string id, std::string name, std::string email, std::string password,
+		std::string phone, std::string address) : User(id, name, email, password, phone, address) 
 {
 
 }

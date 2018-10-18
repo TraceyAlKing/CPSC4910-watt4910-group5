@@ -4,7 +4,8 @@ CREATE TABLE SPONSOR
    name              VARCHAR(64)   NOT NULL,
    email             VARCHAR(64)   NOT NULL,
    password          VARCHAR(64)   NOT NULL,
-   phone             INT unsigned  NOT NULL,
+   phone             BIGINT(10) unsigned  NOT NULL,
+   address           VARCHAR(256),
    point_value       DOUBLE NOT NULL,
    PRIMARY KEY (id)
 );
@@ -14,7 +15,8 @@ CREATE TABLE ADMIN
    name              VARCHAR(64)   NOT NULL,
    email             VARCHAR(64)   NOT NULL,
    password          VARCHAR(64)   NOT NULL,
-   phone             INT unsigned  NOT NULL,
+   phone             BIGINT(10) unsigned  NOT NULL,
+   address           VARCHAR(256),
    PRIMARY KEY (id)
 );
 CREATE TABLE DRIVER
@@ -23,11 +25,18 @@ CREATE TABLE DRIVER
    name              VARCHAR(64)   NOT NULL,
    email             VARCHAR(64)   NOT NULL,
    password          VARCHAR(64)   NOT NULL,
-   phone             INT unsigned  NOT NULL,
+   phone             BIGINT(10) unsigned  NOT NULL,
+   address           VARCHAR(256),
    points            INT unsigned  NOT NULL,
-   my_sponsor_id     INT unsigned,
    PRIMARY KEY (id),
-   FOREIGN KEY (my_sponsor_id) REFERENCES SPONSOR(id)
+);
+CREATE TABLE DRIVER_SPONSOR
+(
+   driver_id         INT unsigned NOT NULL,
+   sponsor_id        INT unsigned NOT NULL,
+   PRIMARY KEY (driver_id, sponsor_id),
+   FOREIGN KEY (driver_id) REFERENCES DRIVER(id),
+   FOREIGN KEY (sponsor_id) REFERENCES SPONSOR(id)
 );
 CREATE TABLE AMAZON_ITEM
 (
@@ -42,7 +51,7 @@ CREATE TABLE AMAZON_ITEM_IMAGE
 (
    image_url         VARCHAR(1024) NOT NULL,
    amazon_item_id    INT unsigned  NOT NULL,
-   PRIMARY KEY (url, amazon_item_id),
+   PRIMARY KEY (amazon_item_id),
    FOREIGN KEY (amazon_item_id) REFERENCES AMAZON_ITEM(id)
 );
 CREATE TABLE CATALOG

@@ -8,6 +8,12 @@
 #include <stdlib.h>
 #include <iostream>
 #include <sstream>
+#include <string>
+#include "Item.hpp"
+#include "Catalog.hpp"
+#include "Driver.hpp"
+#include "Sponsor.hpp"
+#include "Admin.hpp"
 
 class Database{
 public:
@@ -19,31 +25,31 @@ public:
 
    //Driver calls
    void createDriver(std::string name, std::string email, std::string password, std::string phone, std::string points);
-   void getDriver(std::string id);
+   Driver* getDriver(std::string id);
    void removeDriver(std::string id);
-   void getDrivers();
+   std::vector<Driver*> getDrivers();
    
    //Sponsor calls
-   void createSponsor();
-   void getSponsor(std::string id);
+   void createSponsor(std::string name, std::string email, std::string password, std::string phone, std::string point_value);
+   Sponsor* getSponsor(std::string id);
    void removeSponsor(std::string id);
-   void getSponsors();
+   std::vector<Sponsor*> getSponsors();
 
    //Admin calls
-   void createAdmin();
-   void getAdmin(std::string id);
+   void createAdmin(std::string name, std::string email, std::string password, std::string phone);
+   Admin* getAdmin(std::string id);
    void removeAdmin(std::string id);
-   void getAdmins();
+   std::vector<Admin*> getAdmins();
 
    //Amazon Item calls
-   void createAmazonItem();
-   void getAmazonItem(std::string id);
+   void createAmazonItem(std::string name, std::string price, std::string description, std::string url);
+   Item * getAmazonItem(std::string id);
    void removeAmazonItem(std::string id);
    void getAmazonItems();
 
    //Catalog Calls
-   void createCatalog();
-   void getCatalog(std::string id);
+   void createCatalog(std::string my_sponsor_id);
+   Catalog * getCatalog(std::string id);
    void removeCatalog(std::string id);
    void getCatalogs();
 

@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "Login.cpp"
 #include <QMessageBox>
 #include <QPixmap>
 
@@ -11,6 +12,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->stackedWidget->setCurrentIndex(0);
     ui->stackedWidget->showMaximized();
     ui->groupBox->setFixedSize(600,400);
+
 }
 
 MainWindow::~MainWindow()
@@ -20,13 +22,61 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_Login_2_clicked()
 {
-    QString username = ui->lineEdit_Username_2->text();
-    QString password = ui->lineEdit_Password_2->text();
+    QString qEmail = ui->lineEdit_Username_2->text();
+    QString qPassword = ui->lineEdit_Password_2->text();
+    std::string email = qEmail.toStdString();
+    std::string password = qPassword.toStdString();
 
-    if(username ==  "test" && password == "test") {
+    int temp = db().login(email, password);
+
+    if(temp == 1) {
         ui->stackedWidget->setCurrentIndex(1);
+        ui->stackedWidget_driver->setCurrentIndex(0);
+       // currUser = db().getDriver(email);
+       // ui->pointsValue_label->setNum(currUser->getPoints());
+    }
+    else if(temp == 2) {
+        ui->stackedWidget->setCurrentIndex(2);
+    }
+    else if(temp == 3) {
+        ui->stackedWidget->setCurrentIndex(3);
     }
     else {
-        QMessageBox::warning(this,"Login", "Invalid username and/or password");
+        QMessageBox::warning(this,"Login", "Invalid email and/or password", QMessageBox::Ok);
     }
+}
+
+void MainWindow::on_driver_Home_Button_clicked()
+{
+    ui->stackedWidget_driver->setCurrentIndex(0);
+}
+
+void MainWindow::on_driver_Logout_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+}
+
+void MainWindow::on_driver_Account_clicked()
+{
+    ui->stackedWidget_driver->setCurrentIndex(1);
+}
+
+void MainWindow::on_sponsor_Logout_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+}
+
+void MainWindow::on_sponsor_Account_clicked()
+{
+    ui->stackedWidget_sponsor->setCurrentIndex(1);
+}
+
+void MainWindow::on_sponsor_Home_Button_clicked()
+{
+    ui->stackedWidget_sponsor->setCurrentIndex(0);
+}
+
+void MainWindow::on_driver_History_Button_clicked()
+{
+    ui->stackedWidget_driver->setCurrentIndex(1);
 }

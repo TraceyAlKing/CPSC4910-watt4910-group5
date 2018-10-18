@@ -8,17 +8,16 @@ using namespace std;
 #include "User.hpp"
 
 class Driver: public User {
-		string sponsor;
-		int LNum;
-		int LPNum[10];
-		int points;
-		int LPNumNumber;
+		string sponsor_;
+		int LNum_;
+		int LPNum_[10];
+		int points_;
+		int LPNumNumber_;
 	public:
 		Driver();
 		~Driver(); 
 		void registerDriver();
 		int getPoints();
-		
 		string getSponsor();
 		int getLicenseNum();
 		int getNumPlates();
@@ -28,16 +27,17 @@ class Driver: public User {
 		
 		Driver setDriver(string f);
 
-		void setLNum(int i);
 		void setSponsor(string i);
 		void setPoints(string i);
 		
 		void updateLNum();
-		void addLP();
-		void removeLP();
-		void viewLP();
+		void addLPNum();
+		void removeLPNum();
 		
 		int getLNumNum();
+<<<<<<< HEAD
 		void setLPNum(string* i, int j);
 		
+=======
+>>>>>>> iteration5
 };

@@ -1,17 +1,14 @@
-#MYSQL_CONCPP_DIR specifies the location of mysql-connector-c++ library
-MYSQL_CONCPP_DIR = /usr/local/mysql-connector-c++
-
 #OBJS specifies which files to compile as part of the project
-OBJS = main.cpp Database.cpp
+OBJS = TestDatabase.cpp Database.cpp Catalog.cpp Item.cpp
 
 #CC specifies which compiler we're using
-CC = clang++ -stdlib=libc++
+CC = g++ 
 
 #COMPILER_FLAGS specifies the additional compilation options we're using
-COMPILER_FLAGS = -std=c++11 -I $(MYSQL_CONCPP_DIR)/include -I $(MYSQL_CONCPP_DIR)/include/jdbc -L $(MYSQL_CONCPP_DIR)/lib64
+COMPILER_FLAGS = -std=c++11 -I /include -I /include/jdbc -L /lib64
 
 #LINKER_FLAGS specifies the libraries we're linking against
-LINKER_FLAGS = -lmysqlcppconn -lboost_filesystem-mt -lboost_thread-mt
+LINKER_FLAGS = -lmysqlcppconn -lboost_filesystem -lboost_thread
 
 #OBJ_NAME specifies the name of our executable
 OBJ_NAME = a.out
