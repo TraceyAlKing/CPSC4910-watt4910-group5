@@ -30,9 +30,12 @@ class Admin: public User {
 			
 			void listOfFiles();
 			
+			void listOfUsernames();
+			
+			void listOfAdminUsernames();
+			
 			void editUser();
 			
-			Sponsor setSponsor(string f);
 			Admin setAdmin(string f);
 			
 			void editAdmin(Admin name);
