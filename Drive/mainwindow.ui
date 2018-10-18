@@ -60,7 +60,7 @@
        </size>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="login_page">
        <property name="sizeIncrement">
@@ -471,14 +471,21 @@
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_5">
              <item>
-              <widget class="QPushButton" name="pushButton">
-               <property name="text">
-                <string>Full History</string>
+              <widget class="QGroupBox" name="groupBox_4">
+               <property name="title">
+                <string>Notifications</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QPushButton" name="pushButton_2">
+              <widget class="QPushButton" name="driver_HistoryButton">
+               <property name="text">
+                <string>Point History</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="driver_SwitchSponsor">
                <property name="text">
                 <string>Switch Sponsor</string>
                </property>

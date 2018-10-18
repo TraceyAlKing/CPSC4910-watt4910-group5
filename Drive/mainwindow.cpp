@@ -31,6 +31,7 @@ void MainWindow::on_pushButton_Login_2_clicked()
 
     if(temp == 1) {
         ui->stackedWidget->setCurrentIndex(1);
+        ui->stackedWidget_driver->setCurrentIndex(0);
     }
     else if(temp == 2) {
         ui->stackedWidget->setCurrentIndex(2);
@@ -41,6 +42,11 @@ void MainWindow::on_pushButton_Login_2_clicked()
     else {
         QMessageBox::warning(this,"Login", "Invalid username and/or password", QMessageBox::Ok);
     }
+}
+
+void MainWindow::on_driver_Home_Button_clicked()
+{
+    ui->stackedWidget_driver->setCurrentIndex(0);
 }
 
 void MainWindow::on_driver_Logout_clicked()
