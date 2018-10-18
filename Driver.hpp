@@ -25,6 +25,8 @@ class Driver: public User {
 		int* getPlates();
 		void saveDriver();
 		int changePoints();
+		
+		Driver setDriver(string f);
 
 		void setLNum(int i);
 		void setSponsor(string i);
@@ -37,4 +39,5 @@ class Driver: public User {
 		
 		int getLNumNum();
 		void setLPNum(string* i, int j);
+		
 };
