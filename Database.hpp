@@ -11,6 +11,9 @@
 #include <string>
 #include "Item.hpp"
 #include "Catalog.hpp"
+#include "Driver.hpp"
+#include "Sponsor.hpp"
+#include "Admin.hpp"
 
 class Database{
 public:
@@ -22,21 +25,21 @@ public:
 
    //Driver calls
    void createDriver(std::string name, std::string email, std::string password, std::string phone, std::string points);
-   void getDriver(std::string id);
+   Driver* getDriver(std::string id);
    void removeDriver(std::string id);
-   void getDrivers();
+   std::vector<Driver*> getDrivers();
    
    //Sponsor calls
    void createSponsor(std::string name, std::string email, std::string password, std::string phone, std::string point_value);
-   void getSponsor(std::string id);
+   Sponsor* getSponsor(std::string id);
    void removeSponsor(std::string id);
-   void getSponsors();
+   std::vector<Sponsor*> getSponsors();
 
    //Admin calls
    void createAdmin(std::string name, std::string email, std::string password, std::string phone);
-   void getAdmin(std::string id);
+   Admin* getAdmin(std::string id);
    void removeAdmin(std::string id);
-   void getAdmins();
+   std::vector<Admin*> getAdmins();
 
    //Amazon Item calls
    void createAmazonItem(std::string name, std::string price, std::string description, std::string url);

@@ -1,3 +1,6 @@
+#ifndef USER_HPP
+#define USER_HPP
+
 #include <string.h>
 #include <iostream>
 #include <cstdlib>
@@ -43,3 +46,5 @@ class User {
 		
 		void changePassword();
 };
+
+#endif //USER_HPP

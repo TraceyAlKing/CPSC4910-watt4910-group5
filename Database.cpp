@@ -75,7 +75,7 @@ void Database::createDriver(std::string name, std::string email, std::string pas
     std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
   }
 }
-void Database::getDrivers(){
+vector<Driver*> Database::getDrivers(){
   try {
   //Build statement
   std::stringstream sstr;
@@ -87,22 +87,40 @@ void Database::getDrivers(){
   res_ = stmt_->executeQuery(sstr.str());
   std::cout << "\t... MySQL replies: " << std::endl;
 
-  //Parse results
-  int count = 0;
-  while (res_->next()) {
-    /* Access column data by alias or column name */
+    //Parse results
+    int count = 0;
+    std::vector<Driver*> return_drivers;
+    std::string id;
+    std::string name;
+    std::string email;
+    std::string password;
+    std::string phone;
+    std::string address;
+    std::string points;
+    while (res_->next()) {
+      /* Access column data by alias or column name */
+      std::cout << "\t-------------------------------------------" << std::endl;
+      std::cout << "\tid: "<< res_->getString("id") << std::endl;
+      id = res_->getString("id");
+      std::cout << "\tname: "<< res_->getString("name") << std::endl;
+      name = res_->getString("name");
+      std::cout << "\temail: "<< res_->getString("email") << std::endl;
+      email = res_->getString("email");
+      std::cout << "\tpassword: "<< res_->getString("password") << std::endl;
+      password = res_->getString("password");
+      std::cout << "\tphone: "<< res_->getString("phone") << std::endl;
+      phone = res_->getString("phone");
+      std::cout << "\taddress: "<< res_->getString("address") << std::endl;
+      address = res_->getString("address");
+      std::cout << "\tpoints: "<< res_->getString("points") << std::endl;
+      points = res_->getString("points");
+      count++;
+      return_drivers.emplace_back(new Driver(id, name, email, password, phone, address, points));
+    }
     std::cout << "\t-------------------------------------------" << std::endl;
-    std::cout << "\tid: "<< res_->getString("id") << std::endl;
-    std::cout << "\tname: "<< res_->getString("name") << std::endl;
-    std::cout << "\tphone: "<< res_->getString("phone") << std::endl;
-    std::cout << "\temail: "<< res_->getString("email") << std::endl;
-    std::cout << "\tpassword: "<< res_->getString("password") << std::endl;
-    std::cout << "\tpoints: "<< res_->getString("points") << std::endl;
-    count++;
-  }
-  std::cout << "\t-------------------------------------------" << std::endl;
-  std::cout << "\tNumber of entries: " << count << std::endl;
-  std::cout << "\t... MySQL replies: Success." << std::endl;
+    std::cout << "\tNumber of entries: " << count << std::endl;
+    std::cout << "\t... MySQL replies: Success." << std::endl;
+    return return_drivers;
 
   } catch (sql::SQLException &e) {
     std::cout << "# ERR: SQLException in " << __FILE__;
@@ -111,10 +129,11 @@ void Database::getDrivers(){
     std::cout << "# ERR: " << e.what();
     std::cout << " (MySQL error code: " << e.getErrorCode();
     std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
+    return std::vector<Driver*>();
   }
 }
 
-void Database::getDriver(std::string id){
+Driver* Database::getDriver(std::string id){
   try {
     //Build statement
     std::stringstream sstr;
@@ -128,20 +147,36 @@ void Database::getDriver(std::string id){
 
     //Parse results
     int count = 0;
+    std::string id;
+    std::string name;
+    std::string email;
+    std::string password;
+    std::string phone;
+    std::string address;
+    std::string points;
     while (res_->next()) {
       /* Access column data by alias or column name */
       std::cout << "\t-------------------------------------------" << std::endl;
       std::cout << "\tid: "<< res_->getString("id") << std::endl;
+      id = res_->getString("id");
       std::cout << "\tname: "<< res_->getString("name") << std::endl;
-      std::cout << "\tphone: "<< res_->getString("phone") << std::endl;
+      name = res_->getString("name");
       std::cout << "\temail: "<< res_->getString("email") << std::endl;
+      email = res_->getString("email");
       std::cout << "\tpassword: "<< res_->getString("password") << std::endl;
+      password = res_->getString("password");
+      std::cout << "\tphone: "<< res_->getString("phone") << std::endl;
+      phone = res_->getString("phone");
+      std::cout << "\taddress: "<< res_->getString("address") << std::endl;
+      address = res_->getString("address");
       std::cout << "\tpoints: "<< res_->getString("points") << std::endl;
+      points = res_->getString("points");
       count++;
     }
     std::cout << "\t-------------------------------------------" << std::endl;
     std::cout << "\tNumber of entries: " << count << std::endl;
     std::cout << "\t... MySQL replies: Success." << std::endl;
+    return new Driver(id, name, email, password, phone, address, points);
 
   } catch (sql::SQLException &e) {
     std::cout << "# ERR: SQLException in " << __FILE__;
@@ -150,6 +185,7 @@ void Database::getDriver(std::string id){
     std::cout << "# ERR: " << e.what();
     std::cout << " (MySQL error code: " << e.getErrorCode();
     std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
+    return NULL;
   }
 }
 
@@ -199,34 +235,52 @@ void Database::createSponsor(std::string name, std::string email, std::string pa
     std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
   }
 }
-void Database::getSponsors(){
+std::vector<Sponsor*> Database::getSponsors(){
   try {
-  //Build statement
-  std::stringstream sstr;
-  sstr << "SELECT * FROM SPONSOR;";
-  std::cout << "Attempting statement: " << sstr.str() << std::endl;
+    //Build statement
+    std::stringstream sstr;
+    sstr << "SELECT * FROM SPONSOR;";
+    std::cout << "Attempting statement: " << sstr.str() << std::endl;
 
-  //Execute statement
-  stmt_ = con_->createStatement();
-  res_ = stmt_->executeQuery(sstr.str());
-  std::cout << "\t... MySQL replies: " << std::endl;
+    //Execute statement
+    stmt_ = con_->createStatement();
+    res_ = stmt_->executeQuery(sstr.str());
+    std::cout << "\t... MySQL replies: " << std::endl;
 
-  //Parse results
-  int count = 0;
-  while (res_->next()) {
-    /* Access column data by alias or column name */
+    //Parse results
+    int count = 0;
+    std::vector<Sponsor*> return_sponsors;
+    std::string id;
+    std::string name;
+    std::string email;
+    std::string password;
+    std::string phone;
+    std::string address;
+    std::string point_value;
+    while (res_->next()) {
+      /* Access column data by alias or column name */
+      std::cout << "\t-------------------------------------------" << std::endl;
+      std::cout << "\tid: "<< res_->getString("id") << std::endl;
+      id = res_->getString("id");
+      std::cout << "\tname: "<< res_->getString("name") << std::endl;
+      name = res_->getString("name");
+      std::cout << "\temail: "<< res_->getString("email") << std::endl;
+      email = res_->getString("email");
+      std::cout << "\tpassword: "<< res_->getString("password") << std::endl;
+      password = res_->getString("password");
+      std::cout << "\tphone: "<< res_->getString("phone") << std::endl;
+      phone = res_->getString("phone");
+      std::cout << "\taddress: "<< res_->getString("address") << std::endl;
+      address = res_->getString("address");
+      std::cout << "\tpoint_value: "<< res_->getString("point_value") << std::endl;
+      point_value = res_->getString("point_value");
+      count++;
+      return_sponsors.emplace_back(new Sponsor(id, name, email, password, phone, address, point_value));
+    }
     std::cout << "\t-------------------------------------------" << std::endl;
-    std::cout << "\tid: "<< res_->getString("id") << std::endl;
-    std::cout << "\tname: "<< res_->getString("name") << std::endl;
-    std::cout << "\tphone: "<< res_->getString("phone") << std::endl;
-    std::cout << "\temail: "<< res_->getString("email") << std::endl;
-    std::cout << "\tpassword: "<< res_->getString("password") << std::endl;
-    std::cout << "\tpoint_value: "<< res_->getString("point_value") << std::endl;
-    count++;
-  }
-  std::cout << "\t-------------------------------------------" << std::endl;
-  std::cout << "\tNumber of entries: " << count << std::endl;
-  std::cout << "\t... MySQL replies: Success." << std::endl;
+    std::cout << "\tNumber of entries: " << count << std::endl;
+    std::cout << "\t... MySQL replies: Success." << std::endl;
+    return return_sponsors;
 
   } catch (sql::SQLException &e) {
     std::cout << "# ERR: SQLException in " << __FILE__;
@@ -235,10 +289,11 @@ void Database::getSponsors(){
     std::cout << "# ERR: " << e.what();
     std::cout << " (MySQL error code: " << e.getErrorCode();
     std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
+    return std::vector<Sponsor*>();
   }
 }
 
-void Database::getSponsor(std::string id){
+Sponsor* Database::getSponsor(std::string id){
   try {
     //Build statement
     std::stringstream sstr;
@@ -252,20 +307,36 @@ void Database::getSponsor(std::string id){
 
     //Parse results
     int count = 0;
+    std::string id;
+    std::string name;
+    std::string email;
+    std::string password;
+    std::string phone;
+    std::string address;
+    std::string point_value;
     while (res_->next()) {
       /* Access column data by alias or column name */
       std::cout << "\t-------------------------------------------" << std::endl;
       std::cout << "\tid: "<< res_->getString("id") << std::endl;
+      id = res_->getString("id");
       std::cout << "\tname: "<< res_->getString("name") << std::endl;
-      std::cout << "\tphone: "<< res_->getString("phone") << std::endl;
+      name = res_->getString("name");
       std::cout << "\temail: "<< res_->getString("email") << std::endl;
+      email = res_->getString("email");
       std::cout << "\tpassword: "<< res_->getString("password") << std::endl;
+      password = res_->getString("password");
+      std::cout << "\tphone: "<< res_->getString("phone") << std::endl;
+      phone = res_->getString("phone");
+      std::cout << "\taddress: "<< res_->getString("address") << std::endl;
+      address = res_->getString("address");
       std::cout << "\tpoint_value: "<< res_->getString("point_value") << std::endl;
+      point_value = res_->getString("point_value");
       count++;
     }
     std::cout << "\t-------------------------------------------" << std::endl;
     std::cout << "\tNumber of entries: " << count << std::endl;
     std::cout << "\t... MySQL replies: Success." << std::endl;
+    return new Sponsor(id, name, email, password, phone, address, point_value);
 
   } catch (sql::SQLException &e) {
     std::cout << "# ERR: SQLException in " << __FILE__;
@@ -274,6 +345,7 @@ void Database::getSponsor(std::string id){
     std::cout << "# ERR: " << e.what();
     std::cout << " (MySQL error code: " << e.getErrorCode();
     std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
+    return NULL;
   }
 }
 
@@ -325,33 +397,49 @@ void Database::createAdmin(std::string name, std::string email, std::string pass
   }
 }
 
-void Database::getAdmins(){
+std::vector<Admin*> Database::getAdmins(){
   try {
-  //Build statement
-  std::stringstream sstr;
-  sstr << "SELECT * FROM ADMIN;";
-  std::cout << "Attempting statement: " << sstr.str() << std::endl;
+    //Build statement
+    std::stringstream sstr;
+    sstr << "SELECT * FROM ADMIN;";
+    std::cout << "Attempting statement: " << sstr.str() << std::endl;
 
-  //Execute statement
-  stmt_ = con_->createStatement();
-  res_ = stmt_->executeQuery(sstr.str());
-  std::cout << "\t... MySQL replies: " << std::endl;
+    //Execute statement
+    stmt_ = con_->createStatement();
+    res_ = stmt_->executeQuery(sstr.str());
+    std::cout << "\t... MySQL replies: " << std::endl;
 
-  //Parse results
-  int count = 0;
-  while (res_->next()) {
-    /* Access column data by alias or column name */
+    //Parse results
+    int count = 0;
+    std::vector<Admin*> return_admins;
+    std::string id;
+    std::string name;
+    std::string email;
+    std::string password;
+    std::string phone;
+    std::string address;
+    while (res_->next()) {
+      /* Access column data by alias or column name */
+      std::cout << "\t-------------------------------------------" << std::endl;
+      std::cout << "\tid: "<< res_->getString("id") << std::endl;
+      id = res_->getString("id");
+      std::cout << "\tname: "<< res_->getString("name") << std::endl;
+      name = res_->getString("name");
+      std::cout << "\temail: "<< res_->getString("email") << std::endl;
+      email = res_->getString("email");
+      std::cout << "\tpassword: "<< res_->getString("password") << std::endl;
+      password = res_->getString("password");
+      std::cout << "\tphone: "<< res_->getString("phone") << std::endl;
+      phone = res_->getString("phone");
+      std::cout << "\taddress: "<< res_->getString("address") << std::endl;
+      address = res_->getString("address");
+      count++;
+      return_admins.emplace_back(new Admin(id, name, email, password, phone, address));
+    }
     std::cout << "\t-------------------------------------------" << std::endl;
-    std::cout << "\tid: "<< res_->getString("id") << std::endl;
-    std::cout << "\tname: "<< res_->getString("name") << std::endl;
-    std::cout << "\tphone: "<< res_->getString("phone") << std::endl;
-    std::cout << "\temail: "<< res_->getString("email") << std::endl;
-    std::cout << "\tpassword: "<< res_->getString("password") << std::endl;
-    count++;
-  }
-  std::cout << "\t-------------------------------------------" << std::endl;
-  std::cout << "\tNumber of entries: " << count << std::endl;
-  std::cout << "\t... MySQL replies: Success." << std::endl;
+    std::cout << "\tNumber of entries: " << count << std::endl;
+    std::cout << "\t... MySQL replies: Success." << std::endl;
+    return return_admins;
 
   } catch (sql::SQLException &e) {
     std::cout << "# ERR: SQLException in " << __FILE__;
@@ -360,10 +448,11 @@ void Database::getAdmins(){
     std::cout << "# ERR: " << e.what();
     std::cout << " (MySQL error code: " << e.getErrorCode();
     std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
+    return std::vector<Admin*>();
   }
 }
 
-void Database::getAdmin(std::string id){
+Admin* Database::getAdmin(std::string id){
   try {
     //Build statement
     std::stringstream sstr;
@@ -377,19 +466,33 @@ void Database::getAdmin(std::string id){
 
     //Parse results
     int count = 0;
+    std::string id;
+    std::string name;
+    std::string email;
+    std::string password;
+    std::string phone;
+    std::string address;
     while (res_->next()) {
       /* Access column data by alias or column name */
       std::cout << "\t-------------------------------------------" << std::endl;
       std::cout << "\tid: "<< res_->getString("id") << std::endl;
+      id = res_->getString("id");
       std::cout << "\tname: "<< res_->getString("name") << std::endl;
-      std::cout << "\tphone: "<< res_->getString("phone") << std::endl;
+      name = res_->getString("name");
       std::cout << "\temail: "<< res_->getString("email") << std::endl;
+      email = res_->getString("email");
       std::cout << "\tpassword: "<< res_->getString("password") << std::endl;
+      password = res_->getString("password");
+      std::cout << "\tphone: "<< res_->getString("phone") << std::endl;
+      phone = res_->getString("phone");
+      std::cout << "\taddress: "<< res_->getString("address") << std::endl;
+      address = res_->getString("address");
       count++;
     }
     std::cout << "\t-------------------------------------------" << std::endl;
     std::cout << "\tNumber of entries: " << count << std::endl;
     std::cout << "\t... MySQL replies: Success." << std::endl;
+    return new Admin(id, name, email, password, phone, address);
 
   } catch (sql::SQLException &e) {
     std::cout << "# ERR: SQLException in " << __FILE__;
@@ -398,6 +501,7 @@ void Database::getAdmin(std::string id){
     std::cout << "# ERR: " << e.what();
     std::cout << " (MySQL error code: " << e.getErrorCode();
     std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
+    return NULL;
   }
 }
 
