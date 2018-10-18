@@ -8,11 +8,11 @@ using namespace std;
 #include "User.hpp"
 
 class Driver: public User {
-		string sponsor;
-		int LNum;
-		int LPNum[10];
-		int points;
-		int LPNumNumber;
+		string sponsor_;
+		int LNum_;
+		int LPNum_[10];
+		int points_;
+		int LPNumNumber_;
 	public:
 		Driver();
 		~Driver(); 
