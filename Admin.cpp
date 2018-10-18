@@ -41,7 +41,9 @@ void Admin::registerSponsor()
 void Admin::saveAdmin()
 {
 	ofstream myfile;
-	const char* file = getUsername().c_str();
+	int p = getID();
+	string filename =  to_string(p);
+	const char* file = filename.c_str();
 	myfile.open(file);
 	
 	myfile << "Admin" << "\n";
@@ -51,7 +53,6 @@ void Admin::saveAdmin()
 	myfile << getName() << "\n";
 	myfile << getEmail() << "\n";
 	myfile << getPhone() << "\n";
-	myfile << getID() << "\n";	
 	myfile << "ADDRESS" << "\n";
 	
 	int n = getNumAddress();
@@ -97,8 +98,6 @@ void Admin::viewUser()
 				getline(in, str);
 				cout << "Phone Number: " << str << endl;
 				getline(in, str);
-				cout << "ID: " << str << endl;
-				getline(in, str);
 				cout << "Sponsor: " << str << endl;
 				getline(in, str);
 				cout << "Points: " << str << endl;
@@ -135,7 +134,7 @@ void Admin::viewUser()
 		}
 		else if(str == "Sponsor")
 		{
-			cout << "User type: Driver" << endl;
+			cout << "User type: Sponsor" << endl;
 				getline(in, str);
 				cout << "Username: " << str << endl;
 				getline(in, str);
@@ -147,7 +146,7 @@ void Admin::viewUser()
 				getline(in, str);
 				cout << "Phone Number: " << str << endl;
 				getline(in, str);
-				cout << "ID: " << str << endl;
+				cout << "Point Value: " << str << endl;
 				getline(in, str);
 				while(add == true)
 				{
@@ -190,8 +189,6 @@ void Admin::viewUser()
 				cout << "E-Mail: " << str << endl;
 				getline(in, str);
 				cout << "Phone Number: " << str << endl;
-				getline(in, str);
-				cout << "ID: " << str << endl;
 				getline(in, str);
 				while(add == true)
 				{
@@ -240,6 +237,70 @@ void Admin::listOfFiles()
    }
    while ((entry = readdir(dir)) != NULL) {
    cout << entry->d_name << endl;
+   }
+   closedir(dir);
+}
+
+void Admin::listOfUsernames()
+{
+	struct dirent *entry;
+	Driver d;
+	Sponsor s;
+	Admin a;
+   DIR *dir = opendir(".");
+   if (dir == NULL) {
+      return;
+   }
+   while ((entry = readdir(dir)) != NULL) 
+   {
+   		string name = entry->d_name;
+		ifstream in(name);
+  		if(FILE *file = fopen(name.c_str(), "r"))
+		{
+				string str;
+				getline(in, str);
+				if(str == "Driver")
+				{
+						getline(in, str);
+						cout << "Driver: " << str << endl;
+				}
+				if(str == "Sponsor")
+				{
+						getline(in, str);
+						cout << "Sponsor: " << str << endl;
+				}
+				if(str == "Admin")
+				{
+						getline(in, str);
+						cout << "Admin: " << str << endl;
+				}
+		}
+   }
+   closedir(dir);
+}
+
+void Admin::listOfAdminUsernames()
+{
+	struct dirent *entry;
+	Admin a;
+   DIR *dir = opendir(".");
+   if (dir == NULL) {
+      return;
+   }
+   while ((entry = readdir(dir)) != NULL) 
+   {
+   		string name = entry->d_name;
+		ifstream in(name);
+  		if(FILE *file = fopen(name.c_str(), "r"))
+		{
+				string str;
+				getline(in, str);
+				if(str == "Admin")
+				{
+						getline(in, str);
+						cout << "Admin: " << str << endl;
+				}
+		}
    }
    closedir(dir);
 }
@@ -294,7 +355,7 @@ void Admin::viewAllSponsors()
 
 void Admin::viewAllAdmins()
 {
-			struct dirent *entry;
+	struct dirent *entry;
    DIR *dir = opendir(".");
    if (dir == NULL) {
       return;
@@ -404,14 +465,15 @@ void Admin::editUser()
 				if(str == "Driver")
 				{
 					cout << "Driver " << user << " found" << endl;
-					Sponsor s;
-					Driver d = s.setDriver(user);
+					Driver d;
+					d = d.setDriver(user);
 					editDriver(d);
 				}
 				else if(str == "Sponsor")
 				{
 					cout << "Sponsor " << user << " found" << endl;
-					Sponsor d = setSponsor(user);
+					Sponsor d;
+					d.setSponsor(user);
 					editSponsor(d);
 				}
 				else if(str == "Admin")
@@ -421,92 +483,6 @@ void Admin::editUser()
 					editAdmin(d);
 				}
 		}
-}
-
-Sponsor Admin::setSponsor(string f)
-{
-	bool add = false;
-	bool drv = false;
-	string addr[10];
-	int addrNum = 0;
- 	string dvr[100];
-	int dvrNum = 0;
-	
-		const char *buff = f.c_str();
-
-		ifstream in(buff);
-		
-		Sponsor d;
-
-		string str;
-		string typeOfUser;
-
-		int i = 0;
-
-		while(getline(in, str))
-		{
-			if(i == 0)
-			{
-				typeOfUser = str;
-			}
-			if(typeOfUser == "Driver")
-			{
-				if(i == 1)
-				{
-					d.setUsername(str);
-				}
-				if(i == 2)
-				{
-					d.setPassword(str);
-				}
-				if(i == 3)
-				{
-					d.setName(str);
-				}
-				if(i == 4)
-				{
-					d.setEmail(str);
-				}
-				if(i == 5)
-				{
-					d.setPhone(str);
-				}
-				if(i == 6)
-				{
-					d.setID(str);
-				}
-				if(str == "ENDADDRESS")
-				{
-					add = false;
-					d.setAddress(addr,addrNum);
-				}
-				if(str == "ENDSPONS")
-				{
-					drv = false;
-					d.setDrivers(dvr,dvrNum);
-				}
-				if(add == true)
-				{
-					addr[addrNum] = str;
-					addrNum++;
-				}
-				if(drv == true)
-				{
-					dvr[dvrNum] = str;
-					dvrNum++;
-				}
-				if(str == "ADDRESS")
-				{
-					add = true;
-				}
-				if(str == "SPONS2")
-				{
-					drv = true;
-				}
-			}
-			i++;
-		}
-		return d;
 }
 
 Admin Admin::setAdmin(string f)
@@ -554,10 +530,6 @@ Admin Admin::setAdmin(string f)
 				{
 					d.setPhone(str);
 				}
-				if(i == 6)
-				{
-					d.setID(str);
-				}
 				if(str == "ENDADDRESS")
 				{
 					add = false;
@@ -586,6 +558,11 @@ void Admin::editDriver(Driver name)
 	cout << "Real Name (R)" << endl;
 	cout << "Phone (H)" << endl;
 	cout << "Add Address (A)" << endl;
+	cout << "Remove Address (L)" << endl;
+	cout << "Update Address (U)" << endl;
+	cout << "Get Points (O)" << endl;
+	cout << "Update Points (X)" << endl;
+	cout << "Drop Sponsor (Q)" << endl;
 	char v;
 	cin >> v;
 	
@@ -603,11 +580,88 @@ void Admin::editDriver(Driver name)
 		name.setEmail(input);
 		name.saveDriver();
 	}
-	else if(v == 'E')
+	else if(v == 'H')
 	{
 		cout << "Type in new phone number" << endl;
 		cin >> input;
 		name.setPhone(input);
+		name.saveDriver();
+	}
+	else if(v == 'A')
+	{
+		name.addAddress();
+		name.saveDriver();
+	}
+	else if(v == 'L')
+	{
+		name.removeAddress();
+		name.saveDriver();
+	}
+	else if(v == 'U')
+	{
+		name.updateAddress();
+		name.saveDriver();
+	}
+	else if(v == 'O')
+	{
+		int o = name.getPoints();
+		cout << "Current Points: " << o << endl;
+	}
+	else if(v == 'X')
+	{
+		int o = name.getPoints();
+		cout << "Current Points: " << o << endl;
+		name.changePoints();
+		name.saveDriver();
+	}
+	else if(v == 'Q')
+	{
+		string h = name.getSponsor();
+		if(h == "N/A")
+		{
+			cout << "Driver does not have a sponsor." << endl;
+		}
+		else
+		{
+			Sponsor s, s2;
+			cout << "Sponsor: " << h << endl;
+			
+			s = s2.setSponsor(h);
+			s.removeDriverWInput(to_string(name.getID()));
+			s.saveSponsor();
+			
+			name.setSponsor("N/A");
+			name.saveDriver();
+			cout << "Sponsor removed from Driver" << endl;
+		}
+	}	
+}
+
+void Admin::editAdmin(Admin name)
+{
+cout << "Choose aspect to edit" << endl;
+	cout << "Password (P)" << endl;
+	cout << "Email (E)" << endl;
+	cout << "Real Name (R)" << endl;
+	cout << "Phone (H)" << endl;
+	cout << "Add Address (A)" << endl;
+	cout << "Remove Address (L)" << endl;
+	cout << "Update Address (U)" << endl;
+	char v;
+	cin >> v;
+	
+	string input;
+	
+	if(v == 'P')
+	{
+		name.changePassword();
+		name.saveDriver();
+	}
+	else if(v == 'E')
+	{
+		cout << "Type in new e-mail" << endl;
+		cin >> input;
+		name.setEmail(input);
 		name.saveDriver();
 	}
 	else if(v == 'H')
@@ -622,28 +676,65 @@ void Admin::editDriver(Driver name)
 		name.addAddress();
 		name.saveDriver();
 	}
-}
-
-void Admin::editAdmin(Admin name)
-{
-	cout << "Choose aspect to edit" << endl;
-	char v;
-	cin >> v;
-	if(v == 'P')
+	else if(v == 'L')
 	{
-		name.changePassword();
-		name.saveAdmin();
+		name.removeAddress();
+		name.saveDriver();
+	}
+	else if(v == 'U')
+	{
+		name.updateAddress();
+		name.saveDriver();
 	}
 }
 
 void Admin::editSponsor(Sponsor name)
 {
-	cout << "Choose aspect to edit" << endl;
+cout << "Choose aspect to edit" << endl;
+	cout << "Password (P)" << endl;
+	cout << "Email (E)" << endl;
+	cout << "Real Name (R)" << endl;
+	cout << "Phone (H)" << endl;
+	cout << "Add Address (A)" << endl;
+	cout << "Remove Address (L)" << endl;
+	cout << "Update Address (U)" << endl;
 	char v;
 	cin >> v;
+	
+	string input;
+	
 	if(v == 'P')
 	{
 		name.changePassword();
-		name.saveSponsor();
+		name.saveDriver();
+	}
+	else if(v == 'E')
+	{
+		cout << "Type in new e-mail" << endl;
+		cin >> input;
+		name.setEmail(input);
+		name.saveDriver();
+	}
+	else if(v == 'H')
+	{
+		cout << "Type in new phone number" << endl;
+		cin >> input;
+		name.setPhone(input);
+		name.saveDriver();
+	}
+	else if(v == 'A')
+	{
+		name.addAddress();
+		name.saveDriver();
+	}
+	else if(v == 'L')
+	{
+		name.removeAddress();
+		name.saveDriver();
+	}
+	else if(v == 'U')
+	{
+		name.updateAddress();
+		name.saveDriver();
 	}
 }
