@@ -4,7 +4,8 @@ CREATE TABLE SPONSOR
    name              VARCHAR(64)   NOT NULL,
    email             VARCHAR(64)   NOT NULL,
    password          VARCHAR(64)   NOT NULL,
-   phone             INT unsigned  NOT NULL,
+   phone             BIGINT(10) unsigned  NOT NULL,
+   address           VARCHAR(256),
    point_value       DOUBLE NOT NULL,
    PRIMARY KEY (id)
 );
@@ -14,7 +15,8 @@ CREATE TABLE ADMIN
    name              VARCHAR(64)   NOT NULL,
    email             VARCHAR(64)   NOT NULL,
    password          VARCHAR(64)   NOT NULL,
-   phone             INT unsigned  NOT NULL,
+   phone             BIGINT(10) unsigned  NOT NULL,
+   address           VARCHAR(256),
    PRIMARY KEY (id)
 );
 CREATE TABLE DRIVER
@@ -24,6 +26,7 @@ CREATE TABLE DRIVER
    email             VARCHAR(64)   NOT NULL,
    password          VARCHAR(64)   NOT NULL,
    phone             BIGINT(10) unsigned  NOT NULL,
+   address           VARCHAR(256),
    points            INT unsigned  NOT NULL,
    PRIMARY KEY (id),
 );

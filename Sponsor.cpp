@@ -9,9 +9,15 @@ using namespace std;
 #include "Sponsor.hpp"
 #include "Driver.hpp"
 
+Sponsor::Sponsor(std::string id, std::string name, std::string email, std::string password,
+		std::string phone, std::string address, std::string point_value) : 
+		User(id, name, email, password, phone, address), point_value_(stoi(point_value))
+{
+
+}
 Sponsor::Sponsor()
 {
-	numDrivers = 0;
+	numDrivers_ = 0;
 }
 
 Sponsor::~Sponsor()
@@ -20,11 +26,11 @@ Sponsor::~Sponsor()
 
 void Sponsor::setDrivers(string* i, int j)
 {
-	numDrivers = j;
+	numDrivers_ = j;
 	for(int k = 0; k < j; k++)
 	{
-		Drivers[k]  = i[k];
-		cout << "For loop: " << Drivers[k] << endl;
+		Drivers_[k]  = i[k];
+		cout << "For loop: " << Drivers_[k] << endl;
 	}
 }
 
@@ -35,7 +41,7 @@ void Sponsor::registerSponsor()
 	
 	cout << "Add drivers later." << endl;
 	
-		numDrivers = 0;
+		numDrivers_ = 0;
 }
 
 void Sponsor::saveSponsor()
@@ -84,7 +90,7 @@ void Sponsor::addDriver()
 	/*check to see if sponsor is N/A*/
 	/*add to list of drivers*/
 	/*change N/A to the sponsor name*/
-	numDrivers++;	
+	numDrivers_++;	
 }
 
 void Sponsor::removeDriver()
@@ -95,7 +101,7 @@ void Sponsor::removeDriver()
 
 int Sponsor::getSponNum()
 {
-	return numDrivers;
+	return numDrivers_;
 }
 
 bool Sponsor::checkForDriver (string name) {
@@ -113,9 +119,9 @@ bool Sponsor::checkForDriver (string name) {
 				{
 					        	fclose(file);
 							cout << "Driver found and unassigned." << endl;
-							cout << numDrivers << endl;
-							Drivers[numDrivers] = name;
-							numDrivers++;
+							cout << numDrivers_ << endl;
+							Drivers_[numDrivers_] = name;
+							numDrivers_++;
         						return true;
 				}
 			}
@@ -139,13 +145,13 @@ bool Sponsor::checkForDriver (string name) {
 
 string* Sponsor::getDrivers()
 {
-	return Drivers;
+	return Drivers_;
 }
 
 void Sponsor::changePoints()
 {
 	cout << "Choose a Driver." << endl;
-	for(int p = 0; p < numDrivers; p++)
+	for(int p = 0; p < numDrivers_; p++)
 	{
 		
 	}

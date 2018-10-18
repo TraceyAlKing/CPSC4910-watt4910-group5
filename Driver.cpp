@@ -4,10 +4,18 @@
 
 #include "Driver.hpp"
 
+Driver::Driver(std::string id, std::string name, std::string email, std::string password,
+		std::string phone, std::string address, std::string points) : 
+		User(id, name, email, password, phone, address), LNum_(), LPNum_(),
+		points_(std::stoi(points)), LPNumNumber_()
+{
+	sponsor_ = "";
+}
+
 Driver::Driver()
 {
-	sponsor = "";
-	points = 0;
+	sponsor_ = "";
+	points_ = 0;
 }
 
 Driver::~Driver()
@@ -19,28 +27,28 @@ void Driver::registerDriver()
 	registerUser();
 
 	//cout << "Sponsor set to N/A" << endl;
-	sponsor = "N/A";
+	sponsor_ = "N/A";
 
 	//cout << "Points set to 0" << endl;
-	points = 0;
+	points_ = 0;
 	
 	cout << "Enter License Number: ";
-	cin >> LNum;
+	cin >> LNum_;
 	////
 	cout << "Enter Liscence Plate Number: ";
-	cin >> LPNum[0];
+	cin >> LPNum_[0];
 	
-	LPNumNumber = 1;
+	LPNumNumber_ = 1;
 }
 
 int Driver::getPoints()
 {
-	return points;
+	return points_;
 }
 
 string Driver::getSponsor()
 {
-	return sponsor;
+	return sponsor_;
 }
 
 void Driver::saveDriver()
@@ -76,7 +84,7 @@ void Driver::saveDriver()
 		int* plates = getPlates();
 		for(int p = 0; p < n; p++)
 		{
-			myfile << LPNum[p] << "\n";
+			myfile << LPNum_[p] << "\n";
 		}
 		
 		myfile << "ENDPLATES" << "\n";
@@ -87,102 +95,102 @@ int Driver::changePoints()
 	cout << "How many points should be added/removed?" << endl;
 	int i;
 	cin >> i;
-	int tPoints = points;
-	points = points + i;
-	while(points < 0)
+	int tPoints = points_;
+	points_ = points_ + i;
+	while(points_ < 0)
 	{
 		cout << "Total points cannot be below 0" << endl;
-		points = tPoints;
+		points_ = tPoints;
 		cin >> i;
 
-		tPoints = points;
-		points = points + i;
+		tPoints = points_;
+		points_ = points_ + i;
 	}
-	cout << "Total Points: " << points << endl;
-	return points;
+	cout << "Total Points: " << points_ << endl;
+	return points_;
 }
 
 void Driver::setSponsor(string i)
 {
-	sponsor = i;
+	sponsor_ = i;
 }
 
 void Driver::setPoints(string i)
 {
-	points = atoi(i.c_str());
+	points_ = atoi(i.c_str());
 }
 
 int Driver::getLicenseNum() 
 {
-	return LNum;
+	return LNum_;
 }
 
 int Driver::getLNumNum()
 {
-	return LPNumNumber;
+	return LPNumNumber_;
 }
 
 void Driver::updateLNum()
 {
 	cout << "Enter a new Lisence Number" << endl;
-	cin >> LNum;
+	cin >> LNum_;
 }
 
 int* Driver::getPlates()
 {
-	return LPNum;
+	return LPNum_;
 }
 
 void Driver::setLNum(int i)
 {
-	LNum = i;
+	LNum_ = i;
 }
 
 void Driver::setLPNum(string* i, int j)
 {
-	LPNumNumber = j;
+	LPNumNumber_ = j;
 	for(int k = 0; k < j; k++)
 	{
-		LPNum[k]  = atoi(i[k].c_str());
+		LPNum_[k]  = atoi(i[k].c_str());
 	}
 }
 
 void Driver::addLP()
 {
-	if(LPNumNumber == 10)
+	if(LPNumNumber_ == 10)
 	{
 		cout << "Max number of license plate numbers reached" << endl;
 	}
 	else
 	{
 		cout << "Enter License Plate Number: ";
-		cin >> LPNum[LPNumNumber];
-		LPNumNumber++;
+		cin >> LPNum_[LPNumNumber_];
+		LPNumNumber_++;
 	}
-	cout << "L. Plate  " << LPNum[LPNumNumber-1] << " added" << endl;
+	cout << "L. Plate  " << LPNum_[LPNumNumber_-1] << " added" << endl;
 }
 
 void Driver::removeLP()
 {
 	int input;
 	cout << "Remove which license plate? " << endl;
-	for(int i = 0; i < LPNumNumber; i++)
+	for(int i = 0; i < LPNumNumber_; i++)
 	{
-		cout << i << ": " << LPNum[i] << endl;
+		cout << i << ": " << LPNum_[i] << endl;
 	}
 	cin >> input;
-	while(input < 0 || input > LPNumNumber)
+	while(input < 0 || input > LPNumNumber_)
 	{
 		cout << "Enter a valid number.";
 		cin >> input;
 	}
-	while(input < LPNumNumber)
+	while(input < LPNumNumber_)
 	{
-		LPNum[input] = LPNum[input+1]; 
+		LPNum_[input] = LPNum_[input+1]; 
 		input++;
 	}
-	LPNum[LPNumNumber] = 0;
-	LPNumNumber--;
+	LPNum_[LPNumNumber_] = 0;
+	LPNumNumber_--;
 }
 
 void Driver::viewLP()

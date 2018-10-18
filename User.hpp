@@ -4,14 +4,20 @@
 
 using namespace std;
 
+//@TODO: Not in schema: 
+//	username
+//	addNum
+
 class User {
-		string name, username, password, email;
-		string address[10];
-		int addNum;
-		long phone;
-		int ID;
+		string name_, username_, password_, email_;
+		string address_[10];
+		int addNum_;
+		long phone_;
+		int id_;
 	public:
 		User();
+		User(std::string id, std::string name, std::string email, std::string password,
+			std::string phone, std::string address);
 		~User(); 
 		void registerUser();
 		string getName();
