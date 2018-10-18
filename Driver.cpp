@@ -46,7 +46,9 @@ string Driver::getSponsor()
 void Driver::saveDriver()
 {
 	ofstream myfile;
-	const char* file = getUsername().c_str();
+	int p = getID();
+	string filename =  to_string(p);
+	const char* file = filename.c_str();
 	myfile.open(file);
 	
 	myfile << "Driver" << "\n";
@@ -56,7 +58,6 @@ void Driver::saveDriver()
 	myfile << getName() << "\n";
 	myfile << getEmail() << "\n";
 	myfile << getPhone() << "\n";
-	myfile << getID() << "\n";	
 	myfile << getSponsor() << "\n";
 	myfile << getPoints() << "\n";
 	myfile << getLicenseNum() << "\n";
@@ -80,6 +81,7 @@ void Driver::saveDriver()
 		}
 		
 		myfile << "ENDPLATES" << "\n";
+		
 }
 
 int Driver::changePoints()
@@ -188,4 +190,100 @@ void Driver::removeLP()
 void Driver::viewLP()
 {
 	
+}
+
+Driver Driver::setDriver(string f)
+{
+	bool add = false;
+	bool plt = false;
+	string addr[10];
+	int addrNum = 0;
+ 	string plts[10];
+	int pltNum = 0;
+	
+		const char *buff = f.c_str();
+
+		ifstream in(buff);
+		
+		Driver d;
+
+		string str;
+		string typeOfUser;
+		
+		d.setID(f);
+
+		int i = 0;
+
+		while(getline(in, str))
+		{
+			if(i == 0)
+			{
+				typeOfUser = str;
+			}
+			if(typeOfUser == "Driver")
+			{
+				if(i == 1)
+				{
+					d.setUsername(str);
+				}
+				if(i == 2)
+				{
+					d.setPassword(str);
+				}
+				if(i == 3)
+				{
+					d.setName(str);
+				}
+				if(i == 4)
+				{
+					d.setEmail(str);
+				}
+				if(i == 5)
+				{
+					d.setPhone(str);
+				}
+				if(i == 6)
+				{
+					d.setSponsor(str);
+				}
+				if(i == 7)
+				{
+					d.setPoints(str);
+				}
+				if(i == 8)
+				{
+					d.setLNum(atoi(str.c_str()));
+				}
+				if(str == "ENDADDRESS")
+				{
+					add = false;
+					d.setAddress(addr,addrNum);
+				}
+				if(str == "ENDPLATES")
+				{
+					plt = false;
+					d.setLPNum(plts,pltNum);
+				}
+				if(add == true)
+				{
+					addr[addrNum] = str;
+					addrNum++;
+				}
+				if(plt == true)
+				{
+					plts[pltNum] = str;
+					pltNum++;
+				}
+				if(str == "ADDRESS")
+				{
+					add = true;
+				}
+				if(str == "PLATES")
+				{
+					plt = true;
+				}
+			}
+			i++;
+		}
+		return d;
 }
