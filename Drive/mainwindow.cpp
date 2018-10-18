@@ -22,16 +22,17 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_Login_2_clicked()
 {
-    QString qUsername = ui->lineEdit_Username_2->text();
+    QString qEmail = ui->lineEdit_Username_2->text();
     QString qPassword = ui->lineEdit_Password_2->text();
-    std::string username = qUsername.toStdString();
+    std::string email = qEmail.toStdString();
     std::string password = qPassword.toStdString();
 
-    int temp = db().login(username, password);
+    int temp = db().login(email, password);
 
     if(temp == 1) {
         ui->stackedWidget->setCurrentIndex(1);
         ui->stackedWidget_driver->setCurrentIndex(0);
+        //currUser = db().getDriver(email);
     }
     else if(temp == 2) {
         ui->stackedWidget->setCurrentIndex(2);
@@ -40,7 +41,7 @@ void MainWindow::on_pushButton_Login_2_clicked()
         ui->stackedWidget->setCurrentIndex(1);
     }
     else {
-        QMessageBox::warning(this,"Login", "Invalid username and/or password", QMessageBox::Ok);
+        QMessageBox::warning(this,"Login", "Invalid email and/or password", QMessageBox::Ok);
     }
 }
 
@@ -72,4 +73,9 @@ void MainWindow::on_sponsor_Account_clicked()
 void MainWindow::on_sponsor_Home_Button_clicked()
 {
     ui->stackedWidget_sponsor->setCurrentIndex(0);
+}
+
+void MainWindow::on_driver_History_Button_clicked()
+{
+    ui->stackedWidget_driver->setCurrentIndex(1);
 }

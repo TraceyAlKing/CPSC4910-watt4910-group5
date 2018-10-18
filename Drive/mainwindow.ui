@@ -499,9 +499,15 @@
         <item>
          <widget class="QStackedWidget" name="stackedWidget_driver">
           <property name="currentIndex">
-           <number>1</number>
+           <number>0</number>
           </property>
-          <widget class="QWidget" name="page_2"/>
+          <widget class="QWidget" name="page_2">
+           <layout class="QVBoxLayout" name="verticalLayout_10">
+            <item>
+             <widget class="QTableWidget" name="history_Table"/>
+            </item>
+           </layout>
+          </widget>
           <widget class="QWidget" name="driver_account">
            <layout class="QGridLayout" name="gridLayout">
             <item row="0" column="0">

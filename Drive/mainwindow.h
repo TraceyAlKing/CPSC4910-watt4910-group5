@@ -25,6 +25,7 @@ private slots:
     void on_driver_Home_Button_clicked();
     void on_driver_Logout_clicked();
     void on_driver_Account_clicked();
+    void on_driver_History_Button_clicked();
     void on_sponsor_Logout_clicked();
     void on_sponsor_Account_clicked();
     void on_sponsor_Home_Button_clicked();
