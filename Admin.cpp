@@ -7,7 +7,7 @@
 
 using namespace std;
 
-#include "Admin.hpp"
+#include "Admin.h"
 
 Admin::Admin()
 {
@@ -655,36 +655,36 @@ cout << "Choose aspect to edit" << endl;
 	if(v == 'P')
 	{
 		name.changePassword();
-		name.saveDriver();
+		name.saveAdmin();
 	}
 	else if(v == 'E')
 	{
 		cout << "Type in new e-mail" << endl;
 		cin >> input;
 		name.setEmail(input);
-		name.saveDriver();
+		name.saveAdmin();
 	}
 	else if(v == 'H')
 	{
 		cout << "Type in new phone number" << endl;
 		cin >> input;
 		name.setPhone(input);
-		name.saveDriver();
+		name.saveAdmin();
 	}
 	else if(v == 'A')
 	{
 		name.addAddress();
-		name.saveDriver();
+		name.saveAdmin();
 	}
 	else if(v == 'L')
 	{
 		name.removeAddress();
-		name.saveDriver();
+		name.saveAdmin();
 	}
 	else if(v == 'U')
 	{
 		name.updateAddress();
-		name.saveDriver();
+		name.saveAdmin();
 	}
 }
 
@@ -706,35 +706,35 @@ cout << "Choose aspect to edit" << endl;
 	if(v == 'P')
 	{
 		name.changePassword();
-		name.saveDriver();
+		name.saveSponsor();
 	}
 	else if(v == 'E')
 	{
 		cout << "Type in new e-mail" << endl;
 		cin >> input;
 		name.setEmail(input);
-		name.saveDriver();
+		name.saveSponsor();
 	}
 	else if(v == 'H')
 	{
 		cout << "Type in new phone number" << endl;
 		cin >> input;
 		name.setPhone(input);
-		name.saveDriver();
+		name.saveSponsor();
 	}
 	else if(v == 'A')
 	{
 		name.addAddress();
-		name.saveDriver();
+		name.saveSponsor();
 	}
 	else if(v == 'L')
 	{
 		name.removeAddress();
-		name.saveDriver();
+		name.saveSponsor();
 	}
 	else if(v == 'U')
 	{
 		name.updateAddress();
-		name.saveDriver();
+		name.saveSponsor();
 	}
 }
