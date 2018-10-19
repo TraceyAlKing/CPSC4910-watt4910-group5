@@ -9,4 +9,10 @@ int main(int argc, char *argv[])
     w.show();
 
     return a.exec();
+
+    try{
+      db().init();
+    }catch(const std::exception&){
+      return EXIT_FAILURE;
+    }
 }
