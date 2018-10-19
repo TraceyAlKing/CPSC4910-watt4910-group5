@@ -32,13 +32,14 @@ void MainWindow::on_pushButton_Login_2_clicked()
     if(temp == 1) {
         ui->stackedWidget->setCurrentIndex(1);
         ui->stackedWidget_driver->setCurrentIndex(0);
-        //currUser = db().getDriver(email);
+        currUser = db().getDriver(email);
+        ui->pointsValue_label->setNum(currUser->getPoints());
     }
     else if(temp == 2) {
         ui->stackedWidget->setCurrentIndex(2);
     }
     else if(temp == 3) {
-        ui->stackedWidget->setCurrentIndex(1);
+        ui->stackedWidget->setCurrentIndex(3);
     }
     else {
         QMessageBox::warning(this,"Login", "Invalid email and/or password", QMessageBox::Ok);

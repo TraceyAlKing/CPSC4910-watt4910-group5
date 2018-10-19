@@ -26,13 +26,16 @@ CONFIG += c++11
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+    driverinfo.cpp
 
 HEADERS += \
-        mainwindow.h
+        mainwindow.h \
+    driverinfo.h
 
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+    driverinfo.ui
 
 INCLUDEPATH += ../mysql-connector-cpp\include\jdbc
 
