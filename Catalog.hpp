@@ -6,7 +6,6 @@
 #include <ctime>
 #include <vector>
 #include <map>
-#include <curl/curl.h>
 
 class Catalog {
 public:

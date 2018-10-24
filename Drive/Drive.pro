@@ -39,7 +39,7 @@ FORMS += \
 
 INCLUDEPATH += ../mysql-connector-cpp\include\jdbc
 
-LIBS += -L"../mysql_connector-cpp" -lSQL
+LIBS += -L"..\mysql_connector-cpp" -lSQL
 
 INCLUDEPATH += C:\Users\Will\Documents\boost_1_68_0\boost_1_68_0
 
