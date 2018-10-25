@@ -1,5 +1,5 @@
 #OBJS specifies which files to compile as part of the project
-OBJS = TestDatabase.cpp Database.cpp Catalog.cpp Item.cpp
+OBJS = TestDatabase.cpp Catalog.cpp Item.cpp Database.cpp
 
 #CC specifies which compiler we're using
 CC = g++ 
