@@ -394,7 +394,7 @@ void Admin::deleteUser()
 					cout << "Are you sure you want to delete this user? (Y/N)" << endl;
 					char yn;
 					cin >> yn;
-					if(yn = 'Y')
+					if(yn == 'Y')
 					{
 					if( remove(name.c_str()) != 0 )
 					{
@@ -412,7 +412,7 @@ void Admin::deleteUser()
 					cout << "Are you sure you want to delete this user? (Y/N)" << endl;
 					char yn;
 					cin >> yn;
-					if(yn = 'Y')
+					if(yn == 'Y')
 					{
 					if( remove(name.c_str()) != 0 )
 					{
@@ -430,7 +430,7 @@ void Admin::deleteUser()
 					cout << "Are you sure you want to delete this user? (Y/N)" << endl;
 					char yn;
 					cin >> yn;
-					if(yn = 'Y')
+					if(yn == 'Y')
 					{
 					if( remove(name.c_str()) != 0 )
 					{
@@ -600,7 +600,8 @@ void Admin::editDriver(Driver name)
 	}
 	else if(v == 'U')
 	{
-		name.updateAddress();
+		//@TODO: Add updateAddress()
+		//name.updateAddress();
 		name.saveDriver();
 	}
 	else if(v == 'O')

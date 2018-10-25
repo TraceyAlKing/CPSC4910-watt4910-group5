@@ -105,12 +105,13 @@ size_t Catalog::WriteCallback(void *contents, size_t size, size_t nmemb, void *u
 
 std::string Catalog::makeRequest()
 {
-	CURL *curl;
-	CURLcode res;
+	//@TODO: remove curl functions?
+	//CURL *curl;
+	//CURLcode res;
 	std::string readBuffer;
 
 	
-	curl = curl_easy_init();
+	/*curl = curl_easy_init();
 	if(curl) {
 		curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
 		curl_easy_setopt(curl, CURLOPT_HTTPGET,1);
@@ -118,7 +119,7 @@ std::string Catalog::makeRequest()
 		curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
 		res = curl_easy_perform(curl);
 		curl_easy_cleanup(curl);
-	}
+	}*/
 	return readBuffer;
 
 }
