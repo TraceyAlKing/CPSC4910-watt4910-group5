@@ -260,7 +260,7 @@ void Admin::listOfUsernames()
 	struct dirent *entry;
 	Driver d;
 	Sponsor s;
-	Admin a;
+    //Admin a;
    DIR *dir = opendir(".");
    if (dir == NULL) {
       return;
@@ -298,7 +298,7 @@ void Admin::listOfUsernames()
 void Admin::listOfAdminUsernames()
 {
 	struct dirent *entry;
-	Admin a;
+    //Admin a;
    DIR *dir = opendir(".");
    if (dir == NULL) {
       return;
@@ -513,7 +513,7 @@ Admin Admin::setAdmin(string f)
 
 		ifstream in(buff);
 		
-		Admin d;
+        Admin d = Admin();
 
 		string str;
 		string typeOfUser;

@@ -15,15 +15,15 @@ using namespace std;
 
 class Sponsor: public User {
 private:
-	string Drivers_[100];
+    string Drivers_[100];
 	int numDrivers_;
 	int point_value_;
 public:
-	Sponsor();
-	Sponsor(std::string id, std::string name, std::string email, std::string password,
+    Sponsor();
+    Sponsor(std::string id, std::string name, std::string email, std::string password,
 		std::string phone, std::string address, std::string point_value);
 	Sponsor(const Sponsor& other);
-	Sponsor& operator=(const Sponsor& rhs);
+    Sponsor& operator=(const Sponsor& rhs);
 	~Sponsor();
 	void saveSponsor();
 	void addDriver();
@@ -35,7 +35,8 @@ public:
 	void registerSponsor();
 	bool checkForDriver(string name);
 	int getSponNum();
-	string* getDrivers();
+    string* getDrivers();
+    int getNumDrivers();
 	
 	Sponsor setSponsor(string f);
 	

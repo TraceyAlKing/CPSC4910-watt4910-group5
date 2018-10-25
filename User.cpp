@@ -219,3 +219,8 @@ void User::changePassword()
 		cout << "Password incorrect";
 	}
 }
+
+void User::updateAddress()
+{
+
+}

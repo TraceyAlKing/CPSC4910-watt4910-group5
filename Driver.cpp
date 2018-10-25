@@ -161,7 +161,7 @@ void Driver::setLPNum(std::string i, int j)
 }
 
 void Driver::setLicenseNum(std::string i){
-	LNum_ = std::stoi(i);
+    LNum_ = std::stoi(i);
 }
 
 void Driver::addLPNum()
@@ -202,6 +202,10 @@ void Driver::removeLPNum()
 	LPNumNumber_--;
 }
 
+int* Driver::viewLPNum()
+{
+	
+}
 Driver Driver::setDriver(string f)
 {
 	bool add = false;
@@ -261,8 +265,8 @@ Driver Driver::setDriver(string f)
 					d.setPoints(str);
 				}
 				if(i == 8)
-				{
-					d.setLicenseNum(str);
+                {
+                    d.setLicenseNum(str);
 				}
 				if(str == "ENDADDRESS")
 				{

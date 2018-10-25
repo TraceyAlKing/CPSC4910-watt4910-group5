@@ -27,15 +27,24 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    driverinfo.cpp
+    driverinfo.cpp \
+    ../Driver.cpp \
+    ../Sponsor.cpp \
+    ../User.cpp
 
 HEADERS += \
         mainwindow.h \
-    driverinfo.h
+    driverinfo.h \
+    ../Driver.hpp \
+    ../Sponsor.hpp \
+    ../User.hpp
 
 FORMS += \
     mainwindow.ui \
     driverinfo.ui
+
+INCLUDEPATH += ../
+DEPENDPATH += $${INCLUDEPATH}
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

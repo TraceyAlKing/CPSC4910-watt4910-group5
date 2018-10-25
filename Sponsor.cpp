@@ -55,8 +55,7 @@ void Sponsor::registerSponsor()
 	numDrivers_ = 0;
 		
 	cout << "Set a total for points: ";
-	
-	cin >> point_value_;
+    cin >> point_value_;
 }
 
 void Sponsor::saveSponsor()
@@ -116,13 +115,13 @@ void Sponsor::addDriver()
 void Sponsor::removeDriver()
 {
 	int input;
-	cout << "Remove which Driver? " << endl;
+    cout << "Remove which Driver? " << endl;
 	for(int i = 0; i < numDrivers_; i++)
 	{
 		cout << i << ": " << Drivers_[i] << endl;
 	}
 	cin >> input;
-	if(input < 0 || input > numDrivers_)
+    if(input < 0 || input > numDrivers_)
 	{
 		cout << "Invalid number..." << endl;
 	}
@@ -136,7 +135,7 @@ void Sponsor::removeDriver()
 			input++;
 		}
 		Drivers_[numDrivers_] = "NULL";
-		numDrivers_--;
+        numDrivers_--;
 		
 		Driver t, t2;
 		t2 = t.setDriver(p);
@@ -148,7 +147,7 @@ void Sponsor::removeDriver()
 void Sponsor::removeDriverWInput(string i)
 {
 	int u = 0;
-	//cout << "Target: " << i << endl;
+    //cout << "Target: " << i << endl;
 	for(int y = 0; y < numDrivers_; y++)
 	{
 		if(Drivers_[y] == i)
@@ -161,7 +160,7 @@ void Sponsor::removeDriverWInput(string i)
 				Drivers_[u] = Drivers_[u+1]; 
 				u++;
 			}
-			numDrivers_--;
+            numDrivers_--;
 		}
 	}
 	
@@ -277,7 +276,7 @@ bool Sponsor::checkForDriver (string name) {
 				{
 					      fclose(file);
 							cout << "Driver found and unassigned." << endl;
-							Drivers_[numDrivers_] = name;
+                            Drivers_[numDrivers_] = name;
 							numDrivers_++;
 							Driver d;
 							d = d.setDriver(name);
@@ -320,11 +319,15 @@ void Sponsor::changePoints()
 
 int Sponsor::getPV()
 {
-	return point_value_;
+    return point_value_;
 }
 
 void Sponsor::setPV(string i)
 {
-	 point_value_ = atoi(i.c_str());
+     point_value_ = atoi(i.c_str());
 }
 
+int Sponsor::getNumDrivers()
+{
+    return numDrivers_;
+}

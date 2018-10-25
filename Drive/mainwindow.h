@@ -2,11 +2,11 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "../User.hpp"
+#include <User.hpp>
 //#include "../Database.hpp"
-#include "../Driver.hpp"
-#include "../Sponsor.hpp"
-#include "../Admin.hpp"
+#include <Driver.hpp>
+#include <Sponsor.hpp>
+//#include <Admin.hpp>
 
 namespace Ui {
 class MainWindow;
@@ -33,6 +33,8 @@ private slots:
 private:
     Ui::MainWindow *ui;
     User* CurrUser;
+    Driver* CurrDriver;
+    Sponsor* CurrSponsor;
 };
 
 

@@ -1,6 +1,5 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "Login.cpp"
 #include <QMessageBox>
 #include <QPixmap>
 
@@ -38,13 +37,14 @@ void MainWindow::on_pushButton_Login_2_clicked()
     if(temp == 1) {
         ui->stackedWidget->setCurrentIndex(1);
         ui->stackedWidget_driver->setCurrentIndex(0);
-        //this->CurrUser = new Driver();
+        this->CurrDriver = new Driver();
        // currUser = db().getDriver(email);
-       // ui->pointsValue_label->setNum(currUser->getPoints());
+        ui->pointsValue_label->setNum(this->CurrDriver->getPoints());
     }
     else if(temp == 2) {
         ui->stackedWidget->setCurrentIndex(2);
-        this->CurrUser = new Sponsor();
+        this->CurrSponsor = new Sponsor();
+        this->on_sponsor_Home_Button_clicked();
     }
     else if(temp == 3) {
         ui->stackedWidget->setCurrentIndex(3);
@@ -57,6 +57,15 @@ void MainWindow::on_pushButton_Login_2_clicked()
 void MainWindow::on_driver_Home_Button_clicked()
 {
     ui->stackedWidget_driver->setCurrentIndex(0);
+    int len = CurrSponsor->getNumDrivers();
+    ui->driver_table->setRowCount(len);
+    std::string* Drivers_ = CurrSponsor->getDrivers();
+    for(int i =0; i<len; i++)
+    {
+        QString qstr = QString::fromStdString(Drivers_[i]);
+        QTableWidgetItem* newItem = new QTableWidgetItem(qstr, 1);
+        ui->driver_table->setItem(i, 0, newItem);
+    }
 }
 
 void MainWindow::on_driver_Logout_clicked()
