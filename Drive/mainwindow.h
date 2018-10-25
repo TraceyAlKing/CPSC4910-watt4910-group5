@@ -6,7 +6,7 @@
 //#include "../Database.hpp"
 #include <Driver.hpp>
 #include <Sponsor.hpp>
-#include <Admin.hpp>
+//#include <Admin.hpp>
 
 namespace Ui {
 class MainWindow;
@@ -33,6 +33,8 @@ private slots:
 private:
     Ui::MainWindow *ui;
     User* CurrUser;
+    Driver* CurrDriver;
+    Sponsor* CurrSponsor;
 };
 
 

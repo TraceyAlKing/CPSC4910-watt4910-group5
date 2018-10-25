@@ -28,7 +28,6 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     driverinfo.cpp \
-    ../Admin.cpp \
     ../Driver.cpp \
     ../Sponsor.cpp \
     ../User.cpp
@@ -36,7 +35,6 @@ SOURCES += \
 HEADERS += \
         mainwindow.h \
     driverinfo.h \
-    ../Admin.hpp \
     ../Driver.hpp \
     ../Sponsor.hpp \
     ../User.hpp

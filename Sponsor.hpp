@@ -15,7 +15,7 @@ using namespace std;
 
 class Sponsor: public User {
 private:
-	string Drivers_[100];
+    string Drivers_[100];
 	int numDrivers_;
 	int point_value_;
 public:
@@ -32,7 +32,8 @@ public:
 	void registerSponsor();
 	bool checkForDriver(string name);
 	int getSponNum();
-	string* getDrivers();
+    string* getDrivers();
+    int getNumDrivers();
 	
 	Sponsor setSponsor(string f);
 	

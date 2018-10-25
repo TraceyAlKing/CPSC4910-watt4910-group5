@@ -317,3 +317,7 @@ void Sponsor::setPV(string i)
          point_value_ = atoi(i.c_str());
 }
 
+int Sponsor::getNumDrivers()
+{
+    return numDrivers_;
+}

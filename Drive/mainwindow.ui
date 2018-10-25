@@ -60,7 +60,7 @@
        </size>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="login_page">
        <property name="sizeIncrement">
@@ -359,7 +359,7 @@
               <number>0</number>
              </property>
              <item>
-              <widget class="QLabel" name="label">
+              <widget class="QLabel" name="pointsValue_label">
                <property name="font">
                 <font>
                  <pointsize>22</pointsize>
@@ -392,7 +392,7 @@
               </widget>
              </item>
              <item>
-              <widget class="QLabel" name="label_3">
+              <widget class="QLabel" name="pointsDollar_label">
                <property name="font">
                 <font>
                  <pointsize>10</pointsize>
@@ -898,7 +898,7 @@
           <widget class="QWidget" name="page">
            <layout class="QVBoxLayout" name="verticalLayout_6">
             <item>
-             <widget class="QTableWidget" name="tableWidget">
+             <widget class="QTableWidget" name="driver_table">
               <property name="rowCount">
                <number>1</number>
               </property>
