@@ -1,3 +1,6 @@
+#ifndef DATABASE_HPP
+#define DATABASE_HPP
+
 #include <mysql_connection.h>
 #include <mysql_driver.h>
 
@@ -76,3 +79,5 @@ private:
 };
 
 Database& db();
+
+#endif //DATABASE_HPP

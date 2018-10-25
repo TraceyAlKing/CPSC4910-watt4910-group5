@@ -1,5 +1,5 @@
-#ifndef ADMIN_H
-#define ADMIN_H
+#ifndef ADMIN_HPP
+#define ADMIN_HPP
 
 #include <string.h>
 #include <iostream>
@@ -7,7 +7,7 @@
 #include <cstdlib>
 
 using namespace std;
-
+#include "User.hpp"
 #include "Sponsor.hpp"
 
 class Admin: public User {
@@ -47,4 +47,4 @@ public:
 	void editSponsor(Sponsor name);
 	void editDriver(Driver name);
 };
-#endif
+#endif //ADMIN_HPP

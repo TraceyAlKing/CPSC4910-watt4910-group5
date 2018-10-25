@@ -1,5 +1,5 @@
-#ifndef DRIVER_H
-#define DRIVER_H
+#ifndef DRIVER_HPP
+#define DRIVER_HPP
 
 #include <string.h>
 #include <iostream>
@@ -58,4 +58,4 @@ class Driver: public User {
 		void setLPNum(string i, int j);
 >>>>>>> b62edd8f504d889c248aad1ddb91e66ac702a4c1
 };
-#endif
+#endif //DRIVER_HPP

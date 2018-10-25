@@ -1,5 +1,6 @@
-#ifndef ITEM_H
-#define ITEM_H
+#ifndef ITEM_HPP
+#define ITEM_HPP
+
 #include <vector>
 #include <string>
 
@@ -22,4 +23,4 @@ private:
 
 
 };
-#endif
+#endif //ITEM_HPP

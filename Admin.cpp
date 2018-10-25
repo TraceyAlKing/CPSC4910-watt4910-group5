@@ -242,6 +242,7 @@ void Admin::listOfFiles()
    closedir(dir);
 }
 
+/* @TODO: add this code back, errors compiling
 void Admin::listOfUsernames()
 {
 	struct dirent *entry;
@@ -279,7 +280,9 @@ void Admin::listOfUsernames()
    }
    closedir(dir);
 }
+*/
 
+/* @TODO: add this code back, errors compiling
 void Admin::listOfAdminUsernames()
 {
 	struct dirent *entry;
@@ -305,6 +308,7 @@ void Admin::listOfAdminUsernames()
    }
    closedir(dir);
 }
+*/
 
 void Admin::viewAllDrivers()
 {
@@ -452,7 +456,7 @@ void Admin::deleteUser()
 			cout << "File not found" << endl;
 		}
 }
-
+/* @TODO: add this code back, errors compiling
 void Admin::editUser()
 {
 	cout << "Which user's info do you want to edit?" << endl;
@@ -485,7 +489,8 @@ void Admin::editUser()
 				}
 		}
 }
-
+*/
+/* @TODO: add this code back, errors compiling
 Admin Admin::setAdmin(string f)
 {
 	bool add = false;
@@ -550,7 +555,7 @@ Admin Admin::setAdmin(string f)
 		}
 		return d;
 }
-
+*/
 void Admin::editDriver(Driver name)
 {
 	cout << "Choose aspect to edit" << endl;
@@ -685,7 +690,7 @@ cout << "Choose aspect to edit" << endl;
 	}
 	else if(v == 'U')
 	{
-		name.updateAddress();
+		//name.updateAddress();
 		name.saveAdmin();
 	}
 }
@@ -736,7 +741,7 @@ cout << "Choose aspect to edit" << endl;
 	}
 	else if(v == 'U')
 	{
-		name.updateAddress();
+		//name.updateAddress();
 		name.saveSponsor();
 	}
 }
