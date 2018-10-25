@@ -9,7 +9,7 @@ int main(){
   }catch(const std::exception&){
     return EXIT_FAILURE;
   }
-
+  
 
   std::string str;
   std::string email;

@@ -27,11 +27,7 @@ CREATE TABLE DRIVER
    password          VARCHAR(64)   NOT NULL,
    phone             BIGINT(10) unsigned  NOT NULL,
    address           VARCHAR(256),
-<<<<<<< HEAD
-   points            INT unsigned,
-=======
    points            INT unsigned  NOT NULL,
->>>>>>> 545cd10b45572d2c6ea0c8dbcb77e9c3181f6045
    PRIMARY KEY (id)
 );
 CREATE TABLE DRIVER_SPONSOR

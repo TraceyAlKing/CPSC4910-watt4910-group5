@@ -1,5 +1,4 @@
 #include "Catalog.hpp"
-#include "Item.hpp"
 #include "Database.hpp"
 
 Catalog::Catalog(int cid, int sid) : 
@@ -169,9 +168,9 @@ std::string Catalog::makeRequest()
 
 
 void Catalog::populate(){
-	std::vector<int> itemids=getCatalogItems(std::to_string(Catalogid));
+	std::vector<int> itemids = db().getCatalogItems(std::to_string(Catalogid));
 	for( int i : itemids){
-		CatItems.push_back(getAmazonItem(std::to_string(i)));
+		CatItems.push_back(db().getAmazonItem(std::to_string(i)));
 	}
 }
 

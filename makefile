@@ -1,5 +1,5 @@
 #OBJS specifies which files to compile as part of the project
-OBJS = User.cpp Admin.cpp Catalog.cpp Database.cpp Driver.cpp Item.cpp Sponsor.cpp 
+OBJS = User.cpp Admin.cpp Catalog.cpp Driver.cpp Item.cpp Sponsor.cpp Database.cpp
 
 ##	Use one of the following section to compile the main function you want:
 #MAIN specifies the main file

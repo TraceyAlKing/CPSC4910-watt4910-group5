@@ -12,11 +12,11 @@
 #include <iostream>
 #include <sstream>
 #include <string>
-#include "Catalog.hpp"
 #include "Item.hpp"
 #include "Driver.hpp"
 #include "Sponsor.hpp"
 #include "Admin.hpp"
+#include "Catalog.hpp"
 
 class Database{
 public:
@@ -46,14 +46,14 @@ public:
 
    //Amazon Item calls
    void createAmazonItem(std::string name, std::string price, std::string description, std::string url);
-   Item * getAmazonItem(std::string id);
+   Item* getAmazonItem(std::string id);
    std::vector<int> getCatalogItems(std::string id);
    void removeAmazonItem(std::string id);
    void getAmazonItems();
 
    //Catalog Calls
    void createCatalog(std::string my_sponsor_id);
-   Catalog * getCatalog(std::string id);
+   Catalog* getCatalog(std::string id);
    void removeCatalog(std::string id);
    void getCatalogs();
 

@@ -9,7 +9,6 @@
 #include <ctime>
 #include <vector>
 #include <map>
-#include "Database.hpp"
 
 class Catalog {
 public:

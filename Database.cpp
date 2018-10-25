@@ -698,8 +698,8 @@ void Database::getCatalogs(){
    }
 }
 
-Catalog * Database::getCatalog(std::string id){
-  Catalog * rcat;
+Catalog* Database::getCatalog(std::string id){
+  Catalog* rcat;
   try {
     //Build statement
     std::stringstream sstr;
