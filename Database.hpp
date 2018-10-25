@@ -63,7 +63,7 @@ public:
    
    //returns 0 on failure, if greater than 0, then it's a success
    //    returns 1 if driver, 2 if sponsor, 3 if admin
-   int login(std::string email, std::string password);  
+   User* login(std::string input_email, std::string input_password);  
 private:
    Database();
    ~Database();

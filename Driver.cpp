@@ -201,11 +201,12 @@ void Driver::removeLPNum()
 	LPNum_[LPNumNumber_] = 0;
 	LPNumNumber_--;
 }
-
+/*
 int* Driver::viewLPNum()
 {
 	
 }
+*/
 Driver Driver::setDriver(string f)
 {
 	bool add = false;
