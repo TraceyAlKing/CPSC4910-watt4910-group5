@@ -171,6 +171,7 @@ void User::removeAddress()
 	addNum_--;
 }
 
+
 int User::getNumAddress()
 {
 	return addNum_;

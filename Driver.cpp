@@ -143,21 +143,16 @@ int* Driver::getPlates()
 	return LPNum_;
 }
 
-void Driver::setLNum(int i)
+void Driver::setLPNum(std::string i, int j)
 {
-	LNum_ = i;
+	LPNum_[j] = std::stoi(i);
 }
 
-void Driver::setLPNum(string* i, int j)
-{
-	LPNumNumber_ = j;
-	for(int k = 0; k < j; k++)
-	{
-		LPNum_[k]  = atoi(i[k].c_str());
-	}
+void Driver::setLicenseNum(std::string i){
+	LNum_ = std::stoi(i);
 }
 
-void Driver::addLP()
+void Driver::addLPNum()
 {
 	if(LPNumNumber_ == 10)
 	{
@@ -172,7 +167,7 @@ void Driver::addLP()
 	cout << "L. Plate  " << LPNum_[LPNumNumber_-1] << " added" << endl;
 }
 
-void Driver::removeLP()
+void Driver::removeLPNum()
 {
 	int input;
 	cout << "Remove which license plate? " << endl;
@@ -195,18 +190,13 @@ void Driver::removeLP()
 	LPNumNumber_--;
 }
 
-void Driver::viewLP()
-{
-	
-}
-
 Driver Driver::setDriver(string f)
 {
 	bool add = false;
 	bool plt = false;
 	string addr[10];
 	int addrNum = 0;
- 	string plts[10];
+	std::vector<string> plts;
 	int pltNum = 0;
 	
 		const char *buff = f.c_str();
@@ -260,7 +250,7 @@ Driver Driver::setDriver(string f)
 				}
 				if(i == 8)
 				{
-					d.setLNum(atoi(str.c_str()));
+					d.setLicenseNum(str);
 				}
 				if(str == "ENDADDRESS")
 				{
@@ -270,7 +260,9 @@ Driver Driver::setDriver(string f)
 				if(str == "ENDPLATES")
 				{
 					plt = false;
-					d.setLPNum(plts,pltNum);
+					//@TODO: not sure how you're doing this, but prefer this
+					for(int z = 0; z < plts.size(); z++)
+						d.setLPNum(plts[z], z);
 				}
 				if(add == true)
 				{
@@ -279,7 +271,7 @@ Driver Driver::setDriver(string f)
 				}
 				if(plt == true)
 				{
-					plts[pltNum] = str;
+					plts.push_back(str);
 					pltNum++;
 				}
 				if(str == "ADDRESS")
