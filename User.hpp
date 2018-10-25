@@ -21,6 +21,8 @@ class User {
 		User();
 		User(std::string id, std::string name, std::string email, std::string password,
 			std::string phone, std::string address);
+		User(const User& other);
+		User& operator=(const User& rhs);
 		~User(); 
 		void registerUser();
 		string getName();

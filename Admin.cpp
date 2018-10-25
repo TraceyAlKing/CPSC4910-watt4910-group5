@@ -19,6 +19,15 @@ Admin::~Admin()
 {
 }
 
+Admin::Admin(const Admin& other) : User(other)
+{
+
+}
+Admin& Admin::operator=(const Admin& rhs)
+{
+	User::operator=(rhs);
+}
+
 
 void Admin::registerAdmin()
 {

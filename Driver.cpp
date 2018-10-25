@@ -17,6 +17,15 @@ Driver::Driver()
 	sponsor_ = "";
 	points_ = 0;
 }
+Driver::Driver(const Driver& other) : User(other), points_(other.points_)
+{
+
+}
+Driver& Driver::operator=(const Driver& rhs)
+{
+	User::operator=(rhs);
+	points_ = rhs.points_;
+}
 
 Driver::~Driver()
 {

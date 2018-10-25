@@ -21,6 +21,8 @@ class Driver: public User {
 		Driver();
 		Driver(std::string id, std::string name, std::string email, std::string password,
 		std::string phone, std::string address, std::string points);
+		Driver(const Driver& other);
+		Driver& operator=(const Driver& rhs);
 		~Driver(); 
 		void registerDriver();
 		int getPoints();
