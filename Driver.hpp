@@ -18,6 +18,7 @@ class Driver: public User {
 		int LPNumNumber_;
 	public:
 		Driver();
+                Driver(std::string, std::string, std::string, std::string, std::string, std::string, std::string);
 		~Driver(); 
 		void registerDriver();
 		int getPoints();
@@ -27,6 +28,7 @@ class Driver: public User {
 		int* getPlates();
 		void saveDriver();
 		int changePoints();
+                int* viewLPNum();
 		
 		Driver setDriver(string f);
 
@@ -39,7 +41,8 @@ class Driver: public User {
 		
 		int getLNumNum();
 //<<<<<<< HEAD
-		void setLPNum(string* i, int j);
+                void setLPNum(string* i, int j);
+                void setLNum(int i);
 		
 //=======
 //>>>>>>> iteration5

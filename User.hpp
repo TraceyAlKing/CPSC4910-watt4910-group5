@@ -41,6 +41,7 @@ class User {
 		void setAddress(string* i, int j);
 		
 		void addAddress();
+        void updateAddress();
 		void removeAddress();
 		int getNumAddress();
 		

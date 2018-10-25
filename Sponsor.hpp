@@ -20,6 +20,7 @@ private:
 	int point_value_;
 public:
 	Sponsor();
+        Sponsor(std::string, std::string, std::string, std::string, std::string, std::string, std::string);
 	~Sponsor();
 	void saveSponsor();
 	void addDriver();

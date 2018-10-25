@@ -7,7 +7,7 @@
 
 using namespace std;
 
-#include "Admin.h"
+#include "Admin.hpp"
 
 Admin::Admin(std::string id, std::string name, std::string email, std::string password,
 		std::string phone, std::string address) : User(id, name, email, password, phone, address) 
@@ -247,7 +247,7 @@ void Admin::listOfUsernames()
 	struct dirent *entry;
 	Driver d;
 	Sponsor s;
-	Admin a;
+    //Admin a;
    DIR *dir = opendir(".");
    if (dir == NULL) {
       return;
@@ -283,7 +283,7 @@ void Admin::listOfUsernames()
 void Admin::listOfAdminUsernames()
 {
 	struct dirent *entry;
-	Admin a;
+    //Admin a;
    DIR *dir = opendir(".");
    if (dir == NULL) {
       return;
@@ -496,7 +496,7 @@ Admin Admin::setAdmin(string f)
 
 		ifstream in(buff);
 		
-		Admin d;
+        Admin d = Admin();
 
 		string str;
 		string typeOfUser;

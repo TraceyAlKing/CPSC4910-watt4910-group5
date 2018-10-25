@@ -145,19 +145,19 @@ int* Driver::getPlates()
 
 void Driver::setLNum(int i)
 {
-	LNum_ = i;
+        LNum_ = i;
 }
 
 void Driver::setLPNum(string* i, int j)
 {
-	LPNumNumber_ = j;
+        LPNumNumber_ = j;
 	for(int k = 0; k < j; k++)
 	{
 		LPNum_[k]  = atoi(i[k].c_str());
 	}
 }
 
-void Driver::addLP()
+void Driver::addLPNum()
 {
 	if(LPNumNumber_ == 10)
 	{
@@ -172,7 +172,7 @@ void Driver::addLP()
 	cout << "L. Plate  " << LPNum_[LPNumNumber_-1] << " added" << endl;
 }
 
-void Driver::removeLP()
+void Driver::removeLPNum()
 {
 	int input;
 	cout << "Remove which license plate? " << endl;
@@ -195,7 +195,7 @@ void Driver::removeLP()
 	LPNumNumber_--;
 }
 
-void Driver::viewLP()
+int* Driver::viewLPNum()
 {
 	
 }
@@ -260,7 +260,7 @@ Driver Driver::setDriver(string f)
 				}
 				if(i == 8)
 				{
-					d.setLNum(atoi(str.c_str()));
+                                        d.setLNum(atoi(str.c_str()));
 				}
 				if(str == "ENDADDRESS")
 				{
