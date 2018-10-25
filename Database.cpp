@@ -509,7 +509,7 @@ void Database::removeAmazonItem(std::string id){
   try {
     //DELETE FROM somelog WHERE user = 'jcole'
     std::stringstream sstr;
-    sstr << "DELETE FROM AMAZON_ITEM WHERE id = \'";
+    sstr << "DELETE FROM AMAZON_ITEM WHERE item_id = \'";
     sstr << id << "\';";
 
     std::cout << "Attempting statement: " << sstr.str() << std::endl;
@@ -537,7 +537,7 @@ void Database::getAmazonItems(){
       while (res_->next()) {
         /* Access column data by alias or column name */
         std::cout << "\t-------------------------------------------" << std::endl;
-        std::cout << "\tid: "<< res_->getString("id") << std::endl;
+        std::cout << "\tid: "<< res_->getString("item_id") << std::endl;
         std::cout << "\tname: "<< res_->getString("name") << std::endl;
         std::cout << "\tprice: "<< res_->getString("price") << std::endl;
         std::cout << "\tdescription: "<< res_->getString("description") << std::endl;
@@ -585,7 +585,7 @@ Item * Database::getAmazonItem(std::string id){
   try {
     //Build statement
     std::stringstream sstr;
-    sstr << "SELECT * FROM AMAZON_ITEM WHERE id = " << "\"" << id << "\";";
+    sstr << "SELECT * FROM AMAZON_ITEM WHERE item_id = " << "\"" << id << "\";";
 
     //Execute statement
     std::cout << "Attempting statement: " << sstr.str() << std::endl;
@@ -597,7 +597,7 @@ Item * Database::getAmazonItem(std::string id){
     int count = 0;
     while (res_->next()) {
       /* Access column data by alias or column name */
-      ritem= new Item(std::stoi(res_->getString("id")),res_->getString("name"),res_->getDouble("price"),res_->getString("description"),res_->getString("url"));
+      ritem= new Item(std::stoi(res_->getString("id")),res_->getString("name"),res_->getDouble("price"),res_->getString("description"),res_->getString("url"),res_->getInt("availability"));
       count++;
     }
     std::cout << "\t... MySQL replies: Success." << std::endl;
@@ -613,11 +613,45 @@ Item * Database::getAmazonItem(std::string id){
   return ritem;
 }
 
+std::vector<int> Database::getCatalogItems(std::string id){
+  std::vector<int> itemids;
+  try {
+    //Build statement
+    std::stringstream sstr;
+    sstr << "SELECT item_id FROM AMAZON_ITEM, CATALOG, CATLOG_AMAZON_ITEM WHERE item_id=my_amazon_item_id AND cat_id=my_catalog_id AND cat_id = " << "\"" << id << "\";";
+
+    //Execute statement
+    std::cout << "Attempting statement: " << sstr.str() << std::endl;
+    stmt_ = con_->createStatement();
+    res_ = stmt_->executeQuery(sstr.str());
+    std::cout << "\t... MySQL replies: " << std::endl;
+
+    //Parse results
+    int count = 0;
+    while (res_->next()) {
+      /* Access column data by alias or column name */
+      itemids.push_back(res_->getInt("item_id"));
+      count++;
+    }
+    std::cout << "\t... MySQL replies: Success." << std::endl;
+
+  } catch (sql::SQLException &e) {
+    std::cout << "# ERR: SQLException in " << __FILE__;
+    std::cout << "(" << __FUNCTION__ << ") on line "
+       << __LINE__ << std::endl;
+    std::cout << "# ERR: " << e.what();
+    std::cout << " (MySQL error code: " << e.getErrorCode();
+    std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
+  }
+  return itemids;
+
+}
+
 void Database::removeCatalog(std::string id){
   try {
     //DELETE FROM somelog WHERE user = 'jcole'
     std::stringstream sstr;
-    sstr << "DELETE FROM CATALOG WHERE id = \'";
+    sstr << "DELETE FROM CATALOG WHERE cat_id = \'";
     sstr << id << "\';";
 
     std::cout << "Attempting statement: " << sstr.str() << std::endl;
@@ -645,7 +679,7 @@ void Database::getCatalogs(){
       while (res_->next()) {
         /* Access column data by alias or column name */
         std::cout << "\t-------------------------------------------" << std::endl;
-        std::cout << "\tcatalog id: "<< res_->getString("id") << std::endl;
+        std::cout << "\tcatalog id: "<< res_->getString("cat_id") << std::endl;
         std::cout << "\tsponsor id: "<< res_->getString("my_sponsor_id") << std::endl;
         count++;
       }
@@ -668,7 +702,7 @@ Catalog * Database::getCatalog(std::string id){
   try {
     //Build statement
     std::stringstream sstr;
-    sstr << "SELECT * FROM CATALOG WHERE id = " << "\"" << id << "\";";
+    sstr << "SELECT * FROM CATALOG WHERE cat_id = " << "\"" << id << "\";";
 
     //Execute statement
     stmt_ = con_->createStatement();
@@ -680,7 +714,7 @@ Catalog * Database::getCatalog(std::string id){
     while (res_->next()) {
       /* Access column data by alias or column name */
       std::cout << "\t-------------------------------------------" << std::endl;
-      rcat=new Catalog(std::stoi(res_->getString("id")),std::stoi(res_->getString("my_sponsor_id")));
+      rcat=new Catalog(std::stoi(res_->getString("cat_id")),std::stoi(res_->getString("my_sponsor_id")));
       count++;
     }
     std::cout << "\t... MySQL replies: Success." << std::endl;

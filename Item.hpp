@@ -7,7 +7,7 @@
 class Item{
 
 public:
-	Item(int, std::string, long double, std::string, std::string);
+	Item(int, std::string, long double, std::string, std::string, int);
 
 
 
@@ -20,6 +20,10 @@ private:
 	long double price;
 	std::string description;
 	std::string url;
+	bool availability;
+
+
+friend class Catalog;
 
 
 };

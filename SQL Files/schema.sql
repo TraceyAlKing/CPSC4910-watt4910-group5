@@ -28,7 +28,7 @@ CREATE TABLE DRIVER
    phone             BIGINT(10) unsigned  NOT NULL,
    address           VARCHAR(256),
    points            INT unsigned  NOT NULL,
-   PRIMARY KEY (id),
+   PRIMARY KEY (id)
 );
 CREATE TABLE DRIVER_SPONSOR
 (
@@ -40,25 +40,26 @@ CREATE TABLE DRIVER_SPONSOR
 );
 CREATE TABLE AMAZON_ITEM
 (
-   id                INT unsigned  NOT NULL AUTO_INCREMENT,
+   item_id                INT unsigned  NOT NULL AUTO_INCREMENT,
    name              VARCHAR(64)   NOT NULL,
    price             DOUBLE        NOT NULL,
    description       VARCHAR(2048),
    url               VARCHAR(256)  NOT NULL,
-   PRIMARY KEY (id)
+   availability      BOOLEAN       NOT NULL Default TRUE,
+   PRIMARY KEY (item_id)
 );
 CREATE TABLE AMAZON_ITEM_IMAGE
 (
    image_url         VARCHAR(1024) NOT NULL,
    amazon_item_id    INT unsigned  NOT NULL,
    PRIMARY KEY (amazon_item_id),
-   FOREIGN KEY (amazon_item_id) REFERENCES AMAZON_ITEM(id)
+   FOREIGN KEY (amazon_item_id) REFERENCES AMAZON_ITEM(item_id)
 );
 CREATE TABLE CATALOG
 (
-   id                INT unsigned NOT NULL AUTO_INCREMENT,
+   cat_id            INT unsigned NOT NULL AUTO_INCREMENT,
    my_sponsor_id     INT unsigned NOT NULL,
-   PRIMARY KEY (id),
+   PRIMARY KEY (cat_id),
    FOREIGN KEY (my_sponsor_id) REFERENCES SPONSOR(id)
 );
 CREATE TABLE CATALOG_AMAZON_ITEM
@@ -66,6 +67,6 @@ CREATE TABLE CATALOG_AMAZON_ITEM
    my_catalog_id     INT unsigned NOT NULL,
    my_amazon_item_id INT unsigned NOT NULL,
    PRIMARY KEY (my_catalog_id, my_amazon_item_id),
-   FOREIGN KEY (my_catalog_id) REFERENCES CATALOG(id),
-   FOREIGN KEY (my_amazon_item_id) REFERENCES AMAZON_ITEM(id)
+   FOREIGN KEY (my_catalog_id) REFERENCES CATALOG(cat_id),
+   FOREIGN KEY (my_amazon_item_id) REFERENCES AMAZON_ITEM(item_id)
 );

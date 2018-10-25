@@ -20,31 +20,31 @@ INSERT INTO SPONSOR ( name, email, password, phone, point_value )
 INSERT INTO DRIVER ( name, email, password, phone, points ) 
    VALUES ( "justin stalker", "bobodunkins@hotmail.co.uk",  "bobo4evah", 2849964328, 7 );
 
-INSERT INTO DRIVER ( name, email, password, phone, points, my_sponsor_id  ) 
+INSERT INTO DRIVER ( name, email, password, phone, points ) 
    VALUES ( "Po Nguyen", "imjustapoboy@yahoo.com", "dontjimmymyjohn", 4228999793, 22 );
 
-INSERT INTO DRIVER ( name, email, password, phone, points, my_sponsor_id  ) 
+INSERT INTO DRIVER ( name, email, password, phone, points ) 
    VALUES ( "Ryan Anderson", "RAmastermind@gmail.com", "password", 2228675309, 101 );
 
-INSERT INTO DRIVER ( name, email, password, phone, points, my_sponsor_id  ) 
+INSERT INTO DRIVER ( name, email, password, phone, points ) 
    VALUES ( "Ted Gunderson", "feelthegunder@gmail.com", "gunderbite", 2468972233, 20 );
 
-INSERT INTO DRIVER ( name, email, password, phone, points, my_sponsor_id  ) 
+INSERT INTO DRIVER ( name, email, password, phone, points ) 
    VALUES ( "Gold Dan", "thisisourworld@nightspire.net", "felclaws", 8971661668, 0 );
 
-INSERT INTO DRIVER ( name, email, password, phone, points, my_sponsor_id  ) 
+INSERT INTO DRIVER ( name, email, password, phone, points) 
    VALUES ( "Pete Danhill", "Pdanhill@userspace.net", "turkeysandwich", 7778889999, 88 );
 
-INSERT INTO DRIVER ( name, email, password, phone, points, my_sponsor_id  ) 
+INSERT INTO DRIVER ( name, email, password, phone, points ) 
    VALUES ( "Oswaldo Moriss", "Oswaldo@howdidigetthis.net", "dontlickme", 8641396348, 26);
 
-INSERT INTO DRIVER ( name, email, password, phone, points, my_sponsor_id  ) 
+INSERT INTO DRIVER ( name, email, password, phone, points ) 
    VALUES ( "Pete Jimbo", "thejimbonator@yahoo.com", "jimbonthesenuts", 2248976425, 26 );
 
-INSERT INTO DRIVER ( name, email, password, phone, points, my_sponsor_id  ) 
+INSERT INTO DRIVER ( name, email, password, phone, points ) 
    VALUES ( "philly bob", "phillybob236@neopets.com", "phillybpspill", 5213684532, 26 );
 
-INSERT INTO DRIVER ( name, email, password, phone, points, my_sponsor_id  ) 
+INSERT INTO DRIVER ( name, email, password, phone, points ) 
    VALUES ( "Bob Sagget", "Saggenator226@hotmail.com", "iliketosag", 2288753951, 26 );
 
 INSERT INTO DRIVER_SPONSOR(driver_id, sponsor_id)

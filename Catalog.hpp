@@ -9,10 +9,24 @@
 #include <ctime>
 #include <vector>
 #include <map>
+#include "Database.hpp"
 
 class Catalog {
 public:
 	Catalog(int, int);
+	~Catalog();
+
+	//sorting methods;
+	std::vector<Item*> getItems();
+	std::vector<Item*> getAvailableItems();
+	std::vector<Item*> getitemsbypriceabove(double price);
+	std::vector<Item*> getitemsbypricebelow(double price);
+	std::vector<Item*> getitemsbyname(std::string name);
+
+
+
+
+	//all these functions handle api request to amazon product advertising api, so they are unused in the current version
 	void setRequest(std::string);
 	void clearRequest();
 	std::string getRequest();
@@ -31,9 +45,13 @@ public:
 private:
 
 	std::string url;
-	std::vector<Item> AmazonItems;
+	std::vector<Item*> CatItems;
 	int Catalogid;
 	int Sponsorid;
+
+
+	//database calls;
+	void populate();
 
 static size_t WriteCallback(void *contents, size_t size, size_t nmemb, void *userp);
 

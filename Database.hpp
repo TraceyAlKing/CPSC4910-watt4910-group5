@@ -12,8 +12,8 @@
 #include <iostream>
 #include <sstream>
 #include <string>
-#include "Item.hpp"
 #include "Catalog.hpp"
+#include "Item.hpp"
 #include "Driver.hpp"
 #include "Sponsor.hpp"
 #include "Admin.hpp"
@@ -47,6 +47,7 @@ public:
    //Amazon Item calls
    void createAmazonItem(std::string name, std::string price, std::string description, std::string url);
    Item * getAmazonItem(std::string id);
+   std::vector<int> getCatalogItems(std::string id);
    void removeAmazonItem(std::string id);
    void getAmazonItems();
 
