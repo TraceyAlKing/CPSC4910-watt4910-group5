@@ -22,18 +22,22 @@ User::User(const User& other) : id_(other.id_), name_(other.name_), email_(other
 		phone_(other.phone_), address_()
 {
 	//@TODO: turn address_ into a vector
-	for(int i; i < 10; i++)
+	for(int i = 0; i < 10; i++)
 		address_[i] = other.address_[i];
 }
 User& User::operator=(const User& rhs){
+	if(this == &rhs)
+		return *this;
+
 	id_ = (rhs.id_);
 	name_ = (rhs.name_);
 	email_ = (rhs.email_);
 	password_ = (rhs.password_);
 	phone_ = (rhs.phone_);
 	//@TODO: turn address_ into a vector
-	for(int i; i < 10; i++)
+	for(int i = 0; i < 10; i++)
 		address_[i] = rhs.address_[i];
+	return *this;
 }
 
 User::~User()

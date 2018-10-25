@@ -23,8 +23,11 @@ Driver::Driver(const Driver& other) : User(other), points_(other.points_)
 }
 Driver& Driver::operator=(const Driver& rhs)
 {
+	if(this == &rhs)
+		return *this;
 	User::operator=(rhs);
 	points_ = rhs.points_;
+	return *this;
 }
 
 Driver::~Driver()

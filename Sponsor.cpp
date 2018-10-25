@@ -20,8 +20,11 @@ Sponsor::Sponsor(const Sponsor& other) : User(other), point_value_(other.point_v
 }
 Sponsor& Sponsor::operator=(const Sponsor& rhs)
 {
+	if(this == &rhs)
+		return *this;
 	User::operator=(rhs);
 	point_value_ = rhs.point_value_;
+	return *this;
 }
 Sponsor::Sponsor()
 {
