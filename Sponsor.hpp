@@ -19,13 +19,9 @@ private:
 	int numDrivers_;
 	int point_value_;
 public:
-	Sponsor();
-<<<<<<< HEAD
-        Sponsor(std::string, std::string, std::string, std::string, std::string, std::string, std::string);
-=======
+    Sponsor();
 	Sponsor(std::string id, std::string name, std::string email, std::string password,
-		std::string phone, std::string address, std::string point_value);
->>>>>>> b62edd8f504d889c248aad1ddb91e66ac702a4c1
+        std::string phone, std::string address, std::string point_value);
 	~Sponsor();
 	void saveSponsor();
 	void addDriver();

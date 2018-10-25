@@ -18,13 +18,9 @@ class Driver: public User {
 		int points_;
 		int LPNumNumber_;
 	public:
-		Driver();
-<<<<<<< HEAD
-                Driver(std::string, std::string, std::string, std::string, std::string, std::string, std::string);
-=======
+        Driver();
 		Driver(std::string id, std::string name, std::string email, std::string password,
-		std::string phone, std::string address, std::string points);
->>>>>>> b62edd8f504d889c248aad1ddb91e66ac702a4c1
+        std::string phone, std::string address, std::string points);
 		~Driver(); 
 		void registerDriver();
 		int getPoints();
@@ -46,16 +42,8 @@ class Driver: public User {
 		void addLPNum();
 		void removeLPNum();
 		
-		int getLNumNum();
-<<<<<<< HEAD
-//<<<<<<< HEAD
-                void setLPNum(string* i, int j);
+        int getLNumNum();
                 void setLNum(int i);
-		
-//=======
-//>>>>>>> iteration5
-=======
-		void setLPNum(string i, int j);
->>>>>>> b62edd8f504d889c248aad1ddb91e66ac702a4c1
+        void setLPNum(string i, int j);
 };
 #endif //DRIVER_HPP

@@ -145,24 +145,11 @@ int* Driver::getPlates()
 
 void Driver::setLPNum(std::string i, int j)
 {
-<<<<<<< HEAD
-        LNum_ = i;
-}
-
-void Driver::setLPNum(string* i, int j)
-{
-        LPNumNumber_ = j;
-	for(int k = 0; k < j; k++)
-	{
-		LPNum_[k]  = atoi(i[k].c_str());
-	}
-=======
 	LPNum_[j] = std::stoi(i);
 }
 
 void Driver::setLicenseNum(std::string i){
-	LNum_ = std::stoi(i);
->>>>>>> b62edd8f504d889c248aad1ddb91e66ac702a4c1
+    LNum_ = std::stoi(i);
 }
 
 void Driver::addLPNum()
@@ -203,14 +190,10 @@ void Driver::removeLPNum()
 	LPNumNumber_--;
 }
 
-<<<<<<< HEAD
 int* Driver::viewLPNum()
 {
 	
 }
-
-=======
->>>>>>> b62edd8f504d889c248aad1ddb91e66ac702a4c1
 Driver Driver::setDriver(string f)
 {
 	bool add = false;
@@ -270,12 +253,8 @@ Driver Driver::setDriver(string f)
 					d.setPoints(str);
 				}
 				if(i == 8)
-				{
-<<<<<<< HEAD
-                                        d.setLNum(atoi(str.c_str()));
-=======
-					d.setLicenseNum(str);
->>>>>>> b62edd8f504d889c248aad1ddb91e66ac702a4c1
+                {
+                    d.setLicenseNum(str);
 				}
 				if(str == "ENDADDRESS")
 				{
