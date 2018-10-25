@@ -1,5 +1,5 @@
-#ifndef SPONSOR_H
-#define SPONSOR_H
+#ifndef SPONSOR_HPP
+#define SPONSOR_HPP
 #include <string.h>
 #include <iostream>
 #include <fstream>
@@ -40,4 +40,4 @@ public:
 	void setPV(string i);
 	int getPV();
 };
-#endif
+#endif //SPONSOR_HPP

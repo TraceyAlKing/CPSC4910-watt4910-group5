@@ -44,7 +44,7 @@ void Sponsor::registerSponsor()
 		
 	cout << "Set a total for points: ";
 	
-	cin >> pointValue;
+	cin >> point_value_;
 }
 
 void Sponsor::saveSponsor()
@@ -105,26 +105,26 @@ void Sponsor::removeDriver()
 {
 	int input;
 	cout << "Remove which Driver? " << endl;
-	for(int i = 0; i < numDrivers; i++)
+	for(int i = 0; i < numDrivers_; i++)
 	{
-		cout << i << ": " << Drivers[i] << endl;
+		cout << i << ": " << Drivers_[i] << endl;
 	}
 	cin >> input;
-	if(input < 0 || input > numDrivers)
+	if(input < 0 || input > numDrivers_)
 	{
 		cout << "Invalid number..." << endl;
 	}
 	else
 	{
-		string p = Drivers[input];
+		string p = Drivers_[input];
 		
-		while(input < numDrivers)
+		while(input < numDrivers_)
 		{
-			Drivers[input] = Drivers[input+1]; 
+			Drivers_[input] = Drivers_[input+1]; 
 			input++;
 		}
-		Drivers[numDrivers] = "NULL";
-		numDrivers--;
+		Drivers_[numDrivers_] = "NULL";
+		numDrivers_--;
 		
 		Driver t, t2;
 		t2 = t.setDriver(p);
@@ -136,21 +136,20 @@ void Sponsor::removeDriver()
 void Sponsor::removeDriverWInput(string i)
 {
 	int u = 0;
-	int y = 0;
 	//cout << "Target: " << i << endl;
-	for(y; y < numDrivers; y++)
+	for(int y = 0; y < numDrivers_; y++)
 	{
-		if(Drivers[y] == i)
+		if(Drivers_[y] == i)
 		{
 			cout << "Driver found; will remove" << endl;
-			Drivers[y] = "NULL";
+			Drivers_[y] = "NULL";
 			int u = y;
-			while(u < numDrivers)
+			while(u < numDrivers_)
 			{
-				Drivers[u] = Drivers[u+1]; 
+				Drivers_[u] = Drivers_[u+1]; 
 				u++;
 			}
-			numDrivers--;
+			numDrivers_--;
 		}
 	}
 	
@@ -266,7 +265,7 @@ bool Sponsor::checkForDriver (string name) {
 				{
 					      fclose(file);
 							cout << "Driver found and unassigned." << endl;
-							Drivers_[numDrivers] = name;
+							Drivers_[numDrivers_] = name;
 							numDrivers_++;
 							Driver d;
 							d = d.setDriver(name);
@@ -309,11 +308,11 @@ void Sponsor::changePoints()
 
 int Sponsor::getPV()
 {
-	return pointValue;
+	return point_value_;
 }
 
 void Sponsor::setPV(string i)
 {
-	 pointValue = atoi(i.c_str());
+	 point_value_ = atoi(i.c_str());
 }
 
