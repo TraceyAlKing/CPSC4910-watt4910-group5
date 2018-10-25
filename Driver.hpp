@@ -5,6 +5,7 @@
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
+#include <vector>
 
 using namespace std;
 
@@ -18,7 +19,12 @@ class Driver: public User {
 		int LPNumNumber_;
 	public:
 		Driver();
+<<<<<<< HEAD
                 Driver(std::string, std::string, std::string, std::string, std::string, std::string, std::string);
+=======
+		Driver(std::string id, std::string name, std::string email, std::string password,
+		std::string phone, std::string address, std::string points);
+>>>>>>> b62edd8f504d889c248aad1ddb91e66ac702a4c1
 		~Driver(); 
 		void registerDriver();
 		int getPoints();
@@ -34,17 +40,22 @@ class Driver: public User {
 
 		void setSponsor(string i);
 		void setPoints(string i);
+		void setLicenseNum(string i);
 		
 		void updateLNum();
 		void addLPNum();
 		void removeLPNum();
 		
 		int getLNumNum();
+<<<<<<< HEAD
 //<<<<<<< HEAD
                 void setLPNum(string* i, int j);
                 void setLNum(int i);
 		
 //=======
 //>>>>>>> iteration5
+=======
+		void setLPNum(string i, int j);
+>>>>>>> b62edd8f504d889c248aad1ddb91e66ac702a4c1
 };
 #endif
