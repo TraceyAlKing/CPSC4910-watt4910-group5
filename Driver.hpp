@@ -19,8 +19,10 @@ class Driver: public User {
 		int LPNumNumber_;
 	public:
         Driver();
-		Driver(std::string id, std::string name, std::string email, std::string password,
-        std::string phone, std::string address, std::string points);
+        Driver(std::string id, std::string name, std::string email, std::string password,
+		std::string phone, std::string address, std::string points);
+		Driver(const Driver& other);
+        Driver& operator=(const Driver& rhs);
 		~Driver(); 
 		void registerDriver();
 		int getPoints();

@@ -17,6 +17,9 @@ public:
 	Admin(std::string id, std::string name, std::string email, std::string password,
 		std::string phone, std::string address);
 	Admin();
+	Admin(const Admin& other);
+	Admin& operator=(const Admin& rhs);
+	
 	~Admin();
 	void registerAdmin();
 	void saveAdmin();

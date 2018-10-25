@@ -14,6 +14,15 @@ Sponsor::Sponsor(std::string id, std::string name, std::string email, std::strin
 {
 
 }
+Sponsor::Sponsor(const Sponsor& other) : User(other), point_value_(other.point_value_)
+{
+
+}
+Sponsor& Sponsor::operator=(const Sponsor& rhs)
+{
+	User::operator=(rhs);
+	point_value_ = rhs.point_value_;
+}
 Sponsor::Sponsor()
 {
 	numDrivers_ = 0;

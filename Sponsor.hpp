@@ -20,8 +20,10 @@ private:
 	int point_value_;
 public:
     Sponsor();
-	Sponsor(std::string id, std::string name, std::string email, std::string password,
-        std::string phone, std::string address, std::string point_value);
+    Sponsor(std::string id, std::string name, std::string email, std::string password,
+		std::string phone, std::string address, std::string point_value);
+	Sponsor(const Sponsor& other);
+    Sponsor& operator=(const Sponsor& rhs);
 	~Sponsor();
 	void saveSponsor();
 	void addDriver();
