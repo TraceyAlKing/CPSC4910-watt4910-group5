@@ -37,14 +37,6 @@ FORMS += \
     mainwindow.ui \
     driverinfo.ui
 
-INCLUDEPATH += ../mysql-connector-cpp\include\jdbc
-
-LIBS += -L"..\mysql_connector-cpp" -lSQL
-
-INCLUDEPATH += C:\Users\Will\Documents\boost_1_68_0\boost_1_68_0
-
-LIBS += -L"C:\Users\Will\Documents\boost_1_68_0\boost_1_68_0" -lBoost
-
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin

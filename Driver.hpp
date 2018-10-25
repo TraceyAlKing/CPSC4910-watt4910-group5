@@ -1,3 +1,6 @@
+#ifndef DRIVER_H
+#define DRIVER_H
+
 #include <string.h>
 #include <iostream>
 #include <fstream>
@@ -35,9 +38,10 @@ class Driver: public User {
 		void removeLPNum();
 		
 		int getLNumNum();
-<<<<<<< HEAD
+//<<<<<<< HEAD
 		void setLPNum(string* i, int j);
 		
-=======
->>>>>>> iteration5
+//=======
+//>>>>>>> iteration5
 };
+#endif

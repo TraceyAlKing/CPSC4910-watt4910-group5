@@ -26,17 +26,25 @@ void MainWindow::on_pushButton_Login_2_clicked()
     QString qPassword = ui->lineEdit_Password_2->text();
     std::string email = qEmail.toStdString();
     std::string password = qPassword.toStdString();
-
-    int temp = db().login(email, password);
+    int temp = 0;
+   // int temp = db().login(email, password);
+    if(email=="d" && password == "p")
+        temp = 1;
+    if(email=="s" && password == "p")
+        temp = 2;
+    if(email=="a" && password == "p")
+        temp = 3;
 
     if(temp == 1) {
         ui->stackedWidget->setCurrentIndex(1);
         ui->stackedWidget_driver->setCurrentIndex(0);
+        //this->CurrUser = new Driver();
        // currUser = db().getDriver(email);
        // ui->pointsValue_label->setNum(currUser->getPoints());
     }
     else if(temp == 2) {
         ui->stackedWidget->setCurrentIndex(2);
+        this->CurrUser = new Sponsor();
     }
     else if(temp == 3) {
         ui->stackedWidget->setCurrentIndex(3);

@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
     return a.exec();
 
     try{
-      db().init();
+     // db().init();
     }catch(const std::exception&){
       return EXIT_FAILURE;
     }

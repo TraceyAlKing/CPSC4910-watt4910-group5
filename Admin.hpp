@@ -1,3 +1,6 @@
+#ifndef ADMIN_H
+#define ADMIN_H
+
 #include <string.h>
 #include <iostream>
 #include <fstream>
@@ -44,3 +47,4 @@ public:
 	void editSponsor(Sponsor name);
 	void editDriver(Driver name);
 };
+#endif
