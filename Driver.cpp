@@ -23,8 +23,11 @@ Driver::Driver(const Driver& other) : User(other), points_(other.points_)
 }
 Driver& Driver::operator=(const Driver& rhs)
 {
+	if(this == &rhs)
+		return *this;
 	User::operator=(rhs);
 	points_ = rhs.points_;
+	return *this;
 }
 
 Driver::~Driver()
@@ -198,11 +201,12 @@ void Driver::removeLPNum()
 	LPNum_[LPNumNumber_] = 0;
 	LPNumNumber_--;
 }
-
+/*
 int* Driver::viewLPNum()
 {
 	
 }
+*/
 Driver Driver::setDriver(string f)
 {
 	bool add = false;

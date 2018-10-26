@@ -52,7 +52,7 @@ void Database::removeDriver(std::string id){
   }
 }
 void Database::createDriver(std::string name, std::string email, std::string password, 
-    std::string phone, std::string points){
+  std::string phone, std::string points){
   try {
     //Build statement
     std::stringstream sstr;
@@ -212,7 +212,7 @@ void Database::removeSponsor(std::string id){
   }
 }
 void Database::createSponsor(std::string name, std::string email, std::string password, 
-    std::string phone, std::string point_value){
+  std::string phone, std::string point_value){
   try {
     //Build statement
     std::stringstream sstr;
@@ -373,7 +373,8 @@ void Database::removeAdmin(std::string id){
 }
 
 void Database::createAdmin(std::string name, std::string email, std::string password, 
-    std::string phone){
+  std::string phone){
+
   try {
     //Build statement
     std::stringstream sstr;
@@ -509,7 +510,7 @@ void Database::removeAmazonItem(std::string id){
   try {
     //DELETE FROM somelog WHERE user = 'jcole'
     std::stringstream sstr;
-    sstr << "DELETE FROM AMAZON_ITEM WHERE id = \'";
+    sstr << "DELETE FROM AMAZON_ITEM WHERE item_id = \'";
     sstr << id << "\';";
 
     std::cout << "Attempting statement: " << sstr.str() << std::endl;
@@ -537,7 +538,7 @@ void Database::getAmazonItems(){
       while (res_->next()) {
         /* Access column data by alias or column name */
         std::cout << "\t-------------------------------------------" << std::endl;
-        std::cout << "\tid: "<< res_->getString("id") << std::endl;
+        std::cout << "\tid: "<< res_->getString("item_id") << std::endl;
         std::cout << "\tname: "<< res_->getString("name") << std::endl;
         std::cout << "\tprice: "<< res_->getString("price") << std::endl;
         std::cout << "\tdescription: "<< res_->getString("description") << std::endl;
@@ -585,7 +586,7 @@ Item * Database::getAmazonItem(std::string id){
   try {
     //Build statement
     std::stringstream sstr;
-    sstr << "SELECT * FROM AMAZON_ITEM WHERE id = " << "\"" << id << "\";";
+    sstr << "SELECT * FROM AMAZON_ITEM WHERE item_id = " << "\"" << id << "\";";
 
     //Execute statement
     std::cout << "Attempting statement: " << sstr.str() << std::endl;
@@ -597,7 +598,7 @@ Item * Database::getAmazonItem(std::string id){
     int count = 0;
     while (res_->next()) {
       /* Access column data by alias or column name */
-      ritem= new Item(std::stoi(res_->getString("id")),res_->getString("name"),res_->getDouble("price"),res_->getString("description"),res_->getString("url"));
+      ritem= new Item(std::stoi(res_->getString("id")),res_->getString("name"),res_->getDouble("price"),res_->getString("description"),res_->getString("url"),res_->getInt("availability"));
       count++;
     }
     std::cout << "\t... MySQL replies: Success." << std::endl;
@@ -613,11 +614,45 @@ Item * Database::getAmazonItem(std::string id){
   return ritem;
 }
 
+std::vector<int> Database::getCatalogItems(std::string id){
+  std::vector<int> itemids;
+  try {
+    //Build statement
+    std::stringstream sstr;
+    sstr << "SELECT item_id FROM AMAZON_ITEM, CATALOG, CATLOG_AMAZON_ITEM WHERE item_id=my_amazon_item_id AND cat_id=my_catalog_id AND cat_id = " << "\"" << id << "\";";
+
+    //Execute statement
+    std::cout << "Attempting statement: " << sstr.str() << std::endl;
+    stmt_ = con_->createStatement();
+    res_ = stmt_->executeQuery(sstr.str());
+    std::cout << "\t... MySQL replies: " << std::endl;
+
+    //Parse results
+    int count = 0;
+    while (res_->next()) {
+      /* Access column data by alias or column name */
+      itemids.push_back(res_->getInt("item_id"));
+      count++;
+    }
+    std::cout << "\t... MySQL replies: Success." << std::endl;
+
+  } catch (sql::SQLException &e) {
+    std::cout << "# ERR: SQLException in " << __FILE__;
+    std::cout << "(" << __FUNCTION__ << ") on line "
+       << __LINE__ << std::endl;
+    std::cout << "# ERR: " << e.what();
+    std::cout << " (MySQL error code: " << e.getErrorCode();
+    std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
+  }
+  return itemids;
+
+}
+
 void Database::removeCatalog(std::string id){
   try {
     //DELETE FROM somelog WHERE user = 'jcole'
     std::stringstream sstr;
-    sstr << "DELETE FROM CATALOG WHERE id = \'";
+    sstr << "DELETE FROM CATALOG WHERE cat_id = \'";
     sstr << id << "\';";
 
     std::cout << "Attempting statement: " << sstr.str() << std::endl;
@@ -645,7 +680,7 @@ void Database::getCatalogs(){
       while (res_->next()) {
         /* Access column data by alias or column name */
         std::cout << "\t-------------------------------------------" << std::endl;
-        std::cout << "\tcatalog id: "<< res_->getString("id") << std::endl;
+        std::cout << "\tcatalog id: "<< res_->getString("cat_id") << std::endl;
         std::cout << "\tsponsor id: "<< res_->getString("my_sponsor_id") << std::endl;
         count++;
       }
@@ -663,12 +698,12 @@ void Database::getCatalogs(){
    }
 }
 
-Catalog * Database::getCatalog(std::string id){
-  Catalog * rcat;
+Catalog* Database::getCatalog(std::string id){
+  Catalog* rcat;
   try {
     //Build statement
     std::stringstream sstr;
-    sstr << "SELECT * FROM CATALOG WHERE id = " << "\"" << id << "\";";
+    sstr << "SELECT * FROM CATALOG WHERE cat_id = " << "\"" << id << "\";";
 
     //Execute statement
     stmt_ = con_->createStatement();
@@ -680,7 +715,7 @@ Catalog * Database::getCatalog(std::string id){
     while (res_->next()) {
       /* Access column data by alias or column name */
       std::cout << "\t-------------------------------------------" << std::endl;
-      rcat=new Catalog(std::stoi(res_->getString("id")),std::stoi(res_->getString("my_sponsor_id")));
+      rcat=new Catalog(std::stoi(res_->getString("cat_id")),std::stoi(res_->getString("my_sponsor_id")));
       count++;
     }
     std::cout << "\t... MySQL replies: Success." << std::endl;
@@ -741,39 +776,155 @@ std::string Database::executeUnguardedStatement(std::string str){
    }
 }
 
-int Database::login(std::string email, std::string password){
+User* Database::login(std::string input_email, std::string input_password){
   //returns 0 on failure, if greater than 0, then it's a success
   //    returns 1 if driver, 2 if sponsor, 3 if admin
   try {
-    //Build statement
+    //Build statement - Admin
     std::stringstream sstr;
-    sstr << "SELECT email, password ";
+    sstr << "SELECT * ";
     sstr << "FROM ADMIN ";
-    sstr << "WHERE email = \"" << email << "\" AND password = \"" << password << "\" ;";
+    sstr << "WHERE email = \"" << input_email << "\" AND password = \"" << input_password << "\" ;";
 
     //Execute statement
     std::cout << "Attempting statement: " << sstr.str() << std::endl;
     stmt_ = con_->createStatement();
     res_ = stmt_->executeQuery(sstr.str());
-    std::cout << "\t... MySQL replies: " << std::endl;
 
     //Parse results
     int count = 0;
+    std::string id;
+    std::string name;
+    std::string email;
+    std::string password;
+    std::string phone;
+    std::string address;
     while (res_->next()) {
       /* Access column data by alias or column name */
       std::cout << "\t-------------------------------------------" << std::endl;
       std::cout << "\tid: "<< res_->getString("id") << std::endl;
+      id = res_->getString("id");
       std::cout << "\tname: "<< res_->getString("name") << std::endl;
-      std::cout << "\tphone: "<< res_->getString("phone") << std::endl;
+      name = res_->getString("name");
       std::cout << "\temail: "<< res_->getString("email") << std::endl;
+      email = res_->getString("email");
       std::cout << "\tpassword: "<< res_->getString("password") << std::endl;
-      std::cout << "\tpoints: "<< res_->getString("points") << std::endl;
-      std::cout << "\tsponsor: "<< res_->getString("my_sponsor_id") << std::endl;
+      password = res_->getString("password");
+      std::cout << "\tphone: "<< res_->getString("phone") << std::endl;
+      phone = res_->getString("phone");
+      std::cout << "\taddress: "<< res_->getString("address") << std::endl;
+      address = res_->getString("address");
       count++;
     }
     std::cout << "\t-------------------------------------------" << std::endl;
-    std::cout << "\tNumber of entries: " << count << std::endl;
-    std::cout << "\t... MySQL replies: Success." << std::endl;
+    if(count > 0){
+      std::cout << "\t... MySQL replies: Admin found." << std::endl;
+      return new Admin(id, name, email, password, phone, address);
+    }else{
+      std::cout << "\t... MySQL replies: No Admin found." << std::endl;
+    }
+
+
+
+    //Build statement - Sponsor
+    sstr.str("");
+    sstr << "SELECT * ";
+    sstr << "FROM SPONSOR ";
+    sstr << "WHERE email = \"" << input_email << "\" AND password = \"" << input_password << "\" ;";
+
+    //Execute statement
+    std::cout << "Attempting statement: " << sstr.str() << std::endl;
+    stmt_ = con_->createStatement();
+    res_ = stmt_->executeQuery(sstr.str());
+
+    //Parse results
+    count = 0;
+    id.clear();
+    name.clear();
+    email.clear();
+    password.clear();
+    phone.clear();
+    address.clear();
+    std::string point_value;
+    while (res_->next()) {
+      /* Access column data by alias or column name */
+      std::cout << "\t-------------------------------------------" << std::endl;
+      std::cout << "\tid: "<< res_->getString("id") << std::endl;
+      id = res_->getString("id");
+      std::cout << "\tname: "<< res_->getString("name") << std::endl;
+      name = res_->getString("name");
+      std::cout << "\temail: "<< res_->getString("email") << std::endl;
+      email = res_->getString("email");
+      std::cout << "\tpassword: "<< res_->getString("password") << std::endl;
+      password = res_->getString("password");
+      std::cout << "\tphone: "<< res_->getString("phone") << std::endl;
+      phone = res_->getString("phone");
+      std::cout << "\taddress: "<< res_->getString("address") << std::endl;
+      address = res_->getString("address");
+      std::cout << "\tpoint_value: "<< res_->getString("point_value") << std::endl;
+      point_value = res_->getString("point_value");
+      count++;
+    }
+    std::cout << "\t-------------------------------------------" << std::endl;
+    if(count > 0){
+      std::cout << "\t... MySQL replies: Sponsor found." << std::endl;
+      return new Sponsor(id, name, email, password, phone, address, point_value);
+    }else{
+      std::cout << "\t... MySQL replies: No Sponsor found." << std::endl;
+    }
+
+    //Build statement - Driver
+    sstr.str("");
+    sstr << "SELECT * ";
+    sstr << "FROM DRIVER ";
+    sstr << "WHERE email = \"" << input_email << "\" AND password = \"" << input_password << "\" ;";
+
+    //Execute statement
+    std::cout << "Attempting statement: " << sstr.str() << std::endl;
+    stmt_ = con_->createStatement();
+    res_ = stmt_->executeQuery(sstr.str());
+    
+    //Parse results
+    count = 0;
+    id.clear();
+    name.clear();
+    email.clear();
+    password.clear();
+    phone.clear();
+    address.clear();
+    std::string points;
+    while (res_->next()) {
+      /* Access column data by alias or column name */
+      std::cout << "\t-------------------------------------------" << std::endl;
+      std::cout << "\tid: "<< res_->getString("id") << std::endl;
+      id = res_->getString("id");
+      std::cout << "\tname: "<< res_->getString("name") << std::endl;
+      name = res_->getString("name");
+      std::cout << "\temail: "<< res_->getString("email") << std::endl;
+      email = res_->getString("email");
+      std::cout << "\tpassword: "<< res_->getString("password") << std::endl;
+      password = res_->getString("password");
+      std::cout << "\tphone: "<< res_->getString("phone") << std::endl;
+      phone = res_->getString("phone");
+      std::cout << "\taddress: "<< res_->getString("address") << std::endl;
+      address = res_->getString("address");
+      std::cout << "\tpoints: "<< res_->getString("points") << std::endl;
+      points = res_->getString("points");
+      count++;
+    }
+    std::cout << "\t-------------------------------------------" << std::endl;
+
+    if(count > 0){
+      std::cout << "\t... MySQL replies: Driver found." << std::endl;
+      return new Driver(id, name, email, password, phone, address, points);
+    }else{
+      std::cout << "\t... MySQL replies: No driver found." << std::endl;
+    }
+    
+
+    //If user doesnt exist return null
+    std::cout << "\t... MySQL replies: No users found." << std::endl;
+    return NULL;
 
   } catch (sql::SQLException &e) {
     std::cout << "# ERR: SQLException in " << __FILE__;

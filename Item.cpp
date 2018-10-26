@@ -1,11 +1,12 @@
 #include "Item.hpp"
 
-Item::Item(int cid, std::string na, long double pri, std::string des, std::string iurl) : 
+Item::Item(int cid, std::string na, long double pri, std::string des, std::string iurl, int avail) : 
 	images(),
-	Catalogid(cid),
+	Itemid(cid),
 	name(na),
 	price(pri),
 	description(des),
-	url(iurl)
+	url(iurl),
+	availability(avail)
 
 	{}

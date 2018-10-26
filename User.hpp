@@ -12,11 +12,15 @@ using namespace std;
 //	addNum
 
 class User {
-		string name_, username_, password_, email_;
-		string address_[10];
-		int addNum_;
-		long phone_;
 		int id_;
+		string name_;
+		string email_;
+		string password_;
+		long phone_;
+		string address_[10];
+		string username_;
+		int addNum_;
+		
 	public:
 		User();
 		User(std::string id, std::string name, std::string email, std::string password,

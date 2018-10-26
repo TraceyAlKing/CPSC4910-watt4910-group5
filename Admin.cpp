@@ -25,7 +25,10 @@ Admin::Admin(const Admin& other) : User(other)
 }
 Admin& Admin::operator=(const Admin& rhs)
 {
+	if(this == &rhs)
+		return *this;
 	User::operator=(rhs);
+	return *this;
 }
 
 

@@ -13,10 +13,10 @@
 #include <sstream>
 #include <string>
 #include "Item.hpp"
-#include "Catalog.hpp"
 #include "Driver.hpp"
 #include "Sponsor.hpp"
 #include "Admin.hpp"
+#include "Catalog.hpp"
 
 class Database{
 public:
@@ -46,13 +46,14 @@ public:
 
    //Amazon Item calls
    void createAmazonItem(std::string name, std::string price, std::string description, std::string url);
-   Item * getAmazonItem(std::string id);
+   Item* getAmazonItem(std::string id);
+   std::vector<int> getCatalogItems(std::string id);
    void removeAmazonItem(std::string id);
    void getAmazonItems();
 
    //Catalog Calls
    void createCatalog(std::string my_sponsor_id);
-   Catalog * getCatalog(std::string id);
+   Catalog* getCatalog(std::string id);
    void removeCatalog(std::string id);
    void getCatalogs();
 
@@ -63,7 +64,7 @@ public:
    
    //returns 0 on failure, if greater than 0, then it's a success
    //    returns 1 if driver, 2 if sponsor, 3 if admin
-   int login(std::string email, std::string password);  
+   User* login(std::string input_email, std::string input_password);  
 private:
    Database();
    ~Database();

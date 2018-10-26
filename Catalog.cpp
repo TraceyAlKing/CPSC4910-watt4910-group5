@@ -1,11 +1,53 @@
 #include "Catalog.hpp"
+#include "Database.hpp"
 
 Catalog::Catalog(int cid, int sid) : 
-	AmazonItems(),
+	CatItems(),
 	Catalogid(cid),
 	Sponsorid(sid)
-	{}
+	{
+		populate();
+	}
 	
+Catalog::~Catalog(){
+
+}
+
+
+std::vector<Item*> Catalog::getItems(){
+	return CatItems;
+}
+std::vector<Item*> Catalog::getAvailableItems(){
+	std::vector<Item*> ritems;
+	for(Item* item : CatItems){
+			if(item->availability) ritems.push_back(item);
+	}
+	return ritems;
+}
+
+std::vector<Item*> Catalog::getitemsbypriceabove(double price){
+	std::vector<Item*> ritems;
+	for(Item* item : CatItems){
+			if(item->price>price) ritems.push_back (item);
+	}
+	return ritems;
+}
+std::vector<Item*> Catalog::getitemsbypricebelow(double price){
+	std::vector<Item*> ritems;
+	for(Item* item : CatItems){
+			if(item->price<price) ritems.push_back (item);
+	}
+	return ritems;
+}
+std::vector<Item*> Catalog::getitemsbyname(std::string name){
+	std::vector<Item*> ritems;
+	for(Item* item : CatItems){
+			if(item->name.find(name)!=std::string::npos) ritems.push_back (item);
+	}
+	return ritems;
+}
+
+
 
 void Catalog::setRequest(std::string fname){
 	std::ifstream infile;
@@ -122,6 +164,14 @@ std::string Catalog::makeRequest()
 	}*/
 	return readBuffer;
 
+}
+
+
+void Catalog::populate(){
+	std::vector<int> itemids = db().getCatalogItems(std::to_string(Catalogid));
+	for( int i : itemids){
+		CatItems.push_back(db().getAmazonItem(std::to_string(i)));
+	}
 }
 
 

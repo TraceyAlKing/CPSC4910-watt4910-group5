@@ -18,11 +18,11 @@ class Driver: public User {
 		int points_;
 		int LPNumNumber_;
 	public:
-        Driver();
-        Driver(std::string id, std::string name, std::string email, std::string password,
-		std::string phone, std::string address, std::string points);
+      Driver();
+      Driver(std::string id, std::string name, std::string email, std::string password,
+				std::string phone, std::string address, std::string points);
 		Driver(const Driver& other);
-        Driver& operator=(const Driver& rhs);
+      Driver& operator=(const Driver& rhs);
 		~Driver(); 
 		void registerDriver();
 		int getPoints();
@@ -32,7 +32,7 @@ class Driver: public User {
 		int* getPlates();
 		void saveDriver();
 		int changePoints();
-                int* viewLPNum();
+      int* viewLPNum();
 		
 		Driver setDriver(string f);
 
@@ -44,8 +44,8 @@ class Driver: public User {
 		void addLPNum();
 		void removeLPNum();
 		
-        int getLNumNum();
-                void setLNum(int i);
-        void setLPNum(string i, int j);
+      int getLNumNum();
+      void setLNum(int i);
+      void setLPNum(string i, int j);
 };
 #endif //DRIVER_HPP
