@@ -57,7 +57,7 @@ void MainWindow::on_pushButton_Login_2_clicked()
         CurrSponsor->addDriver("Colonel Sanders Jr.");
         CurrSponsor->addDriver("Jeff");
         CurrSponsor->addDriver("Chicccken");
-        //this->on_sponsor_Home_Button_clicked();
+        this->on_sponsor_Home_Button_clicked();
     }
     else if(temp == 3) {
         ui->stackedWidget->setCurrentIndex(3);
