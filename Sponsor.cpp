@@ -96,16 +96,14 @@ void Sponsor::saveSponsor()
 	/*instead of lisence plate number, show drivers*/
 }
 
-void Sponsor::addDriver()
+void Sponsor::addDriver(string input)
 {
-	string input;
-	cout << "What is the username of the driver you want to add?" << endl;
-	cin >> input;
-	bool tf = checkForDriver(input);
+    //bool tf = checkForDriver(input);
 
 	/*check to see if sponsor is N/A*/
 	/*add to list of drivers*/
 	/*change N/A to the sponsor name*/
+    Drivers_[numDrivers_] = input;
 	numDrivers_++;	
 }
 

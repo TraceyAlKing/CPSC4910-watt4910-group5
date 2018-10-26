@@ -31,6 +31,10 @@ void MainWindow::on_pushButton_Login_2_clicked()
         temp = 1;
     if(email=="s" && password == "p")
         temp = 2;
+    if(email=="kfc" && password == "p")
+    {
+        temp = 2;
+    }
     if(email=="a" && password == "p")
         temp = 3;
 
@@ -43,8 +47,17 @@ void MainWindow::on_pushButton_Login_2_clicked()
     }
     else if(temp == 2) {
         ui->stackedWidget->setCurrentIndex(2);
-        this->CurrSponsor = new Sponsor();
-        this->on_sponsor_Home_Button_clicked();
+        this->CurrSponsor = new Sponsor("KFC", "KFC Chicken", "fingerlickingood@kfc.gov", "mrssanders",
+                                        "8002442536", "1200 Grand Chicken Finger Lickin Ave", "1");
+        CurrSponsor->addDriver("Jaff");
+        CurrSponsor->addDriver("Hubert");
+        CurrSponsor->addDriver("Horacio");
+        CurrSponsor->addDriver("Nickelback");
+        CurrSponsor->addDriver("Clementine H. Hornsby");
+        CurrSponsor->addDriver("Colonel Sanders Jr.");
+        CurrSponsor->addDriver("Jeff");
+        CurrSponsor->addDriver("Chicccken");
+        //this->on_sponsor_Home_Button_clicked();
     }
     else if(temp == 3) {
         ui->stackedWidget->setCurrentIndex(3);
@@ -57,15 +70,6 @@ void MainWindow::on_pushButton_Login_2_clicked()
 void MainWindow::on_driver_Home_Button_clicked()
 {
     ui->stackedWidget_driver->setCurrentIndex(0);
-    int len = CurrSponsor->getNumDrivers();
-    ui->driver_table->setRowCount(len);
-    std::string* Drivers_ = CurrSponsor->getDrivers();
-    for(int i =0; i<len; i++)
-    {
-        QString qstr = QString::fromStdString(Drivers_[i]);
-        QTableWidgetItem* newItem = new QTableWidgetItem(qstr, 1);
-        ui->driver_table->setItem(i, 0, newItem);
-    }
 }
 
 void MainWindow::on_driver_Logout_clicked()
@@ -91,6 +95,15 @@ void MainWindow::on_sponsor_Account_clicked()
 void MainWindow::on_sponsor_Home_Button_clicked()
 {
     ui->stackedWidget_sponsor->setCurrentIndex(0);
+    int len = CurrSponsor->getNumDrivers();
+    ui->driver_table->setRowCount(len);
+    std::string* Drivers_ = CurrSponsor->getDrivers();
+    for(int i = 0; i<len; i++)
+    {
+        QString qstr = QString::fromStdString(Drivers_[i]);
+        QTableWidgetItem* newItem = new QTableWidgetItem(qstr, 0);
+        ui->driver_table->setItem(i, 0, newItem);
+    }
 }
 
 void MainWindow::on_driver_History_Button_clicked()

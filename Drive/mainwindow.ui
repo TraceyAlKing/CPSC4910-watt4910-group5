@@ -60,7 +60,7 @@
        </size>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="login_page">
        <property name="sizeIncrement">
@@ -471,7 +471,7 @@
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_5">
              <item>
-              <widget class="QPushButton" name="pushButton">
+              <widget class="QPushButton" name="driver_History_Button">
                <property name="text">
                 <string>Full History</string>
                </property>
