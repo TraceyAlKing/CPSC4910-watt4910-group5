@@ -41,7 +41,6 @@ void Sponsor::setDrivers(string* i, int j)
 	for(int k = 0; k < j; k++)
 	{
 		Drivers_[k]  = i[k];
-		cout << "For loop: " << Drivers_[k] << endl;
 	}
 }
 
@@ -52,7 +51,7 @@ void Sponsor::registerSponsor()
 	
 	cout << "Add drivers later." << endl;
 	
-	numDrivers_ = 0;
+		numDrivers_ = 0;
 		
 	cout << "Set a total for points: ";
     cin >> point_value_;
@@ -62,8 +61,6 @@ void Sponsor::saveSponsor()
 {
 	ofstream myfile;
 	int p = getID();
-	
-	cout << "ID: " << p << endl;
 	
 	string filename = to_string(p);
 	const char* file = filename.c_str();
@@ -101,13 +98,10 @@ void Sponsor::saveSponsor()
 
 void Sponsor::addDriver(string input)
 {
-    //bool tf = checkForDriver(input);
-
-	/*check to see if sponsor is N/A*/
-	/*add to list of drivers*/
-	/*change N/A to the sponsor name*/
-    Drivers_[numDrivers_] = input;
-	numDrivers_++;	
+	//string input;
+	cout << "What is the username of the driver you want to add?" << endl;
+	cin >> input;
+	bool tf = checkForDriver(input);
 }
 
 void Sponsor::removeDriver()
@@ -137,7 +131,8 @@ void Sponsor::removeDriver()
 		
 		Driver t, t2;
 		t2 = t.setDriver(p);
-		t2.setSponsor("N/A");
+		string idno = to_string(getID());
+		t2.removeSponsor(idno);
 		t2.saveDriver();
 	}
 }
@@ -161,9 +156,6 @@ void Sponsor::removeDriverWInput(string i)
             numDrivers_--;
 		}
 	}
-	
-		
-	
 }
 
 Sponsor Sponsor::setSponsor(string f)
@@ -268,24 +260,15 @@ bool Sponsor::checkForDriver (string name) {
 		getline(in, str);
 		if(str == "Driver")
 		{
-			while(getline(in, str))
-			{
-				if(str == "N/A")
-				{
-					      fclose(file);
-							cout << "Driver found and unassigned." << endl;
-                            Drivers_[numDrivers_] = name;
-							numDrivers_++;
-							Driver d;
-							d = d.setDriver(name);
-							d.setSponsor(to_string(getID()));
-							d.saveDriver();
-        					return true;
-				}
-			}
-			fclose(file);
-			cout << "Driver already has sponsor." << endl;
-			return false;
+		      	fclose(file);
+				cout << "Driver found" << endl;
+				Drivers_[numDrivers_] = name;
+				numDrivers_++;
+				Driver d;
+				d = d.setDriver(name);
+				d.addSponsor(to_string(getID()));
+				d.saveDriver();
+				return true;
 		}
 		else
 		{
@@ -308,10 +291,26 @@ string* Sponsor::getDrivers()
 
 void Sponsor::changePoints()
 {
+	int input;
 	cout << "Choose a Driver." << endl;
-	for(int p = 0; p < numDrivers_; p++)
+	for(int i = 0; i < numDrivers_; i++)
 	{
-		
+		cout << i << ": " << Drivers_[i] << endl;
+	}
+	cin >> input;
+	if(input < 0 || input > numDrivers_)
+	{
+		cout << "Invalid number..." << endl;
+	}
+	else
+	{
+		string p = Drivers_[input];
+	
+		Driver t, t2;
+		t2 = t.setDriver(p);
+		string idno = to_string(getID());
+		t2.setPointsFromSponsor(idno);
+		t2.saveDriver();
 	}
 }
 

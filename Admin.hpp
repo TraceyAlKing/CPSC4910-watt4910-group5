@@ -11,7 +11,7 @@ using namespace std;
 #include "Sponsor.hpp"
 
 class Admin: public User {
-private:
+	private:
 		int i;
 public:
 	Admin(std::string id, std::string name, std::string email, std::string password,

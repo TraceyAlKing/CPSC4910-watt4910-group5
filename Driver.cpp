@@ -7,17 +7,18 @@
 Driver::Driver(std::string id, std::string name, std::string email, std::string password,
 		std::string phone, std::string address, std::string points) : 
 		User(id, name, email, password, phone, address), LNum_(), LPNum_(),
-		points_(std::stoi(points)), LPNumNumber_()
+		//points_(std::stoi(points)), 
+		LPNumNumber_()
 {
-	sponsor_ = "";
+	//sponsor_ = "";
 }
 
 Driver::Driver()
 {
-	sponsor_ = "";
-	points_ = 0;
+	//sponsor_ = "";
+	//points_ = 0;
 }
-Driver::Driver(const Driver& other) : User(other), points_(other.points_)
+Driver::Driver(const Driver& other) : User(other) //points_(other.points_)
 {
 
 }
@@ -26,7 +27,7 @@ Driver& Driver::operator=(const Driver& rhs)
 	if(this == &rhs)
 		return *this;
 	User::operator=(rhs);
-	points_ = rhs.points_;
+	//points_ = rhs.points_;
 	return *this;
 }
 
@@ -39,10 +40,12 @@ void Driver::registerDriver()
 	registerUser();
 
 	//cout << "Sponsor set to N/A" << endl;
-	sponsor_ = "N/A";
+	//sponsor = "N/A";
+	
+	sponsorNum_ = 0;
 
 	//cout << "Points set to 0" << endl;
-	points_ = 0;
+	pointNum_ = 0;
 	
 	cout << "Enter License Number: ";
 	cin >> LNum_;
@@ -53,12 +56,22 @@ void Driver::registerDriver()
 	LPNumNumber_ = 1;
 }
 
-int Driver::getPoints()
+int* Driver::getPoints()
 {
 	return points_;
 }
 
-string Driver::getSponsor()
+int Driver::getSponsorNum()
+{
+	return sponsorNum_;
+}
+
+int Driver::getPointNum()
+{
+	return pointNum_;
+}
+
+string* Driver::getSponsor()
 {
 	return sponsor_;
 }
@@ -78,12 +91,33 @@ void Driver::saveDriver()
 	myfile << getName() << "\n";
 	myfile << getEmail() << "\n";
 	myfile << getPhone() << "\n";
-	myfile << getSponsor() << "\n";
-	myfile << getPoints() << "\n";
 	myfile << getLicenseNum() << "\n";
+	
+	myfile << "SPONS" << "\n";
+	
+	int n = getSponsorNum();
+	string* sponsor = getSponsor();
+	for(int p = 0; p < n; p++)
+	{
+		myfile << sponsor[p] << "\n";
+	}
+	
+	myfile << "ENDSPONS" << "\n";
+	
+	myfile << "ALLPOINTS" << "\n";
+	
+	n = getPointNum();
+	int* points = getPoints();
+	for(int p = 0; p < n; p++)
+	{
+		myfile << points[p] << "\n";
+	}
+	
+	myfile << "ENDPTS" << "\n";
+	
 	myfile << "ADDRESS" << "\n";
 	
-	int n = getNumAddress();
+	n = getNumAddress();
 	string* addresses = getAddress();
 	for(int p = 0; p < n; p++)
 	{
@@ -106,32 +140,22 @@ void Driver::saveDriver()
 
 int Driver::changePoints()
 {
-	cout << "How many points should be added/removed?" << endl;
+	/*cout << "How many points should be added/removed?" << endl;
 	int i;
 	cin >> i;
-	int tPoints = points_;
-	points_ = points_ + i;
-	while(points_ < 0)
+	int tPoints = points;
+	points = points + i;
+	while(points < 0)
 	{
 		cout << "Total points cannot be below 0" << endl;
-		points_ = tPoints;
+		points = tPoints;
 		cin >> i;
 
-		tPoints = points_;
-		points_ = points_ + i;
+		tPoints = points;
+		points = points + i;
 	}
-	cout << "Total Points: " << points_ << endl;
-	return points_;
-}
-
-void Driver::setSponsor(string i)
-{
-	sponsor_ = i;
-}
-
-void Driver::setPoints(string i)
-{
-	points_ = atoi(i.c_str());
+	cout << "Total Points: " << points << endl;
+	return points;*/
 }
 
 int Driver::getLicenseNum() 
@@ -155,16 +179,39 @@ int* Driver::getPlates()
 	return LPNum_;
 }
 
-void Driver::setLPNum(std::string i, int j)
+void Driver::setLNum(int i)
 {
-	LPNum_[j] = std::stoi(i);
+	LNum_ = i;
 }
 
-void Driver::setLicenseNum(std::string i){
-    LNum_ = std::stoi(i);
+void Driver::setLPNum(string* i, int j)
+{
+	LPNumNumber_ = j;
+	for(int k = 0; k < j; k++)
+	{
+		LPNum_[k]  = atoi(i[k].c_str());
+	}
 }
 
-void Driver::addLPNum()
+void Driver::setSponsors(string* i, int j)
+{
+	sponsorNum_ = j;
+	for(int k = 0; k < j; k++)
+	{
+		sponsor_[k]  = i[k];
+	}
+}
+
+void Driver::setPoints2(string* i, int j)
+{
+	pointNum_ = j;
+	for(int k = 0; k < j; k++)
+	{
+		points_[k]  = atoi(i[k].c_str());
+	}
+}
+
+void Driver::addLP()
 {
 	if(LPNumNumber_ == 10)
 	{
@@ -179,7 +226,7 @@ void Driver::addLPNum()
 	cout << "L. Plate  " << LPNum_[LPNumNumber_-1] << " added" << endl;
 }
 
-void Driver::removeLPNum()
+void Driver::removeLP()
 {
 	int input;
 	cout << "Remove which license plate? " << endl;
@@ -201,20 +248,27 @@ void Driver::removeLPNum()
 	LPNum_[LPNumNumber_] = 0;
 	LPNumNumber_--;
 }
-/*
-int* Driver::viewLPNum()
+
+void Driver::viewLP()
 {
 	
 }
-*/
+
 Driver Driver::setDriver(string f)
 {
 	bool add = false;
 	bool plt = false;
+	bool spo = false;
+	bool pts = false;
+	
 	string addr[10];
 	int addrNum = 0;
-	std::vector<string> plts;
+ 	string plts[10];
 	int pltNum = 0;
+	string sponso[20];
+	int sNum = 0;
+ 	string poin[20];
+	int pNum = 0;
 	
 		const char *buff = f.c_str();
 
@@ -259,15 +313,7 @@ Driver Driver::setDriver(string f)
 				}
 				if(i == 6)
 				{
-					d.setSponsor(str);
-				}
-				if(i == 7)
-				{
-					d.setPoints(str);
-				}
-				if(i == 8)
-                {
-                    d.setLicenseNum(str);
+					d.setLNum(atoi(str.c_str()));
 				}
 				if(str == "ENDADDRESS")
 				{
@@ -277,18 +323,36 @@ Driver Driver::setDriver(string f)
 				if(str == "ENDPLATES")
 				{
 					plt = false;
-					//@TODO: not sure how you're doing this, but prefer this
-					for(int z = 0; z < plts.size(); z++)
-						d.setLPNum(plts[z], z);
+					d.setLPNum(plts,pltNum);
+				}
+				if(str == "ENDSPONS")
+				{
+					spo = false;
+					d.setSponsors(sponso,sNum);
+				}
+				if(str == "ENDPTS")
+				{
+					pts = false;
+					d.setPoints2(poin,pNum);
 				}
 				if(add == true)
 				{
 					addr[addrNum] = str;
 					addrNum++;
 				}
+				if(pts == true)
+				{
+					poin[pNum] = str;
+					pNum++;
+				}
+				if(spo == true)
+				{
+					sponso[sNum] = str;
+					sNum++;
+				}
 				if(plt == true)
 				{
-					plts.push_back(str);
+					plts[pltNum] = str;
 					pltNum++;
 				}
 				if(str == "ADDRESS")
@@ -299,8 +363,66 @@ Driver Driver::setDriver(string f)
 				{
 					plt = true;
 				}
+				if(str == "SPONS")
+				{
+					spo = true;
+				}
+				if(str == "ALLPOINTS")
+				{
+					pts = true;
+				}
 			}
 			i++;
 		}
 		return d;
+}
+
+int Driver::findSponsor(string i)
+{
+	for(int p = 0; p < sponsorNum_; p++)
+	{
+		if(i == sponsor_[p])
+		{
+			return p;
+		}
+	}
+	return -1;
+}
+
+void Driver::setPointsFromSponsor(string i)
+{
+	int f;
+	int n = findSponsor(i);
+	if(n != -1)
+	{
+		cout << "Choose number of points to add/remove to this driver" << endl;
+		{
+			cin >> f;
+			points_[n] = points_[n] + f;
+		}
+	}
+}
+
+void Driver::addSponsor(string i)
+{
+	sponsor_[sponsorNum_] = i;
+	sponsorNum_++;
+	points_[pointNum_] = 0;
+	pointNum_++;
+}
+
+void Driver::removeSponsor(string i)
+{
+		int n = findSponsor(i);
+		if(n != -1)
+		{
+			for(int p = n; n < sponsorNum_-1; p++)
+			{
+				sponsor_[p] = sponsor_[p+1];
+			}
+			sponsor_[sponsorNum_] = "NULL";
+			sponsorNum_--;
+			points_[pointNum_] = 0;
+			pointNum_--;
+		}
 }

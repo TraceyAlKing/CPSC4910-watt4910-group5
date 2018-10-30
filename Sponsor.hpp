@@ -1,17 +1,13 @@
 #ifndef SPONSOR_HPP
 #define SPONSOR_HPP
+
 #include <string.h>
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
-
-using namespace std;
-
 #include "Driver.hpp"
 
-//@TODO: Not yet added to be returned by Database
-//	Drivers_
-//	numDrivers_
+using namespace std;
 
 class Sponsor: public User {
 private:
