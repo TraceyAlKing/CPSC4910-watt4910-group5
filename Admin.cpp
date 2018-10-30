@@ -9,8 +9,7 @@ using namespace std;
 
 #include "Admin.h"
 
-Admin::Admin(std::string id, std::string name, std::string email, std::string password,
-		std::string phone, std::string address) : User(id, name, email, password, phone, address) 
+Admin::Admin()
 {
 
 }
@@ -554,6 +553,7 @@ Admin Admin::setAdmin(string f)
 void Admin::editDriver(Driver name)
 {
 	cout << "Choose aspect to edit" << endl;
+	cout << "Username (J)" << endl;
 	cout << "Password (P)" << endl;
 	cout << "Email (E)" << endl;
 	cout << "Real Name (R)" << endl;
@@ -569,7 +569,14 @@ void Admin::editDriver(Driver name)
 	
 	string input;
 	
-	if(v == 'P')
+	if(v == 'J')
+	{
+		cout << "Type in new username" << endl;
+		cin >> input;
+		name.setUsername(input);
+		name.saveDriver();
+	}
+	else if(v == 'P')
 	{
 		name.changePassword();
 		name.saveDriver();
@@ -605,19 +612,19 @@ void Admin::editDriver(Driver name)
 	}
 	else if(v == 'O')
 	{
-		int o = name.getPoints();
-		cout << "Current Points: " << o << endl;
+		//int o = name.getPoints();
+		//cout << "Current Points: " << o << endl;
 	}
 	else if(v == 'X')
 	{
-		int o = name.getPoints();
-		cout << "Current Points: " << o << endl;
+		//int o = name.getPoints();
+		//cout << "Current Points: " << o << endl;
 		name.changePoints();
 		name.saveDriver();
 	}
 	else if(v == 'Q')
 	{
-		string h = name.getSponsor();
+		string h; /*= name.getSponsor();*/
 		if(h == "N/A")
 		{
 			cout << "Driver does not have a sponsor." << endl;
@@ -631,7 +638,7 @@ void Admin::editDriver(Driver name)
 			s.removeDriverWInput(to_string(name.getID()));
 			s.saveSponsor();
 			
-			name.setSponsor("N/A");
+			//name.setSponsor("N/A");
 			name.saveDriver();
 			cout << "Sponsor removed from Driver" << endl;
 		}
@@ -641,6 +648,7 @@ void Admin::editDriver(Driver name)
 void Admin::editAdmin(Admin name)
 {
 cout << "Choose aspect to edit" << endl;
+	cout << "Username (Q)" << endl;
 	cout << "Password (P)" << endl;
 	cout << "Email (E)" << endl;
 	cout << "Real Name (R)" << endl;
@@ -653,7 +661,14 @@ cout << "Choose aspect to edit" << endl;
 	
 	string input;
 	
-	if(v == 'P')
+	if(v == 'Q')
+	{
+		cout << "Type in new username" << endl;
+		cin >> input;
+		name.setUsername(input);
+		//name.saveSponsor();
+	}
+	else if(v == 'P')
 	{
 		name.changePassword();
 		name.saveAdmin();
@@ -692,6 +707,7 @@ cout << "Choose aspect to edit" << endl;
 void Admin::editSponsor(Sponsor name)
 {
 cout << "Choose aspect to edit" << endl;
+	cout << "Username (Q)" << endl;
 	cout << "Password (P)" << endl;
 	cout << "Email (E)" << endl;
 	cout << "Real Name (R)" << endl;
@@ -704,7 +720,14 @@ cout << "Choose aspect to edit" << endl;
 	
 	string input;
 	
-	if(v == 'P')
+	if(v == 'Q')
+	{
+		cout << "Type in new username" << endl;
+		cin >> input;
+		name.setUsername(input);
+		name.saveSponsor();
+	}
+	else if(v == 'P')
 	{
 		name.changePassword();
 		name.saveSponsor();
