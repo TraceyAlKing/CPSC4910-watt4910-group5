@@ -5,20 +5,30 @@
 
 using namespace std;
 
-#include "User.hpp"
+#include "User.h"
 
 class Driver: public User {
-		string sponsor_;
-		int LNum_;
-		int LPNum_[10];
-		int points_;
-		int LPNumNumber_;
+		string sponsor[20];
+		int sponsorNum;
+		
+		int LNum;
+		
+		int points[10];
+		int pointNum;
+		
+		int LPNum[10];
+		int LPNumNumber;
 	public:
 		Driver();
 		~Driver(); 
 		void registerDriver();
-		int getPoints();
-		string getSponsor();
+		
+		int* getPoints();
+		int getPointNum();
+		
+		string* getSponsor();
+		int getSponsorNum();
+		
 		int getLicenseNum();
 		int getNumPlates();
 		int* getPlates();
@@ -27,17 +37,22 @@ class Driver: public User {
 		
 		Driver setDriver(string f);
 
-		void setSponsor(string i);
-		void setPoints(string i);
+		void setLNum(int i);
 		
 		void updateLNum();
-		void addLPNum();
-		void removeLPNum();
+		void addLP();
+		void removeLP();
+		void viewLP();
 		
 		int getLNumNum();
-<<<<<<< HEAD
 		void setLPNum(string* i, int j);
 		
-=======
->>>>>>> iteration5
+		void setSponsors(string *i, int j);
+		void setPoints2(string *i, int j);
+		
+		int findSponsor(string i);
+		void setPointsFromSponsor(string i);
+		void addSponsor(string i);
+		void removeSponsor(string i);
+		
 };
