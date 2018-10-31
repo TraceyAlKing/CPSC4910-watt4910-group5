@@ -27,7 +27,7 @@ class User {
 			std::string phone, std::string address);
 		User(const User& other);
 		User& operator=(const User& rhs);
-		~User(); 
+		virtual ~User(); 
 		void registerUser();
 		string getName();
 		string getUsername();
@@ -47,7 +47,7 @@ class User {
 		void setAddress(string* i, int j);
 		
 		void addAddress();
-        void updateAddress();
+      void updateAddress();
 		void removeAddress();
 		int getNumAddress();
 		

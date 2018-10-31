@@ -53,10 +53,12 @@ FORMS += \
 
 INCLUDEPATH += ../
 DEPENDPATH += $${INCLUDEPATH}
-mac: !win32 | !unix {
-    INCLUDEPATH += /usr/local/mysql-connector-c++/include /usr/local/mysql-connector-c++/include/jdbc /usr/local/include/
+
+macx {
+    INCLUDEPATH += -I /usr/local/mysql-connector-c++/include -I /usr/local/mysql-connector-c++/include/jdbc -I /usr/local/include/
     DEPENDPATH += $${INCLUDEPATH}
-    LIBS += -L/usr/local/mysql-connector-c++/lib64 /usr/local/lib/ -lmysqlcppconn -lboost_filesystem-mt -lboost_thread-mt
+    LIBS += -L/usr/local/mysql-connector-c++/lib64 -L/usr/local/lib/ -lmysqlcppconn -lboost_filesystem-mt -lboost_thread-mt
+}
 } win32: !mac | !unix{
     INCLUDEPATH += ../mysqlconnector_cpp/include ../mysqlconnector_cpp/include/jdbc /C:\Users\Will\Documents\boost_1_68_0\boost_1_68_0\boost
     DEPENDPATH += $${INCLUDEPATH}
@@ -71,3 +73,5 @@ mac: !win32 | !unix {
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+DISTFILES +=

@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include <QMessageBox>
 #include <QPixmap>
+#include "Database.hpp"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -25,27 +26,17 @@ void MainWindow::on_pushButton_Login_2_clicked()
     QString qPassword = ui->lineEdit_Password_2->text();
     std::string email = qEmail.toStdString();
     std::string password = qPassword.toStdString();
-    int temp = 0;
-   // int temp = db().login(email, password);
-    if(email=="d" && password == "p")
-        temp = 1;
-    if(email=="s" && password == "p")
-        temp = 2;
-    if(email=="kfc" && password == "p")
-    {
-        temp = 2;
-    }
-    if(email=="a" && password == "p")
-        temp = 3;
 
-    if(temp == 1) {
-        ui->stackedWidget->setCurrentIndex(1);
-        ui->stackedWidget_driver->setCurrentIndex(0);
-        this->CurrDriver = new Driver();
-       // currUser = db().getDriver(email);
-        ui->pointsValue_label->setNum(*this->CurrDriver->getPoints());
-    }
-    else if(temp == 2) {
+    User* temp;
+    temp = db().login(email, password);
+
+    Admin* isAdmin = dynamic_cast<Admin*>(temp);
+    Sponsor* isSponsor = dynamic_cast<Sponsor*>(temp);
+    Driver* isDriver = dynamic_cast<Driver*>(temp);
+
+    if(isAdmin){
+        ui->stackedWidget->setCurrentIndex(3);
+    }else if(isSponsor){
         ui->stackedWidget->setCurrentIndex(2);
         this->CurrSponsor = new Sponsor("KFC", "KFC Chicken", "fingerlickingood@kfc.gov", "mrssanders",
                                         "8002442536", "1200 Grand Chicken Finger Lickin Ave", "1");
@@ -58,11 +49,13 @@ void MainWindow::on_pushButton_Login_2_clicked()
         CurrSponsor->addDriver("Jeff");
         CurrSponsor->addDriver("Chicccken");
         this->on_sponsor_Home_Button_clicked();
-    }
-    else if(temp == 3) {
-        ui->stackedWidget->setCurrentIndex(3);
-    }
-    else {
+    }else if(isDriver){
+        ui->stackedWidget->setCurrentIndex(1);
+        ui->stackedWidget_driver->setCurrentIndex(0);
+        this->CurrDriver = new Driver();
+       // currUser = db().getDriver(email);
+        ui->pointsValue_label->setNum(*this->CurrDriver->getPoints());
+    }else{
         QMessageBox::warning(this,"Login", "Invalid email and/or password", QMessageBox::Ok);
     }
 }
