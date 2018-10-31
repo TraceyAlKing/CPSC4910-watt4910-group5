@@ -22,7 +22,7 @@ class Driver: public User {
 		int LPNum_[10];
 		int LPNumNumber_;
 
-                string status;
+                string status_;
 	public:
 		Driver(std::string id, std::string name, std::string email, std::string password,
                         std::string phone, std::string address, std::string points, std::string status);
@@ -66,7 +66,7 @@ class Driver: public User {
 		void removeSponsor(string i);
 
                 void switchStatus();
-                void setStatus();
+                void setStatus(string i);
                 string getStatus();
 		
 };
