@@ -43,7 +43,7 @@ void MainWindow::on_pushButton_Login_2_clicked()
         ui->stackedWidget_driver->setCurrentIndex(0);
         this->CurrDriver = new Driver();
        // currUser = db().getDriver(email);
-        ui->pointsValue_label->setNum(this->CurrDriver->getPoints());
+        ui->pointsValue_label->setNum(*this->CurrDriver->getPoints());
     }
     else if(temp == 2) {
         ui->stackedWidget->setCurrentIndex(2);

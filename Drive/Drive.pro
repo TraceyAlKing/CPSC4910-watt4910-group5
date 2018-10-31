@@ -30,14 +30,22 @@ SOURCES += \
     driverinfo.cpp \
     ../Driver.cpp \
     ../Sponsor.cpp \
-    ../User.cpp
+    ../User.cpp \
+    ../Admin.cpp \
+    ../Catalog.cpp \
+    ../Database.cpp \
+    ../Item.cpp
 
 HEADERS += \
         mainwindow.h \
     driverinfo.h \
     ../Driver.hpp \
     ../Sponsor.hpp \
-    ../User.hpp
+    ../User.hpp \
+    ../Admin.hpp \
+    ../Database.hpp \
+    ../Item.hpp \
+    ../Catalog.hpp
 
 FORMS += \
     mainwindow.ui \
@@ -45,6 +53,19 @@ FORMS += \
 
 INCLUDEPATH += ../
 DEPENDPATH += $${INCLUDEPATH}
+macx {
+    INCLUDEPATH += /usr/local/mysql-connector-c++/include /usr/local/mysql-connector-c++/include/jdbc /usr/local/include/boost
+    DEPENDPATH += $${INCLUDEPATH}
+    LIBS += -L/usr/local/mysql-connector-c++/lib64 -L/usr/local/lib/ -lmysqlcppconn -boost_filesystem-mt -boost_thread-mt
+} win32 {
+    INCLUDEPATH += /include /include/jdbc
+    DEPENDPATH += $${INCLUDEPATH}
+    LIBS += -L /lib64 -lmysqlcppconn -lboost_filesystem -lboost_thread
+} unix {
+    INCLUDEPATH += /include /include/jdbc
+    DEPENDPATH += $${INCLUDEPATH}
+    LIBS += -L /lib64 -lmysqlcppconn -lboost_filesystem -lboost_thread
+}
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
