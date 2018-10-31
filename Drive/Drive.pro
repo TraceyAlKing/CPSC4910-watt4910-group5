@@ -53,18 +53,18 @@ FORMS += \
 
 INCLUDEPATH += ../
 DEPENDPATH += $${INCLUDEPATH}
-macx {
-    INCLUDEPATH += /usr/local/mysql-connector-c++/include /usr/local/mysql-connector-c++/include/jdbc /usr/local/include/boost
+mac: !win32 | !unix {
+    INCLUDEPATH += /usr/local/mysql-connector-c++/include /usr/local/mysql-connector-c++/include/jdbc /usr/local/include/
     DEPENDPATH += $${INCLUDEPATH}
-    LIBS += -L/usr/local/mysql-connector-c++/lib64 -L/usr/local/lib/ -lmysqlcppconn -boost_filesystem-mt -boost_thread-mt
-} win32 {
+    LIBS += -L/usr/local/mysql-connector-c++/lib64 /usr/local/lib/ -lmysqlcppconn -lboost_filesystem-mt -lboost_thread-mt
+} win32: !mac | !unix{
     INCLUDEPATH += /include /include/jdbc
     DEPENDPATH += $${INCLUDEPATH}
-    LIBS += -L /lib64 -lmysqlcppconn -lboost_filesystem -lboost_thread
-} unix {
+    LIBS += -L/lib64 -lmysqlcppconn -lboost_filesystem -lboost_thread
+} unix: !mac | !win32{
     INCLUDEPATH += /include /include/jdbc
     DEPENDPATH += $${INCLUDEPATH}
-    LIBS += -L /lib64 -lmysqlcppconn -lboost_filesystem -lboost_thread
+    LIBS += -L/lib64 -lmysqlcppconn -lboost_filesystem -lboost_thread
 }
 
 # Default rules for deployment.
