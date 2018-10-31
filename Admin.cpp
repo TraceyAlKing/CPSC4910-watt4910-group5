@@ -573,7 +573,7 @@ Admin Admin::setAdmin(string f)
 		return d;
 }
 */
-void Admin::editDriver(Driver name)
+/*void Admin::editDriver(Driver name)
 {
 	cout << "Choose aspect to edit" << endl;
 	cout << "Username (J)" << endl;
@@ -648,7 +648,7 @@ void Admin::editDriver(Driver name)
 	}
 	else if(v == 'Q')
 	{
-		string h; /*= name.getSponsor();*/
+                string h; /*= name.getSponsor();
 		if(h == "N/A")
 		{
 			cout << "Driver does not have a sponsor." << endl;
@@ -671,7 +671,7 @@ void Admin::editDriver(Driver name)
 
 void Admin::editAdmin(Admin name)
 {
-/*        cout << "Choose aspect to edit" << endl;
+        cout << "Choose aspect to edit" << endl;
         cout << "Username (Q)" << endl;
 	cout << "Password (P)" << endl;
 	cout << "Email (E)" << endl;
@@ -679,7 +679,7 @@ void Admin::editAdmin(Admin name)
 	cout << "Phone (H)" << endl;
 	cout << "Add Address (A)" << endl;
 	cout << "Remove Address (L)" << endl;
-        cout << "Update Address (U)" << endl;*/
+        cout << "Update Address (U)" << endl;
 	char v;
         cin >> v;
 	
@@ -727,8 +727,8 @@ void Admin::editAdmin(Admin name)
 		name.saveAdmin();
 	}
 }
-
-void Admin::editSponsor(Sponsor name)
+*/
+/*void Admin::editSponsor(Sponsor name)
 {
 cout << "Choose aspect to edit" << endl;
 	cout << "Username (Q)" << endl;
@@ -785,13 +785,77 @@ cout << "Choose aspect to edit" << endl;
 		//name.updateAddress();
 		name.saveSponsor();
 	}
+}*/
+
+string viewUsernameDriver(Driver d)
+{
+    return d.getUsername();
+}
+
+void setUsernameDriver(Driver d, string p)
+{
+    d.setUsername(p);
+    d.saveDriver();
+}
+
+string viewUsernameSponsor(Sponsor d)
+{
+    return d.getUsername();
+}
+
+void setUsernameSponsor(Sponsor d, string p)
+{
+    d.setUsername(p);
+    d.saveSponsor();
+}
+
+string viewUsernameAdmin(Admin d)
+{
+    return d.getUsername();
+}
+
+void setUsernameSponsor(Admin d, string p)
+{
+    d.setUsername(p);
+    d.saveAdmin();
+}
+
+string viewPasswordDriver(Driver d)
+{
+    return d.getPassword();
+}
+
+void setPasswordDriver(Driver d, string p)
+{
+    d.setPassword(p);
+    d.saveDriver();
+}
+
+string viewPasswordSponsor(Sponsor d)
+{
+    return d.getPassword();
+}
+
+void setPasswordSponsor(Sponsor d, string p)
+{
+    d.setPassword(p);
+    d.saveSponsor();
+}
+
+string viewPasswordAdmin(Admin d)
+{
+    return d.getPassword();
+}
+
+void setPasswordSponsor(Admin d, string p)
+{
+    d.setPassword(p);
+    d.saveAdmin();
 }
 
 string viewStatus(Driver d)
 {
-    string status;
-    status = d.getStatus();
-    return status;
+    return d.getStatus();
 }
 
 void changeStatus(Driver d)

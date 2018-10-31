@@ -46,9 +46,27 @@ public:
 	
 	Admin setAdmin(string f);
 	
-	void editAdmin(Admin name);
-	void editSponsor(Sponsor name);
-	void editDriver(Driver name);
+        //void editAdmin(Admin name);
+        //void editSponsor(Sponsor name);
+        //void editDriver(Driver name);
+
+        string viewUsernameDriver(Driver d);
+        void setUsernameDriver(Driver d, string p);
+
+        string viewUsernameSponsor(Sponsor d);
+        void setUsernameSponsor(Sponsor d, string p);
+
+        string viewUsernameAdmin(Sponsor d);
+        void setUsernameAdmin(Sponsor d, string p);
+
+        string viewPasswordDriver(Driver d);
+        void setPasswordDriver(Driver d, string p);
+
+        string viewPasswordSponsor(Sponsor d);
+        void setPasswordSponsor(Sponsor d, string p);
+
+        string viewPasswordAdmin(Sponsor d);
+        void setPasswordAdmin(Sponsor d, string p);
 
         string viewStatus(Driver d);
         void changeStatus(Driver d);
