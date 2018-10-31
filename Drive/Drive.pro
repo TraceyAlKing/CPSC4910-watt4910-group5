@@ -58,9 +58,9 @@ macx {
     DEPENDPATH += $${INCLUDEPATH}
     LIBS += -L/usr/local/mysql-connector-c++/lib64 -L/usr/local/lib/ -lmysqlcppconn -boost_filesystem-mt -boost_thread-mt
 } win32 {
-    INCLUDEPATH += /include /include/jdbc
+    INCLUDEPATH += ../mysqlconnector_cpp/include ../mysqlconnector_cpp/include/jdbc /C:\Users\Will\Documents\boost_1_68_0\boost_1_68_0\boost
     DEPENDPATH += $${INCLUDEPATH}
-    LIBS += -L /lib64 -lmysqlcppconn -lboost_filesystem -lboost_thread
+    LIBS += -L/../mysqlconnector_cpp/lib64 -lmysqlcppconn -boost_filesystem-mt -boost_thread-mt
 } unix {
     INCLUDEPATH += /include /include/jdbc
     DEPENDPATH += $${INCLUDEPATH}
