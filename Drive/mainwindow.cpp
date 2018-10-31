@@ -38,23 +38,13 @@ void MainWindow::on_pushButton_Login_2_clicked()
         ui->stackedWidget->setCurrentIndex(3);
     }else if(isSponsor){
         ui->stackedWidget->setCurrentIndex(2);
-        this->CurrSponsor = new Sponsor("KFC", "KFC Chicken", "fingerlickingood@kfc.gov", "mrssanders",
-                                        "8002442536", "1200 Grand Chicken Finger Lickin Ave", "1");
-        CurrSponsor->addDriver("Jaff");
-        CurrSponsor->addDriver("Hubert");
-        CurrSponsor->addDriver("Horacio");
-        CurrSponsor->addDriver("Nickelback");
-        CurrSponsor->addDriver("Clementine H. Hornsby");
-        CurrSponsor->addDriver("Colonel Sanders Jr.");
-        CurrSponsor->addDriver("Jeff");
-        CurrSponsor->addDriver("Chicccken");
+        CurrUser = temp;
         this->on_sponsor_Home_Button_clicked();
     }else if(isDriver){
         ui->stackedWidget->setCurrentIndex(1);
         ui->stackedWidget_driver->setCurrentIndex(0);
-        this->CurrDriver = new Driver();
-       // currUser = db().getDriver(email);
-        ui->pointsValue_label->setNum(*this->CurrDriver->getPoints());
+        CurrUser = temp;
+        //ui->pointsValue_label->setNum(static_cast<Driver*>(CurrUser)->getPoints());
     }else{
         QMessageBox::warning(this,"Login", "Invalid email and/or password", QMessageBox::Ok);
     }
