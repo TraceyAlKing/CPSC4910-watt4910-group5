@@ -21,9 +21,11 @@ class Driver: public User {
 		
 		int LPNum_[10];
 		int LPNumNumber_;
+
+                string status;
 	public:
 		Driver(std::string id, std::string name, std::string email, std::string password,
-			std::string phone, std::string address, std::string points);
+                        std::string phone, std::string address, std::string points, std::string status);
 		Driver(const Driver& other);
       Driver& operator=(const Driver& rhs);
 		Driver();
@@ -62,6 +64,10 @@ class Driver: public User {
 		void setPointsFromSponsor(string i);
 		void addSponsor(string i);
 		void removeSponsor(string i);
+
+                void switchStatus();
+                void setStatus();
+                string getStatus();
 		
 };
 #endif //DRIVER_HPP

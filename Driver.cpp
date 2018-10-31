@@ -5,10 +5,10 @@
 #include "Driver.hpp"
 
 Driver::Driver(std::string id, std::string name, std::string email, std::string password,
-		std::string phone, std::string address, std::string points) : 
+                std::string phone, std::string address, std::string points, std::string status) :
 		User(id, name, email, password, phone, address), LNum_(), LPNum_(),
 		//points_(std::stoi(points)), 
-		LPNumNumber_()
+                LPNumNumber_(), status_()
 {
 	//sponsor_ = "";
 }
@@ -47,13 +47,15 @@ void Driver::registerDriver()
 	//cout << "Points set to 0" << endl;
 	pointNum_ = 0;
 	
-	cout << "Enter License Number: ";
+        //cout << "Enter License Number: ";
 	cin >> LNum_;
 	////
-	cout << "Enter Liscence Plate Number: ";
+        //cout << "Enter Liscence Plate Number: ";
 	cin >> LPNum_[0];
 	
 	LPNumNumber_ = 1;
+
+        status_ = "Active";
 }
 
 int* Driver::getPoints()
@@ -92,6 +94,7 @@ void Driver::saveDriver()
 	myfile << getEmail() << "\n";
 	myfile << getPhone() << "\n";
 	myfile << getLicenseNum() << "\n";
+        myfile << getStatus() << "\n";
 	
 	myfile << "SPONS" << "\n";
 	
@@ -315,6 +318,10 @@ Driver Driver::setDriver(string f)
 				{
 					d.setLNum(atoi(str.c_str()));
 				}
+                                if(i == 7)
+                                {
+                                        d.setStatus(str);
+                                }
 				if(str == "ENDADDRESS")
 				{
 					add = false;
@@ -426,3 +433,26 @@ void Driver::removeSponsor(string i)
 			pointNum_--;
 		}
 }
+
+void Driver::switchStatus()
+{
+    if(status_ == "Active")
+    {
+        status_ == "Inactive";
+    }
+    if(status_ == "Inactive")
+    {
+        status_ == "Active";
+    }
+}
+
+void Driver::setStatus(string i)
+{
+    status_ = i;
+}
+
+string Driver::getStatus()
+{
+    return status_;
+}
+
