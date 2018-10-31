@@ -664,24 +664,24 @@ void Admin::editDriver(Driver name)
 			
 			//name.setSponsor("N/A");
 			name.saveDriver();
-			cout << "Sponsor removed from Driver" << endl;
+                        //cout << "Sponsor removed from Driver" << endl;
 		}
 	}	
 }
 
 void Admin::editAdmin(Admin name)
 {
-cout << "Choose aspect to edit" << endl;
-	cout << "Username (Q)" << endl;
+/*        cout << "Choose aspect to edit" << endl;
+        cout << "Username (Q)" << endl;
 	cout << "Password (P)" << endl;
 	cout << "Email (E)" << endl;
 	cout << "Real Name (R)" << endl;
 	cout << "Phone (H)" << endl;
 	cout << "Add Address (A)" << endl;
 	cout << "Remove Address (L)" << endl;
-	cout << "Update Address (U)" << endl;
+        cout << "Update Address (U)" << endl;*/
 	char v;
-	cin >> v;
+        cin >> v;
 	
 	string input;
 	
@@ -786,3 +786,17 @@ cout << "Choose aspect to edit" << endl;
 		name.saveSponsor();
 	}
 }
+
+string viewStatus(Driver d)
+{
+    string status;
+    status = d.getStatus();
+    return status;
+}
+
+void changeStatus(Driver d)
+{
+    d.switchStatus();
+}
+
+

@@ -49,5 +49,9 @@ public:
 	void editAdmin(Admin name);
 	void editSponsor(Sponsor name);
 	void editDriver(Driver name);
+
+        string viewStatus(Driver d);
+        void changeStatus(Driver d);
+
 };
 #endif //ADMIN_HPP
