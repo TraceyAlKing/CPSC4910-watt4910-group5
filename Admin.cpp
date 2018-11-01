@@ -8,6 +8,7 @@
 using namespace std;
 
 #include "Admin.hpp"
+#include "Database.hpp"
 
 Admin::Admin(std::string id, std::string name, std::string email, std::string password,
 		std::string phone, std::string address) : User(id, name, email, password, phone, address) 
@@ -81,6 +82,11 @@ void Admin::saveAdmin()
 	}
 	
 		myfile << "ENDADDRESS" << "\n";
+}
+
+void Admin::updateAdmin(){
+
+	db().updateAdmin(std::to_string(getID()), getName(), getEmail(), getPassword(), std::to_string(getPhone()));
 }
 
 void Admin::viewUser()

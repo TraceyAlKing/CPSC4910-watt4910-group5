@@ -31,18 +31,21 @@ public:
    Driver* getDriver(std::string id);
    void removeDriver(std::string id);
    std::vector<Driver*> getDrivers();
+   void updateDriver(std::string id, std::string name, std::string email, std::string password, std::string phone, std::string points);
    
    //Sponsor calls
    void createSponsor(std::string name, std::string email, std::string password, std::string phone, std::string point_value);
    Sponsor* getSponsor(std::string id);
    void removeSponsor(std::string id);
    std::vector<Sponsor*> getSponsors();
+   void updateSponsor(std::string id, std::string name, std::string email, std::string password, std::string phone, std::string point_value);
 
    //Admin calls
    void createAdmin(std::string name, std::string email, std::string password, std::string phone);
    Admin* getAdmin(std::string id);
    void removeAdmin(std::string id);
    std::vector<Admin*> getAdmins();
+   void updateAdmin(std::string id, std::string name, std::string email, std::string password, std::string phone);
 
    //Amazon Item calls
    void createAmazonItem(std::string name, std::string price, std::string description, std::string url);

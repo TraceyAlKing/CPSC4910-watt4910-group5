@@ -115,7 +115,7 @@ vector<Driver*> Database::getDrivers(){
       std::cout << "\tpoints: "<< res_->getString("points") << std::endl;
       points = res_->getString("points");
       count++;
-      return_drivers.emplace_back(new Driver(id, name, email, password, phone, address, points));
+      return_drivers.emplace_back(new Driver(id, name, email, password, phone, address, points, "Available"));
     }
     std::cout << "\t-------------------------------------------" << std::endl;
     std::cout << "\tNumber of entries: " << count << std::endl;
@@ -176,7 +176,7 @@ Driver* Database::getDriver(std::string id){
     std::cout << "\t-------------------------------------------" << std::endl;
     std::cout << "\tNumber of entries: " << count << std::endl;
     std::cout << "\t... MySQL replies: Success." << std::endl;
-    return new Driver(id, name, email, password, phone, address, points);
+    return new Driver(id, name, email, password, phone, address, points, "available");
 
   } catch (sql::SQLException &e) {
     std::cout << "# ERR: SQLException in " << __FILE__;
@@ -186,6 +186,33 @@ Driver* Database::getDriver(std::string id){
     std::cout << " (MySQL error code: " << e.getErrorCode();
     std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
     return NULL;
+  }
+}
+
+void Database::updateDriver(std::string id, std::string name, std::string email, std::string password, std::string phone, std::string points){
+  try {
+    //update based on id
+    std::stringstream sstr;
+    sstr << "UPDATE SPONSOR SET name = \'";
+    sstr << name << "\', ";
+    sstr << "email = \'" << email << "\', ";
+    sstr << "password = \'" << password << "\', ";
+    sstr << "phone = \'" << phone << "\' ";
+    sstr << "points = \'" << points << "\' ";
+    sstr << "WHERE id = \'" << id << "\';";
+
+    std::cout << "Attempting statement: " << sstr.str() << std::endl;
+    stmt_ = con_->createStatement();
+    stmt_->execute(sstr.str());
+    std::cout << "\t... MySQL replies: Success." << std::endl;
+
+  } catch (sql::SQLException &e) {
+    std::cout << "# ERR: SQLException in " << __FILE__;
+    std::cout << "(" << __FUNCTION__ << ") on line "
+       << __LINE__ << std::endl;
+    std::cout << "# ERR: " << e.what();
+    std::cout << " (MySQL error code: " << e.getErrorCode();
+    std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
   }
 }
 
@@ -348,6 +375,33 @@ Sponsor* Database::getSponsor(std::string id){
     return NULL;
   }
 }
+  
+void Database::updateSponsor(std::string id, std::string name, std::string email, std::string password, std::string phone, std::string point_value){
+  try {
+    //update based on id
+    std::stringstream sstr;
+    sstr << "UPDATE SPONSOR SET name = \'";
+    sstr << name << "\', ";
+    sstr << "email = \'" << email << "\', ";
+    sstr << "password = \'" << password << "\', ";
+    sstr << "phone = \'" << phone << "\' ";
+    sstr << "point_value = \'" << point_value << "\' ";
+    sstr << "WHERE id = \'" << id << "\';";
+
+    std::cout << "Attempting statement: " << sstr.str() << std::endl;
+    stmt_ = con_->createStatement();
+    stmt_->execute(sstr.str());
+    std::cout << "\t... MySQL replies: Success." << std::endl;
+
+  } catch (sql::SQLException &e) {
+    std::cout << "# ERR: SQLException in " << __FILE__;
+    std::cout << "(" << __FUNCTION__ << ") on line "
+       << __LINE__ << std::endl;
+    std::cout << "# ERR: " << e.what();
+    std::cout << " (MySQL error code: " << e.getErrorCode();
+    std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
+  }
+}
 
 void Database::removeAdmin(std::string id){
   try {
@@ -503,6 +557,32 @@ Admin* Database::getAdmin(std::string id){
     std::cout << " (MySQL error code: " << e.getErrorCode();
     std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
     return NULL;
+  }
+}
+   
+void Database::updateAdmin(std::string id, std::string name, std::string email, std::string password, std::string phone){
+  try {
+    //update based on id
+    std::stringstream sstr;
+    sstr << "UPDATE ADMIN SET name = \'";
+    sstr << name << "\', ";
+    sstr << "email = \'" << email << "\', ";
+    sstr << "password = \'" << password << "\', ";
+    sstr << "phone = \'" << phone << "\' ";
+    sstr << "WHERE id = \'" << id << "\';";
+
+    std::cout << "Attempting statement: " << sstr.str() << std::endl;
+    stmt_ = con_->createStatement();
+    stmt_->execute(sstr.str());
+    std::cout << "\t... MySQL replies: Success." << std::endl;
+
+  } catch (sql::SQLException &e) {
+    std::cout << "# ERR: SQLException in " << __FILE__;
+    std::cout << "(" << __FUNCTION__ << ") on line "
+       << __LINE__ << std::endl;
+    std::cout << "# ERR: " << e.what();
+    std::cout << " (MySQL error code: " << e.getErrorCode();
+    std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
   }
 }
 
@@ -916,7 +996,7 @@ User* Database::login(std::string input_email, std::string input_password){
 
     if(count > 0){
       std::cout << "\t... MySQL replies: Driver found." << std::endl;
-      return new Driver(id, name, email, password, phone, address, points);
+      return new Driver(id, name, email, password, phone, address, points, "available");
     }else{
       std::cout << "\t... MySQL replies: No driver found." << std::endl;
     }

@@ -9,6 +9,7 @@
 using namespace std;
 #include "User.hpp"
 #include "Sponsor.hpp"
+class Database;
 
 class Admin: public User {
 	private:
@@ -23,6 +24,7 @@ public:
 	~Admin();
 	void registerAdmin();
 	void saveAdmin();
+	void updateAdmin();
 	void viewUser();
 	
 	bool checkForUser(string name);
