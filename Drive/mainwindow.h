@@ -52,7 +52,7 @@ private:
     //  and Sponsors.
     //example:
     //  int id = (static_cast<Driver*>CurrUser)->getSponsor();
-    //  Sponsor* mySponsor = sponsor_list_.at(id);
+    //  Sponsor* mySponsor = sponsor_list_[id]);
     //
     std::map<int, Driver*> driver_list_;
     std::map<int, Admin*> admin_list_;

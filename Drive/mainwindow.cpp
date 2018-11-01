@@ -53,14 +53,25 @@ void MainWindow::on_pushButton_Login_2_clicked()
 
     if(isAdmin){
         ui->stackedWidget->setCurrentIndex(3);
+
+        CurrUser = temp;
+        admin_list_[CurrUser->getID()] = static_cast<Admin*>(CurrUser);
+
+        //@TODO: add admin page here
     }else if(isSponsor){
         ui->stackedWidget->setCurrentIndex(2);
+
         CurrUser = temp;
+        sponsor_list_[CurrUser->getID()] = static_cast<Sponsor*>(CurrUser);
+
         this->on_sponsor_Home_Button_clicked();
     }else if(isDriver){
         ui->stackedWidget->setCurrentIndex(1);
         ui->stackedWidget_driver->setCurrentIndex(0);
+
         CurrUser = temp;
+        driver_list_[CurrUser->getID()] = static_cast<Driver*>(CurrUser);
+
         //ui->pointsValue_label->setNum(static_cast<Driver*>(CurrUser)->getPoints());
     }else{
         QMessageBox::warning(this,"Login", "Invalid email and/or password", QMessageBox::Ok);
@@ -74,6 +85,7 @@ void MainWindow::on_driver_Home_Button_clicked()
 
 void MainWindow::on_driver_Logout_clicked()
 {
+    CurrUser = NULL;
     ui->stackedWidget->setCurrentIndex(0);
 }
 
