@@ -85,7 +85,6 @@ void MainWindow::on_driver_Home_Button_clicked()
 
 void MainWindow::on_driver_Logout_clicked()
 {
-    CurrUser = NULL;
     ui->stackedWidget->setCurrentIndex(0);
 }
 
