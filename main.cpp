@@ -64,10 +64,10 @@ int main(){
 
     }
     if(str == "drivertest"){
-      std::string id, name, phone;
-      Admin* admintest;
+      std::string id, name, phone, points;
+      Driver* drivertest;
       id="1";
-      admintest=db().getDriver(id);
+      drivertest=db().getDriver(id);
       std::cout << "enter new name: ";
       std::getline(std::cin, name);
       std::cout << "enter new email: ";
@@ -76,11 +76,39 @@ int main(){
       std::getline(std::cin, password);
       std::cout << "enter new phone: ";
       std::getline(std::cin, phone);
-      admintest->setName(name);
-      admintest->setEmail(email);
-      admintest->setPassword(password);
-      admintest->setPhone(phone);
-      admintest->updateDriver();
+      /* dont do points yet, they no work
+      std::cout << "enter new points: ";
+      std::getline(std::cin, points);
+      */
+      drivertest->setName(name);
+      drivertest->setEmail(email);
+      drivertest->setPassword(password);
+      drivertest->setPhone(phone);
+      //drivertest->setPoints(points);
+      drivertest->updateDriver();
+
+    }
+    if(str == "sponsortest"){
+      std::string id, name, phone, points;
+      Sponsor* sponsortest;
+      id="1";
+      sponsortest=db().getSponsor(id);
+      std::cout << "enter new name: ";
+      std::getline(std::cin, name);
+      std::cout << "enter new email: ";
+      std::getline(std::cin, email);
+      std::cout << "enter new password: ";
+      std::getline(std::cin, password);
+      std::cout << "enter new phone: ";
+      std::getline(std::cin, phone);
+      std::cout << "enter new Point Value: ";
+      std::getline(std::cin, points);
+      sponsortest->setName(name);
+      sponsortest->setEmail(email);
+      sponsortest->setPassword(password);
+      sponsortest->setPhone(phone);
+      sponsortest->setPV(points);
+      sponsortest->updateSponsor();
 
     }
 

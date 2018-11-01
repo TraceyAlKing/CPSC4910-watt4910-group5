@@ -43,6 +43,7 @@ class Driver: public User {
 		int getNumPlates();
 		int* getPlates();
 		void saveDriver();
+		void updateDriver();
 		int changePoints();
 		
 		Driver setDriver(string f);

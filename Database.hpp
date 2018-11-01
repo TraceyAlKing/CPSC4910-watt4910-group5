@@ -31,7 +31,7 @@ public:
    Driver* getDriver(std::string id);
    void removeDriver(std::string id);
    std::vector<Driver*> getDrivers();
-   void updateDriver(std::string id, std::string name, std::string email, std::string password, std::string phone, std::string points);
+   void updateDriver(std::string id, std::string name, std::string email, std::string password, std::string phone);
    
    //Sponsor calls
    void createSponsor(std::string name, std::string email, std::string password, std::string phone, std::string point_value);

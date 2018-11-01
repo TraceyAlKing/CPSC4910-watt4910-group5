@@ -22,6 +22,7 @@ public:
     Sponsor& operator=(const Sponsor& rhs);
 	~Sponsor();
 	void saveSponsor();
+	void updateSponsor();
     void addDriver(string input);
 	void removeDriver();
 	void removeDriverWInput(string i);

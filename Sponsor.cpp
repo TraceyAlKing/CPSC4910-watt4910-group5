@@ -7,6 +7,7 @@
 using namespace std;
 
 #include "Sponsor.hpp"
+#include "Database.hpp"
 
 Sponsor::Sponsor(std::string id, std::string name, std::string email, std::string password,
 		std::string phone, std::string address, std::string point_value) : 
@@ -94,6 +95,11 @@ void Sponsor::saveSponsor()
 		}
 		myfile << "ENDSPONS" << "\n";
 	/*instead of lisence plate number, show drivers*/
+}
+
+void Sponsor::updateSponsor(){
+
+	db().updateSponsor(std::to_string(getID()), getName(), getEmail(), getPassword(), std::to_string(getPhone()), std::to_string(getPV()));
 }
 
 void Sponsor::addDriver(string input)

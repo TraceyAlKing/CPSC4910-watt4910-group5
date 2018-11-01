@@ -3,6 +3,7 @@
 #include <cstdlib>
 
 #include "Driver.hpp"
+#include "Database.hpp"
 
 Driver::Driver(std::string id, std::string name, std::string email, std::string password,
                 std::string phone, std::string address, std::string points, std::string status) :
@@ -139,6 +140,12 @@ void Driver::saveDriver()
 		
 		myfile << "ENDPLATES" << "\n";
 		
+}
+
+void Driver::updateDriver(){
+
+	//no points as they no worky
+	db().updateDriver(std::to_string(getID()), getName(), getEmail(), getPassword(), std::to_string(getPhone()));
 }
 
 int Driver::changePoints()

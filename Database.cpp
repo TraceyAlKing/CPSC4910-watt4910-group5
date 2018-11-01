@@ -189,16 +189,17 @@ Driver* Database::getDriver(std::string id){
   }
 }
 
-void Database::updateDriver(std::string id, std::string name, std::string email, std::string password, std::string phone, std::string points){
+void Database::updateDriver(std::string id, std::string name, std::string email, std::string password, std::string phone){
   try {
     //update based on id
     std::stringstream sstr;
-    sstr << "UPDATE SPONSOR SET name = \'";
+    sstr << "UPDATE DRIVER SET name = \'";
     sstr << name << "\', ";
     sstr << "email = \'" << email << "\', ";
     sstr << "password = \'" << password << "\', ";
     sstr << "phone = \'" << phone << "\' ";
-    sstr << "points = \'" << points << "\' ";
+    //dont do points as they are currently not the same as in driver class
+    //sstr << "points = \'" << points << "\' ";
     sstr << "WHERE id = \'" << id << "\';";
 
     std::cout << "Attempting statement: " << sstr.str() << std::endl;
@@ -384,7 +385,7 @@ void Database::updateSponsor(std::string id, std::string name, std::string email
     sstr << name << "\', ";
     sstr << "email = \'" << email << "\', ";
     sstr << "password = \'" << password << "\', ";
-    sstr << "phone = \'" << phone << "\' ";
+    sstr << "phone = \'" << phone << "\', ";
     sstr << "point_value = \'" << point_value << "\' ";
     sstr << "WHERE id = \'" << id << "\';";
 
