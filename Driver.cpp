@@ -19,7 +19,7 @@ Driver::Driver()
 	//sponsor_ = "";
 	//points_ = 0;
 }
-Driver::Driver(const Driver& other) : User(other) //points_(other.points_)
+Driver::Driver(const Driver& other) : User(other), status_(other.status_) //points_(other.points_)
 {
 
 }
@@ -29,6 +29,7 @@ Driver& Driver::operator=(const Driver& rhs)
 		return *this;
 	User::operator=(rhs);
 	//points_ = rhs.points_;
+    status_ = rhs.status_;
 	return *this;
 }
 
