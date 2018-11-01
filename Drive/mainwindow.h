@@ -2,11 +2,14 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <User.hpp>
-//#include <Database.hpp>
-#include <Driver.hpp>
-#include <Sponsor.hpp>
-//#include <Admin.hpp>
+#include "User.hpp"
+#include "Database.hpp"
+#include "Driver.hpp"
+#include "Sponsor.hpp"
+#include "Admin.hpp"
+#include "Item.hpp"
+#include "Catalog.hpp"
+#include <map>
 
 namespace Ui {
 class MainWindow;
@@ -33,8 +36,23 @@ private slots:
 private:
     Ui::MainWindow *ui;
     User* CurrUser;
-    Driver* CurrDriver;
-    Sponsor* CurrSponsor;
+
+    //HOW WE WILL HANDLE DATA: IMPORTANT
+    //
+    //How maps work:
+    // std::map<the_data_type_you_want, how_you_index_the_data> name;
+    // the int in this case refers to the ID of the object
+    //
+    //Use these data structures to store what you need for the program
+    //
+    //Ensure you always delete the objects after you no longer need them
+    std::map<Driver*, int> driver_list_;
+    std::map<Admin*, int> admin_list_;
+    std::map<Sponsor*, int> sponsor_list_;
+    std::map<Catalog*, int> catalog_list_;
+    std::map<Item*, int> item_list_;
+
+
 };
 
 

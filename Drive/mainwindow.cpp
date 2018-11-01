@@ -17,6 +17,18 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
+    /*
+    for(auto it : driver_list_)
+        delete *(&it)->first;
+    for(auto it : admin_list_)
+        delete it;
+    for(auto it : sponsor_list_)
+        delete it;
+    for(auto it : catalog_list_)
+        delete *it;
+    for(auto it : item_list_)
+        delete *it;
+    */
     delete ui;
 }
 
@@ -78,9 +90,9 @@ void MainWindow::on_sponsor_Account_clicked()
 void MainWindow::on_sponsor_Home_Button_clicked()
 {
     ui->stackedWidget_sponsor->setCurrentIndex(0);
-    int len = CurrSponsor->getNumDrivers();
+    int len = static_cast<Sponsor*>(CurrUser)->getNumDrivers();
     ui->driver_table->setRowCount(len);
-    std::string* Drivers_ = CurrSponsor->getDrivers();
+    std::string* Drivers_ = static_cast<Sponsor*>(CurrUser)->getDrivers();
     for(int i = 0; i<len; i++)
     {
         QString qstr = QString::fromStdString(Drivers_[i]);
