@@ -17,18 +17,23 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
-    /*
-    for(auto it : driver_list_)
-        delete *(&it)->first;
-    for(auto it : admin_list_)
-        delete it;
-    for(auto it : sponsor_list_)
-        delete it;
-    for(auto it : catalog_list_)
-        delete *it;
-    for(auto it : item_list_)
-        delete *it;
-    */
+
+    for(std::map<int, Driver*>::iterator it = driver_list_.begin(); it != driver_list_.end(); it++)
+        delete it->second;
+    for(std::map<int, Admin*>::iterator it = admin_list_.begin(); it != admin_list_.end(); it++)
+        delete it->second;
+    for(std::map<int, Sponsor*>::iterator it = sponsor_list_.begin(); it != sponsor_list_.end(); it++)
+        delete it->second;
+    for(std::map<int, Catalog*>::iterator it = catalog_list_.begin(); it != catalog_list_.end(); it++)
+        delete it->second;
+    for(std::map<int, Item*>::iterator it = item_list_.begin(); it != item_list_.end(); it++)
+        delete it->second;
+    driver_list_.clear();
+    admin_list_.clear();
+    sponsor_list_.clear();
+    catalog_list_.clear();
+    item_list_.clear();
+
     delete ui;
 }
 

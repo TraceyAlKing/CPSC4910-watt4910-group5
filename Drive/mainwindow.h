@@ -40,17 +40,25 @@ private:
     //HOW WE WILL HANDLE DATA: IMPORTANT
     //
     //How maps work:
-    // std::map<the_data_type_you_want, how_you_index_the_data> name;
+    // std::map<how_you_index_the_data, the_data_type_you_want> name;
     // the int in this case refers to the ID of the object
     //
     //Use these data structures to store what you need for the program
     //
     //Ensure you always delete the objects after you no longer need them
-    std::map<Driver*, int> driver_list_;
-    std::map<Admin*, int> admin_list_;
-    std::map<Sponsor*, int> sponsor_list_;
-    std::map<Catalog*, int> catalog_list_;
-    std::map<Item*, int> item_list_;
+    //
+    //Esentially Drivers and Sponsors will store an int of their respective
+    //  Sponsors and Drivers. This will be indexed from the list of Drivers
+    //  and Sponsors.
+    //example:
+    //  int id = (static_cast<Driver*>CurrUser)->getSponsor();
+    //  Sponsor* mySponsor = sponsor_list_.at(id);
+    //
+    std::map<int, Driver*> driver_list_;
+    std::map<int, Admin*> admin_list_;
+    std::map<int, Sponsor*> sponsor_list_;
+    std::map<int, Catalog*> catalog_list_;
+    std::map<int, Item*> item_list_;
 
 
 };
