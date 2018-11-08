@@ -6,12 +6,15 @@
 #include "Database.hpp"
 
 Driver::Driver(std::string id, std::string name, std::string email, std::string password,
-                std::string phone, std::string address, std::string points, std::string status) :
+                std::string phone, std::string address, std::string status) :
 		User(id, name, email, password, phone, address), LNum_(), LPNum_(),
 		//points_(std::stoi(points)), 
                 LPNumNumber_(), status_()
 {
 	//sponsor_ = "";
+
+	db().getPoints(getID(), pointmap);
+
 }
 
 Driver::Driver()
@@ -63,6 +66,20 @@ void Driver::registerDriver()
 int* Driver::getPoints()
 {
 	return points_;
+}
+
+int Driver::getPoints(int sid){
+	return pointmap[sid];
+}
+
+int Driver::allPoints(){
+	int sum=0;
+	std::cout << "Points for " << getName() << std::endl;
+	for (auto it = pointmap.begin(); it != pointmap.end(); it++){
+		cout << "Sponsor id: " << it->first << "\t points:" << it->second << std::endl;
+		sum+=it->second;
+	}
+	return sum;
 }
 
 int Driver::getSponsorNum()
@@ -147,6 +164,7 @@ void Driver::updateDriver(){
 
 	//no points as they no worky
 	db().updateDriver(std::to_string(getID()), getName(), getEmail(), getPassword(), std::to_string(getPhone()));
+	db().updatePoints(getID(), pointmap);
 }
 
 int Driver::changePoints()

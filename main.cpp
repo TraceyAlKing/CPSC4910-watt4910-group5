@@ -67,7 +67,12 @@ int main(){
       std::string id, name, phone, points;
       Driver* drivertest;
       id="1";
+
+
       drivertest=db().getDriver(id);
+
+      drivertest->allPoints();
+
       std::cout << "enter new name: ";
       std::getline(std::cin, name);
       std::cout << "enter new email: ";
