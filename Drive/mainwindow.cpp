@@ -3,12 +3,15 @@
 #include <QMessageBox>
 #include <QPixmap>
 #include "Database.hpp"
+#include <QFontDatabase>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    QFontDatabase fontDB;
+    fontDB.addApplicationFont(":/fonts/Axis Extrabold.otf");
     ui->stackedWidget->setCurrentIndex(0);
     ui->stackedWidget->showMaximized();
     ui->groupBox->setFixedSize(600,400);
