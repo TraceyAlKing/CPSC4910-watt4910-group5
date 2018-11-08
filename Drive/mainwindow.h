@@ -33,9 +33,12 @@ private slots:
     void on_sponsor_Account_clicked();
     void on_sponsor_Home_Button_clicked();
 
+    void on_driver_table_cellClicked(int row, int column);
+
 private:
     Ui::MainWindow *ui;
     User* CurrUser;
+    std::string* Drivers_;
 
     //HOW WE WILL HANDLE DATA: IMPORTANT
     //

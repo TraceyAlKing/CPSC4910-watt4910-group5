@@ -9,6 +9,7 @@
 using namespace std;
 
 #include "User.hpp"
+#include "Sponsor.hpp"
 
 class Driver: public User {
 		string sponsor_[20];
@@ -21,6 +22,7 @@ class Driver: public User {
 		
 		int LPNum_[10];
 		int LPNumNumber_;
+        Sponsor currSponsor_;
 
                 string status_;
 	public:

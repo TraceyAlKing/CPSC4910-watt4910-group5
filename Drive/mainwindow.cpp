@@ -72,7 +72,7 @@ void MainWindow::on_pushButton_Login_2_clicked()
         CurrUser = temp;
         driver_list_[CurrUser->getID()] = static_cast<Driver*>(CurrUser);
 
-        //ui->pointsValue_label->setNum(static_cast<Driver*>(CurrUser)->getPoints());
+       ui->pointsValue_label->setNum((int)static_cast<Driver*>(CurrUser)->getPoints());
     }else{
         QMessageBox::warning(this,"Login", "Invalid email and/or password", QMessageBox::Ok);
     }
@@ -108,13 +108,18 @@ void MainWindow::on_sponsor_Home_Button_clicked()
     ui->stackedWidget_sponsor->setCurrentIndex(0);
     int len = static_cast<Sponsor*>(CurrUser)->getNumDrivers();
     ui->driver_table->setRowCount(len);
-    std::string* Drivers_ = static_cast<Sponsor*>(CurrUser)->getDrivers();
+    Drivers_ = static_cast<Sponsor*>(CurrUser)->getDrivers();
     for(int i = 0; i<len; i++)
     {
         QString qstr = QString::fromStdString(Drivers_[i]);
         QTableWidgetItem* newItem = new QTableWidgetItem(qstr, 0);
         ui->driver_table->setItem(i, 0, newItem);
     }
+}
+
+void MainWindow::on_driver_table_cellClicked(int row, int column)
+{
+    Driver* temp = db().getDriver(Drivers_[row]);
 }
 
 void MainWindow::on_driver_History_Button_clicked()
