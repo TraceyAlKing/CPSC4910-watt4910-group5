@@ -14,11 +14,11 @@ public:
    DatabaseInterface();
    ~DatabaseInterface();
 
-   Driver* get(int id);
-   Admin* get(int id);
-   Sponsor* get(int id);
-   Catalog* get(int id);
-   Item* get(int id);
+   Driver* getDriver(int id);
+   Admin* getAdmin(int id);
+   Sponsor* getSponsor(int id);
+   Catalog* getCatalog(int id);
+   Item* getItem(int id);
 
    void update(Driver* obj);
    void update(Admin* obj);
@@ -49,6 +49,6 @@ private:
    std::map<int, Sponsor*> sponsor_list_;
    std::map<int, Catalog*> catalog_list_;
    std::map<int, Item*> item_list_;
-}
+};
 
 #endif //DATABASEINTERFACE_HPP

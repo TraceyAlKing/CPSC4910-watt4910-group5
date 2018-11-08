@@ -1,7 +1,8 @@
 #include "DatabaseInterface.hpp"
 
 DatabaseInterface::DatabaseInterface() : driver_list_(), admin_list_(), sponsor_list_(),
-   catalog_list_(), item_list_(){
+   catalog_list_(), item_list_()
+{
 
 }
 DatabaseInterface::~DatabaseInterface(){
@@ -22,38 +23,69 @@ DatabaseInterface::~DatabaseInterface(){
    item_list_.clear();
 }
 
-Driver* DatabaseInterface::get(int id){
+Driver* DatabaseInterface::getDriver(int id){
    auto search = driver_list_.find(id);
-   if(search != driver_list_.end()){
-      driver_list_.emplace(id, db.getDriver(id));
+   if(search == driver_list_.end()){
+      Driver* new_driver = db().getDriver(std::to_string(id));
+      if(!new_driver)   //not found
+         return NULL;
+      driver_list_.emplace(id, new_driver);
    }
    return driver_list_[id];
 }
-Admin* DatabaseInterface::get(int id){
-
+Admin* DatabaseInterface::getAdmin(int id){
+   auto search = admin_list_.find(id);
+   if(search == admin_list_.end()){
+      Admin* new_admin = db().getAdmin(std::to_string(id));
+      if(!new_admin)
+         return NULL;
+      admin_list_.emplace(id, new_admin);
+   }
+   return admin_list_[id];
 }
-Sponsor* DatabaseInterface::get(int id){
-
+Sponsor* DatabaseInterface::getSponsor(int id){
+   auto search = sponsor_list_.find(id);
+   if(search == sponsor_list_.end()){
+      Sponsor* new_sponsor = db().getSponsor(std::to_string(id));
+      if(!new_sponsor)
+         return NULL;
+      sponsor_list_.emplace(id, new_sponsor);
+   }
+   return sponsor_list_[id];
 }
-Catalog* DatabaseInterface::get(int id){
-
+Catalog* DatabaseInterface::getCatalog(int id){
+   auto search = catalog_list_.find(id);
+   if(search == catalog_list_.end()){
+      Catalog* new_catalog = db().getCatalog(std::to_string(id));
+      if(!new_catalog)
+         return NULL;
+      catalog_list_.emplace(id, new_catalog);
+   }
+   return catalog_list_[id];
 }
-Item* DatabaseInterface::get(int id){
-
+Item* DatabaseInterface::getItem(int id){
+   auto search = item_list_.find(id);
+   if(search == item_list_.end()){
+      Item* new_item = db().getAmazonItem(std::to_string(id));
+      if(!new_item)
+         return NULL;
+      item_list_.emplace(id, new_item);
+   }
+   return item_list_[id];
 }
 
 void DatabaseInterface::update(Driver* obj){
-
+   //db().updateDriver();
 }
 void DatabaseInterface::update(Admin* obj){
-
+   //db().updateAdmin();
 }
 void DatabaseInterface::update(Sponsor* obj){
-
+   //db().updateSponsor();
 }
 void DatabaseInterface::update(Catalog* obj){
-
+   //db().updateCatalog();
 }
 void DatabaseInterface::update(Item* obj){
-
+   //db().updateItem();
 }
