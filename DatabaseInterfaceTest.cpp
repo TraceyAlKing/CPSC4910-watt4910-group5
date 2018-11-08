@@ -25,9 +25,8 @@ int main(){
   while(str != "end"){
 
     str.clear();
-    
-    std::cout << "Enter an object type: " << std::endl;
 
+    std::cout << "Enter an object type: " << std::endl;
     std::getline(std::cin, str);
 
     if(str == "admin"){
