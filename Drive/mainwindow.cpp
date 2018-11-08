@@ -17,6 +17,23 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
+
+    for(std::map<int, Driver*>::iterator it = driver_list_.begin(); it != driver_list_.end(); it++)
+        delete it->second;
+    for(std::map<int, Admin*>::iterator it = admin_list_.begin(); it != admin_list_.end(); it++)
+        delete it->second;
+    for(std::map<int, Sponsor*>::iterator it = sponsor_list_.begin(); it != sponsor_list_.end(); it++)
+        delete it->second;
+    for(std::map<int, Catalog*>::iterator it = catalog_list_.begin(); it != catalog_list_.end(); it++)
+        delete it->second;
+    for(std::map<int, Item*>::iterator it = item_list_.begin(); it != item_list_.end(); it++)
+        delete it->second;
+    driver_list_.clear();
+    admin_list_.clear();
+    sponsor_list_.clear();
+    catalog_list_.clear();
+    item_list_.clear();
+
     delete ui;
 }
 
@@ -36,14 +53,25 @@ void MainWindow::on_pushButton_Login_2_clicked()
 
     if(isAdmin){
         ui->stackedWidget->setCurrentIndex(3);
+
+        CurrUser = temp;
+        admin_list_[CurrUser->getID()] = static_cast<Admin*>(CurrUser);
+
+        //@TODO: add admin page here
     }else if(isSponsor){
         ui->stackedWidget->setCurrentIndex(2);
+
         CurrUser = temp;
+        sponsor_list_[CurrUser->getID()] = static_cast<Sponsor*>(CurrUser);
+
         this->on_sponsor_Home_Button_clicked();
     }else if(isDriver){
         ui->stackedWidget->setCurrentIndex(1);
         ui->stackedWidget_driver->setCurrentIndex(0);
+
         CurrUser = temp;
+        driver_list_[CurrUser->getID()] = static_cast<Driver*>(CurrUser);
+
         //ui->pointsValue_label->setNum(static_cast<Driver*>(CurrUser)->getPoints());
     }else{
         QMessageBox::warning(this,"Login", "Invalid email and/or password", QMessageBox::Ok);
@@ -78,9 +106,9 @@ void MainWindow::on_sponsor_Account_clicked()
 void MainWindow::on_sponsor_Home_Button_clicked()
 {
     ui->stackedWidget_sponsor->setCurrentIndex(0);
-    int len = CurrSponsor->getNumDrivers();
+    int len = static_cast<Sponsor*>(CurrUser)->getNumDrivers();
     ui->driver_table->setRowCount(len);
-    std::string* Drivers_ = CurrSponsor->getDrivers();
+    std::string* Drivers_ = static_cast<Sponsor*>(CurrUser)->getDrivers();
     for(int i = 0; i<len; i++)
     {
         QString qstr = QString::fromStdString(Drivers_[i]);
