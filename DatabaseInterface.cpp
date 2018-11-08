@@ -75,17 +75,38 @@ Item* DatabaseInterface::getItem(int id){
 }
 
 void DatabaseInterface::update(Driver* obj){
-   //db().updateDriver();
+   std::string id = obj->getID();
+   std::string name = obj->getName();
+   std::string email = obj->getEmail();
+   std::string password = obj->getPassword();
+   std::string phone = obj->getPhone();
+
+   db().updateDriver(id, name, email, password, phone);
 }
 void DatabaseInterface::update(Admin* obj){
-   //db().updateAdmin();
+   std::string id = obj->getID();
+   std::string name = obj->getName();
+   std::string email = obj->getEmail();
+   std::string password = obj->getPassword();
+   std::string phone = obj->getPhone();
+
+   db().updateAdmin(id, name, email, password, phone);
 }
 void DatabaseInterface::update(Sponsor* obj){
-   //db().updateSponsor();
+   std::string id = obj->getID();
+   std::string name = obj->getName();
+   std::string email = obj->getEmail();
+   std::string password = obj->getPassword();
+   std::string phone = obj->getPhone();
+   std::string point_value = obj->getPointValue();
+
+   db().updateSponsor(id, name, email, password, phone, point_value);
 }
 void DatabaseInterface::update(Catalog* obj){
+   //@TODO: not yet implemented updateCatalog()
    //db().updateCatalog();
 }
 void DatabaseInterface::update(Item* obj){
+   //@TODO: not yet implemented updateAmazonItem()
    //db().updateItem();
 }
