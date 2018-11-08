@@ -51,6 +51,12 @@ INSERT INTO DRIVER_SPONSOR(driver_id, sponsor_id, points)
    VALUES (1,1,82);
 
 INSERT INTO DRIVER_SPONSOR(driver_id, sponsor_id, points)
+	VALUES (1,2,83);
+
+INSERT INTO DRIVER_SPONSOR(driver_id, sponsor_id, points)
+	VALUES (1,3,84);
+
+INSERT INTO DRIVER_SPONSOR(driver_id, sponsor_id, points)
    VALUES (2,1,167);
 
 INSERT INTO DRIVER_SPONSOR(driver_id, sponsor_id, points)
