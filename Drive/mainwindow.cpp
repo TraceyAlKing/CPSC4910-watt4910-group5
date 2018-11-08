@@ -125,5 +125,5 @@ void MainWindow::on_driver_table_cellClicked(int row, int column)
 
 void MainWindow::on_driver_History_Button_clicked()
 {
-    ui->stackedWidget_driver->setCurrentIndex(1);
+    QMessageBox::warning(this,"Login", "Invalid email and/or password", QMessageBox::Ok);
 }
