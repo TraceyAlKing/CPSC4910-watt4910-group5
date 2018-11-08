@@ -72,7 +72,8 @@ void MainWindow::on_pushButton_Login_2_clicked()
         CurrUser = temp;
         driver_list_[CurrUser->getID()] = static_cast<Driver*>(CurrUser);
 
-       ui->pointsValue_label->setNum((int)static_cast<Driver*>(CurrUser)->getPoints());
+       //ui->pointsValue_label->setNum((int)(static_cast<Driver*>(CurrUser)->getPoints()));
+        ui->pointsValue_label->setNum(6);
     }else{
         QMessageBox::warning(this,"Login", "Invalid email and/or password", QMessageBox::Ok);
     }

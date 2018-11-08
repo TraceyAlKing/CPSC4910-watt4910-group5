@@ -5,11 +5,11 @@
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
+#include <map>
 
 using namespace std;
 
 #include "User.hpp"
-#include "Sponsor.hpp"
 
 class Driver: public User {
 		string sponsor_[20];
@@ -18,16 +18,18 @@ class Driver: public User {
 		int LNum_;
 		
 		int points_[10];
+		map <int, int> pointmap;
+
 		int pointNum_;
 		
 		int LPNum_[10];
 		int LPNumNumber_;
-        Sponsor currSponsor_;
+        int currSponsor_;
 
                 string status_;
 	public:
 		Driver(std::string id, std::string name, std::string email, std::string password,
-                        std::string phone, std::string address, std::string points, std::string status);
+                        std::string phone, std::string address, std::string status);
 		Driver(const Driver& other);
       Driver& operator=(const Driver& rhs);
 		Driver();
@@ -36,6 +38,8 @@ class Driver: public User {
 		void registerDriver();
 		
 		int* getPoints();
+		int getPoints(int sid);
+		int allPoints();
 		int getPointNum();
 		
 		string* getSponsor();

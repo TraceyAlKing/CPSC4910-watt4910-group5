@@ -1,11 +1,13 @@
 #OBJS specifies which files to compile as part of the project
-OBJS = User.cpp Admin.cpp Catalog.cpp Driver.cpp Item.cpp Sponsor.cpp Database.cpp
+OBJS = User.cpp Admin.cpp Catalog.cpp Driver.cpp Item.cpp Sponsor.cpp Database.cpp DatabaseInterface.cpp
 
 ##	Use one of the following section to compile the main function you want:
 #MAIN specifies the main file
 MAIN = main.cpp
 #TEST_DB uses the main for the database test
 TEST_DB = TestDatabase.cpp
+#TEST_DB uses the main for the database test
+TEST_DBI = DatabaseInterfaceTest.cpp
 #TEST_SPONSOR uses the main for the sponsor testing
 TEST_SPONSOR = SponsorMain.cpp
 #TEST_ADMIN uses the main for the admin testing
@@ -35,6 +37,7 @@ LINKER_FLAGS_WIN = -lmysqlcppconn -lboost_filesystem -lboost_thread
 #OBJ_NAME specifies the name of our executable
 OBJ_NAME = a.out
 OBJ_TEST_DB = test_db
+OBJ_TEST_DBI = test_dbi
 OBJ_TEST_SPONSOR = test_sponsor
 OBJ_TEST_ADMIN = test_admin
 OBJ_TEST_DRIVER = test_driver
@@ -57,6 +60,13 @@ test_db_win : $(OBJS)
 	$(CC) $(OBJS) $(TEST_DB) $(COMPILER_FLAGS_WIN) $(LINKER_FLAGS_LIN) -o $(OBJ_TEST_DB)
 test_db_lin : $(OBJS)
 	$(GPP) $(OBJS) $(TEST_DB) $(COMPILER_FLAGS_LIN) $(LINKER_FLAGS_WIN) -o $(OBJ_TEST_DB)
+#TEST_DBI
+test_dbi_mac : $(OBJS)
+	$(CC) $(OBJS) $(TEST_DBI) $(COMPILER_FLAGS_MAC) $(LINKER_FLAGS_MAC) -o $(OBJ_TEST_DBI)
+test_dbi_win : $(OBJS)
+	$(CC) $(OBJS) $(TEST_DBI) $(COMPILER_FLAGS_WIN) $(LINKER_FLAGS_LIN) -o $(OBJ_TEST_DBI)
+test_dbi_lin : $(OBJS)
+	$(GPP) $(OBJS) $(TEST_DBI) $(COMPILER_FLAGS_LIN) $(LINKER_FLAGS_WIN) -o $(OBJ_TEST_DBI)
 #TEST_SPONSOR
 test_sponsor_mac : $(OBJS)
 	$(CC) $(OBJS) $(TEST_SPONSOR) $(COMPILER_FLAGS_MAC) $(LINKER_FLAGS_MAC) -o $(OBJ_TEST_SPONSOR)

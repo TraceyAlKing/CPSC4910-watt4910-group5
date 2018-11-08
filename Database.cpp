@@ -96,7 +96,6 @@ vector<Driver*> Database::getDrivers(){
     std::string password;
     std::string phone;
     std::string address;
-    std::string points;
     while (res_->next()) {
       /* Access column data by alias or column name */
       std::cout << "\t-------------------------------------------" << std::endl;
@@ -112,10 +111,8 @@ vector<Driver*> Database::getDrivers(){
       phone = res_->getString("phone");
       std::cout << "\taddress: "<< res_->getString("address") << std::endl;
       address = res_->getString("address");
-      std::cout << "\tpoints: "<< res_->getString("points") << std::endl;
-      points = res_->getString("points");
       count++;
-      return_drivers.emplace_back(new Driver(id, name, email, password, phone, address, points, "Available"));
+      return_drivers.emplace_back(new Driver(id, name, email, password, phone, address, "Available"));
     }
     std::cout << "\t-------------------------------------------" << std::endl;
     std::cout << "\tNumber of entries: " << count << std::endl;
@@ -153,7 +150,6 @@ Driver* Database::getDriver(std::string id){
     std::string password;
     std::string phone;
     std::string address;
-    std::string points;
     while (res_->next()) {
       /* Access column data by alias or column name */
       std::cout << "\t-------------------------------------------" << std::endl;
@@ -169,14 +165,12 @@ Driver* Database::getDriver(std::string id){
       phone = res_->getString("phone");
       std::cout << "\taddress: "<< res_->getString("address") << std::endl;
       address = res_->getString("address");
-      std::cout << "\tpoints: "<< res_->getString("points") << std::endl;
-      points = res_->getString("points");
       count++;
     }
     std::cout << "\t-------------------------------------------" << std::endl;
     std::cout << "\tNumber of entries: " << count << std::endl;
     std::cout << "\t... MySQL replies: Success." << std::endl;
-    return new Driver(id, name, email, password, phone, address, points, "available");
+    return new Driver(id, name, email, password, phone, address, "available");
 
   } catch (sql::SQLException &e) {
     std::cout << "# ERR: SQLException in " << __FILE__;
@@ -198,14 +192,85 @@ void Database::updateDriver(std::string id, std::string name, std::string email,
     sstr << "email = \'" << email << "\', ";
     sstr << "password = \'" << password << "\', ";
     sstr << "phone = \'" << phone << "\' ";
-    //dont do points as they are currently not the same as in driver class
-    //sstr << "points = \'" << points << "\' ";
     sstr << "WHERE id = \'" << id << "\';";
 
     std::cout << "Attempting statement: " << sstr.str() << std::endl;
     stmt_ = con_->createStatement();
     stmt_->execute(sstr.str());
     std::cout << "\t... MySQL replies: Success." << std::endl;
+
+  } catch (sql::SQLException &e) {
+    std::cout << "# ERR: SQLException in " << __FILE__;
+    std::cout << "(" << __FUNCTION__ << ") on line "
+       << __LINE__ << std::endl;
+    std::cout << "# ERR: " << e.what();
+    std::cout << " (MySQL error code: " << e.getErrorCode();
+    std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
+  }
+}
+
+int Database::getPoints(int d_id, std::map<int,int> &pointmap){
+  try {
+    //Build statement
+    std::stringstream sstr;
+    sstr << "SELECT sponsor_id, points FROM DRIVER_SPONSOR WHERE driver_id = " << "\"" << d_id << "\";";
+
+    //Execute statement
+    std::cout << "Attempting statement: " << sstr.str() << std::endl;
+    stmt_ = con_->createStatement();
+    res_ = stmt_->executeQuery(sstr.str());
+    std::cout << "\t... MySQL replies: " << std::endl;
+
+    //Parse results
+    int count = 0;
+    int sponsor_id;
+    int points;
+    while (res_->next()) {
+      /* Access column data by alias or column name */
+      std::cout << "\t-------------------------------------------" << std::endl;
+      std::cout << "\tsponsor: "<< res_->getString("sponsor_id") << std::endl;
+      sponsor_id = res_->getInt("sponsor_id");
+      std::cout << "\tpoints: "<< res_->getString("points") << std::endl;
+      points = res_->getInt("points");
+      pointmap.insert({sponsor_id,points});
+      count++;
+
+    }
+    std::cout << "\t-------------------------------------------" << std::endl;
+    std::cout << "\tNumber of entries: " << count << std::endl;
+    std::cout << "\t... MySQL replies: Success." << std::endl;
+    return count;
+
+  } catch (sql::SQLException &e) {
+    std::cout << "# ERR: SQLException in " << __FILE__;
+    std::cout << "(" << __FUNCTION__ << ") on line "
+       << __LINE__ << std::endl;
+    std::cout << "# ERR: " << e.what();
+    std::cout << " (MySQL error code: " << e.getErrorCode();
+    std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
+    return 0;
+  }
+
+}
+
+void Database::updatePoints(int d_id, std::map<int,int> &pointmap){
+  try {
+    //update based on id
+    for (auto it = pointmap.begin(); it != pointmap.end(); it++){
+
+      std::stringstream sstr;
+      sstr << "UPDATE DRIVER_SPONSOR SET points = \'";
+      sstr << it->second << "\' ";
+      sstr << "WHERE driver_id = \'" << d_id << "\'";
+      sstr << " AND sponsor_id = \'" << it->first << "\';";
+
+      std::cout << "Attempting statement: " << sstr.str() << std::endl;
+      stmt_ = con_->createStatement();
+      stmt_->execute(sstr.str());
+      std::cout << "\t... MySQL replies: Success." << std::endl;
+
+    }
+
 
   } catch (sql::SQLException &e) {
     std::cout << "# ERR: SQLException in " << __FILE__;
@@ -973,7 +1038,6 @@ User* Database::login(std::string input_email, std::string input_password){
     password.clear();
     phone.clear();
     address.clear();
-    std::string points;
     while (res_->next()) {
       /* Access column data by alias or column name */
       std::cout << "\t-------------------------------------------" << std::endl;
@@ -989,15 +1053,13 @@ User* Database::login(std::string input_email, std::string input_password){
       phone = res_->getString("phone");
       std::cout << "\taddress: "<< res_->getString("address") << std::endl;
       address = res_->getString("address");
-      std::cout << "\tpoints: "<< res_->getString("points") << std::endl;
-      points = res_->getString("points");
       count++;
     }
     std::cout << "\t-------------------------------------------" << std::endl;
 
     if(count > 0){
       std::cout << "\t... MySQL replies: Driver found." << std::endl;
-      return new Driver(id, name, email, password, phone, address, points, "available");
+      return new Driver(id, name, email, password, phone, address, "available");
     }else{
       std::cout << "\t... MySQL replies: No driver found." << std::endl;
     }

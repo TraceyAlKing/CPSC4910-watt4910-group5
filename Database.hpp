@@ -32,6 +32,9 @@ public:
    void removeDriver(std::string id);
    std::vector<Driver*> getDrivers();
    void updateDriver(std::string id, std::string name, std::string email, std::string password, std::string phone);
+   int getPoints(int d_id, std::map<int,int> &pointmap);
+   void updatePoints(int d_id, std::map<int,int> &pointmap);
+
    
    //Sponsor calls
    void createSponsor(std::string name, std::string email, std::string password, std::string phone, std::string point_value);

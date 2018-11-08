@@ -17,65 +17,65 @@ INSERT INTO SPONSOR ( id, name, email, password, phone, point_value )
    VALUES ( 5, "Easy Roads", "Admin@easyroads.net", "driveaway", 1232487695, 1 );
 
 
-INSERT INTO DRIVER ( id, name, email, password, phone, points ) 
-   VALUES ( 1, "justin stalker", "bobodunkins@hotmail.co.uk",  "bobo4evah", 2849964328, 7 );
+INSERT INTO DRIVER ( id, name, email, password, phone ) 
+   VALUES ( 1, "justin stalker", "bobodunkins@hotmail.co.uk",  "bobo4evah", 2849964328 );
 
-INSERT INTO DRIVER ( id, name, email, password, phone, points ) 
-   VALUES ( 2, "Po Nguyen", "imjustapoboy@yahoo.com", "dontjimmymyjohn", 4228999793, 22 );
+INSERT INTO DRIVER ( id, name, email, password, phone ) 
+   VALUES ( 2, "Po Nguyen", "imjustapoboy@yahoo.com", "dontjimmymyjohn", 4228999793 );
 
-INSERT INTO DRIVER ( id, name, email, password, phone, points ) 
-   VALUES ( 3, "Ryan Anderson", "RAmastermind@gmail.com", "password", 2228675309, 101 );
+INSERT INTO DRIVER ( id, name, email, password, phone) 
+   VALUES ( 3, "Ryan Anderson", "RAmastermind@gmail.com", "password", 2228675309 );
 
-INSERT INTO DRIVER ( id, name, email, password, phone, points ) 
-   VALUES ( 4, "Ted Gunderson", "feelthegunder@gmail.com", "gunderbite", 2468972233, 20 );
+INSERT INTO DRIVER ( id, name, email, password, phone) 
+   VALUES ( 4, "Ted Gunderson", "feelthegunder@gmail.com", "gunderbite", 2468972233 );
 
-INSERT INTO DRIVER ( id, name, email, password, phone, points ) 
-   VALUES ( 5, "Gold Dan", "thisisourworld@nightspire.net", "felclaws", 8971661668, 0 );
+INSERT INTO DRIVER ( id, name, email, password, phone ) 
+   VALUES ( 5, "Gold Dan", "thisisourworld@nightspire.net", "felclaws", 8971661668 );
 
-INSERT INTO DRIVER ( id, name, email, password, phone, points ) 
-   VALUES ( 6, "Pete Danhill", "Pdanhill@userspace.net", "turkeysandwich", 7778889999, 88 );
+INSERT INTO DRIVER ( id, name, email, password, phone) 
+   VALUES ( 6, "Pete Danhill", "Pdanhill@userspace.net", "turkeysandwich", 7778889999 );
 
-INSERT INTO DRIVER ( id, name, email, password, phone, points ) 
-   VALUES ( 7, "Oswaldo Moriss", "Oswaldo@howdidigetthis.net", "dontlickme", 8641396348, 26);
+INSERT INTO DRIVER ( id, name, email, password, phone) 
+   VALUES ( 7, "Oswaldo Moriss", "Oswaldo@howdidigetthis.net", "dontlickme", 8641396348);
 
-INSERT INTO DRIVER ( id, name, email, password, phone, points ) 
-   VALUES ( 8, "Pete Jimbo", "thejimbonator@yahoo.com", "jimbonthesenuts", 2248976425, 26 );
+INSERT INTO DRIVER ( id, name, email, password, phone) 
+   VALUES ( 8, "Pete Jimbo", "thejimbonator@yahoo.com", "jimbonthesenuts", 2248976425 );
 
-INSERT INTO DRIVER ( id, name, email, password, phone, points ) 
-   VALUES ( 9, "philly bob", "phillybob236@neopets.com", "phillybpspill", 5213684532, 26 );
+INSERT INTO DRIVER ( id, name, email, password, phone ) 
+   VALUES ( 9, "philly bob", "phillybob236@neopets.com", "phillybpspill", 52136845326 );
 
-INSERT INTO DRIVER ( id, name, email, password, phone, points ) 
-   VALUES ( 10, "Bob Sagget", "Saggenator226@hotmail.com", "iliketosag", 2288753951, 26 );
+INSERT INTO DRIVER ( id, name, email, password, phone) 
+   VALUES ( 10, "Bob Sagget", "Saggenator226@hotmail.com", "iliketosag", 2288753951);
 
-INSERT INTO DRIVER_SPONSOR(driver_id, sponsor_id)
-   VALUES (1,1);
+INSERT INTO DRIVER_SPONSOR(driver_id, sponsor_id, points)
+   VALUES (1,1,82);
 
-INSERT INTO DRIVER_SPONSOR(driver_id, sponsor_id)
-   VALUES (2,1);
+INSERT INTO DRIVER_SPONSOR(driver_id, sponsor_id, points)
+   VALUES (2,1,167);
 
-INSERT INTO DRIVER_SPONSOR(driver_id, sponsor_id)
-   VALUES (3,1);
+INSERT INTO DRIVER_SPONSOR(driver_id, sponsor_id, points)
+   VALUES (3,1,334);
 
-INSERT INTO DRIVER_SPONSOR(driver_id, sponsor_id)
-   VALUES (4,2);
+INSERT INTO DRIVER_SPONSOR(driver_id, sponsor_id, points)
+   VALUES (4,2,420);
 
-INSERT INTO DRIVER_SPONSOR(driver_id, sponsor_id)
-   VALUES (5,3);
+INSERT INTO DRIVER_SPONSOR(driver_id, sponsor_id, points)
+   VALUES (5,3,999);
 
-INSERT INTO DRIVER_SPONSOR(driver_id, sponsor_id)
-   VALUES (6,4);
+INSERT INTO DRIVER_SPONSOR(driver_id, sponsor_id, points)
+   VALUES (6,4,1839);
 
-INSERT INTO DRIVER_SPONSOR(driver_id, sponsor_id)
-   VALUES (7,4);
+INSERT INTO DRIVER_SPONSOR(driver_id, sponsor_id, points)
+   VALUES (7,4,455);
 
-INSERT INTO DRIVER_SPONSOR(driver_id, sponsor_id)
-   VALUES (8,5);
+INSERT INTO DRIVER_SPONSOR(driver_id, sponsor_id, points)
+   VALUES (8,5,62);
 
-INSERT INTO DRIVER_SPONSOR(driver_id, sponsor_id)
-   VALUES (9,5);
+INSERT INTO DRIVER_SPONSOR(driver_id, sponsor_id, points)
+   VALUES (9,5,34);
 
-INSERT INTO DRIVER_SPONSOR(driver_id, sponsor_id)
-   VALUES (10,2);
+INSERT INTO DRIVER_SPONSOR(driver_id, sponsor_id, points)
+   VALUES (10,2,79);
 
 
 INSERT INTO ADMIN ( id, name, email, password, phone) 

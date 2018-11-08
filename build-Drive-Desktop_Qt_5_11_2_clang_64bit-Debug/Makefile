@@ -1786,6 +1786,7 @@ driverinfo.o: ../Drive/driverinfo.cpp ../Drive/driverinfo.h \
 
 Driver.o: ../Driver.cpp ../Driver.hpp \
 		../User.hpp \
+		../Sponsor.hpp \
 		../Database.hpp \
 		/usr/local/mysql-connector-c++/include/jdbc/mysql_connection.h \
 		/usr/local/mysql-connector-c++/include/jdbc/cppconn/connection.h \
@@ -2103,7 +2104,6 @@ Driver.o: ../Driver.cpp ../Driver.hpp \
 		/usr/local/mysql-connector-c++/include/jdbc/cppconn/datatype.h \
 		/usr/local/mysql-connector-c++/include/jdbc/cppconn/statement.h \
 		../Item.hpp \
-		../Sponsor.hpp \
 		../Admin.hpp \
 		../Catalog.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Driver.o ../Driver.cpp

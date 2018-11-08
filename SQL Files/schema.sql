@@ -27,7 +27,6 @@ CREATE TABLE DRIVER
    password          VARCHAR(64)   NOT NULL,
    phone             BIGINT(10) unsigned  NOT NULL,
    address           VARCHAR(256),
-   points            INT unsigned  NOT NULL,
    PRIMARY KEY (id)
 );
 CREATE TABLE DRIVER_SPONSOR
@@ -35,6 +34,7 @@ CREATE TABLE DRIVER_SPONSOR
    id                INT unsigned  NOT NULL AUTO_INCREMENT,
    driver_id         INT unsigned NOT NULL,
    sponsor_id        INT unsigned NOT NULL,
+   points            INT unsigned  NOT NULL,
    PRIMARY KEY (id),
    FOREIGN KEY (driver_id) REFERENCES DRIVER(id),
    FOREIGN KEY (sponsor_id) REFERENCES SPONSOR(id)

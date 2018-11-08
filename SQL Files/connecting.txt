@@ -1,0 +1,3 @@
+mysql -h mysql1.cs.clemson.edu -u ufv6yuc8 -p CPSC4910-watt-group5_wp20
+jtisctbtw123
+
