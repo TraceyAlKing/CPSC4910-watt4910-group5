@@ -156,6 +156,76 @@ bool DatabaseInterface::findUser(int id)
     }
 }
 
+bool DatabaseInterface::findUsername(int id, std::string name)
+{
+    auto search = driver_list_.find(id);
+    if(search == driver_list_.end()){
+       Driver* new_driver = db().getDriver(std::to_string(id));
+       if(!new_driver)   //not found
+          return true;
+       if(new_driver->getUsername() == name)
+       {
+           return true;
+       }
+    }
+    auto search = sponsor_list_.find(name);
+    if(search == sponsor_list_.end()){
+       Sponsor* new_sponsor = db().getSponsor(std::to_string(id));
+       if(!new_sponsor)
+          return true;
+       if(new_sponsor->getUsername() == name)
+       {
+           return true;
+       }
+    }
+    auto search = admin_list_.find(name);
+    if(search == admin_list_.end()){
+       Admin* new_admin = db().getAdmin(std::to_string(id));
+       if(!new_admin)
+          return true;
+       if(new_admin->getUsername() == name)
+       {
+           return true;
+       }
+    }
+    return true;
+}
+
+bool DatabaseInterface::findEmail(int id, std::string name)
+{
+    auto search = driver_list_.find(id);
+    if(search == driver_list_.end()){
+       Driver* new_driver = db().getDriver(std::to_string(id));
+       if(!new_driver)   //not found
+          return true;
+       if(new_driver->getEmail() == name)
+       {
+           return true;
+       }
+    }
+    auto search = sponsor_list_.find(name);
+    if(search == sponsor_list_.end()){
+       Sponsor* new_sponsor = db().getSponsor(std::to_string(name));
+       if(!new_sponsor)
+          return true;
+       if(new_sponsor->getEmail() == name)
+       {
+           return true;
+       }
+    }
+    auto search = admin_list_.find(name);
+    if(search == admin_list_.end()){
+       Admin* new_admin = db().getAdmin(std::to_string(name));
+       if(!new_admin)
+          return true;
+       if(new_admin->getEmail() == name)
+       {
+           return true;
+       }
+    }
+    return true;
+}
+
 void DatabaseInterface::update(Catalog* obj){
    //@TODO: not yet implemented updateCatalog()
    //db().updateCatalog();

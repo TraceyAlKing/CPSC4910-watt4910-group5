@@ -33,6 +33,9 @@ public:
    bool findSponsor(int id);
    bool findUser(int id);
 
+   bool findUsername(int id, std::string name);
+   bool findEmail(int id, std::string name);
+
 private:
    //HOW WE WILL HANDLE DATA: IMPORTANT
    //
