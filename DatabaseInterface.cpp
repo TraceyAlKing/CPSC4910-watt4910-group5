@@ -188,7 +188,7 @@ bool DatabaseInterface::findUsername(int id, std::string name)
            return true;
        }
     }
-    return true;
+    return false;
 }
 
 bool DatabaseInterface::findEmail(int id, std::string name)
@@ -223,7 +223,7 @@ bool DatabaseInterface::findEmail(int id, std::string name)
            return true;
        }
     }
-    return true;
+    return false;
 }
 
 void DatabaseInterface::update(Catalog* obj){
