@@ -13,7 +13,7 @@ Driver::Driver(std::string id, std::string name, std::string email, std::string 
 {
 	//sponsor_ = "";
 
-	db().getPoints(getID(), pointmap);
+	db().getPoints(getID(), points_map_);
 
 }
 
@@ -69,13 +69,13 @@ int* Driver::getPoints()
 }
 
 int Driver::getPoints(int sid){
-	return pointmap[sid];
+	return points_map_[sid];
 }
 
 int Driver::allPoints(){
 	int sum=0;
 	std::cout << "Points for " << getName() << std::endl;
-	for (auto it = pointmap.begin(); it != pointmap.end(); it++){
+	for (auto it = points_map_.begin(); it != points_map_.end(); it++){
 		cout << "Sponsor id: " << it->first << "\t points:" << it->second << std::endl;
 		sum+=it->second;
 	}
@@ -164,27 +164,7 @@ void Driver::updateDriver(){
 
 	//no points as they no worky
 	db().updateDriver(std::to_string(getID()), getName(), getEmail(), getPassword(), std::to_string(getPhone()));
-	db().updatePoints(getID(), pointmap);
-}
-
-int Driver::changePoints()
-{
-	/*cout << "How many points should be added/removed?" << endl;
-	int i;
-	cin >> i;
-	int tPoints = points;
-	points = points + i;
-	while(points < 0)
-	{
-		cout << "Total points cannot be below 0" << endl;
-		points = tPoints;
-		cin >> i;
-
-		tPoints = points;
-		points = points + i;
-	}
-	cout << "Total Points: " << points << endl;
-	return points;*/
+	db().updatePoints(getID(), points_map_);
 }
 
 int Driver::getLicenseNum() 
@@ -464,11 +444,11 @@ void Driver::switchStatus()
 {
     if(status_ == "Active")
     {
-        status_ == "Inactive";
+        status_ = "Inactive";
     }
     if(status_ == "Inactive")
     {
-        status_ == "Active";
+        status_ = "Active";
     }
 }
 

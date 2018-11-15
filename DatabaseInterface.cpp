@@ -112,10 +112,13 @@ void DatabaseInterface::update(Item* obj){
 }
 std::map<int, Driver*>& DatabaseInterface::getAllDrivers(){
    db().getDrivers(&driver_list_);
+   return driver_list_;
 }
 std::map<int, Admin*>& DatabaseInterface::getAllAdmins(){
    db().getAdmins(&admin_list_);
+   return admin_list_;
 }
 std::map<int, Sponsor*>& DatabaseInterface::getAllSponsors(){
    db().getSponsors(&sponsor_list_);
+   return sponsor_list_;
 }

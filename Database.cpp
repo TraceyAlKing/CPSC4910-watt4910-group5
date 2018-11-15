@@ -234,7 +234,10 @@ int Database::getPoints(int d_id, std::map<int,int> &pointmap){
       sponsor_id = res_->getInt("sponsor_id");
       std::cout << "\tpoints: "<< res_->getString("points") << std::endl;
       points = res_->getInt("points");
-      pointmap.insert({sponsor_id,points});
+
+      auto search = pointmap.find(sponsor_id);
+      if(search == pointmap.end())
+        pointmap.insert({sponsor_id,points});
       count++;
 
     }
