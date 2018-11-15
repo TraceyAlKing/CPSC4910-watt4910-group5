@@ -205,7 +205,7 @@ bool DatabaseInterface::findEmail(int id, std::string name)
     }
     auto search = sponsor_list_.find(name);
     if(search == sponsor_list_.end()){
-       Sponsor* new_sponsor = db().getSponsor(std::to_string(name));
+       Sponsor* new_sponsor = db().getSponsor(std::to_string(id));
        if(!new_sponsor)
           return true;
        if(new_sponsor->getEmail() == name)
@@ -215,7 +215,7 @@ bool DatabaseInterface::findEmail(int id, std::string name)
     }
     auto search = admin_list_.find(name);
     if(search == admin_list_.end()){
-       Admin* new_admin = db().getAdmin(std::to_string(name));
+       Admin* new_admin = db().getAdmin(std::to_string(id));
        if(!new_admin)
           return true;
        if(new_admin->getEmail() == name)
