@@ -67,7 +67,7 @@ class Driver: public User {
 		void setPoints2(string *i, int j);
 		
 		int findSponsor(string i);
-		void setPointsFromSponsor(string i);
+                void setPointsFromSponsor(string i, int k);
 		void addSponsor(string i);
 		void removeSponsor(string i);
 
