@@ -29,7 +29,9 @@ int main(){
     std::cout << "Enter an object type: " << std::endl;
     std::getline(std::cin, str);
 
-    if(str == "admin"){
+    if(str == "getalldrivers"){
+      dbi.getAllDrivers();
+    }else if(str == "admin"){
       str.clear();
       std::cout << "Enter the ID: " << std::endl;
       std::cin >> id;

@@ -107,7 +107,7 @@ bool DatabaseInterface::findAdmin(int id)
 {
     auto search = admin_list_.find(id);
     if(search == admin_list_.end()){
-       Admin* new_admin = db().getAdmin(std::to_string(id));
+       Admin* new_admin = db().getAdmin(id);
        if(!new_admin)
           return false;
     }
@@ -119,7 +119,7 @@ bool DatabaseInterface::findDriver(int id)
 {
     auto search = driver_list_.find(id);
     if(search == driver_list_.end()){
-       Driver* new_driver = db().getDriver(std::to_string(id));
+       Driver* new_driver = db().getDriver(id);
        if(!new_driver)   //not found
           return false;
     }
@@ -130,7 +130,7 @@ bool DatabaseInterface::findSponsor(int id)
 {
     auto search = sponsor_list_.find(id);
     if(search == sponsor_list_.end()){
-       Sponsor* new_sponsor = db().getSponsor(std::to_string(id));
+       Sponsor* new_sponsor = db().getSponsor(id);
        if(!new_sponsor)
           return false;
     }
@@ -160,7 +160,7 @@ bool DatabaseInterface::findUsername(int id, std::string name)
 {
     auto search_driver = driver_list_.find(id);
     if(search_driver == driver_list_.end()){
-       Driver* new_driver = db().getDriver(std::to_string(id));
+       Driver* new_driver = db().getDriver(id);
        if(!new_driver)   //not found
           return true;
        if(new_driver->getUsername() == name)
@@ -170,7 +170,7 @@ bool DatabaseInterface::findUsername(int id, std::string name)
     }
     auto search_sponsor = sponsor_list_.find(name);
     if(search_sponsor == sponsor_list_.end()){
-       Sponsor* new_sponsor = db().getSponsor(std::to_string(id));
+       Sponsor* new_sponsor = db().getSponsor(id);
        if(!new_sponsor)
           return true;
        if(new_sponsor->getUsername() == name)
@@ -180,7 +180,7 @@ bool DatabaseInterface::findUsername(int id, std::string name)
     }
     auto search_admin = admin_list_.find(name);
     if(search_admin == admin_list_.end()){
-       Admin* new_admin = db().getAdmin(std::to_string(id));
+       Admin* new_admin = db().getAdmin(id);
        if(!new_admin)
           return true;
        if(new_admin->getUsername() == name)
@@ -195,7 +195,7 @@ bool DatabaseInterface::findEmail(int id, std::string name)
 {
     auto search_id = driver_list_.find(id);
     if(search_id == driver_list_.end()){
-       Driver* new_driver = db().getDriver(std::to_string(id));
+       Driver* new_driver = db().getDriver(id);
        if(!new_driver)   //not found
           return true;
        if(new_driver->getEmail() == name)
@@ -205,7 +205,7 @@ bool DatabaseInterface::findEmail(int id, std::string name)
     }
     auto search_s_name = sponsor_list_.find(name);
     if(search_s_name == sponsor_list_.end()){
-       Sponsor* new_sponsor = db().getSponsor(std::to_string(name));
+       Sponsor* new_sponsor = db().getSponsor(id));
        if(!new_sponsor)
           return true;
        if(new_sponsor->getEmail() == name)
@@ -215,7 +215,7 @@ bool DatabaseInterface::findEmail(int id, std::string name)
     }
     auto search_a_name = admin_list_.find(name);
     if(search_a_name == admin_list_.end()){
-       Admin* new_admin = db().getAdmin(std::to_string(name));
+       Admin* new_admin = db().getAdmin(id);
        if(!new_admin)
           return true;
        if(new_admin->getEmail() == name)
