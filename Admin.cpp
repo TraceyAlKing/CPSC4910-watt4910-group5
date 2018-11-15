@@ -654,7 +654,7 @@ Admin Admin::setAdmin(string f)
 	}
 	else if(v == 'Q')
 	{
-                string h; /*= name.getSponsor();
+                string h = name.getSponsor();
 		if(h == "N/A")
 		{
 			cout << "Driver does not have a sponsor." << endl;

@@ -56,12 +56,14 @@ public:
    std::vector<int> getCatalogItems(std::string id);
    void removeAmazonItem(std::string id);
    void getAmazonItems();
+   int getImages(int item_id, std::vector<std::string> &images);
 
    //Catalog Calls
    void createCatalog(std::string my_sponsor_id);
    Catalog* getCatalog(std::string id);
    void removeCatalog(std::string id);
    void getCatalogs();
+   void updateCatalog(int cat_id, std::vector<int> &items);
 
    //DON'T USE THIS ONE, this function is here for testing purposes
    std::string executeUnguardedStatement(std::string str);

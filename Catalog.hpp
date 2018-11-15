@@ -15,17 +15,30 @@ public:
 	Catalog(int, int);
 	~Catalog();
 
+	void updateCatalog();
+
 	//sorting methods;
 	std::vector<Item*> getItems();
 	std::vector<Item*> getAvailableItems();
-	std::vector<Item*> getitemsbypriceabove(double price);
-	std::vector<Item*> getitemsbypricebelow(double price);
-	std::vector<Item*> getitemsbyname(std::string name);
+	std::vector<Item*> getItemsbypriceabove(double price);
+	std::vector<Item*> getItemsbypricebelow(double price);
+	std::vector<Item*> getItemsbyname(std::string name);
+
+	void addItem(int itemid);
+	void removeItem(int itemid);
+
+	//better sorting methods;
+
+	void getAvailableItems(std::vector<Item*> &items);
+	void getItemsbypriceabove(std::vector<Item*> &items, double price);
+	void getItemsbypricebelow(std::vector<Item*> &items, double price);
+	void getItemsbyname(std::vector<Item*> &items, std::string name);
 
 
 
 
 	//all these functions handle api request to amazon product advertising api, so they are unused in the current version
+	/*
 	void setRequest(std::string);
 	void clearRequest();
 	std::string getRequest();
@@ -39,6 +52,7 @@ public:
 	void addSearchIndex(std::string);
 	void addSignature();
 	std::string makeRequest();
+	*/
 
 
 private:
@@ -52,7 +66,8 @@ private:
 	//database calls;
 	void populate();
 
-static size_t WriteCallback(void *contents, size_t size, size_t nmemb, void *userp);
+//also used for api calls
+//static size_t WriteCallback(void *contents, size_t size, size_t nmemb, void *userp);
 
 };
 

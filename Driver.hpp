@@ -18,15 +18,15 @@ class Driver: public User {
 		int LNum_;
 		
 		int points_[10];
-		map <int, int> pointmap;
+		map<int, int> points_map_;
 
 		int pointNum_;
 		
 		int LPNum_[10];
 		int LPNumNumber_;
-        int currSponsor_;
+      int currSponsor_;
 
-                string status_;
+      string status_;
 	public:
 		Driver(std::string id, std::string name, std::string email, std::string password,
                         std::string phone, std::string address, std::string status);
@@ -50,7 +50,6 @@ class Driver: public User {
 		int* getPlates();
 		void saveDriver();
 		void updateDriver();
-		int changePoints();
 		
 		Driver setDriver(string f);
 
@@ -72,9 +71,9 @@ class Driver: public User {
 		void addSponsor(string i);
 		void removeSponsor(string i);
 
-                void switchStatus();
-                void setStatus(string i);
-                string getStatus();
+      void switchStatus();
+      void setStatus(string i);
+      string getStatus();
 		
 };
 #endif //DRIVER_HPP
