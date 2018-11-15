@@ -34,7 +34,8 @@ SOURCES += \
     ../Admin.cpp \
     ../Catalog.cpp \
     ../Database.cpp \
-    ../Item.cpp
+    ../Item.cpp \
+    ../DatabaseInterface.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -45,7 +46,8 @@ HEADERS += \
     ../Admin.hpp \
     ../Database.hpp \
     ../Item.hpp \
-    ../Catalog.hpp
+    ../Catalog.hpp \
+    ../DatabaseInterface.hpp
 
 FORMS += \
     mainwindow.ui \
@@ -63,9 +65,9 @@ macx {
     DEPENDPATH += $${INCLUDEPATH}
     LIBS += -L/"C:\Program Files\MySQL\Connector C++ 8.0\lib64" -lmysqlcppconn -L/C:/Users/Will/Documents/boost_1_68_0/boost_1_68_0 -lboost_filesystem -L/C:/Users/Will/Documents/boost_1_68_0/boost_1_68_0/lib -lboost_thread
 } unix: !macx {
-    INCLUDEPATH += /include /include/jdbc
+    INCLUDEPATH += -I /include -I /include/jdbc
     DEPENDPATH += $${INCLUDEPATH}
-    LIBS += -L/lib64 -lmysqlcppconn -lboost_filesystem -lboost_thread
+    LIBS += -L/usr/lib -lmysqlcppconn -lboost_filesystem -lboost_thread
 }
 
 # Default rules for deployment.

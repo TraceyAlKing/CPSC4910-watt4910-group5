@@ -12,6 +12,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     QFontDatabase fontDB;
     fontDB.addApplicationFont(":/fonts/Axis Extrabold.otf");
+    fontDB.addApplicationFont(":/fonts/Agane 55 (roman) sign.ttf");
     ui->stackedWidget->setCurrentIndex(0);
     ui->stackedWidget->showMaximized();
     ui->groupBox->setFixedSize(600,400);
@@ -95,6 +96,28 @@ void MainWindow::on_driver_Logout_clicked()
 void MainWindow::on_driver_Account_clicked()
 {
     ui->stackedWidget_driver->setCurrentIndex(1);
+    ui->lineEdit_driver_name->setText(QString::fromStdString(static_cast<Driver*>(CurrUser)->getName()));
+    ui->lineEdit_driver_email->setText(QString::fromStdString(static_cast<Driver*>(CurrUser)->getEmail()));
+    ui->driver_sponsor_label->setText(QString::fromStdString(*static_cast<Driver*>(CurrUser)->getSponsor()));
+    ui->lineEdit_driver_ln->setText(QString::fromStdString(std::to_string(static_cast<Driver*>(CurrUser)->getLicenseNum())));
+    ui->lineEdit_driver_phone->setText(QString::fromStdString(std::to_string(static_cast<Driver*>(CurrUser)->getPhone())));
+
+    int* LPNum_ = static_cast<Driver*>(CurrUser)->getPlates();
+    for(int i = 0; i<static_cast<Driver*>(CurrUser)->getLNumNum(); i++)
+    {
+        QTableWidgetItem *newItem = new QTableWidgetItem();
+        newItem->setText(QString::fromStdString(std::to_string(LPNum_[i])));
+        ui->tableWidget_LPNum->setItem(i, 0, newItem);
+    }
+
+
+    string* address_ = static_cast<Driver*>(CurrUser)->getAddress();
+    for(int i = 0; i<static_cast<Driver*>(CurrUser)->getNumAddress(); i++)
+    {
+        QTableWidgetItem *newItem = new QTableWidgetItem();
+        newItem->setText(QString::fromStdString(address_[i]));
+        ui->tableWidget_driver_address->setItem(i, 0, newItem);
+    }
 }
 
 void MainWindow::on_sponsor_Logout_clicked()

@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include "User.hpp"
 #include "Database.hpp"
+#include "DatabaseInterface.hpp"
 #include "Driver.hpp"
 #include "Sponsor.hpp"
 #include "Admin.hpp"
