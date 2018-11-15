@@ -46,10 +46,10 @@ class User {
 		void setID(string i);
 		void setAddress(string* i, int j);
 		
-		void addAddress();
-      void updateAddress();
-		void removeAddress();
-		int getNumAddress();
+                void addAddress(string i);
+                void updateAddress(int i, string s);
+                void removeAddress(int i);
+                int getNumAddress();
 		
 		void changePassword();
 };
