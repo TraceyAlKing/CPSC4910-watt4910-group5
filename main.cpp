@@ -116,6 +116,47 @@ int main(){
       sponsortest->updateSponsor();
 
     }
+    if(str=="catalogtest"){
+      Catalog* catalogtest=db().getCatalog("2");
+      std::vector<Item*> items1;
+      items1=catalogtest->getItems();
+
+      catalogtest->removeItem(2);
+      catalogtest->updateCatalog();
+
+      Catalog* catalogtest2=db().getCatalog("2");
+      std::vector<Item*> items2;
+      items2=catalogtest2->getItems();
+
+      catalogtest2->addItem(2);
+      catalogtest2->updateCatalog();
+
+      Catalog* catalogtest3=db().getCatalog("2");
+      std::vector<Item*> items3;
+      items3=catalogtest3->getItems();
+
+      std::cout << "Original items in catalog 2" <<std::endl;
+      for(auto it: items1){
+        std::cout << it->getname() << std::endl;
+      }
+      std::cout << std::endl;
+
+      std::cout << "Catalog 2 after removing item 2" << std::endl;
+      for(auto it: items2){
+        std::cout << it->getname() << std::endl;
+      }
+      std::cout << std::endl;
+
+      std::cout << "Catalog 2 after adding item 2 back" << std::endl;
+      for(auto it: items3){
+        std::cout << it->getname() << std::endl;
+      }
+      std::cout << std::endl;
+
+    }
+    if(str=="itemtest"){
+      Item * itemtest=db().getAmazonItem("2");
+    }
 
 
     str.clear();

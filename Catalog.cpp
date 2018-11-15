@@ -13,10 +13,23 @@ Catalog::~Catalog(){
 
 }
 
+void Catalog::updateCatalog(){
+	std::vector<int> itemids; 
+	for( auto i : CatItems){
+		itemids.push_back(i->Itemid);
+	}
+
+
+	db().updateCatalog(Catalogid, itemids);
+}
+
+
 
 std::vector<Item*> Catalog::getItems(){
 	return CatItems;
 }
+
+// these search functions will search the catalogs item list
 std::vector<Item*> Catalog::getAvailableItems(){
 	std::vector<Item*> ritems;
 	for(Item* item : CatItems){
@@ -25,21 +38,21 @@ std::vector<Item*> Catalog::getAvailableItems(){
 	return ritems;
 }
 
-std::vector<Item*> Catalog::getitemsbypriceabove(double price){
+std::vector<Item*> Catalog::getItemsbypriceabove(double price){
 	std::vector<Item*> ritems;
 	for(Item* item : CatItems){
 			if(item->price>price) ritems.push_back (item);
 	}
 	return ritems;
 }
-std::vector<Item*> Catalog::getitemsbypricebelow(double price){
+std::vector<Item*> Catalog::getItemsbypricebelow(double price){
 	std::vector<Item*> ritems;
 	for(Item* item : CatItems){
 			if(item->price<price) ritems.push_back (item);
 	}
 	return ritems;
 }
-std::vector<Item*> Catalog::getitemsbyname(std::string name){
+std::vector<Item*> Catalog::getItemsbyname(std::string name){
 	std::vector<Item*> ritems;
 	for(Item* item : CatItems){
 			if(item->name.find(name)!=std::string::npos) ritems.push_back (item);
@@ -47,7 +60,66 @@ std::vector<Item*> Catalog::getitemsbyname(std::string name){
 	return ritems;
 }
 
+//better search functions
+//these search a provided item list, use these to apply mutliple constraints.
+//i messed something up here
+/*
+void Catalog::getAvailableItems(std::vector<Item*> &items){
+	for(auto it =items.begin(); it!= items.end();){
+			if(*it->availability) it=items.erase(it);
+			else ++it;
+	}
+}
+void Catalog::getItemsbypriceabove(std::vector<Item*> &items, double price){
+	for(auto it =items.begin(); it!= items.end();){
+			if(*it->price<price) it=items.erase(it);
+	}
+}
+std::vector<Item*> Catalog::getItemsbypricebelow(std::vector<Item*> &items, double price){
+	for(auto it =items.begin(); it!= items.end();){
+			if(*it->price>price) it=items.erase (it);
+			else ++it;
+	}
+}
+std::vector<Item*> Catalog::getItemsbyname(std::vector<Item*> &items, std::string name){
+	for(auto it =items.begin(); it!= items.end();){
+			if(*it->name.find(name)=std::string::npos) it= items.erase (it);
+			else ++it;
+	}
+}
+*/
 
+
+
+
+void Catalog::addItem(int itemid){
+	Item * newitem= db().getAmazonItem(std::to_string(itemid));
+	CatItems.push_back(newitem);
+
+}
+void Catalog::removeItem(int itemid){
+	std::vector<int> itemids;
+	int erase;
+	for( int i=0; i<CatItems.size(); i++){
+		if(CatItems[i]->Itemid==itemid) erase=i;
+	}
+	CatItems.erase(CatItems.begin()+erase);
+
+
+}
+
+
+void Catalog::populate(){
+	std::vector<int> itemids = db().getCatalogItems(std::to_string(Catalogid));
+	for( int i : itemids){
+		CatItems.push_back(db().getAmazonItem(std::to_string(i)));
+	}
+}
+
+
+
+/*
+// these functions are used to make amazon api calls, in the current program they are unused.
 
 void Catalog::setRequest(std::string fname){
 	std::ifstream infile;
@@ -153,7 +225,7 @@ std::string Catalog::makeRequest()
 	std::string readBuffer;
 
 	
-	/*curl = curl_easy_init();
+	curl = curl_easy_init();
 	if(curl) {
 		curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
 		curl_easy_setopt(curl, CURLOPT_HTTPGET,1);
@@ -161,17 +233,9 @@ std::string Catalog::makeRequest()
 		curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
 		res = curl_easy_perform(curl);
 		curl_easy_cleanup(curl);
-	}*/
+	}
 	return readBuffer;
 
 }
-
-
-void Catalog::populate(){
-	std::vector<int> itemids = db().getCatalogItems(std::to_string(Catalogid));
-	for( int i : itemids){
-		CatItems.push_back(db().getAmazonItem(std::to_string(i)));
-	}
-}
-
+*/
 
