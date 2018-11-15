@@ -43,7 +43,6 @@ border-radius: 25px;}
 QPushButton{ font: 81 14pt &quot;AXIS Extra Bold&quot;;}
 #pushButton_Login_2{ font: 81 18pt &quot;AXIS Extra Bold&quot;; }
 QGroupBox{ background-color : #EEEEEE;}
-QGroupBox{   elevation: 10;}
 QLabel{  font: 16pt &quot;Aganè S&quot;; }
 QStackedWidget{ background: qlineargradient(x1:0, y1:0, x2:1, y2:1,  stop:0 #202020, stop: 0.4 #303030, stop:1 #353535)}</string>
   </property>
@@ -594,8 +593,8 @@ color : white;</string>
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>780</width>
-                 <height>768</height>
+                 <width>270</width>
+                 <height>719</height>
                 </rect>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_9">

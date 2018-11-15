@@ -26,6 +26,10 @@ public:
    void update(Catalog* obj);
    void update(Item* obj);
 
+   std::map<int, Driver*>& getAllDrivers();
+   std::map<int, Admin*>& getAllAdmins();
+   std::map<int, Sponsor*>& getAllSponsors();
+
    //Search functions
 
    bool findDriver(int id);
