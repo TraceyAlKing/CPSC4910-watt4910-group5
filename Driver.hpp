@@ -35,7 +35,7 @@ class Driver: public User {
 		Driver();
 		~Driver(); 
 		
-		void registerDriver();
+                void registerDriver(string us, string ps, string nm, string em, long ph, string ad, int ln, string lp);
 		
 		int* getPoints();
 		int getPoints(int sid);
@@ -56,9 +56,9 @@ class Driver: public User {
 		void setLNum(int i);
 		
 		void updateLNum();
-		void addLP();
-		void removeLP();
-		void viewLP();
+                void addLP(int i);
+                void removeLP(int i);
+                int* viewLP();
 		
 		int getLNumNum();
 		void setLPNum(string* i, int j);
