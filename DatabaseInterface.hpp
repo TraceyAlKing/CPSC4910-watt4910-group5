@@ -26,6 +26,13 @@ public:
    void update(Catalog* obj);
    void update(Item* obj);
 
+   //Avoid these functions unless the admin needs them
+   std::map<int, Driver*>& getAllDrivers();
+   std::map<int, Admin*>& getAllAdmins();
+   std::map<int, Sponsor*>& getAllSponsors();
+   std::map<int, Catalog*>& getAllCatalogs();
+   std::map<int, Item*>& getAllItems();
+
 private:
    //HOW WE WILL HANDLE DATA: IMPORTANT
    //

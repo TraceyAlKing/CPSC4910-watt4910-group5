@@ -110,3 +110,12 @@ void DatabaseInterface::update(Item* obj){
    //@TODO: not yet implemented updateAmazonItem()
    //db().updateItem();
 }
+std::map<int, Driver*>& DatabaseInterface::getAllDrivers(){
+   db().getDrivers(&driver_list_);
+}
+std::map<int, Admin*>& DatabaseInterface::getAllAdmins(){
+   db().getAdmins(&admin_list_);
+}
+std::map<int, Sponsor*>& DatabaseInterface::getAllSponsors(){
+   db().getSponsors(&sponsor_list_);
+}
