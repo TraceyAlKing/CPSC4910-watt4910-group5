@@ -12,7 +12,6 @@
 #include <iostream>
 #include <sstream>
 #include <string>
-#include <map>
 #include "Item.hpp"
 #include "Driver.hpp"
 #include "Sponsor.hpp"
@@ -31,23 +30,24 @@ public:
    void createDriver(std::string name, std::string email, std::string password, std::string phone, std::string points);
    Driver* getDriver(std::string id);
    void removeDriver(std::string id);
-   void getDrivers(std::map<int, Driver*>* add_to_driver_list);
+   std::vector<Driver*> getDrivers();
    void updateDriver(std::string id, std::string name, std::string email, std::string password, std::string phone);
    int getPoints(int d_id, std::map<int,int> &pointmap);
    void updatePoints(int d_id, std::map<int,int> &pointmap);
+
    
    //Sponsor calls
    void createSponsor(std::string name, std::string email, std::string password, std::string phone, std::string point_value);
    Sponsor* getSponsor(std::string id);
    void removeSponsor(std::string id);
-   void getSponsors(std::map<int, Sponsor*>* add_to_sponsor_list);
+   std::vector<Sponsor*> getSponsors();
    void updateSponsor(std::string id, std::string name, std::string email, std::string password, std::string phone, std::string point_value);
 
    //Admin calls
    void createAdmin(std::string name, std::string email, std::string password, std::string phone);
    Admin* getAdmin(std::string id);
    void removeAdmin(std::string id);
-   void getAdmins(std::map<int, Admin*>* add_to_admin_list);
+   std::vector<Admin*> getAdmins();
    void updateAdmin(std::string id, std::string name, std::string email, std::string password, std::string phone);
 
    //Amazon Item calls
