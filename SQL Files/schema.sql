@@ -42,7 +42,7 @@ CREATE TABLE DRIVER_SPONSOR
 CREATE TABLE AMAZON_ITEM
 (
    item_id           INT unsigned  NOT NULL AUTO_INCREMENT,
-   name              VARCHAR(64)   NOT NULL,
+   name              VARCHAR(128)   NOT NULL,
    price             DOUBLE        NOT NULL,
    description       VARCHAR(2048),
    url               VARCHAR(256)  NOT NULL,
