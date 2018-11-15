@@ -44,43 +44,20 @@ User::~User()
 {
 }
 
-void User::registerUser()
+void User::registerUser(string us, string ps, string nm, string em, long ph, string ad)
 {
-	cout << "Enter username: ";
-	cin >> username_;
-
-	cout << "Enter password: ";
-	cin >> password_;
-	
-	cin.ignore();
-	
-	cout << "Enter name: ";
-	getline(cin, name_);
-
-	cout << "Enter E-Mail: ";
-	cin >> email_;
-
-	cout << "Enter Phone Number: ";
-	cin >> phone_;
-
-	if(phone_ < 99999999 || phone_ > 100000000000)
-	{
-		cout << "Phone number must be 10 digits" << endl;
-		cin >> phone_;
-	}
-	
-	cin.ignore();
-	
-	cout << "Enter Address: ";
-	getline(cin, address_[0]);
-	
+        username_ = us;
+        password_ = ps;
+        name_ = nm;
+        email_ em;
+        phone_ = ph;
+        address_ = adl
 	addNum_ = 1;
 
 	srand(time(NULL));
 
 	int randID = rand()%10000;
 
-	cout << "User ID randomly set to ";
 	cout << randID << endl;
 	id_ = randID;
 }
@@ -156,19 +133,12 @@ void User::setAddress(string* i, int j)
 
 void User::addAddress(string i)
 {
-	if(addNum_ == 10)
-	{
-        //	cout << "Max number of addresses reached" << endl;
-	}
-	else
+        if(addNum_ < 10)
 	{
 		cin.ignore();
-                //cout << "Enter Address: ";
-                //getline(cin, address_[addNum_]);
                 address_[addNum] = i;
 		addNum_++;
 	}
-        //cout << "Address " << address_[addNum_-1] << " added" << endl;
 }
 
 void User::removeAddress(int i)
@@ -200,10 +170,6 @@ void User::changePassword(string oldp, string newp)
         if(oldp == password_)
 	{
             password_ = newp;
-	}
-	else
-	{
-                //cout << "Password incorrect";
 	}
 }
 

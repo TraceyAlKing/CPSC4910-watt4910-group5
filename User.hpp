@@ -28,7 +28,7 @@ class User {
 		User(const User& other);
 		User& operator=(const User& rhs);
 		virtual ~User(); 
-		void registerUser();
+                void registerUser(string us, string ps, string nm, string em, long ph, string ad);
 		string getName();
 		string getUsername();
 		string getPassword();

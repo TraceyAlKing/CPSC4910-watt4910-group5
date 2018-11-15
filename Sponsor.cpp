@@ -105,15 +105,13 @@ void Sponsor::updateSponsor(){
 void Sponsor::addDriver(string input)
 {
 	//string input;
-	cout << "What is the username of the driver you want to add?" << endl;
-	cin >> input;
 	bool tf = checkForDriver(input);
 }
 
 void Sponsor::removeDriver()
 {
 	int input;
-    cout << "Remove which Driver? " << endl;
+        cout << "Remove which Driver? " << endl;
 	for(int i = 0; i < numDrivers_; i++)
 	{
 		cout << i << ": " << Drivers_[i] << endl;
