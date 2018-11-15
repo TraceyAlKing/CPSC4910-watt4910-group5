@@ -30,7 +30,7 @@ public:
    void createDriver(std::string name, std::string email, std::string password, std::string phone, std::string points);
    Driver* getDriver(std::string id);
    void removeDriver(std::string id);
-   std::vector<Driver*> getDrivers();
+   void getDrivers(std::map<int, Driver*>* add_to_driver_list);
    void updateDriver(std::string id, std::string name, std::string email, std::string password, std::string phone);
    int getPoints(int d_id, std::map<int,int> &pointmap);
    void updatePoints(int d_id, std::map<int,int> &pointmap);
@@ -40,14 +40,14 @@ public:
    void createSponsor(std::string name, std::string email, std::string password, std::string phone, std::string point_value);
    Sponsor* getSponsor(std::string id);
    void removeSponsor(std::string id);
-   std::vector<Sponsor*> getSponsors();
+   void getSponsors(std::map<int, Sponsor*>* add_to_sponsor_list);
    void updateSponsor(std::string id, std::string name, std::string email, std::string password, std::string phone, std::string point_value);
 
    //Admin calls
    void createAdmin(std::string name, std::string email, std::string password, std::string phone);
    Admin* getAdmin(std::string id);
    void removeAdmin(std::string id);
-   std::vector<Admin*> getAdmins();
+   void getAdmins(std::map<int, Admin*>* add_to_admin_list);
    void updateAdmin(std::string id, std::string name, std::string email, std::string password, std::string phone);
 
    //Amazon Item calls

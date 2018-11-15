@@ -102,7 +102,7 @@ void DatabaseInterface::update(Sponsor* obj){
 
    db().updateSponsor(id, name, email, password, phone, point_value);
 }
-
+/*
 bool DatabaseInterface::findAdmin(int id)
 {
     auto search = admin_list_.find(id);
@@ -158,8 +158,8 @@ bool DatabaseInterface::findUser(int id)
 
 bool DatabaseInterface::findUsername(int id, std::string name)
 {
-    auto search = driver_list_.find(id);
-    if(search == driver_list_.end()){
+    auto search_driver = driver_list_.find(id);
+    if(search_driver == driver_list_.end()){
        Driver* new_driver = db().getDriver(std::to_string(id));
        if(!new_driver)   //not found
           return true;
@@ -168,8 +168,8 @@ bool DatabaseInterface::findUsername(int id, std::string name)
            return true;
        }
     }
-    auto search = sponsor_list_.find(name);
-    if(search == sponsor_list_.end()){
+    auto search_sponsor = sponsor_list_.find(name);
+    if(search_sponsor == sponsor_list_.end()){
        Sponsor* new_sponsor = db().getSponsor(std::to_string(id));
        if(!new_sponsor)
           return true;
@@ -178,8 +178,8 @@ bool DatabaseInterface::findUsername(int id, std::string name)
            return true;
        }
     }
-    auto search = admin_list_.find(name);
-    if(search == admin_list_.end()){
+    auto search_admin = admin_list_.find(name);
+    if(search_admin == admin_list_.end()){
        Admin* new_admin = db().getAdmin(std::to_string(id));
        if(!new_admin)
           return true;
@@ -193,8 +193,8 @@ bool DatabaseInterface::findUsername(int id, std::string name)
 
 bool DatabaseInterface::findEmail(int id, std::string name)
 {
-    auto search = driver_list_.find(id);
-    if(search == driver_list_.end()){
+    auto search_id = driver_list_.find(id);
+    if(search_id == driver_list_.end()){
        Driver* new_driver = db().getDriver(std::to_string(id));
        if(!new_driver)   //not found
           return true;
@@ -203,8 +203,8 @@ bool DatabaseInterface::findEmail(int id, std::string name)
            return true;
        }
     }
-    auto search = sponsor_list_.find(name);
-    if(search == sponsor_list_.end()){
+    auto search_s_name = sponsor_list_.find(name);
+    if(search_s_name == sponsor_list_.end()){
        Sponsor* new_sponsor = db().getSponsor(std::to_string(name));
        if(!new_sponsor)
           return true;
@@ -213,8 +213,8 @@ bool DatabaseInterface::findEmail(int id, std::string name)
            return true;
        }
     }
-    auto search = admin_list_.find(name);
-    if(search == admin_list_.end()){
+    auto search_a_name = admin_list_.find(name);
+    if(search_a_name == admin_list_.end()){
        Admin* new_admin = db().getAdmin(std::to_string(name));
        if(!new_admin)
           return true;
@@ -225,7 +225,7 @@ bool DatabaseInterface::findEmail(int id, std::string name)
     }
     return true;
 }
-
+*/
 void DatabaseInterface::update(Catalog* obj){
    //@TODO: not yet implemented updateCatalog()
    //db().updateCatalog();
