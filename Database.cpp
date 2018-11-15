@@ -75,7 +75,7 @@ void Database::createDriver(std::string name, std::string email, std::string pas
     std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
   }
 }
-vector<Driver*> Database::getDrivers(){
+void Database::getDrivers(std::map<int, Driver*>* add_to_driver_list){
   try {
   //Build statement
   std::stringstream sstr;
@@ -112,12 +112,15 @@ vector<Driver*> Database::getDrivers(){
       std::cout << "\taddress: "<< res_->getString("address") << std::endl;
       address = res_->getString("address");
       count++;
-      return_drivers.emplace_back(new Driver(id, name, email, password, phone, address, "Available"));
+
+      auto search = add_to_driver_list->find(std::stoi(id));
+      if(search == add_to_driver_list->end())
+        add_to_driver_list->emplace(std::stoi(id), (new Driver(id, name, email, password, phone, address, "Available")));
+      
     }
     std::cout << "\t-------------------------------------------" << std::endl;
     std::cout << "\tNumber of entries: " << count << std::endl;
     std::cout << "\t... MySQL replies: Success." << std::endl;
-    return return_drivers;
 
   } catch (sql::SQLException &e) {
     std::cout << "# ERR: SQLException in " << __FILE__;
@@ -126,7 +129,6 @@ vector<Driver*> Database::getDrivers(){
     std::cout << "# ERR: " << e.what();
     std::cout << " (MySQL error code: " << e.getErrorCode();
     std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
-    return std::vector<Driver*>();
   }
 }
 
@@ -328,7 +330,7 @@ void Database::createSponsor(std::string name, std::string email, std::string pa
     std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
   }
 }
-std::vector<Sponsor*> Database::getSponsors(){
+void Database::getSponsors(std::map<int, Sponsor*>* add_to_sponsor_list){
   try {
     //Build statement
     std::stringstream sstr;
@@ -368,12 +370,14 @@ std::vector<Sponsor*> Database::getSponsors(){
       std::cout << "\tpoint_value: "<< res_->getString("point_value") << std::endl;
       point_value = res_->getString("point_value");
       count++;
-      return_sponsors.emplace_back(new Sponsor(id, name, email, password, phone, address, point_value));
+
+      auto search = add_to_sponsor_list->find(std::stoi(id));
+      if(search == add_to_sponsor_list->end())
+        add_to_sponsor_list->emplace(std::stoi(id), new Sponsor(id, name, email, password, phone, address, point_value));
     }
     std::cout << "\t-------------------------------------------" << std::endl;
     std::cout << "\tNumber of entries: " << count << std::endl;
     std::cout << "\t... MySQL replies: Success." << std::endl;
-    return return_sponsors;
 
   } catch (sql::SQLException &e) {
     std::cout << "# ERR: SQLException in " << __FILE__;
@@ -382,7 +386,7 @@ std::vector<Sponsor*> Database::getSponsors(){
     std::cout << "# ERR: " << e.what();
     std::cout << " (MySQL error code: " << e.getErrorCode();
     std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
-    return std::vector<Sponsor*>();
+    return;
   }
 }
 
@@ -518,7 +522,7 @@ void Database::createAdmin(std::string name, std::string email, std::string pass
   }
 }
 
-std::vector<Admin*> Database::getAdmins(){
+void Database::getAdmins(std::map<int, Admin*>* add_to_admin_list){
   try {
     //Build statement
     std::stringstream sstr;
@@ -554,12 +558,14 @@ std::vector<Admin*> Database::getAdmins(){
       std::cout << "\taddress: "<< res_->getString("address") << std::endl;
       address = res_->getString("address");
       count++;
-      return_admins.emplace_back(new Admin(id, name, email, password, phone, address));
+      
+      auto search = add_to_admin_list->find(std::stoi(id));
+      if(search == add_to_admin_list->end())
+        add_to_admin_list->emplace(std::stoi(id), new Admin(id, name, email, password, phone, address));
     }
     std::cout << "\t-------------------------------------------" << std::endl;
     std::cout << "\tNumber of entries: " << count << std::endl;
     std::cout << "\t... MySQL replies: Success." << std::endl;
-    return return_admins;
 
   } catch (sql::SQLException &e) {
     std::cout << "# ERR: SQLException in " << __FILE__;
@@ -568,7 +574,6 @@ std::vector<Admin*> Database::getAdmins(){
     std::cout << "# ERR: " << e.what();
     std::cout << " (MySQL error code: " << e.getErrorCode();
     std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
-    return std::vector<Admin*>();
   }
 }
 
