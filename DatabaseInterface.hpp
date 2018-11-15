@@ -26,6 +26,13 @@ public:
    void update(Catalog* obj);
    void update(Item* obj);
 
+   //Search functions
+
+   bool findDriver(int id);
+   bool findAdmin(int id);
+   bool findSponsor(int id);
+   bool findUser(int id);
+
 private:
    //HOW WE WILL HANDLE DATA: IMPORTANT
    //
@@ -49,6 +56,7 @@ private:
    std::map<int, Sponsor*> sponsor_list_;
    std::map<int, Catalog*> catalog_list_;
    std::map<int, Item*> item_list_;
+
 };
 
 #endif //DATABASEINTERFACE_HPP

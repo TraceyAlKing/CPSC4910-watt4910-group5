@@ -102,9 +102,64 @@ void DatabaseInterface::update(Sponsor* obj){
 
    db().updateSponsor(id, name, email, password, phone, point_value);
 }
+
+bool DatabaseInterface::findAdmin(int id)
+{
+    auto search = admin_list_.find(id);
+    if(search == admin_list_.end()){
+       Admin* new_admin = db().getAdmin(std::to_string(id));
+       if(!new_admin)
+          return false;
+    }
+    return true;
+}
+
+
+bool DatabaseInterface::findDriver(int id)
+{
+    auto search = driver_list_.find(id);
+    if(search == driver_list_.end()){
+       Driver* new_driver = db().getDriver(std::to_string(id));
+       if(!new_driver)   //not found
+          return false;
+    }
+    return true;
+}
+
+bool DatabaseInterface::findSponsor(int id)
+{
+    auto search = sponsor_list_.find(id);
+    if(search == sponsor_list_.end()){
+       Sponsor* new_sponsor = db().getSponsor(std::to_string(id));
+       if(!new_sponsor)
+          return false;
+    }
+    return true;
+}
+
+bool DatabaseInterface::findUser(int id)
+{
+    if(findSponsor(id) == true){
+        return true;
+    }
+    else if(findAdmin(id) == true)
+    {
+        return true;
+    }
+    else if(findDriver(id) == true)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
 void DatabaseInterface::update(Catalog* obj){
    //@TODO: not yet implemented updateCatalog()
    //db().updateCatalog();
+
 }
 void DatabaseInterface::update(Item* obj){
    //@TODO: not yet implemented updateAmazonItem()
