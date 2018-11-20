@@ -24,12 +24,12 @@ public:
 	void saveSponsor();
 	void updateSponsor();
     void addDriver(string input);
-	void removeDriver();
+        void removeDriver(int input);
 	void removeDriverWInput(string i);
-	void changePoints();
+        void changePoints(int input, int i);
 	void setSponsorDriver();
 	void setDrivers(string* i, int j);
-	void registerSponsor();
+        void registerSponsor(string us, string ps, string nm, string em, long ph, string ad, int pv);
 	bool checkForDriver(string name);
 	int getSponNum();
     string* getDrivers();
