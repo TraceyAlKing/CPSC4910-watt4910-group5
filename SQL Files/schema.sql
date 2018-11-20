@@ -41,8 +41,8 @@ CREATE TABLE DRIVER_SPONSOR
 );
 CREATE TABLE AMAZON_ITEM
 (
-   item_id                INT unsigned  NOT NULL AUTO_INCREMENT,
-   name              VARCHAR(64)   NOT NULL,
+   item_id           INT unsigned  NOT NULL AUTO_INCREMENT,
+   name              VARCHAR(128)   NOT NULL,
    price             DOUBLE        NOT NULL,
    description       VARCHAR(2048),
    url               VARCHAR(256)  NOT NULL,
@@ -51,9 +51,10 @@ CREATE TABLE AMAZON_ITEM
 );
 CREATE TABLE AMAZON_ITEM_IMAGE
 (
-   image_url         VARCHAR(1024) NOT NULL,
+   image_path        VARCHAR(1024) NOT NULL,
    amazon_item_id    INT unsigned  NOT NULL,
-   PRIMARY KEY (amazon_item_id),
+   image_id          INT unsigned  NOT NULL AUTO_INCREMENT,
+   PRIMARY KEY (image_id, amazon_item_id),
    FOREIGN KEY (amazon_item_id) REFERENCES AMAZON_ITEM(item_id)
 );
 CREATE TABLE CATALOG

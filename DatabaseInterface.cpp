@@ -102,11 +102,148 @@ void DatabaseInterface::update(Sponsor* obj){
 
    db().updateSponsor(id, name, email, password, phone, point_value);
 }
+/*
+bool DatabaseInterface::findAdmin(int id)
+{
+    auto search = admin_list_.find(id);
+    if(search == admin_list_.end()){
+       Admin* new_admin = db().getAdmin(id);
+       if(!new_admin)
+          return false;
+    }
+    return true;
+}
+
+
+bool DatabaseInterface::findDriver(int id)
+{
+    auto search = driver_list_.find(id);
+    if(search == driver_list_.end()){
+       Driver* new_driver = db().getDriver(id);
+       if(!new_driver)   //not found
+          return false;
+    }
+    return true;
+}
+
+bool DatabaseInterface::findSponsor(int id)
+{
+    auto search = sponsor_list_.find(id);
+    if(search == sponsor_list_.end()){
+       Sponsor* new_sponsor = db().getSponsor(id);
+       if(!new_sponsor)
+          return false;
+    }
+    return true;
+}
+
+bool DatabaseInterface::findUser(int id)
+{
+    if(findSponsor(id) == true){
+        return true;
+    }
+    else if(findAdmin(id) == true)
+    {
+        return true;
+    }
+    else if(findDriver(id) == true)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+bool DatabaseInterface::findUsername(int id, std::string name)
+{
+    auto search_driver = driver_list_.find(id);
+    if(search_driver == driver_list_.end()){
+       Driver* new_driver = db().getDriver(id);
+       if(!new_driver)   //not found
+          return true;
+       if(new_driver->getUsername() == name)
+       {
+           return true;
+       }
+    }
+    auto search_sponsor = sponsor_list_.find(name);
+    if(search_sponsor == sponsor_list_.end()){
+       Sponsor* new_sponsor = db().getSponsor(id);
+       if(!new_sponsor)
+          return true;
+       if(new_sponsor->getUsername() == name)
+       {
+           return true;
+       }
+    }
+    auto search_admin = admin_list_.find(name);
+    if(search_admin == admin_list_.end()){
+       Admin* new_admin = db().getAdmin(id);
+       if(!new_admin)
+          return true;
+       if(new_admin->getUsername() == name)
+       {
+           return true;
+       }
+    }
+    return true;
+}
+
+bool DatabaseInterface::findEmail(int id, std::string name)
+{
+    auto search_id = driver_list_.find(id);
+    if(search_id == driver_list_.end()){
+       Driver* new_driver = db().getDriver(id);
+       if(!new_driver)   //not found
+          return true;
+       if(new_driver->getEmail() == name)
+       {
+           return true;
+       }
+    }
+    auto search_s_name = sponsor_list_.find(name);
+    if(search_s_name == sponsor_list_.end()){
+       Sponsor* new_sponsor = db().getSponsor(id));
+       if(!new_sponsor)
+          return true;
+       if(new_sponsor->getEmail() == name)
+       {
+           return true;
+       }
+    }
+    auto search_a_name = admin_list_.find(name);
+    if(search_a_name == admin_list_.end()){
+       Admin* new_admin = db().getAdmin(id);
+       if(!new_admin)
+          return true;
+       if(new_admin->getEmail() == name)
+       {
+           return true;
+       }
+    }
+    return true;
+}
+*/
 void DatabaseInterface::update(Catalog* obj){
    //@TODO: not yet implemented updateCatalog()
    //db().updateCatalog();
+
 }
 void DatabaseInterface::update(Item* obj){
    //@TODO: not yet implemented updateAmazonItem()
    //db().updateItem();
+}
+std::map<int, Driver*>& DatabaseInterface::getAllDrivers(){
+   db().getDrivers(&driver_list_);
+   return driver_list_;
+}
+std::map<int, Admin*>& DatabaseInterface::getAllAdmins(){
+   db().getAdmins(&admin_list_);
+   return admin_list_;
+}
+std::map<int, Sponsor*>& DatabaseInterface::getAllSponsors(){
+   db().getSponsors(&sponsor_list_);
+   return sponsor_list_;
 }
