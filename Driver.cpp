@@ -40,9 +40,9 @@ Driver::~Driver()
 {
 }
 
-void Driver::registerDriver()
+void Driver::registerDriver(string us, string ps, string nm, string em, long ph, string ad, int ln, string lp)
 {
-	registerUser();
+        registerUser(string us, string ps, string nm, string em, long ph, string ad);
 
 	//cout << "Sponsor set to N/A" << endl;
 	//sponsor = "N/A";
@@ -53,10 +53,10 @@ void Driver::registerDriver()
 	pointNum_ = 0;
 	
         //cout << "Enter License Number: ";
-	cin >> LNum_;
-	////
+        LNum_ = ln;
+
         //cout << "Enter Liscence Plate Number: ";
-	cin >> LPNum_[0];
+        LPNum_[0] = lp;
 	
 	LPNumNumber_ = 1;
 
@@ -177,10 +177,9 @@ int Driver::getLNumNum()
 	return LPNumNumber_;
 }
 
-void Driver::updateLNum()
+void Driver::updateLNum(int l)
 {
-	cout << "Enter a new Lisence Number" << endl;
-	cin >> LNum_;
+        LNum_ = i;
 }
 
 int* Driver::getPlates()
@@ -220,47 +219,32 @@ void Driver::setPoints2(string* i, int j)
 	}
 }
 
-void Driver::addLP()
+void Driver::addLP(int i)
 {
-	if(LPNumNumber_ == 10)
-	{
-		cout << "Max number of license plate numbers reached" << endl;
-	}
-	else
-	{
-		cout << "Enter License Plate Number: ";
-		cin >> LPNum_[LPNumNumber_];
+        if(LPNumNumber_ < 10)
+        {
+                LPNum_[LPNumNumber_] = i;
 		LPNumNumber_++;
 	}
-	cout << "L. Plate  " << LPNum_[LPNumNumber_-1] << " added" << endl;
 }
 
-void Driver::removeLP()
+void Driver::removeLP(int i)
 {
-	int input;
-	cout << "Remove which license plate? " << endl;
-	for(int i = 0; i < LPNumNumber_; i++)
-	{
-		cout << i << ": " << LPNum_[i] << endl;
-	}
-	cin >> input;
-	while(input < 0 || input > LPNumNumber_)
-	{
-		cout << "Enter a valid number.";
-		cin >> input;
-	}
-	while(input < LPNumNumber_)
-	{
-		LPNum_[input] = LPNum_[input+1]; 
-		input++;
-	}
+        if(input > 0 && input < LPNumNumber_)
+        {
+            while(input < LPNumNumber_)
+            {
+                   LPNum_[input] = LPNum_[input+1];
+                input++;
+            }
+        }
 	LPNum_[LPNumNumber_] = 0;
 	LPNumNumber_--;
 }
 
-void Driver::viewLP()
+int* Driver::viewLP()
 {
-	
+        return LPNum_;
 }
 
 Driver Driver::setDriver(string f)
@@ -402,17 +386,13 @@ int Driver::findSponsor(string i)
 	return -1;
 }
 
-void Driver::setPointsFromSponsor(string i)
+void Driver::setPointsFromSponsor(string i, int u)
 {
 	int f;
 	int n = findSponsor(i);
 	if(n != -1)
 	{
-		cout << "Choose number of points to add/remove to this driver" << endl;
-		{
-			cin >> f;
-			points_[n] = points_[n] + f;
-		}
+            points_[n] = points_[n] + u;
 	}
 }
 

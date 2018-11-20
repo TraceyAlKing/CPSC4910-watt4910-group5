@@ -188,7 +188,7 @@ bool DatabaseInterface::findUsername(int id, std::string name)
            return true;
        }
     }
-    return true;
+    return false;
 }
 
 bool DatabaseInterface::findEmail(int id, std::string name)
@@ -203,9 +203,9 @@ bool DatabaseInterface::findEmail(int id, std::string name)
            return true;
        }
     }
-    auto search_s_name = sponsor_list_.find(name);
-    if(search_s_name == sponsor_list_.end()){
-       Sponsor* new_sponsor = db().getSponsor(id));
+    auto search = sponsor_list_.find(name);
+    if(search == sponsor_list_.end()){
+       Sponsor* new_sponsor = db().getSponsor(std::to_string(id));
        if(!new_sponsor)
           return true;
        if(new_sponsor->getEmail() == name)
@@ -213,9 +213,9 @@ bool DatabaseInterface::findEmail(int id, std::string name)
            return true;
        }
     }
-    auto search_a_name = admin_list_.find(name);
-    if(search_a_name == admin_list_.end()){
-       Admin* new_admin = db().getAdmin(id);
+    auto search = admin_list_.find(name);
+    if(search == admin_list_.end()){
+       Admin* new_admin = db().getAdmin(std::to_string(id));
        if(!new_admin)
           return true;
        if(new_admin->getEmail() == name)
@@ -223,7 +223,7 @@ bool DatabaseInterface::findEmail(int id, std::string name)
            return true;
        }
     }
-    return true;
+    return false;
 }
 */
 void DatabaseInterface::update(Catalog* obj){
