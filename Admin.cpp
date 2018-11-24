@@ -242,12 +242,10 @@ bool Admin::checkForUser(string name)
 	
     if (FILE *file = fopen(name.c_str(), "r")) 
 	{
-		cout << "User found." << endl;
 		return true;
     } 
 	else 
 	{
-		cout << "User not found." << endl;
         return false;
     }   
 }

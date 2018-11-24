@@ -44,43 +44,20 @@ User::~User()
 {
 }
 
-void User::registerUser()
+void User::registerUser(string us, string ps, string nm, string em, long ph, string ad)
 {
-	cout << "Enter username: ";
-	cin >> username_;
-
-	cout << "Enter password: ";
-	cin >> password_;
-	
-	cin.ignore();
-	
-	cout << "Enter name: ";
-	getline(cin, name_);
-
-	cout << "Enter E-Mail: ";
-	cin >> email_;
-
-	cout << "Enter Phone Number: ";
-	cin >> phone_;
-
-	if(phone_ < 99999999 || phone_ > 100000000000)
-	{
-		cout << "Phone number must be 10 digits" << endl;
-		cin >> phone_;
-	}
-	
-	cin.ignore();
-	
-	cout << "Enter Address: ";
-	getline(cin, address_[0]);
-	
+        username_ = us;
+        password_ = ps;
+        name_ = nm;
+        email_ em;
+        phone_ = ph;
+        address_ = adl
 	addNum_ = 1;
 
 	srand(time(NULL));
 
 	int randID = rand()%10000;
 
-	cout << "User ID randomly set to ";
 	cout << randID << endl;
 	id_ = randID;
 }
@@ -154,36 +131,20 @@ void User::setAddress(string* i, int j)
 	}
 }
 
-void User::addAddress()
+void User::addAddress(string i)
 {
-	if(addNum_ == 10)
-	{
-		cout << "Max number of addresses reached" << endl;
-	}
-	else
+        if(addNum_ < 10)
 	{
 		cin.ignore();
-		cout << "Enter Address: ";
-		getline(cin, address_[addNum_]);
+                address_[addNum] = i;
 		addNum_++;
 	}
-	cout << "Address " << address_[addNum_-1] << " added" << endl;
 }
 
-void User::removeAddress()
+void User::removeAddress(int i)
 {
 	int input;
-	cout << "Remove which address? " << endl;
-	for(int i = 0; i < addNum_; i++)
-	{
-		cout << i << ": " << address_[i] << endl;
-	}
 	cin >> input;
-	while(input < 0 || input > addNum_)
-	{
-		cout << "Enter a valid number.";
-		cin >> input;
-	}
 	while(input < addNum_)
 	{
 		address_[input] = address_[input+1]; 
@@ -204,23 +165,15 @@ string * User::getAddress()
 	return address_;
 }
 
-void User::changePassword()
+void User::changePassword(string oldp, string newp)
 {
-	string oldPass;
-	cout << "Enter old password: ";
-	cin >> oldPass;
-	if(oldPass == password_)
+        if(oldp == password_)
 	{
-			cout << "Enter new password: ";
-			cin >> password_;
-	}
-	else
-	{
-		cout << "Password incorrect";
+            password_ = newp;
 	}
 }
 
-void User::updateAddress()
+void User::updateAddress(int i, string s)
 {
-
+    address_[i] = s;
 }

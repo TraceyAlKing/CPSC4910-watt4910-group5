@@ -110,6 +110,40 @@ INSERT INTO AMAZON_ITEM ( name, price, description, url)
 INSERT INTO AMAZON_ITEM ( name, price, description, url) 
    VALUES ( "JETech Screen Protector for Apple iPhone 8 and iPhone 7", 9.99, "-Pack. Specifically designed to fit iPhone 8, iPhone 7 4.7 models. (NOTE: Due to the round edge of iPhone, the screen protector will NOT cover the full screen, but only the flat area)", "https://www.amazon.com/JETech-Screen-Protector-4-7-Inch-Tempered/dp/B01KNVF4SI/ref=gbps_tit_s-5_96dd_c4aade31?smid=A1RI0YHZ8J2HZU&pf_rd_p=14bfbc74-d7e3-4fb1-8a72-53a5a41796dd&pf_rd_s=slot-5&pf_rd_t=701&pf_rd_i=gb_main&pf_rd_m=ATVPDKIKX0DER&pf_rd_r=BW347N6FQQ9QQ564DJ3J" );
 
+INSERT INTO AMAZON_ITEM ( name, price, description, url) 
+   VALUES ( "JOOLA Midsize Compact Table Tennis Table", 113.59, "MULTIPLE USE TABLES: Each half of the Midsize Table is almost a perfect square making the 2 halves great as separate standing multi-use tables when not in play", "https://www.amazon.com/JOOLA-Midsize-Compact-Tennis-Apartments/dp/B0012QJZTI?ref_=Oct_DLandingS_PC_a76250c3_NA&smid=ATVPDKIKX0DER" );
+INSERT INTO AMAZON_ITEM ( name, price, description, url) 
+   VALUES ( "Solimo 2-Ply Toilet Paper", 15.19, "Includes 30 bath tissue rolls(5 packs of 6 rolls); each roll has 350 w-ply sheets (10,500 sheets in total), Safe for standard sewer and septic systesms.", "https://www.amazon.com/gp/product/B07FGBSF45/ref=s9_acsd_al_bw_c_x_1_w?pf_rd_m=ATVPDKIKX0DER&pf_rd_s=merchandised-search-4&pf_rd_r=1P8NHTGK2C5DKEKJ68BK&pf_rd_r=1P8NHTGK2C5DKEKJ68BK&pf_rd_t=101&pf_rd_p=63b18eaf-9ef6-4c4b-b0ee-5a1d23ed2466&pf_rd_p=63b18eaf-9ef6-4c4b-b0ee-5a1d23ed2466&pf_rd_i=18294627011" );
+INSERT INTO AMAZON_ITEM ( name, price, description, url) 
+   VALUES ( "CUISINART Multiclad Cookware Set (8-Piece)", 129.99, "Set includes: 2.5 Quart Saucepan with Lid, 4 Quart Saute Pan with Helper and Cover, 6 Quart Stock Pot with Cover, 8 inch Skillet, 10 inch Skillet", "https://www.amazon.com/CUISINART-Multiclad-Cookware-Set-8-Piece/dp/B07FW18ZFJ/ref=gbps_tit_s-5_5baf_8f634540?smid=A1KWJVS57NX03I&pf_rd_p=a7e1c818-e7bc-4318-ae47-1f5300505baf&pf_rd_s=slot-5&pf_rd_t=701&pf_rd_i=gb_main&pf_rd_m=ATVPDKIKX0DER&pf_rd_r=G78HSV6V757J3HYHRW6Z" );
+INSERT INTO AMAZON_ITEM ( name, price, description, url) 
+   VALUES ( "Solimo Exfoliating Body Wash, 18 Fluid Ounce (Pack of 4)", 10.35, "Four 18-fluid ounce bottles of exfoliating body wash, Molasses ans shea butter help exfoliate and moisturize skin while cleansing", "https://www.amazon.com/Amazon-Brand-Solimo-Exfoliating-Fluid/dp/B07CJMJRPM/ref=lp_18294627011_1_15_a_it?srs=18294627011&ie=UTF8&qid=1542147329&sr=8-15" );
+INSERT INTO AMAZON_ITEM ( name, price, description, url) 
+   VALUES ( "JOOLA 4-Player Indoor Table Tennis Hit Set", 15.99, "totallyreal", "real.com/real" );
+INSERT INTO AMAZON_ITEM ( name, price, description, url) 
+   VALUES ( "BEDSURE Sherpa Fleece Blanket ", 14.95, "BEDSURE Dual Sided Super Soft Blanket with Fleece Face and Plush Sherpa reverse offers you different senses of softness to improve your sleep with one side of smooth and fluffy to the other - Bring you ultimate soft and warmth with 220 GSM Fleece top and 280 GSM Sherpa reverse blanket .", "https://www.amazon.com/BEDSURE-Sherpa-Fleece-Blanket-Microfiber/dp/B01LEWILYE/ref=gbps_tit_s-5_5baf_016bd14e?smid=A3LDROY0BE4ISH&pf_rd_p=a7e1c818-e7bc-4318-ae47-1f5300505baf&pf_rd_s=slot-5&pf_rd_t=701&pf_rd_i=gb_main&pf_rd_m=ATVPDKIKX0DER&pf_rd_r=G78HSV6V757J3HYHRW6Z" );
+
+
+INSERT INTO AMAZON_ITEM_IMAGE (image_path, amazon_item_id)
+	VALUES("umbrella.jpg", 1);
+INSERT INTO AMAZON_ITEM_IMAGE (image_path, amazon_item_id)
+	VALUES("Bluetooth.jpg", 2);
+INSERT INTO AMAZON_ITEM_IMAGE (image_path, amazon_item_id)
+	VALUES("leather_bag.jpg", 1);
+INSERT INTO AMAZON_ITEM_IMAGE (image_path, amazon_item_id)
+	VALUES("screen_protector.jpg", 1);
+INSERT INTO AMAZON_ITEM_IMAGE (image_path, amazon_item_id)
+	VALUES("tennis_table.jpg", 1);
+INSERT INTO AMAZON_ITEM_IMAGE (image_path, amazon_item_id)
+	VALUES("toilet_paper.jpg", 1);
+INSERT INTO AMAZON_ITEM_IMAGE (image_path, amazon_item_id)
+	VALUES("cookware.jpg", 1);
+INSERT INTO AMAZON_ITEM_IMAGE (image_path, amazon_item_id)
+	VALUES("body_wash.jpg", 1);
+INSERT INTO AMAZON_ITEM_IMAGE (image_path, amazon_item_id)
+	VALUES("tennis_set.jpg", 1);
+INSERT INTO AMAZON_ITEM_IMAGE (image_path, amazon_item_id)
+	VALUES("blanket.jpg", 1);
 
 INSERT INTO CATALOG ( my_sponsor_id) 
    VALUES ( 1 );
