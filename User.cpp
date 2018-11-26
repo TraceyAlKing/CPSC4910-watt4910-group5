@@ -49,9 +49,9 @@ void User::registerUser(string us, string ps, string nm, string em, long ph, str
         username_ = us;
         password_ = ps;
         name_ = nm;
-        email_ em;
+        email_ = em;
         phone_ = ph;
-        address_ = adl
+        address_[0] = ad;
 	addNum_ = 1;
 
 	srand(time(NULL));
@@ -136,7 +136,7 @@ void User::addAddress(string i)
         if(addNum_ < 10)
 	{
 		cin.ignore();
-                address_[addNum] = i;
+                address_[addNum_] = i;
 		addNum_++;
 	}
 }

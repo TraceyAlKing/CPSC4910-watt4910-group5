@@ -48,7 +48,7 @@ void Sponsor::setDrivers(string* i, int j)
 
 void Sponsor::registerSponsor(string us, string ps, string nm, string em, long ph, string ad, int pv)
 {
-        registerUser(string us, string ps, string nm, string em, long ph, string ad);
+        registerUser(us, ps, nm, em, ph, ad);
 	
         numDrivers_ = 0;
         point_value_ = pv;
@@ -121,7 +121,7 @@ void Sponsor::removeDriver(int input)
 		Driver t, t2;
 		t2 = t.setDriver(p);
 		string idno = to_string(getID());
-                t2.removeSponsor(idno, 0);
+                t2.removeSponsor(idno);
 		t2.saveDriver();
 	}
 }

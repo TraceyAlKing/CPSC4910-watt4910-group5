@@ -40,20 +40,20 @@ Admin& Admin::operator=(const Admin& rhs)
 
 void Admin::registerAdmin()
 {
-	registerUser();
+    //registerUser();
 }
 
 void Admin::registerDriver()
 {
 	Driver d;
-	d.registerDriver();
+    //d.registerDriver();
 	d.saveDriver();
 }
 
 void Admin::registerSponsor()
 {
 	Sponsor s;
-	s.registerSponsor();
+    //s.registerSponsor();
 	s.saveSponsor();
 }
 
