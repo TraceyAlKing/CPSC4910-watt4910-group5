@@ -1,51 +1,51 @@
 
 
 
-INSERT INTO SPONSOR ( id, name, email, password, phone, point_value ) 
-   VALUES ( 1, "talanjiexpress", "forever@hotmail.co.net.guam", "rotandwither", 7468992486, 1 );
+INSERT INTO SPONSOR ( id, name, email, password, phone, address, point_value ) 
+   VALUES ( 1, "TalanjiExpress", "forever@hotmail.co.net.guam", "rotandwither", 7468992486, "192 Talanji Lane", 1 );
 
-INSERT INTO SPONSOR ( id, name, email, password, phone, point_value ) 
-   VALUES ( 2, "Truckaholics Anonymous", "Jerry@truckaholics.com", "4wheeldrive", 8989894114, 1 );
+INSERT INTO SPONSOR ( id, name, email, password, phone, address, point_value ) 
+   VALUES ( 2, "Truckaholics Anonymous", "Jerry@truckaholics.com", "4wheeldrive", 8989894114, "112 Trucker Circuit", 1 );
 
-INSERT INTO SPONSOR ( id, name, email, password, phone, point_value ) 
-   VALUES ( 3, "Bobo Dunkins Trucking CO", "Bobo@Bobostrucking.com", "bobodoesntneedapassword", 8641396348, 1 );
+INSERT INTO SPONSOR ( id, name, email, password, phone, address, point_value ) 
+   VALUES ( 3, "Bobo Dunkins Trucking CO", "Bobo@Bobostrucking.com", "bobodoesntneedapassword", 8641396348, "226 Trucker Circuit", 1 );
 
-INSERT INTO SPONSOR ( id, name, email, password, phone, point_value ) 
-   VALUES ( 4, "Get Trucked", "Jimbo@gettrucked.net", "Truckmedaddy", 7748992486, 1 );
+INSERT INTO SPONSOR ( id, name, email, password, phone, address, point_value ) 
+   VALUES ( 4, "Get Trucked", "Jimbo@gettrucked.net", "Truckmedaddy", 7748992486, "987 Not A Real Road", 1 );
 
-INSERT INTO SPONSOR ( id, name, email, password, phone, point_value ) 
-   VALUES ( 5, "Easy Roads", "Admin@easyroads.net", "driveaway", 1232487695, 1 );
+INSERT INTO SPONSOR ( id, name, email, password, phone, address, point_value ) 
+   VALUES ( 5, "Easy Roads", "Admin@easyroads.net", "driveaway", 1232487695, "32 I Cant Believe Its Not A Real Road", 1 );
 
 
-INSERT INTO DRIVER ( id, name, email, password, phone , license_num, license_plate_num) 
-   VALUES ( 1, "justin stalker", "bobodunkins@hotmail.co.uk",  "bobo4evah", 2849964328, 123456789, "926290" );
+INSERT INTO DRIVER ( id, name, email, password, phone, address, license_num, license_plate_num) 
+   VALUES ( 1, "Justin Stalker", "bobodunkins@hotmail.co.uk",  "bobo4evah", 2849964328, "76 Bobo Court", 123456789, "926290" );
 
-INSERT INTO DRIVER ( id, name, email, password, phone, license_num, license_plate_num ) 
-   VALUES ( 2, "Po Nguyen", "imjustapoboy@yahoo.com", "dontjimmymyjohn", 4228999793, 952574789, "917284" );
+INSERT INTO DRIVER ( id, name, email, password, phone, address, license_num, license_plate_num ) 
+   VALUES ( 2, "Po Nguyen", "imjustapoboy@yahoo.com", "dontjimmymyjohn", 4228999793, "12 Easy Come Lane", 952574789, "917284" );
 
-INSERT INTO DRIVER ( id, name, email, password, phone, license_num, license_plate_num) 
-   VALUES ( 3, "Ryan Anderson", "RAmastermind@gmail.com", "password", 2228675309, 017452937, "816276" );
+INSERT INTO DRIVER ( id, name, email, password, phone, address, license_num, license_plate_num) 
+   VALUES ( 3, "Ryan Anderson", "RAmastermind@gmail.com", "password", 2228675309, "53 Easy Go Creek", 017452937, "816276" );
 
-INSERT INTO DRIVER ( id, name, email, password, phone, license_num, license_plate_num) 
-   VALUES ( 4, "Ted Gunderson", "feelthegunder@gmail.com", "gunderbite", 2468972233, 835205736, "918254" );
+INSERT INTO DRIVER ( id, name, email, password, phone, address, license_num, license_plate_num) 
+   VALUES ( 4, "Ted Gunderson", "feelthegunder@gmail.com", "gunderbite", 2468972233, "872 Little High Place", 835205736, "918254" );
 
-INSERT INTO DRIVER ( id, name, email, password, phone, license_num, license_plate_num ) 
-   VALUES ( 5, "Gold Dan", "thisisourworld@nightspire.net", "felclaws", 8971661668, 017582440, "982686" );
+INSERT INTO DRIVER ( id, name, email, password, phone, address, license_num, license_plate_num ) 
+   VALUES ( 5, "Gold Dan", "thisisourworld@nightspire.net", "felclaws", 8971661668, "263 Little Low Street", 017582440, "982686" );
 
-INSERT INTO DRIVER ( id, name, email, password, phone, license_num, license_plate_num) 
-   VALUES ( 6, "Pete Danhill", "Pdanhill@userspace.net", "turkeysandwich", 7778889999, 103382645, "918167" );
+INSERT INTO DRIVER ( id, name, email, password, phone, address, license_num, license_plate_num) 
+   VALUES ( 6, "Pete Danhill", "Pdanhill@userspace.net", "turkeysandwich", 7778889999, "87 Will You Let Me Go Court", 103382645, "918167" );
 
-INSERT INTO DRIVER ( id, name, email, password, phone, license_num, license_plate_num) 
-   VALUES ( 7, "Oswaldo Moriss", "Oswaldo@howdidigetthis.net", "dontlickme", 8641396348, 103972513, "817852" );
+INSERT INTO DRIVER ( id, name, email, password, phone, address, license_num, license_plate_num) 
+   VALUES ( 7, "Oswaldo Moriss", "Oswaldo@howdidigetthis.net", "dontlickme", 8641396348, "90 Nooo Court", 103972513, "817852" );
 
-INSERT INTO DRIVER ( id, name, email, password, phone, license_num, license_plate_num) 
-   VALUES ( 8, "Pete Jimbo", "thejimbonator@yahoo.com", "jimbonthesenuts", 2248976425, 059472625, "817726" );
+INSERT INTO DRIVER ( id, name, email, password, phone, address, license_num, license_plate_num) 
+   VALUES ( 8, "Pete Jimbo", "thejimbonator@yahoo.com", "jimbonthesenuts", 2248976425, "807 We Will Not Let You Go Lane", 059472625, "817726" );
 
-INSERT INTO DRIVER ( id, name, email, password, phone, license_num, license_plate_num ) 
-   VALUES ( 9, "philly bob", "phillybob236@neopets.com", "phillybpspill", 52136845326, 163729402, "919212" );
+INSERT INTO DRIVER ( id, name, email, password, phone, address, license_num, license_plate_num ) 
+   VALUES ( 9, "philly bob", "phillybob236@neopets.com", "phillybpspill", 52136845326, "653 Thunderbolt And Lightning Road", 163729402, "919212" );
 
-INSERT INTO DRIVER ( id, name, email, password, phone, license_num, license_plate_num) 
-   VALUES ( 10, "Bob Sagget", "Saggenator226@hotmail.com", "iliketosag", 2288753951, 104826153, "912927" );
+INSERT INTO DRIVER ( id, name, email, password, phone, address, license_num, license_plate_num) 
+   VALUES ( 10, "Bob Sagget", "Saggenator226@hotmail.com", "iliketosag", 2288753951, "789 Very Very Frightening Road", 104826153, "912927" );
 
 INSERT INTO DRIVER_SPONSOR(driver_id, sponsor_id, points)
    VALUES (1,1,82);
@@ -84,11 +84,11 @@ INSERT INTO DRIVER_SPONSOR(driver_id, sponsor_id, points)
    VALUES (10,2,79);
 
 
-INSERT INTO ADMIN ( id, name, email, password, phone) 
-   VALUES ( 1, "btharmo", "btharmo@clemson.edu", "btharmo", 1234567890 );
+INSERT INTO ADMIN ( id, name, email, password, phone, address) 
+   VALUES ( 1, "btharmo", "btharmo@clemson.edu", "btharmo", 1234567890, "32 Do You Even Lift Lane" );
 
 INSERT INTO ADMIN ( id, name, email, password, phone) 
-   VALUES ( 2, "Admin1", "Admin1@fake.com", "totallyreal", 4561327890 );
+   VALUES ( 2, "Admin1", "Admin1@fake.com", "totallyreal", 4561327890, "101 Read Admin Road" );
 
 
 INSERT INTO AMAZON_ITEM ( name, price, description, url) 
