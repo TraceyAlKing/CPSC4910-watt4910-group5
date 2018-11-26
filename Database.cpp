@@ -272,6 +272,49 @@ int Database::getPoints(int d_id, std::map<int,int> &pointmap){
   }
 
 }
+int Database::getDriverSponsors(int d_id, std::vector<int> &sponsorvec){
+  try {
+    //Build statement
+    std::stringstream sstr;
+    sstr << "SELECT sponsor_id, FROM DRIVER_SPONSOR WHERE driver_id = " << "\"" << d_id << "\";";
+
+    //Execute statement
+    std::cout << "Attempting statement: " << sstr.str() << std::endl;
+    stmt_ = con_->createStatement();
+    res_ = stmt_->executeQuery(sstr.str());
+    std::cout << "\t... MySQL replies: " << std::endl;
+
+    //Parse results
+    int count = 0;
+    int sponsor_id;
+    int points;
+    while (res_->next()) {
+      /* Access column data by alias or column name */
+      std::cout << "\t-------------------------------------------" << std::endl;
+      std::cout << "\tsponsor: "<< res_->getString("sponsor_id") << std::endl;
+      sponsor_id = res_->getInt("sponsor_id");
+
+      auto search = std::find(sponsorvec.begin(), sponsorvec.end(), sponsor_id);
+      if(search == sponsorvec.end())
+        sponsorvec.emplace_back(sponsor_id);
+      count++;
+
+    }
+    std::cout << "\t-------------------------------------------" << std::endl;
+    std::cout << "\tNumber of entries: " << count << std::endl;
+    std::cout << "\t... MySQL replies: Success." << std::endl;
+    return count;
+
+  } catch (sql::SQLException &e) {
+    std::cout << "# ERR: SQLException in " << __FILE__;
+    std::cout << "(" << __FUNCTION__ << ") on line "
+       << __LINE__ << std::endl;
+    std::cout << "# ERR: " << e.what();
+    std::cout << " (MySQL error code: " << e.getErrorCode();
+    std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
+    return 0;
+  }
+}
 
 void Database::updatePoints(int d_id, std::map<int,int> &pointmap){
   try {

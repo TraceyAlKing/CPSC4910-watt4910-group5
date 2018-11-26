@@ -14,7 +14,7 @@ Driver::Driver(std::string id, std::string name, std::string email, std::string 
 	//sponsor_ = "";
    LPNum_[0] = std::stoi(license_plate_num);
 	db().getPoints(getID(), points_map_);
-
+	db().getDriverSponsors(getID(), sponsor_vec_);
 }
 
 Driver::Driver()
@@ -25,6 +25,12 @@ Driver::Driver()
 Driver::Driver(const Driver& other) : User(other), LNum_(other.LNum_), LPNumNumber_(other.LPNumNumber_), status_(other.status_)
 {
 	LPNum_[0] = other.LPNum_[0]; 
+
+	for(auto it : other.points_map_)
+		points_map_.insert(make_pair(it.first, it.second));
+	for(auto it : other.sponsor_vec_)
+		sponsor_vec_.emplace_back(it);
+	
 }
 Driver& Driver::operator=(const Driver& rhs)
 {
@@ -36,6 +42,12 @@ Driver& Driver::operator=(const Driver& rhs)
    LNum_ = rhs.LNum_;
    LPNum_[0] = rhs.LPNum_[0];
    LPNumNumber_ = rhs.LPNumNumber_;
+
+   for(auto it : rhs.points_map_)
+		points_map_.insert(make_pair(it.first, it.second));
+	for(auto it : rhs.sponsor_vec_)
+		sponsor_vec_.emplace_back(it);
+
 	return *this;
 }
 

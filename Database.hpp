@@ -12,6 +12,7 @@
 #include <iostream>
 #include <sstream>
 #include <string>
+#include <algorithm>
 #include "Item.hpp"
 #include "Driver.hpp"
 #include "Sponsor.hpp"
@@ -34,6 +35,7 @@ public:
    void updateDriver(std::string id, std::string name, std::string email, std::string password, std::string phone, 
          std::string license_num, std::string license_plate_num);
    int getPoints(int d_id, std::map<int,int> &pointmap);
+   int getDriverSponsors(int d_id, std::vector<int> &sponsorvec);
    void updatePoints(int d_id, std::map<int,int> &pointmap);
 
    

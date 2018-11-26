@@ -6,6 +6,7 @@
 #include <fstream>
 #include <cstdlib>
 #include <map>
+#include <vector>
 
 using namespace std;
 
@@ -19,6 +20,7 @@ class Driver: public User {
 		
 		int points_[10];
 		map<int, int> points_map_;
+      vector<int> sponsor_vec_;
 
 		int pointNum_;
 		
