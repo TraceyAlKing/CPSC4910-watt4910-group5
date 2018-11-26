@@ -42,7 +42,7 @@ Driver::~Driver()
 
 void Driver::registerDriver(string us, string ps, string nm, string em, long ph, string ad, int ln, string lp)
 {
-        registerUser(string us, string ps, string nm, string em, long ph, string ad);
+    registerUser(us, ps, nm, em, ph, ad);
 
 	//cout << "Sponsor set to N/A" << endl;
 	//sponsor = "N/A";
@@ -56,7 +56,7 @@ void Driver::registerDriver(string us, string ps, string nm, string em, long ph,
         LNum_ = ln;
 
         //cout << "Enter Liscence Plate Number: ";
-        LPNum_[0] = lp;
+        LPNum_[0] = std::stoi(lp);
 	
 	LPNumNumber_ = 1;
 
@@ -179,7 +179,7 @@ int Driver::getLNumNum()
 
 void Driver::updateLNum(int l)
 {
-        LNum_ = i;
+        LNum_ = l;
 }
 
 int* Driver::getPlates()
@@ -230,12 +230,12 @@ void Driver::addLP(int i)
 
 void Driver::removeLP(int i)
 {
-        if(input > 0 && input < LPNumNumber_)
+        if(i > 0 && i < LPNumNumber_)
         {
-            while(input < LPNumNumber_)
+            while(i < LPNumNumber_)
             {
-                   LPNum_[input] = LPNum_[input+1];
-                input++;
+                   LPNum_[i] = LPNum_[i+1];
+                i++;
             }
         }
 	LPNum_[LPNumNumber_] = 0;
