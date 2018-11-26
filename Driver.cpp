@@ -6,13 +6,13 @@
 #include "Database.hpp"
 
 Driver::Driver(std::string id, std::string name, std::string email, std::string password,
-                std::string phone, std::string address, std::string status) :
-		User(id, name, email, password, phone, address), LNum_(), LPNum_(),
-		//points_(std::stoi(points)), 
-                LPNumNumber_(), status_()
+                std::string phone, std::string address, std::string status, std::string license_num, 
+                std::string license_plate_num) :
+        User(id, name, email, password, phone, address), LNum_(std::stoi(license_num)), LPNum_(),
+                LPNumNumber_(1), status_()
 {
 	//sponsor_ = "";
-
+   LPNum_[0] = std::stoi(license_plate_num);
 	db().getPoints(getID(), points_map_);
 
 }
@@ -22,9 +22,9 @@ Driver::Driver()
 	//sponsor_ = "";
 	//points_ = 0;
 }
-Driver::Driver(const Driver& other) : User(other), status_(other.status_) //points_(other.points_)
+Driver::Driver(const Driver& other) : User(other), LNum_(other.LNum_), LPNumNumber_(other.LPNumNumber_), status_(other.status_)
 {
-
+	LPNum_[0] = other.LPNum_[0]; 
 }
 Driver& Driver::operator=(const Driver& rhs)
 {
@@ -32,7 +32,10 @@ Driver& Driver::operator=(const Driver& rhs)
 		return *this;
 	User::operator=(rhs);
 	//points_ = rhs.points_;
-    status_ = rhs.status_;
+   status_ = rhs.status_;
+   LNum_ = rhs.LNum_;
+   LPNum_[0] = rhs.LPNum_[0];
+   LPNumNumber_ = rhs.LPNumNumber_;
 	return *this;
 }
 
@@ -163,7 +166,8 @@ void Driver::saveDriver()
 void Driver::updateDriver(){
 
 	//no points as they no worky
-	db().updateDriver(std::to_string(getID()), getName(), getEmail(), getPassword(), std::to_string(getPhone()));
+   db().updateDriver(std::to_string(getID()), getName(), getEmail(), getPassword(), 
+   	std::to_string(getPhone()), std::to_string(LNum_), std::to_string(LPNum_[0]));
 	db().updatePoints(getID(), points_map_);
 }
 
@@ -185,6 +189,10 @@ void Driver::updateLNum(int l)
 int* Driver::getPlates()
 {
 	return LPNum_;
+}
+
+int Driver::getFirstPlate(){
+	return LPNum_[0];
 }
 
 void Driver::setLNum(int i)

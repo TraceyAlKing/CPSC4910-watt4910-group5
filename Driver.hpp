@@ -29,7 +29,8 @@ class Driver: public User {
       string status_;
 	public:
 		Driver(std::string id, std::string name, std::string email, std::string password,
-                        std::string phone, std::string address, std::string status);
+                        std::string phone, std::string address, std::string status,
+                        std::string license_num, std::string license_plate_num);
 		Driver(const Driver& other);
       Driver& operator=(const Driver& rhs);
 		Driver();
@@ -48,6 +49,7 @@ class Driver: public User {
 		int getLicenseNum();
 		int getNumPlates();
 		int* getPlates();
+      int getFirstPlate(); //Database only has one plate currently
 		void saveDriver();
 		void updateDriver();
 		

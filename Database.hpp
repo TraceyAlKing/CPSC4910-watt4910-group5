@@ -31,7 +31,8 @@ public:
    Driver* getDriver(std::string id);
    void removeDriver(std::string id);
    void getDrivers(std::map<int, Driver*>* add_to_driver_list);
-   void updateDriver(std::string id, std::string name, std::string email, std::string password, std::string phone);
+   void updateDriver(std::string id, std::string name, std::string email, std::string password, std::string phone, 
+         std::string license_num, std::string license_plate_num);
    int getPoints(int d_id, std::map<int,int> &pointmap);
    void updatePoints(int d_id, std::map<int,int> &pointmap);
 

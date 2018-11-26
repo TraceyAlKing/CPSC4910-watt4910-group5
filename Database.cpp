@@ -95,6 +95,8 @@ void Database::getDrivers(std::map<int, Driver*>* add_to_driver_list){
     std::string password;
     std::string phone;
     std::string address;
+    std::string license_num;
+    std::string license_plate_num;
     while (res_->next()) {
       /* Access column data by alias or column name */
       std::cout << "\t-------------------------------------------" << std::endl;
@@ -110,11 +112,16 @@ void Database::getDrivers(std::map<int, Driver*>* add_to_driver_list){
       phone = res_->getString("phone");
       std::cout << "\taddress: "<< res_->getString("address") << std::endl;
       address = res_->getString("address");
+      std::cout << "\tlicense_num: "<< res_->getString("license_num") << std::endl;
+      license_num = res_->getString("license_num");
+      std::cout << "\tlicense_plate_num: "<< res_->getString("license_plate_num") << std::endl;
+      license_plate_num = res_->getString("license_plate_num");
       count++;
 
       auto search = add_to_driver_list->find(std::stoi(id));
       if(search == add_to_driver_list->end())
-        add_to_driver_list->emplace(std::stoi(id), (new Driver(id, name, email, password, phone, address, "Available")));
+        add_to_driver_list->emplace(std::stoi(id), (new Driver(id, name, email, password, phone, 
+              address, "Available", license_num, license_plate_num)));
       
     }
     std::cout << "\t-------------------------------------------" << std::endl;
@@ -151,6 +158,8 @@ Driver* Database::getDriver(std::string id){
     std::string password;
     std::string phone;
     std::string address;
+    std::string license_num;
+    std::string license_plate_num;
     while (res_->next()) {
       /* Access column data by alias or column name */
       std::cout << "\t-------------------------------------------" << std::endl;
@@ -166,12 +175,16 @@ Driver* Database::getDriver(std::string id){
       phone = res_->getString("phone");
       std::cout << "\taddress: "<< res_->getString("address") << std::endl;
       address = res_->getString("address");
+      std::cout << "\tlicense_num: "<< res_->getString("license_num") << std::endl;
+      license_num = res_->getString("license_num");
+      std::cout << "\tlicense_plate_num: "<< res_->getString("license_plate_num") << std::endl;
+      license_plate_num = res_->getString("license_plate_num");
       count++;
     }
     std::cout << "\t-------------------------------------------" << std::endl;
     std::cout << "\tNumber of entries: " << count << std::endl;
     std::cout << "\t... MySQL replies: Success." << std::endl;
-    return new Driver(id, name, email, password, phone, address, "available");
+    return new Driver(id, name, email, password, phone, address, "available", license_num, license_plate_num);
 
   } catch (sql::SQLException &e) {
     std::cout << "# ERR: SQLException in " << __FILE__;
@@ -184,7 +197,8 @@ Driver* Database::getDriver(std::string id){
   }
 }
 
-void Database::updateDriver(std::string id, std::string name, std::string email, std::string password, std::string phone){
+void Database::updateDriver(std::string id, std::string name, std::string email, std::string password, std::string phone, 
+      std::string license_num, std::string license_plate_num){
   try {
     //update based on id
     std::stringstream sstr;
@@ -192,7 +206,9 @@ void Database::updateDriver(std::string id, std::string name, std::string email,
     sstr << name << "\', ";
     sstr << "email = \'" << email << "\', ";
     sstr << "password = \'" << password << "\', ";
-    sstr << "phone = \'" << phone << "\' ";
+    sstr << "phone = \'" << phone << "\', ";
+    sstr << "license_num = \'" << license_num << "\', ";
+    sstr << "license_plate_num = \'" << license_plate_num << "\' ";
     sstr << "WHERE id = \'" << id << "\';";
 
     std::cout << "Attempting statement: " << sstr.str() << std::endl;
@@ -1156,6 +1172,8 @@ User* Database::login(std::string input_email, std::string input_password){
     password.clear();
     phone.clear();
     address.clear();
+    std::string license_num;
+    std::string license_plate_num;
     while (res_->next()) {
       /* Access column data by alias or column name */
       std::cout << "\t-------------------------------------------" << std::endl;
@@ -1171,13 +1189,17 @@ User* Database::login(std::string input_email, std::string input_password){
       phone = res_->getString("phone");
       std::cout << "\taddress: "<< res_->getString("address") << std::endl;
       address = res_->getString("address");
+      std::cout << "\tlicense_num: "<< res_->getString("license_num") << std::endl;
+      license_num = res_->getString("license_num");
+      std::cout << "\tlicense_plate_num: "<< res_->getString("license_plate_num") << std::endl;
+      license_plate_num = res_->getString("license_plate_num");
       count++;
     }
     std::cout << "\t-------------------------------------------" << std::endl;
 
     if(count > 0){
       std::cout << "\t... MySQL replies: Driver found." << std::endl;
-      return new Driver(id, name, email, password, phone, address, "available");
+      return new Driver(id, name, email, password, phone, address, "available", license_num, license_plate_num);
     }else{
       std::cout << "\t... MySQL replies: No driver found." << std::endl;
     }

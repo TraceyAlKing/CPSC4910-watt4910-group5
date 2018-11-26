@@ -18,34 +18,34 @@ INSERT INTO SPONSOR ( id, name, email, password, phone, point_value )
 
 
 INSERT INTO DRIVER ( id, name, email, password, phone , license_num, license_plate_num) 
-   VALUES ( 1, "justin stalker", "bobodunkins@hotmail.co.uk",  "bobo4evah", 2849964328, 123456789, "ABC290" );
+   VALUES ( 1, "justin stalker", "bobodunkins@hotmail.co.uk",  "bobo4evah", 2849964328, 123456789, "926290" );
 
 INSERT INTO DRIVER ( id, name, email, password, phone, license_num, license_plate_num ) 
-   VALUES ( 2, "Po Nguyen", "imjustapoboy@yahoo.com", "dontjimmymyjohn", 4228999793, 952574789, "HAK284" );
+   VALUES ( 2, "Po Nguyen", "imjustapoboy@yahoo.com", "dontjimmymyjohn", 4228999793, 952574789, "917284" );
 
 INSERT INTO DRIVER ( id, name, email, password, phone, license_num, license_plate_num) 
-   VALUES ( 3, "Ryan Anderson", "RAmastermind@gmail.com", "password", 2228675309, 017452937, "NTUW76" );
+   VALUES ( 3, "Ryan Anderson", "RAmastermind@gmail.com", "password", 2228675309, 017452937, "816276" );
 
 INSERT INTO DRIVER ( id, name, email, password, phone, license_num, license_plate_num) 
-   VALUES ( 4, "Ted Gunderson", "feelthegunder@gmail.com", "gunderbite", 2468972233, 835205736, "NUWG54" );
+   VALUES ( 4, "Ted Gunderson", "feelthegunder@gmail.com", "gunderbite", 2468972233, 835205736, "918254" );
 
 INSERT INTO DRIVER ( id, name, email, password, phone, license_num, license_plate_num ) 
-   VALUES ( 5, "Gold Dan", "thisisourworld@nightspire.net", "felclaws", 8971661668, 017582440, "POQN86" );
+   VALUES ( 5, "Gold Dan", "thisisourworld@nightspire.net", "felclaws", 8971661668, 017582440, "982686" );
 
 INSERT INTO DRIVER ( id, name, email, password, phone, license_num, license_plate_num) 
-   VALUES ( 6, "Pete Danhill", "Pdanhill@userspace.net", "turkeysandwich", 7778889999, 103382645, "MST167" );
+   VALUES ( 6, "Pete Danhill", "Pdanhill@userspace.net", "turkeysandwich", 7778889999, 103382645, "918167" );
 
 INSERT INTO DRIVER ( id, name, email, password, phone, license_num, license_plate_num) 
-   VALUES ( 7, "Oswaldo Moriss", "Oswaldo@howdidigetthis.net", "dontlickme", 8641396348, 103972513, "NW785S" );
+   VALUES ( 7, "Oswaldo Moriss", "Oswaldo@howdidigetthis.net", "dontlickme", 8641396348, 103972513, "817852" );
 
 INSERT INTO DRIVER ( id, name, email, password, phone, license_num, license_plate_num) 
-   VALUES ( 8, "Pete Jimbo", "thejimbonator@yahoo.com", "jimbonthesenuts", 2248976425, 059472625, "825HJW" );
+   VALUES ( 8, "Pete Jimbo", "thejimbonator@yahoo.com", "jimbonthesenuts", 2248976425, 059472625, "817726" );
 
 INSERT INTO DRIVER ( id, name, email, password, phone, license_num, license_plate_num ) 
-   VALUES ( 9, "philly bob", "phillybob236@neopets.com", "phillybpspill", 52136845326, 163729402, "KQ92KQ" );
+   VALUES ( 9, "philly bob", "phillybob236@neopets.com", "phillybpspill", 52136845326, 163729402, "919212" );
 
 INSERT INTO DRIVER ( id, name, email, password, phone, license_num, license_plate_num) 
-   VALUES ( 10, "Bob Sagget", "Saggenator226@hotmail.com", "iliketosag", 2288753951, 104826153, "PLW92J" );
+   VALUES ( 10, "Bob Sagget", "Saggenator226@hotmail.com", "iliketosag", 2288753951, 104826153, "912927" );
 
 INSERT INTO DRIVER_SPONSOR(driver_id, sponsor_id, points)
    VALUES (1,1,82);
