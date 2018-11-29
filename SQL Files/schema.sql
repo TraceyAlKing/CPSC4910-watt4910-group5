@@ -27,6 +27,8 @@ CREATE TABLE DRIVER
    password          VARCHAR(64)   NOT NULL,
    phone             BIGINT(10) unsigned  NOT NULL,
    address           VARCHAR(256),
+   license_num       INT unsigned,
+   license_plate_num VARCHAR(64),
    PRIMARY KEY (id)
 );
 CREATE TABLE DRIVER_SPONSOR

@@ -28,7 +28,7 @@ class User {
 		User(const User& other);
 		User& operator=(const User& rhs);
 		virtual ~User(); 
-                void registerUser(string us, string ps, string nm, string em, long ph, string ad);
+      void registerUser(string us, string ps, string nm, string em, long ph, string ad);
 		string getName();
 		string getUsername();
 		string getPassword();
@@ -51,7 +51,7 @@ class User {
                 void removeAddress(int i);
                 int getNumAddress();
 		
-		void changePassword();
+		void changePassword(string oldp, string newp);
 };
 
 #endif //USER_HPP

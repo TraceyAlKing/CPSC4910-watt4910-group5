@@ -6,6 +6,7 @@
 #include <fstream>
 #include <cstdlib>
 #include <map>
+#include <vector>
 
 using namespace std;
 
@@ -19,6 +20,7 @@ class Driver: public User {
 		
 		int points_[10];
 		map<int, int> points_map_;
+      vector<int> sponsor_vec_;
 
 		int pointNum_;
 		
@@ -29,13 +31,14 @@ class Driver: public User {
       string status_;
 	public:
 		Driver(std::string id, std::string name, std::string email, std::string password,
-                        std::string phone, std::string address, std::string status);
+                        std::string phone, std::string address, std::string status,
+                        std::string license_num, std::string license_plate_num);
 		Driver(const Driver& other);
       Driver& operator=(const Driver& rhs);
 		Driver();
 		~Driver(); 
 		
-                void registerDriver(string us, string ps, string nm, string em, long ph, string ad, int ln, string lp);
+      void registerDriver(string us, string ps, string nm, string em, long ph, string ad, int ln, string lp);
 		
 		int* getPoints();
 		int getPoints(int sid);
@@ -48,6 +51,7 @@ class Driver: public User {
 		int getLicenseNum();
 		int getNumPlates();
 		int* getPlates();
+      int getFirstPlate(); //Database only has one plate currently
 		void saveDriver();
 		void updateDriver();
 		
@@ -55,10 +59,10 @@ class Driver: public User {
 
 		void setLNum(int i);
 		
-		void updateLNum();
-                void addLP(int i);
-                void removeLP(int i);
-                int* viewLP();
+		void updateLNum(int l);
+      void addLP(int i);
+      void removeLP(int i);
+      int* viewLP();
 		
 		int getLNumNum();
 		void setLPNum(string* i, int j);
