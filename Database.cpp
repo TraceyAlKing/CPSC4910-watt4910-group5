@@ -572,6 +572,43 @@ void Database::updateSponsor(std::string id, std::string name, std::string email
     createCatalog(it);
   }
 }
+  
+ void getSponsorDrivers(std::string sid, std::vector<int> &drivers){
+  try {
+    //Build statement
+    std::stringstream sstr;
+    sstr << "SELECT driver_id FROM DRIVER_SPONSOR WHERE sponsor_id = " << "\"" << sid << "\";";
+
+    //Execute statement
+    std::cout << "Attempting statement: " << sstr.str() << std::endl;
+    stmt_ = con_->createStatement();
+    res_ = stmt_->executeQuery(sstr.str());
+    std::cout << "\t... MySQL replies: " << std::endl;
+
+    //Parse results
+    while (res_->next()) {
+      /* Access column data by alias or column name */
+      std::cout << "\t-------------------------------------------" << std::endl;
+      std::cout << "\tsponsor: "<< res_->getString("sponsor_id") << std::endl;
+      drivers.push_back(res_->getInt(driver_id));
+
+
+    }
+    std::cout << "\t-------------------------------------------" << std::endl;
+    std::cout << "\t... MySQL replies: Success." << std::endl;
+    return count;
+
+  } catch (sql::SQLException &e) {
+    std::cout << "# ERR: SQLException in " << __FILE__;
+    std::cout << "(" << __FUNCTION__ << ") on line "
+       << __LINE__ << std::endl;
+    std::cout << "# ERR: " << e.what();
+    std::cout << " (MySQL error code: " << e.getErrorCode();
+    std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
+    return 0;
+  }
+
+ }
 
 void Database::removeAdmin(std::string id){
   try {
@@ -1133,8 +1170,7 @@ void Database::updateCatalog(int cat_id, std::vector<int> &items){
   }
 }	
 
-std::vector<int> getSponsorCatalogs(std::string sid){
-  std::vector<int> catids;
+void getSponsorCatalogs(std::string sid, std::vector<int> &catalogs){
   try {
     //Build statement
     std::stringstream sstr;
@@ -1149,7 +1185,7 @@ std::vector<int> getSponsorCatalogs(std::string sid){
     int count = 0;
     while (res_->next()) {
       /* Access column data by alias or column name */
-      catids.push_back(res_->getInt("cat_id"));
+      catalogs.push_back(res_->getInt("cat_id"));
       count++;
     }
     std::cout << "\t... MySQL replies: Success." << std::endl;
@@ -1162,7 +1198,6 @@ std::vector<int> getSponsorCatalogs(std::string sid){
     std::cout << " (MySQL error code: " << e.getErrorCode();
     std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
   }
-  return itemids;
 
 }
 
