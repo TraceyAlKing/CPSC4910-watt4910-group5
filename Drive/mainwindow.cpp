@@ -209,7 +209,7 @@ void MainWindow::on_pushButton_driver_address_Add_clicked()
 {
     QString newAddress = ui->lineEdit_driver_address->text();
     std::string address = newAddress.toStdString();
-    static_cast<Driver*>(CurrUser)->addAddress(address);
+    static_cast<Driver*>(CurrUser)->setAddress(address);
     updateDriver();
 }
 
