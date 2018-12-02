@@ -11,6 +11,7 @@
 #include "Item.hpp"
 #include "Catalog.hpp"
 #include <map>
+#include <driverinfo.h>
 
 namespace Ui {
 class MainWindow;
@@ -34,7 +35,18 @@ private slots:
     void on_sponsor_Account_clicked();
     void on_sponsor_Home_Button_clicked();
 
+    void on_pushButton_driver_name_Change_clicked();
+    void on_pushButton_driver_email_Change_clicked();
+    void on_pushButton_driver_ln_Change_clicked();
+    void on_pushButton_driver_phone_Change_clicked();
+    void on_pushButton_driver_LP_Add_clicked();
+    void on_pushButton_driver_address_Add_clicked();
+
     void on_driver_table_cellClicked(int row, int column);
+
+    void updateDriver();
+    void updateSponsor();
+    void updateAdmin();
 
 private:
     Ui::MainWindow *ui;
@@ -63,6 +75,8 @@ private:
     std::map<int, Sponsor*> sponsor_list_;
     std::map<int, Catalog*> catalog_list_;
     std::map<int, Item*> item_list_;
+
+    DatabaseInterface dbi;
 
 
 };
