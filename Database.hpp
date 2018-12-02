@@ -44,7 +44,7 @@ public:
    Sponsor* getSponsor(std::string id);
    void removeSponsor(std::string id);
    void getSponsors(std::map<int, Sponsor*>* add_to_sponsor_list);
-   void updateSponsor(std::string id, std::string name, std::string email, std::string password, std::string phone, std::string point_value, std::vector<int> &catalogs);
+   void updateSponsor(std::string id, std::string name, std::string email, std::string password, std::string phone, std::string point_value, std::vector<int> &catalogs, std::vector<int> &drivers);
    void getSponsorDrivers(std::string sid, std::vector<int> &drivers);
 
    //Admin calls

@@ -88,7 +88,7 @@ void Sponsor::saveSponsor()
 
 void Sponsor::updateSponsor(){
 
-	db().updateSponsor(std::to_string(getID()), getName(), getEmail(), getPassword(), std::to_string(getPhone()), std::to_string(getPV()));
+	db().updateSponsor(std::to_string(getID()), getName(), getEmail(), getPassword(), std::to_string(getPhone()), std::to_string(getPV()), Catalogs_, Drivers_);
 }
 
 void Sponsor::addDriver(int id)

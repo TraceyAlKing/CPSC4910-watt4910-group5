@@ -507,7 +507,7 @@ Sponsor* Database::getSponsor(std::string id){
   }
 }
   
-void Database::updateSponsor(std::string id, std::string name, std::string email, std::string password, std::string phone, std::string point_value, std::vector<int> &catalogs){
+void Database::updateSponsor(std::string id, std::string name, std::string email, std::string password, std::string phone, std::string point_value, std::vector<int> &catalogs, std::vector<int> &drivers){
   try {
     //update based on id
     std::stringstream sstr;
@@ -539,7 +539,7 @@ void Database::updateSponsor(std::string id, std::string name, std::string email
   std::vector<int> toremove;
   std::vector<int> toadd;
 
-  oldcatalogs=getSponsorCatalogs(id);
+  getSponsorCatalogs(id,oldcatalogs);
 
   bool found;
 
@@ -570,6 +570,61 @@ void Database::updateSponsor(std::string id, std::string name, std::string email
 
   for(auto it : toadd){
     createCatalog(it);
+  }
+
+  std::vector<int> olddrivers;
+  toremove.clear();
+  toadd.clear();
+
+  getDriverSponsors(id,olddrivers);
+
+
+  for(auto it1 : drivers){
+    found = false;
+    for(auto it2 : olddrivers){
+      if(it1==it2) found = true;
+    }
+    if(!found) toadd.push_back(it1);
+  }
+
+
+  for(auto it2 : olddrivers){
+    found = false;
+    for(auto it1 : drivers){
+      if(it2==it1) found = true;
+    }
+    if(!found) toremove.push_back(it2);
+  }
+
+  try{
+    for(auto it : toremove){
+      sstr << "DELETE FROM DRIVER_SPONSOR WHERE sponsor_id = \'" << id << "\' " << "AND driver_id = \'" << it << "\'";
+
+        std::cout << "Attempting statement: " << sstr.str() << std::endl;
+        stmt_ = con_->createStatement();
+        stmt_->execute(sstr.str());
+        std::cout << "\t... MySQL replies: Success." << std::endl;
+    }
+
+    sstr.str(std::string());
+
+    for(auto it : toadd){
+      sstr << "INSERT INTO CATALOG_AMAZON_ITEM (sponsor_id, driver_id, points ) VALUES ( \"" << id << "\", \"" << it << "\", 0);";
+
+        std::cout << "Attempting statement: " << sstr.str() << std::endl;
+        stmt_ = con_->createStatement();
+        stmt_->execute(sstr.str());
+        std::cout << "\t... MySQL replies: Success." << std::endl;
+    }
+
+  } catch (sql::SQLException &e) {
+    std::cout << "# ERR: SQLException in " << __FILE__;
+    std::cout << "(" << __FUNCTION__ << ") on line "
+       << __LINE__ << std::endl;
+    std::cout << "# ERR: " << e.what();
+    std::cout << " (MySQL error code: " << e.getErrorCode();
+    std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
+    return 0;
   }
 }
   
@@ -605,7 +660,6 @@ void Database::updateSponsor(std::string id, std::string name, std::string email
     std::cout << "# ERR: " << e.what();
     std::cout << " (MySQL error code: " << e.getErrorCode();
     std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
-    return 0;
   }
 
  }
