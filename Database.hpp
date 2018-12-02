@@ -44,7 +44,7 @@ public:
    Sponsor* getSponsor(std::string id);
    void removeSponsor(std::string id);
    void getSponsors(std::map<int, Sponsor*>* add_to_sponsor_list);
-   void updateSponsor(std::string id, std::string name, std::string email, std::string password, std::string phone, std::string point_value);
+   void updateSponsor(std::string id, std::string name, std::string email, std::string password, std::string phone, std::string point_value, std::vector<int> &catalogs);
 
    //Admin calls
    void createAdmin(std::string name, std::string email, std::string password, std::string phone);
@@ -67,6 +67,7 @@ public:
    void removeCatalog(std::string id);
    void getCatalogs();
    void updateCatalog(int cat_id, std::vector<int> &items);
+   std::vector<int> getSponsorCatalogs(std::string sid);
 
    //DON'T USE THIS ONE, this function is here for testing purposes
    std::string executeUnguardedStatement(std::string str);

@@ -507,7 +507,7 @@ Sponsor* Database::getSponsor(std::string id){
   }
 }
   
-void Database::updateSponsor(std::string id, std::string name, std::string email, std::string password, std::string phone, std::string point_value){
+void Database::updateSponsor(std::string id, std::string name, std::string email, std::string password, std::string phone, std::string point_value, std::vector<int> &catalogs){
   try {
     //update based on id
     std::stringstream sstr;
@@ -531,6 +531,45 @@ void Database::updateSponsor(std::string id, std::string name, std::string email
     std::cout << "# ERR: " << e.what();
     std::cout << " (MySQL error code: " << e.getErrorCode();
     std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
+  }
+
+  //here we update the catalog list
+
+  std::vector<int> oldcatalogs;
+  std::vector<int> toremove;
+  std::vector<int> toadd;
+
+  oldcatalogs=getSponsorCatalogs(id);
+
+  bool found;
+
+  for(auto it1 : catalogs){
+    found = false;
+    for(auto it2 : olditems){
+      if(it1==it2) found = true;
+    }
+    if(!found) toadd.push_back(it1);
+  }
+
+
+  for(auto it2 : olditems){
+    found = false;
+    for(auto it1 : items){
+      if(it2==it1) found = true;
+    }
+    if(!found) toremove.push_back(it2);
+  }
+
+  sstr.str(std::string());
+
+  for(auto it : toremove){
+    removeCatalog(it);
+  }
+
+  sstr.str(std::string());
+
+  for(auto it : toadd){
+    createCatalog(it);
   }
 }
 
@@ -898,6 +937,26 @@ std::vector<int> Database::getCatalogItems(std::string id){
 }
 
 void Database::removeCatalog(std::string id){
+
+  try {
+    //DELETE FROM somelog WHERE user = 'jcole'
+    std::stringstream sstr;
+    sstr << "DELETE FROM CATALOG_AMAZON_ITEM WHERE cat_id = \'";
+    sstr << id << "\';";
+
+    std::cout << "Attempting statement: " << sstr.str() << std::endl;
+    stmt_ = con_->createStatement();
+    stmt_->execute(sstr.str());
+    std::cout << "\t... MySQL replies: Success." << std::endl;
+
+  } catch (sql::SQLException &e) {
+    std::cout << "# ERR: SQLException in " << __FILE__;
+    std::cout << "(" << __FUNCTION__ << ") on line "
+       << __LINE__ << std::endl;
+    std::cout << "# ERR: " << e.what();
+    std::cout << " (MySQL error code: " << e.getErrorCode();
+    std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
+  }
   try {
     //DELETE FROM somelog WHERE user = 'jcole'
     std::stringstream sstr;
@@ -1074,6 +1133,38 @@ void Database::updateCatalog(int cat_id, std::vector<int> &items){
   }
 }	
 
+std::vector<int> getSponsorCatalogs(std::string sid){
+  std::vector<int> catids;
+  try {
+    //Build statement
+    std::stringstream sstr;
+    sstr << "SELECT cat_id FROM CATALOG WHERE my_sponsor_id = " << "\"" << sid << "\";";
+
+    //Execute statement
+    std::cout << "Attempting statement: " << sstr.str() << std::endl;
+    stmt_ = con_->createStatement();
+    res_ = stmt_->executeQuery(sstr.str());
+
+    //Parse results
+    int count = 0;
+    while (res_->next()) {
+      /* Access column data by alias or column name */
+      catids.push_back(res_->getInt("cat_id"));
+      count++;
+    }
+    std::cout << "\t... MySQL replies: Success." << std::endl;
+
+  } catch (sql::SQLException &e) {
+    std::cout << "# ERR: SQLException in " << __FILE__;
+    std::cout << "(" << __FUNCTION__ << ") on line "
+       << __LINE__ << std::endl;
+    std::cout << "# ERR: " << e.what();
+    std::cout << " (MySQL error code: " << e.getErrorCode();
+    std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
+  }
+  return itemids;
+
+}
 
 std::string Database::executeUnguardedStatement(std::string str){
   try {

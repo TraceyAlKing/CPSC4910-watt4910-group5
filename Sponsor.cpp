@@ -13,6 +13,10 @@ Sponsor::Sponsor(std::string id, std::string name, std::string email, std::strin
 		std::string phone, std::string address, std::string point_value) : 
 		User(id, name, email, password, phone, address), point_value_(stoi(point_value))
 {
+	std::vector<int> ids = db().getSponsorCatalogs(id);
+	for( int i : ids){
+		catids.push_back(db().getAmazonItem(std::to_string(i)));
+	}
 
 }
 Sponsor::Sponsor(const Sponsor& other) : User(other), point_value_(other.point_value_)
