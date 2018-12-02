@@ -124,17 +124,18 @@ void User::setID(string i)
 {
 	id_ = atoi(i.c_str());
 }
-
-void User::setAddress(string* i, int j)
+void User::setAddress(string s)
 {
-	addNum_ = j;
-	for(int k = 0; k < j; k++)
-	{
-		address_[k] = i[k];
-	}
+	address_[0] = s;
 }
 
-void User::addAddress(string i)
+void User::setAddress(string s, int i)
+{
+	if(i < 10)
+		address_[i] = s;
+}
+
+void User::addAddress(string s, int i)
 {
         if(addNum_ < 10)
 	{
@@ -146,31 +147,23 @@ void User::addAddress(string i)
 
 void User::removeAddress(int i)
 {
-	int input;
-	cin >> input;
-	while(input < addNum_)
-	{
-		address_[input] = address_[input+1]; 
-		input++;
-	}
-	address_[addNum_] = "NULL";
-	addNum_--;
+	address_[i] = "";
 }
 
 
 int User::getNumAddress()
 {
-	return addNum_;
+	return 1;
 }
 
-string * User::getAddress()
+std::string User::getAddress()
 {
-	return address_;
+	return address_[0];
 }
 
 void User::changePassword(string oldp, string newp)
 {
-        if(oldp == password_)
+	if(oldp == password_)
 	{
             password_ = newp;
 	}
