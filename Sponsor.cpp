@@ -29,20 +29,10 @@ Sponsor& Sponsor::operator=(const Sponsor& rhs)
 }
 Sponsor::Sponsor()
 {
-	numDrivers_ = 0;
 }
 
 Sponsor::~Sponsor()
 {
-}
-
-void Sponsor::setDrivers(string* i, int j)
-{
-	numDrivers_ = j;
-	for(int k = 0; k < j; k++)
-	{
-		Drivers_[k]  = i[k];
-	}
 }
 
 
@@ -50,10 +40,9 @@ void Sponsor::registerSponsor(string us, string ps, string nm, string em, long p
 {
         registerUser(us, ps, nm, em, ph, ad);
 	
-        numDrivers_ = 0;
         point_value_ = pv;
 }
-
+/*
 void Sponsor::saveSponsor()
 {
 	ofstream myfile;
@@ -90,42 +79,32 @@ void Sponsor::saveSponsor()
 			myfile << sponss[p] << "\n";
 		}
 		myfile << "ENDSPONS" << "\n";
-	/*instead of lisence plate number, show drivers*/
+	instead of lisence plate number, show drivers 
 }
+
+*/
 
 void Sponsor::updateSponsor(){
 
 	db().updateSponsor(std::to_string(getID()), getName(), getEmail(), getPassword(), std::to_string(getPhone()), std::to_string(getPV()));
 }
 
-void Sponsor::addDriver(string input)
+void Sponsor::addDriver(int id)
 {
 	//string input;
-	bool tf = checkForDriver(input);
+	auto it = std::find(Drivers_.begin(), Drivers_.end(), id);
+		if(it == Drivers_.end())
+   		Drivers_.push_back(id);
 }
 
 void Sponsor::removeDriver(int input)
 {
-        if(input >= 0 && input <= numDrivers_)
-	{
-		string p = Drivers_[input];
-		
-		while(input < numDrivers_)
-		{
-			Drivers_[input] = Drivers_[input+1]; 
-			input++;
-		}
-		Drivers_[numDrivers_] = "NULL";
-                numDrivers_--;
-		
-		Driver t, t2;
-		t2 = t.setDriver(p);
-		string idno = to_string(getID());
-                t2.removeSponsor(idno);
-		t2.saveDriver();
-	}
+	auto it = std::find(Drivers_.begin(), Drivers_.end(), input);
+		if(it != Drivers_.end())
+   		Drivers_.erase(it);
 }
 
+/*
 void Sponsor::removeDriverWInput(string i)
 {
         int u = 0;
@@ -144,7 +123,8 @@ void Sponsor::removeDriverWInput(string i)
 		}
 	}
 }
-
+*/
+/*
 Sponsor Sponsor::setSponsor(string f)
 {
 	bool add = false;
@@ -232,12 +212,9 @@ Sponsor Sponsor::setSponsor(string f)
 		}
 		return d;
 }
+*/
 
-int Sponsor::getSponNum()
-{
-	return numDrivers_;
-}
-
+/*
 bool Sponsor::checkForDriver (string name) {
 	string str;
 	ifstream in(name);
@@ -252,8 +229,8 @@ bool Sponsor::checkForDriver (string name) {
 				numDrivers_++;
 				Driver d;
 				d = d.setDriver(name);
-				d.addSponsor(to_string(getID()));
-				d.saveDriver();
+				d.addSponsor(getID());
+				//d.saveDriver();
 				return true;
 		}
 		else
@@ -267,12 +244,14 @@ bool Sponsor::checkForDriver (string name) {
         return false;
     }   
 }
+*/
 
-string* Sponsor::getDrivers()
+void Sponsor::getDrivers(std::vector<int>& drivers)
 {
-	return Drivers_;
+	for(auto it : Drivers_)
+		drivers.push_back(it);
 }
-
+/*
 void Sponsor::changePoints(int input, int i)
 {
         if(input >= 0 && input <= numDrivers_)
@@ -282,10 +261,15 @@ void Sponsor::changePoints(int input, int i)
 	
 		Driver t, t2;
 		t2 = t.setDriver(p);
-		string idno = to_string(getID());
-                t2.setPointsFromSponsor(idno, i);
-		t2.saveDriver();
+		int idno = getID();
+      t2.setPointsFromSponsor(idno, i);
+		//t2.saveDriver();
 	}
+}
+*/
+
+int Sponsor::getNumDrivers(){
+	return Drivers_.size();
 }
 
 int Sponsor::getPV()
@@ -293,12 +277,11 @@ int Sponsor::getPV()
     return point_value_;
 }
 
-void Sponsor::setPV(string i)
+void Sponsor::setPV(int i)
 {
-     point_value_ = atoi(i.c_str());
+     point_value_ = i;
 }
-
-int Sponsor::getNumDrivers()
+void Sponsor::setPV(std::string s)
 {
-    return numDrivers_;
+     point_value_ = std::stoi(s);
 }

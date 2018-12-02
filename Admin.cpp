@@ -11,7 +11,7 @@ using namespace std;
 #include "Database.hpp"
 
 Admin::Admin(std::string id, std::string name, std::string email, std::string password,
-		std::string phone, std::string address) : User(id, name, email, password, phone, address) 
+		std::string phone, std::string address) : User(id, name, email, password, phone, address)
 {
 
 }
@@ -47,16 +47,16 @@ void Admin::registerDriver()
 {
 	Driver d;
     //d.registerDriver();
-	d.saveDriver();
+	//d.saveDriver();
 }
 
 void Admin::registerSponsor()
 {
 	Sponsor s;
     //s.registerSponsor();
-	s.saveSponsor();
+	//s.saveSponsor();
 }
-
+/*
 void Admin::saveAdmin()
 {
 	ofstream myfile;
@@ -64,7 +64,7 @@ void Admin::saveAdmin()
 	string filename =  to_string(p);
 	const char* file = filename.c_str();
 	myfile.open(file);
-	
+
 	myfile << "Admin" << "\n";
 
 	myfile << getUsername() << "\n";
@@ -73,17 +73,17 @@ void Admin::saveAdmin()
 	myfile << getEmail() << "\n";
 	myfile << getPhone() << "\n";
 	myfile << "ADDRESS" << "\n";
-	
+
 	int n = getNumAddress();
 	string* addresses = getAddress();
 	for(int p = 0; p < n; p++)
 	{
 		myfile << addresses[p] << "\n";
 	}
-	
+
 		myfile << "ENDADDRESS" << "\n";
 }
-
+*/
 void Admin::updateAdmin(){
 
 	db().updateAdmin(std::to_string(getID()), getName(), getEmail(), getPassword(), std::to_string(getPhone()));
@@ -95,14 +95,14 @@ void Admin::updateAdmin(){
 	cout << "Enter a user to view their info" << endl;
 	cin >> input;
 	bool yn = checkForUser(input);
-	
+
 	string str;
-	
+
 	bool add = true;
 	bool plate = true;
-	
+
 	ifstream in(input);
-	
+
 	if(yn == true)
 	{
 		int addrNum = 1;
@@ -136,7 +136,7 @@ void Admin::updateAdmin(){
 						add = false;
 					}
 					else
-					{	
+					{
 						cout << "Address "<< addrNum << ": " << str << endl;
 						addrNum++;
 					}
@@ -150,11 +150,11 @@ void Admin::updateAdmin(){
 						plate = false;
 					}
 					else
-					{	
+					{
 						cout << "Plate "<< pltNum << ": " << str << endl;
 						pltNum++;
 					}
-				}				
+				}
 		}
 		else if(str == "Sponsor")
 		{
@@ -180,7 +180,7 @@ void Admin::updateAdmin(){
 						add = false;
 					}
 					else
-					{	
+					{
 						cout << "Address "<< addrNum << ": " << str << endl;
 						addrNum++;
 					}
@@ -194,11 +194,11 @@ void Admin::updateAdmin(){
 						plate = false;
 					}
 					else
-					{	
+					{
 						cout << "Driver "<< pltNum << ": " << str << endl;
 						pltNum++;
 					}
-				}				
+				}
 		}
 		else if(str == "Admin")
 		{
@@ -222,7 +222,7 @@ void Admin::updateAdmin(){
 						add = false;
 					}
 					else
-					{	
+					{
 						cout << "Address "<< addrNum << ": " << str << endl;
 						addrNum++;
 					}
@@ -235,19 +235,19 @@ void Admin::updateAdmin(){
 	}
 }*/
 
-bool Admin::checkForUser(string name) 
+bool Admin::checkForUser(string name)
 {
 	string str;
 	ifstream in(name);
-	
-    if (FILE *file = fopen(name.c_str(), "r")) 
+
+    if (FILE *file = fopen(name.c_str(), "r"))
 	{
 		return true;
-    } 
-	else 
+    }
+	else
 	{
         return false;
-    }   
+    }
 }
 
 void Admin::listOfFiles()
@@ -274,7 +274,7 @@ void Admin::listOfUsernames()
    if (dir == NULL) {
       return;
    }
-   while ((entry = readdir(dir)) != NULL) 
+   while ((entry = readdir(dir)) != NULL)
    {
    		string name = entry->d_name;
 		ifstream in(name);
@@ -312,7 +312,7 @@ void Admin::listOfAdminUsernames()
    if (dir == NULL) {
       return;
    }
-   while ((entry = readdir(dir)) != NULL) 
+   while ((entry = readdir(dir)) != NULL)
    {
    		string name = entry->d_name;
 		ifstream in(name);
@@ -330,7 +330,7 @@ void Admin::listOfAdminUsernames()
    closedir(dir);
 }
 */
-
+/*
 void Admin::viewAllDrivers()
 {
 	struct dirent *entry;
@@ -338,7 +338,7 @@ void Admin::viewAllDrivers()
    if (dir == NULL) {
       return;
    }
-   while ((entry = readdir(dir)) != NULL) 
+   while ((entry = readdir(dir)) != NULL)
    {
    		string name = entry->d_name;
 		ifstream in(name);
@@ -362,7 +362,7 @@ void Admin::viewAllSponsors()
    if (dir == NULL) {
       return;
    }
-   while ((entry = readdir(dir)) != NULL) 
+   while ((entry = readdir(dir)) != NULL)
    {
    		string name = entry->d_name;
 		ifstream in(name);
@@ -378,7 +378,8 @@ void Admin::viewAllSponsors()
    }
    closedir(dir);
 }
-
+*/
+/*
 void Admin::viewAllAdmins()
 {
 	struct dirent *entry;
@@ -386,7 +387,7 @@ void Admin::viewAllAdmins()
    if (dir == NULL) {
       return;
    }
-   while ((entry = readdir(dir)) != NULL) 
+   while ((entry = readdir(dir)) != NULL)
    {
    		string name = entry->d_name;
 		ifstream in(name);
@@ -405,7 +406,7 @@ void Admin::viewAllAdmins()
 
 void Admin::deleteUser(string name)
 {
-	
+
 	ifstream in(name);
 	if(FILE *file = fopen(name.c_str(), "r"))
 		{
@@ -447,6 +448,7 @@ void Admin::deleteUser(string name)
 		}
 
 }
+*/
 /* @TODO: add this code back, errors compiling
 void Admin::editUser()
 {
@@ -487,11 +489,11 @@ Admin Admin::setAdmin(string f)
 	bool add = false;
 	string addr[10];
 	int addrNum = 0;
-	
+
 		const char *buff = f.c_str();
 
 		ifstream in(buff);
-		
+
         Admin d = Admin();
 
 		string str;
@@ -563,9 +565,9 @@ Admin Admin::setAdmin(string f)
 	cout << "Drop Sponsor (Q)" << endl;
 	char v;
 	cin >> v;
-	
+
 	string input;
-	
+
 	if(v == 'J')
 	{
 		cout << "Type in new username" << endl;
@@ -631,16 +633,16 @@ Admin Admin::setAdmin(string f)
 		{
 			Sponsor s, s2;
 			cout << "Sponsor: " << h << endl;
-			
+
 			s = s2.setSponsor(h);
 			s.removeDriverWInput(to_string(name.getID()));
 			s.saveSponsor();
-			
+
 			//name.setSponsor("N/A");
 			name.saveDriver();
                         //cout << "Sponsor removed from Driver" << endl;
 		}
-	}	
+	}
 }
 
 void Admin::editAdmin(Admin name)
@@ -656,9 +658,9 @@ void Admin::editAdmin(Admin name)
         cout << "Update Address (U)" << endl;
 	char v;
         cin >> v;
-	
+
 	string input;
-	
+
 	if(v == 'Q')
 	{
 		cout << "Type in new username" << endl;
@@ -715,9 +717,9 @@ cout << "Choose aspect to edit" << endl;
 	cout << "Update Address (U)" << endl;
 	char v;
 	cin >> v;
-	
+
 	string input;
-	
+
 	if(v == 'Q')
 	{
 		cout << "Type in new username" << endl;
@@ -769,7 +771,7 @@ string viewUsernameDriver(Driver d)
 void setUsernameDriver(Driver d, string p)
 {
     d.setUsername(p);
-    d.saveDriver();
+    //d.saveDriver();
 }
 
 string viewUsernameSponsor(Sponsor d)
@@ -780,7 +782,7 @@ string viewUsernameSponsor(Sponsor d)
 void setUsernameSponsor(Sponsor d, string p)
 {
     d.setUsername(p);
-    d.saveSponsor();
+    //d.saveSponsor();
 }
 
 string viewUsernameAdmin(Admin d)
@@ -791,7 +793,7 @@ string viewUsernameAdmin(Admin d)
 void setUsernameSponsor(Admin d, string p)
 {
     d.setUsername(p);
-    d.saveAdmin();
+    //d.saveAdmin();
 }
 
 string viewPasswordDriver(Driver d)
@@ -802,7 +804,7 @@ string viewPasswordDriver(Driver d)
 void setPasswordDriver(Driver d, string p)
 {
     d.setPassword(p);
-    d.saveDriver();
+    //d.saveDriver();
 }
 
 string viewPasswordSponsor(Sponsor d)
@@ -813,7 +815,7 @@ string viewPasswordSponsor(Sponsor d)
 void setPasswordSponsor(Sponsor d, string p)
 {
     d.setPassword(p);
-    d.saveSponsor();
+    //d.saveSponsor();
 }
 
 string viewPasswordAdmin(Admin d)
@@ -824,7 +826,7 @@ string viewPasswordAdmin(Admin d)
 void setPasswordSponsor(Admin d, string p)
 {
     d.setPassword(p);
-    d.saveAdmin();
+    //d.saveAdmin();
 }
 
 string viewStatus(Driver d)
@@ -836,5 +838,3 @@ void changeStatus(Driver d)
 {
     d.switchStatus();
 }
-
-

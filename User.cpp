@@ -9,7 +9,7 @@
 User::User(std::string id, std::string name, std::string email, std::string password,
 		std::string phone, std::string address) : 
 		id_(std::stoi(id)), name_(name), email_(email), password_(password), 
-		phone_(std::stol(phone)), address_()
+		phone_(std::stol(phone)), address_(), addNum_(1)
 {
 	address_[0] = address;
 }
@@ -19,11 +19,12 @@ User::User()
 }
 
 User::User(const User& other) : id_(other.id_), name_(other.name_), email_(other.email_), password_(other.password_), 
-		phone_(other.phone_), address_()
+		phone_(other.phone_), address_(), addNum_(other.addNum_)
 {
 	//@TODO: turn address_ into a vector
-	for(int i = 0; i < 10; i++)
-		address_[i] = other.address_[i];
+	//for(int i = 0; i < 10; i++)
+	//	address_[i] = other.address_[i];
+	address_[0] = other.address_[0];
 }
 User& User::operator=(const User& rhs){
 	if(this == &rhs)
@@ -35,8 +36,10 @@ User& User::operator=(const User& rhs){
 	password_ = (rhs.password_);
 	phone_ = (rhs.phone_);
 	//@TODO: turn address_ into a vector
-	for(int i = 0; i < 10; i++)
-		address_[i] = rhs.address_[i];
+	//for(int i = 0; i < 10; i++)
+	//	address_[i] = rhs.address_[i];
+	address_[0] = rhs.address_[0];
+	addNum_ = rhs.addNum_;
 	return *this;
 }
 
