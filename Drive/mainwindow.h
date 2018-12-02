@@ -51,7 +51,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     User* CurrUser;
-    std::string* Drivers_;
+    std::vector<int> Drivers_;
 
     //HOW WE WILL HANDLE DATA: IMPORTANT
     //

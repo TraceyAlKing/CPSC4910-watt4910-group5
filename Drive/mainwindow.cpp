@@ -142,10 +142,10 @@ void MainWindow::on_sponsor_Home_Button_clicked()
     int len = static_cast<Sponsor*>(CurrUser)->getNumDrivers();
     ui->driver_table->setRowCount(len);
     //@TODO: add actual sponsors here
-    //Drivers_ = static_cast<Sponsor*>(CurrUser)->getDrivers();
+    static_cast<Sponsor*>(CurrUser)->getDrivers(Drivers_);
     for(int i = 0; i<len; i++)
     {
-        QString qstr = QString::fromStdString(dbi.getDriver(std::stoi(Drivers_[i]))->getName());
+        QString qstr = QString::fromStdString(dbi.getDriver(Drivers_[i])->getName());
         QTableWidgetItem* newItem = new QTableWidgetItem(qstr, 0);
         ui->driver_table->setItem(i, 0, newItem);
     }
@@ -153,7 +153,7 @@ void MainWindow::on_sponsor_Home_Button_clicked()
 
 void MainWindow::on_driver_table_cellClicked(int row, int column)
 {
-    Driver temp = dbi().getDriver(Drivers_[row]);
+    Driver temp = dbi.getDriver(Drivers_[row]);
     DriverInfo d;
     d.setSponsor(static_cast<Sponsor*>(CurrUser));
     d.setDriver(temp);

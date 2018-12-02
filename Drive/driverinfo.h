@@ -21,13 +21,13 @@ public:
     explicit DriverInfo(QWidget *parent = nullptr);
     ~DriverInfo();
 
-    void setDriver(Driver temp);
+    void setDriver(Driver* temp);
     void setSponsor(Sponsor* temp);
 
 
 private:
     Ui::DriverInfo *ui;
-    Driver driver;
+    Driver* driver;
     Sponsor* sponsor;
 };
 
