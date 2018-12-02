@@ -626,7 +626,7 @@ void Database::updateSponsor(std::string id, std::string name, std::string email
   }
 }
   
- void getSponsorDrivers(std::string sid, std::vector<int> &drivers){
+ void Database::getSponsorDrivers(std::string sid, std::vector<int> &drivers){
   try {
     //Build statement
     std::stringstream sstr;
