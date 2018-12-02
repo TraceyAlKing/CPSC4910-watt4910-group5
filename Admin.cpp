@@ -47,16 +47,16 @@ void Admin::registerDriver()
 {
 	Driver d;
     //d.registerDriver();
-	d.saveDriver();
+	//d.saveDriver();
 }
 
 void Admin::registerSponsor()
 {
 	Sponsor s;
     //s.registerSponsor();
-	s.saveSponsor();
+	//s.saveSponsor();
 }
-
+/*
 void Admin::saveAdmin()
 {
 	ofstream myfile;
@@ -83,12 +83,12 @@ void Admin::saveAdmin()
 	
 		myfile << "ENDADDRESS" << "\n";
 }
-
+*/
 void Admin::updateAdmin(){
 
 	db().updateAdmin(std::to_string(getID()), getName(), getEmail(), getPassword(), std::to_string(getPhone()));
 }
-
+/*
 void Admin::viewUser()
 {
 	string input;
@@ -234,7 +234,7 @@ void Admin::viewUser()
 		}
 	}
 }
-
+*/
 bool Admin::checkForUser(string name) 
 {
 	string str;
@@ -330,7 +330,7 @@ void Admin::listOfAdminUsernames()
    closedir(dir);
 }
 */
-
+/*
 void Admin::viewAllDrivers()
 {
 	struct dirent *entry;
@@ -378,7 +378,8 @@ void Admin::viewAllSponsors()
    }
    closedir(dir);
 }
-
+*/
+/*
 void Admin::viewAllAdmins()
 {
 	struct dirent *entry;
@@ -402,7 +403,8 @@ void Admin::viewAllAdmins()
    }
    closedir(dir);
 }
-
+*/
+/*
 void Admin::deleteUser()
 {
 	cout << "Type in user you want to delete" << endl;
@@ -477,6 +479,7 @@ void Admin::deleteUser()
 			cout << "File not found" << endl;
 		}
 }
+*/
 /* @TODO: add this code back, errors compiling
 void Admin::editUser()
 {
@@ -799,7 +802,7 @@ string viewUsernameDriver(Driver d)
 void setUsernameDriver(Driver d, string p)
 {
     d.setUsername(p);
-    d.saveDriver();
+    //d.saveDriver();
 }
 
 string viewUsernameSponsor(Sponsor d)
@@ -810,7 +813,7 @@ string viewUsernameSponsor(Sponsor d)
 void setUsernameSponsor(Sponsor d, string p)
 {
     d.setUsername(p);
-    d.saveSponsor();
+    //d.saveSponsor();
 }
 
 string viewUsernameAdmin(Admin d)
@@ -821,7 +824,7 @@ string viewUsernameAdmin(Admin d)
 void setUsernameSponsor(Admin d, string p)
 {
     d.setUsername(p);
-    d.saveAdmin();
+    //d.saveAdmin();
 }
 
 string viewPasswordDriver(Driver d)
@@ -832,7 +835,7 @@ string viewPasswordDriver(Driver d)
 void setPasswordDriver(Driver d, string p)
 {
     d.setPassword(p);
-    d.saveDriver();
+    //d.saveDriver();
 }
 
 string viewPasswordSponsor(Sponsor d)
@@ -843,7 +846,7 @@ string viewPasswordSponsor(Sponsor d)
 void setPasswordSponsor(Sponsor d, string p)
 {
     d.setPassword(p);
-    d.saveSponsor();
+    //d.saveSponsor();
 }
 
 string viewPasswordAdmin(Admin d)
@@ -854,7 +857,7 @@ string viewPasswordAdmin(Admin d)
 void setPasswordSponsor(Admin d, string p)
 {
     d.setPassword(p);
-    d.saveAdmin();
+    //d.saveAdmin();
 }
 
 string viewStatus(Driver d)

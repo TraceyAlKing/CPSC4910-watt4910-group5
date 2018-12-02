@@ -13,20 +13,13 @@ using namespace std;
 #include "User.hpp"
 
 class Driver: public User {
-		string sponsor_[20];
-		int sponsorNum_;
-		
 		int LNum_;
-		
-		int points_[10];
+
 		map<int, int> points_map_;
       vector<int> sponsor_vec_;
-
-		int pointNum_;
 		
 		int LPNum_[10];
 		int LPNumNumber_;
-      int currSponsor_;
 
       string status_;
 	public:
@@ -40,19 +33,16 @@ class Driver: public User {
 		
       void registerDriver(string us, string ps, string nm, string em, long ph, string ad, int ln, string lp);
 		
-		int* getPoints();
-		int getPoints(int sid);
+      int getPoints(int sid);
 		int allPoints();
-		int getPointNum();
-		
-		string* getSponsor();
-		int getSponsorNum();
+	  
+      void getSponsors(std::vector<int>& sponsors);
 		
 		int getLicenseNum();
 		int getNumPlates();
 		int* getPlates();
       int getFirstPlate(); //Database only has one plate currently
-		void saveDriver();
+		//void saveDriver();
 		void updateDriver();
 		
 		Driver setDriver(string f);
@@ -67,13 +57,11 @@ class Driver: public User {
 		int getLNumNum();
 		void setLPNum(string* i, int j);
 		
-		void setSponsors(string *i, int j);
-		void setPoints2(string *i, int j);
 		
-		int findSponsor(string i);
-                void setPointsFromSponsor(string i, int k);
-		void addSponsor(string i);
-		void removeSponsor(string i);
+		int findSponsor(int i);
+      void setPointsFromSponsor(int id, int points);
+		void addSponsor(int i);
+		void removeSponsor(int id);
 
       void switchStatus();
       void setStatus(string i);

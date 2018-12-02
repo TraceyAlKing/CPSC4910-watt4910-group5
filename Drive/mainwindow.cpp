@@ -98,7 +98,12 @@ void MainWindow::on_driver_Account_clicked()
     ui->stackedWidget_driver->setCurrentIndex(1);
     ui->lineEdit_driver_name->setText(QString::fromStdString(static_cast<Driver*>(CurrUser)->getName()));
     ui->lineEdit_driver_email->setText(QString::fromStdString(static_cast<Driver*>(CurrUser)->getEmail()));
-    ui->driver_sponsor_label->setText(QString::fromStdString(*static_cast<Driver*>(CurrUser)->getSponsor()));
+    //@TODO: Need to fix the sponsors
+    //std::vector<int> driversponsors;
+    //static_cast<Driver*>(CurrUser)->getSponsors(&driversponsors);
+    //ui->driver_sponsor_label->setText(QString::number(driversponsors));
+    ui->driver_sponsor_label->setText("Placeholder");
+    //
     ui->lineEdit_driver_ln->setText(QString::fromStdString(std::to_string(static_cast<Driver*>(CurrUser)->getLicenseNum())));
     ui->lineEdit_driver_phone->setText(QString::fromStdString(std::to_string(static_cast<Driver*>(CurrUser)->getPhone())));
 
@@ -135,7 +140,8 @@ void MainWindow::on_sponsor_Home_Button_clicked()
     ui->stackedWidget_sponsor->setCurrentIndex(0);
     int len = static_cast<Sponsor*>(CurrUser)->getNumDrivers();
     ui->driver_table->setRowCount(len);
-    Drivers_ = static_cast<Sponsor*>(CurrUser)->getDrivers();
+    //@TODO: add actual sponsors here
+    //Drivers_ = static_cast<Sponsor*>(CurrUser)->getDrivers();
     for(int i = 0; i<len; i++)
     {
         QString qstr = QString::fromStdString(Drivers_[i]);

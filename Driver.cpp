@@ -11,7 +11,6 @@ Driver::Driver(std::string id, std::string name, std::string email, std::string 
         User(id, name, email, password, phone, address), LNum_(std::stoi(license_num)), LPNum_(),
                 LPNumNumber_(1), status_()
 {
-	//sponsor_ = "";
    LPNum_[0] = std::stoi(license_plate_num);
 	db().getPoints(getID(), points_map_);
 	db().getDriverSponsors(getID(), sponsor_vec_);
@@ -19,7 +18,6 @@ Driver::Driver(std::string id, std::string name, std::string email, std::string 
 
 Driver::Driver()
 {
-	//sponsor_ = "";
 	//points_ = 0;
 }
 Driver::Driver(const Driver& other) : User(other), LNum_(other.LNum_), LPNumNumber_(other.LPNumNumber_), status_(other.status_)
@@ -62,10 +60,8 @@ void Driver::registerDriver(string us, string ps, string nm, string em, long ph,
 	//cout << "Sponsor set to N/A" << endl;
 	//sponsor = "N/A";
 	
-	sponsorNum_ = 0;
 
 	//cout << "Points set to 0" << endl;
-	pointNum_ = 0;
 	
         //cout << "Enter License Number: ";
         LNum_ = ln;
@@ -76,11 +72,6 @@ void Driver::registerDriver(string us, string ps, string nm, string em, long ph,
 	LPNumNumber_ = 1;
 
         status_ = "Active";
-}
-
-int* Driver::getPoints()
-{
-	return points_;
 }
 
 int Driver::getPoints(int sid){
@@ -97,21 +88,12 @@ int Driver::allPoints(){
 	return sum;
 }
 
-int Driver::getSponsorNum()
+void Driver::getSponsors(std::vector<int>& sponsors)
 {
-	return sponsorNum_;
+	for(auto it : sponsor_vec_)
+		sponsors.push_back(it);
 }
-
-int Driver::getPointNum()
-{
-	return pointNum_;
-}
-
-string* Driver::getSponsor()
-{
-	return sponsor_;
-}
-
+/*
 void Driver::saveDriver()
 {
 	ofstream myfile;
@@ -132,23 +114,26 @@ void Driver::saveDriver()
 	
 	myfile << "SPONS" << "\n";
 	
-	int n = getSponsorNum();
+	
 	string* sponsor = getSponsor();
 	for(int p = 0; p < n; p++)
 	{
-		myfile << sponsor[p] << "\n";
+		myfile << sponsor_vec_[p] << "\n";
 	}
 	
+
+
 	myfile << "ENDSPONS" << "\n";
 	
 	myfile << "ALLPOINTS" << "\n";
 	
-	n = getPointNum();
+	
 	int* points = getPoints();
 	for(int p = 0; p < n; p++)
 	{
 		myfile << points[p] << "\n";
 	}
+	
 	
 	myfile << "ENDPTS" << "\n";
 	
@@ -174,6 +159,7 @@ void Driver::saveDriver()
 		myfile << "ENDPLATES" << "\n";
 		
 }
+*/
 
 void Driver::updateDriver(){
 
@@ -221,23 +207,6 @@ void Driver::setLPNum(string* i, int j)
 	}
 }
 
-void Driver::setSponsors(string* i, int j)
-{
-	sponsorNum_ = j;
-	for(int k = 0; k < j; k++)
-	{
-		sponsor_[k]  = i[k];
-	}
-}
-
-void Driver::setPoints2(string* i, int j)
-{
-	pointNum_ = j;
-	for(int k = 0; k < j; k++)
-	{
-		points_[k]  = atoi(i[k].c_str());
-	}
-}
 
 void Driver::addLP(int i)
 {
@@ -266,7 +235,7 @@ int* Driver::viewLP()
 {
         return LPNum_;
 }
-
+/*
 Driver Driver::setDriver(string f)
 {
 	bool add = false;
@@ -342,15 +311,17 @@ Driver Driver::setDriver(string f)
 					plt = false;
 					d.setLPNum(plts,pltNum);
 				}
+				
 				if(str == "ENDSPONS")
 				{
 					spo = false;
 					d.setSponsors(sponso,sNum);
 				}
+				
 				if(str == "ENDPTS")
 				{
 					pts = false;
-					d.setPoints2(poin,pNum);
+					//d.setPoints2(poin,pNum);
 				}
 				if(add == true)
 				{
@@ -393,51 +364,35 @@ Driver Driver::setDriver(string f)
 		}
 		return d;
 }
+*/
 
-int Driver::findSponsor(string i)
+void Driver::setPointsFromSponsor(int id, int points)
 {
-	for(int p = 0; p < sponsorNum_; p++)
-	{
-		if(i == sponsor_[p])
-		{
-			return p;
-		}
+	bool found = false;
+	for(auto it : sponsor_vec_){
+		if (it == id)
+			found = true;
 	}
-	return -1;
+	if(found)
+		points_map_[id] = points;
 }
 
-void Driver::setPointsFromSponsor(string i, int u)
+void Driver::addSponsor(int i)
 {
-	int f;
-	int n = findSponsor(i);
-	if(n != -1)
-	{
-            points_[n] = points_[n] + u;
+	bool found = false;
+	for(auto it : sponsor_vec_){
+		if(i == it)
+			found = true;
 	}
+	if(!found)
+		sponsor_vec_.push_back(i);
 }
 
-void Driver::addSponsor(string i)
+void Driver::removeSponsor(int id)
 {
-	sponsor_[sponsorNum_] = i;
-	sponsorNum_++;
-	points_[pointNum_] = 0;
-	pointNum_++;
-}
-
-void Driver::removeSponsor(string i)
-{
-		int n = findSponsor(i);
-		if(n != -1)
-		{
-			for(int p = n; n < sponsorNum_-1; p++)
-			{
-				sponsor_[p] = sponsor_[p+1];
-			}
-			sponsor_[sponsorNum_] = "NULL";
-			sponsorNum_--;
-			points_[pointNum_] = 0;
-			pointNum_--;
-		}
+	auto it = std::find(sponsor_vec_.begin(), sponsor_vec_.end(), id);
+	if(it != sponsor_vec_.end())
+     sponsor_vec_.erase(it);
 }
 
 void Driver::switchStatus()
