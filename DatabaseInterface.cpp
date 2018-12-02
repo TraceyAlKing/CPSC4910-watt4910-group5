@@ -80,8 +80,10 @@ void DatabaseInterface::update(Driver* obj){
    std::string email = obj->getEmail();
    std::string password = obj->getPassword();
    std::string phone = std::to_string(obj->getPhone());
+   std::string license_num = std::to_string(obj->getLicenseNum());
+   std::string license_plate_num = std::to_string(obj->getFirstPlate());
 
-   db().updateDriver(id, name, email, password, phone);
+   db().updateDriver(id, name, email, password, phone, license_num, license_plate_num);
 }
 void DatabaseInterface::update(Admin* obj){
    std::string id = std::to_string(obj->getID());
