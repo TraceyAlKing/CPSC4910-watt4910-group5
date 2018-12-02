@@ -34,6 +34,8 @@ public:
 	int getSponNum();
    void getDrivers(std::vector<int>& drivers);
    int getNumDrivers();
+   void getCatalogs(std::vector<int> &catalogs);
+   int getNumCatalogs();
 	
 	//Sponsor setSponsor(string f);
 	

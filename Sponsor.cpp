@@ -274,6 +274,13 @@ int Sponsor::getNumDrivers(){
 	return Drivers_.size();
 }
 
+void getCatalogs(std::vector<int> &catalogs){
+	for(auto it : Catalogs_)
+		catalogs.push_back(it);
+}
+int getNumCatalogs(){
+	return Catalogs_.size();
+}
 int Sponsor::getPV()
 {
     return point_value_;

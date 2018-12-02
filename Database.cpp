@@ -545,38 +545,36 @@ void Database::updateSponsor(std::string id, std::string name, std::string email
 
   for(auto it1 : catalogs){
     found = false;
-    for(auto it2 : olditems){
+    for(auto it2 : oldcatalogs){
       if(it1==it2) found = true;
     }
     if(!found) toadd.push_back(it1);
   }
 
 
-  for(auto it2 : olditems){
+  for(auto it2 : oldcatalogs){
     found = false;
-    for(auto it1 : items){
+    for(auto it1 : catalogs){
       if(it2==it1) found = true;
     }
     if(!found) toremove.push_back(it2);
   }
 
-  sstr.str(std::string());
 
   for(auto it : toremove){
-    removeCatalog(it);
+    removeCatalog(*it);
   }
 
-  sstr.str(std::string());
 
   for(auto it : toadd){
-    createCatalog(it);
+    createCatalog(*it);
   }
 
   std::vector<int> olddrivers;
   toremove.clear();
   toadd.clear();
 
-  getDriverSponsors(id,olddrivers);
+  getDriverSponsors(std::stoi(id),olddrivers);
 
 
   for(auto it1 : drivers){
