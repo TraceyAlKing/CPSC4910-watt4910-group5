@@ -1,3 +1,4 @@
+#include <stdlib.h>
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QMessageBox>
@@ -141,10 +142,10 @@ void MainWindow::on_sponsor_Home_Button_clicked()
     int len = static_cast<Sponsor*>(CurrUser)->getNumDrivers();
     ui->driver_table->setRowCount(len);
     //@TODO: add actual sponsors here
-    //Drivers_ = static_cast<Sponsor*>(CurrUser)->getDrivers();
+    static_cast<Sponsor*>(CurrUser)->getDrivers(Drivers_);
     for(int i = 0; i<len; i++)
     {
-        QString qstr = QString::fromStdString(Drivers_[i]);
+        QString qstr = QString::fromStdString(dbi.getDriver(Drivers_[i])->getName());
         QTableWidgetItem* newItem = new QTableWidgetItem(qstr, 0);
         ui->driver_table->setItem(i, 0, newItem);
     }
@@ -152,10 +153,77 @@ void MainWindow::on_sponsor_Home_Button_clicked()
 
 void MainWindow::on_driver_table_cellClicked(int row, int column)
 {
-    Driver* temp = db().getDriver(Drivers_[row]);
+    Driver temp = dbi.getDriver(Drivers_[row]);
+    DriverInfo d;
+    d.setSponsor(static_cast<Sponsor*>(CurrUser));
+    d.setDriver(temp);
+    d.show();
 }
 
 void MainWindow::on_driver_History_Button_clicked()
 {
     QMessageBox::warning(this,"Login", "Invalid email and/or password", QMessageBox::Ok);
+}
+
+void MainWindow::on_pushButton_driver_name_Change_clicked()
+{
+    QString newName = ui->lineEdit_driver_name->text();
+    std::string name = newName.toStdString();
+    static_cast<Driver*>(CurrUser)->setName(name);
+    updateDriver();
+}
+
+void MainWindow::on_pushButton_driver_email_Change_clicked()
+{
+    QString newEmail = ui->lineEdit_driver_email->text();
+    std::string email = newEmail.toStdString();
+    static_cast<Driver*>(CurrUser)->setEmail(email);
+    updateDriver();
+}
+
+void MainWindow::on_pushButton_driver_phone_Change_clicked()
+{
+    QString newNumber = ui->lineEdit_driver_phone->text();
+    std::string number = newNumber.toStdString();
+    static_cast<Driver*>(CurrUser)->setPhone(number);
+    updateDriver();
+}
+
+void MainWindow::on_pushButton_driver_LP_Add_clicked()
+{
+    QString newLP = ui->lineEdit_driver_LP->text();
+    std::string lp = newLP.toStdString();
+    static_cast<Driver*>(CurrUser)->addLP(stoi(lp));
+    updateDriver();
+}
+
+void MainWindow::on_pushButton_driver_ln_Change_clicked()
+{
+    QString newLN = ui->lineEdit_driver_ln->text();
+    std::string ln = newLN.toStdString();
+    static_cast<Driver*>(CurrUser)->setLNum(stoi(ln));
+    updateDriver();
+}
+
+void MainWindow::on_pushButton_driver_address_Add_clicked()
+{
+    QString newAddress = ui->lineEdit_driver_address->text();
+    std::string address = newAddress.toStdString();
+    static_cast<Driver*>(CurrUser)->addAddress(address);
+    updateDriver();
+}
+
+void MainWindow::updateDriver()
+{
+    dbi.update(static_cast<Driver*>(CurrUser));
+}
+
+void MainWindow::updateSponsor()
+{
+    dbi.update(static_cast<Sponsor*>(CurrUser));
+}
+
+void MainWindow::updateAdmin()
+{
+    dbi.update(static_cast<Admin*>(CurrUser));
 }

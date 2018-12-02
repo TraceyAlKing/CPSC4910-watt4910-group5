@@ -39,9 +39,10 @@
 #MainWindow { background-color : #9CAFD1  }
 QPushButton {color : white;
 background-color : #3562B0;
-border-radius: 25px;}
+border-radius: 10px;}
 QPushButton{ font: 81 14pt &quot;AXIS Extra Bold&quot;;}
-#pushButton_Login_2{ font: 81 18pt &quot;AXIS Extra Bold&quot;; }
+#pushButton_Login_2{ font: 81 18pt &quot;AXIS Extra Bold&quot;;
+border-radius: 25px; }
 QGroupBox{ background-color : #EEEEEE;}
 QLabel{  font: 16pt &quot;Aganè S&quot;; }
 QStackedWidget{ background: qlineargradient(x1:0, y1:0, x2:1, y2:1,  stop:0 #202020, stop: 0.4 #303030, stop:1 #353535)}</string>
@@ -72,7 +73,7 @@ QStackedWidget{ background: qlineargradient(x1:0, y1:0, x2:1, y2:1,  stop:0 #202
        </size>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="login_page">
        <property name="sizeIncrement">
@@ -405,7 +406,8 @@ color : white;</string>
                <property name="styleSheet">
                 <string notr="true">font: 16pt &quot;Aganè S&quot;;
 background-color : #E84F37;
-color : white;</string>
+color : white;
+border-radius : 14px;</string>
                </property>
                <property name="title">
                 <string/>
@@ -544,7 +546,7 @@ color : white;</string>
           <item>
            <widget class="QGroupBox" name="historyBox">
             <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
@@ -554,14 +556,36 @@ color : white;</string>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_5">
              <item>
-              <widget class="QPushButton" name="driver_History_Button">
-               <property name="text">
-                <string>Full History</string>
+              <widget class="QGroupBox" name="groupBox_4">
+               <property name="title">
+                <string/>
                </property>
+               <layout class="QVBoxLayout" name="verticalLayout_15">
+                <item>
+                 <widget class="QLabel" name="label">
+                  <property name="text">
+                   <string>Current Sponsor</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_currSponsor">
+                  <property name="text">
+                   <string>KFC</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
               </widget>
              </item>
              <item>
-              <widget class="QPushButton" name="pushButton_2">
+              <widget class="QPushButton" name="pushButton_sponsorSwitch">
                <property name="text">
                 <string>Switch Sponsor</string>
                </property>
@@ -577,7 +601,13 @@ color : white;</string>
           <property name="currentIndex">
            <number>1</number>
           </property>
-          <widget class="QWidget" name="page_2"/>
+          <widget class="QWidget" name="page_2">
+           <layout class="QHBoxLayout" name="horizontalLayout_9">
+            <item>
+             <widget class="QTableWidget" name="tableWidget"/>
+            </item>
+           </layout>
+          </widget>
           <widget class="QWidget" name="driver_account">
            <layout class="QGridLayout" name="gridLayout">
             <item row="0" column="0">
@@ -593,8 +623,8 @@ color : white;</string>
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>270</width>
-                 <height>719</height>
+                 <width>769</width>
+                 <height>644</height>
                 </rect>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -607,6 +637,7 @@ color : white;</string>
                     <weight>50</weight>
                     <italic>false</italic>
                     <bold>false</bold>
+                    <underline>true</underline>
                    </font>
                   </property>
                   <property name="text">
@@ -651,6 +682,7 @@ color : white;</string>
                     <weight>50</weight>
                     <italic>false</italic>
                     <bold>false</bold>
+                    <underline>true</underline>
                    </font>
                   </property>
                   <property name="text">
@@ -695,6 +727,7 @@ color : white;</string>
                     <weight>50</weight>
                     <italic>false</italic>
                     <bold>false</bold>
+                    <underline>true</underline>
                    </font>
                   </property>
                   <property name="text">
@@ -727,36 +760,16 @@ color : white;</string>
                     <weight>50</weight>
                     <italic>false</italic>
                     <bold>false</bold>
+                    <underline>true</underline>
                    </font>
                   </property>
                   <property name="text">
-                   <string>License Plate Numbers</string>
+                   <string>License Plate Number</string>
                   </property>
                  </widget>
                 </item>
                 <item>
-                 <widget class="QTableWidget" name="tableWidget_LPNum">
-                  <property name="rowCount">
-                   <number>10</number>
-                  </property>
-                  <property name="columnCount">
-                   <number>1</number>
-                  </property>
-                  <row/>
-                  <row/>
-                  <row/>
-                  <row/>
-                  <row/>
-                  <row/>
-                  <row/>
-                  <row/>
-                  <row/>
-                  <row/>
-                  <column/>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QLineEdit" name="lineEdit_2">
+                 <widget class="QLineEdit" name="lineEdit_driver_LP">
                   <property name="font">
                    <font>
                     <pointsize>14</pointsize>
@@ -765,7 +778,7 @@ color : white;</string>
                  </widget>
                 </item>
                 <item>
-                 <widget class="QPushButton" name="pushButton_6">
+                 <widget class="QPushButton" name="pushButton_driver_LP_Add">
                   <property name="font">
                    <font>
                     <family>AXIS Extra Bold</family>
@@ -789,6 +802,7 @@ color : white;</string>
                     <weight>50</weight>
                     <italic>false</italic>
                     <bold>false</bold>
+                    <underline>true</underline>
                    </font>
                   </property>
                   <property name="text">
@@ -809,6 +823,13 @@ color : white;</string>
                  </widget>
                 </item>
                 <item>
+                 <widget class="QPushButton" name="pushButton_driver_ln_Change">
+                  <property name="text">
+                   <string>Change</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
                  <widget class="QLabel" name="label_9">
                   <property name="font">
                    <font>
@@ -817,6 +838,7 @@ color : white;</string>
                     <weight>50</weight>
                     <italic>false</italic>
                     <bold>false</bold>
+                    <underline>true</underline>
                    </font>
                   </property>
                   <property name="text">
@@ -837,7 +859,7 @@ color : white;</string>
                  </widget>
                 </item>
                 <item>
-                 <widget class="QPushButton" name="pushButton_changeDriverPhone">
+                 <widget class="QPushButton" name="pushButton_driver_phone_Change">
                   <property name="font">
                    <font>
                     <family>AXIS Extra Bold</family>
@@ -861,47 +883,16 @@ color : white;</string>
                     <weight>50</weight>
                     <italic>false</italic>
                     <bold>false</bold>
+                    <underline>true</underline>
                    </font>
                   </property>
                   <property name="text">
-                   <string>Addresses</string>
+                   <string>Address</string>
                   </property>
                  </widget>
                 </item>
                 <item>
-                 <widget class="QTableWidget" name="tableWidget_driver_address">
-                  <property name="horizontalScrollBarPolicy">
-                   <enum>Qt::ScrollBarAlwaysOn</enum>
-                  </property>
-                  <property name="sizeAdjustPolicy">
-                   <enum>QAbstractScrollArea::AdjustToContents</enum>
-                  </property>
-                  <property name="rowCount">
-                   <number>10</number>
-                  </property>
-                  <property name="columnCount">
-                   <number>1</number>
-                  </property>
-                  <row/>
-                  <row/>
-                  <row/>
-                  <row/>
-                  <row/>
-                  <row/>
-                  <row/>
-                  <row/>
-                  <row/>
-                  <row/>
-                  <column/>
-                  <item row="0" column="0">
-                   <property name="text">
-                    <string>JXF-138</string>
-                   </property>
-                  </item>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QLineEdit" name="lineEdit_5">
+                 <widget class="QLineEdit" name="lineEdit_driver_address">
                   <property name="font">
                    <font>
                     <pointsize>14</pointsize>
@@ -910,7 +901,7 @@ color : white;</string>
                  </widget>
                 </item>
                 <item>
-                 <widget class="QPushButton" name="pushButton_8">
+                 <widget class="QPushButton" name="pushButton_driver_address_Add">
                   <property name="font">
                    <font>
                     <family>AXIS Extra Bold</family>
@@ -1077,6 +1068,7 @@ color : white;</string>
                 <weight>50</weight>
                 <italic>false</italic>
                 <bold>false</bold>
+                <underline>true</underline>
                </font>
               </property>
               <property name="text">
@@ -1121,6 +1113,7 @@ color : white;</string>
                 <weight>50</weight>
                 <italic>false</italic>
                 <bold>false</bold>
+                <underline>true</underline>
                </font>
               </property>
               <property name="text">
@@ -1141,7 +1134,7 @@ color : white;</string>
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_driver_Email_Change_2">
+             <widget class="QPushButton" name="pushButton_sponsor_email_Change">
               <property name="font">
                <font>
                 <family>AXIS Extra Bold</family>
@@ -1165,6 +1158,7 @@ color : white;</string>
                 <weight>50</weight>
                 <italic>false</italic>
                 <bold>false</bold>
+                <underline>true</underline>
                </font>
               </property>
               <property name="text">
@@ -1185,7 +1179,7 @@ color : white;</string>
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_10">
+             <widget class="QPushButton" name="pushButton_sponsor_phone_Change">
               <property name="font">
                <font>
                 <family>AXIS Extra Bold</family>
@@ -1209,32 +1203,12 @@ color : white;</string>
                 <weight>50</weight>
                 <italic>false</italic>
                 <bold>false</bold>
+                <underline>true</underline>
                </font>
               </property>
               <property name="text">
-               <string>Addresses</string>
+               <string>Address</string>
               </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QTableWidget" name="tableWidget_sponsor_address">
-              <property name="rowCount">
-               <number>10</number>
-              </property>
-              <property name="columnCount">
-               <number>1</number>
-              </property>
-              <row/>
-              <row/>
-              <row/>
-              <row/>
-              <row/>
-              <row/>
-              <row/>
-              <row/>
-              <row/>
-              <row/>
-              <column/>
              </widget>
             </item>
             <item>
@@ -1247,7 +1221,7 @@ color : white;</string>
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_11">
+             <widget class="QPushButton" name="pushButton_sponsor_address_Add">
               <property name="font">
                <font>
                 <family>AXIS Extra Bold</family>
@@ -1273,7 +1247,7 @@ color : white;</string>
         <item>
          <widget class="QTabWidget" name="tabWidget">
           <property name="currentIndex">
-           <number>1</number>
+           <number>3</number>
           </property>
           <widget class="QWidget" name="tab">
            <attribute name="title">
@@ -1286,7 +1260,7 @@ color : white;</string>
                <widget class="QLineEdit" name="lineEdit_10"/>
               </item>
               <item>
-               <widget class="QPushButton" name="pushButton_3">
+               <widget class="QPushButton" name="pushButton_admin_Search">
                 <property name="text">
                  <string>Search</string>
                 </property>
@@ -1310,7 +1284,7 @@ color : white;</string>
                <widget class="QLineEdit" name="lineEdit_9"/>
               </item>
               <item>
-               <widget class="QPushButton" name="pushButton">
+               <widget class="QPushButton" name="pushButton_admin_drivers_Search">
                 <property name="text">
                  <string>Search</string>
                 </property>
@@ -1334,7 +1308,7 @@ color : white;</string>
                <widget class="QLineEdit" name="lineEdit_11"/>
               </item>
               <item>
-               <widget class="QPushButton" name="pushButton_4">
+               <widget class="QPushButton" name="pushButton_admin_sponsors_Search">
                 <property name="text">
                  <string>Search</string>
                 </property>
@@ -1358,7 +1332,7 @@ color : white;</string>
                <widget class="QLineEdit" name="lineEdit_12"/>
               </item>
               <item>
-               <widget class="QPushButton" name="pushButton_9">
+               <widget class="QPushButton" name="pushButton_products_Search">
                 <property name="text">
                  <string>Search</string>
                 </property>

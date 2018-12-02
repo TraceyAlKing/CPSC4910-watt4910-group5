@@ -33,7 +33,7 @@ class User {
 		string getUsername();
 		string getPassword();
 		string getEmail();
-		string* getAddress();
+		std::string getAddress();
 		
 		long getPhone();
 		int getID();
@@ -44,12 +44,13 @@ class User {
 		void setEmail(string i);
 		void setPhone(string i);
 		void setID(string i);
-		void setAddress(string* i, int j);
-		
-                void addAddress(string i);
-                void updateAddress(int i, string s);
-                void removeAddress(int i);
-                int getNumAddress();
+		void setAddress(string s);
+		void setAddress(string s, int i);
+
+		void addAddress(string s, int i);
+		void updateAddress(int i, string s);
+		void removeAddress(int i);
+		int getNumAddress();
 		
 		void changePassword(string oldp, string newp);
 };
