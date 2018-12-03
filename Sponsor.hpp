@@ -13,7 +13,7 @@ class Sponsor: public User {
 private:
    std::vector<int> Drivers_;
    int point_value_;
-   std::vector<int> Catalogs_;
+   std::vector<int> Catalog_;
 public:
    Sponsor();
    Sponsor(std::string id, std::string name, std::string email, std::string password,
@@ -33,9 +33,13 @@ public:
 	bool checkForDriver(string name);
 	int getSponNum();
    void getDrivers(std::vector<int>& drivers);
+   std::vector<int>& getDrivers();
    int getNumDrivers();
+   
    void getCatalogs(std::vector<int> &catalogs);
+   std::vector<int>& getCatalogs();
    int getNumCatalogs();
+   int getCatalog();
 	
 	//Sponsor setSponsor(string f);
 	

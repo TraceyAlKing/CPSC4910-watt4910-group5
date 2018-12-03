@@ -52,13 +52,13 @@ void Database::removeDriver(std::string id){
   }
 }
 void Database::createDriver(std::string name, std::string email, std::string password, 
-  std::string phone, std::string points){
+  std::string phone, std::string address, std::string points){
   try {
     //Build statement
     std::stringstream sstr;
-    sstr << "INSERT INTO DRIVER ( name, email, password, phone, points ) ";
+    sstr << "INSERT INTO DRIVER ( name, email, password, phone, address, points ) ";
     sstr << "VALUES ( \"" << name << "\", \"" << email << "\", \"";
-    sstr << password << "\", \""<< phone << "\", \""<< points << "\" );";
+    sstr << password << "\", \""<< phone << "\", \""<< address << "\", \""<< points << "\" );";
 
     //Execute statement
     std::cout << "Attempting statement: " << sstr.str() << std::endl;
@@ -197,7 +197,7 @@ Driver* Database::getDriver(std::string id){
   }
 }
 
-void Database::updateDriver(std::string id, std::string name, std::string email, std::string password, std::string phone, 
+void Database::updateDriver(std::string id, std::string name, std::string email, std::string password, std::string phone, std::string address,
       std::string license_num, std::string license_plate_num){
   try {
     //update based on id
@@ -207,6 +207,7 @@ void Database::updateDriver(std::string id, std::string name, std::string email,
     sstr << "email = \'" << email << "\', ";
     sstr << "password = \'" << password << "\', ";
     sstr << "phone = \'" << phone << "\', ";
+    sstr << "address = \'" << address << "\', ";
     sstr << "license_num = \'" << license_num << "\', ";
     sstr << "license_plate_num = \'" << license_plate_num << "\' ";
     sstr << "WHERE id = \'" << id << "\';";
@@ -276,7 +277,7 @@ int Database::getDriverSponsors(int d_id, std::vector<int> &sponsorvec){
   try {
     //Build statement
     std::stringstream sstr;
-    sstr << "SELECT sponsor_id, FROM DRIVER_SPONSOR WHERE driver_id = " << "\"" << d_id << "\";";
+    sstr << "SELECT sponsor_id FROM DRIVER_SPONSOR WHERE driver_id = " << "\"" << d_id << "\";";
 
     //Execute statement
     std::cout << "Attempting statement: " << sstr.str() << std::endl;
@@ -368,13 +369,13 @@ void Database::removeSponsor(std::string id){
   }
 }
 void Database::createSponsor(std::string name, std::string email, std::string password, 
-  std::string phone, std::string point_value){
+  std::string phone, std::string address, std::string point_value){
   try {
     //Build statement
     std::stringstream sstr;
-    sstr << "INSERT INTO SPONSOR ( name, email, password, phone, point_value ) ";
+    sstr << "INSERT INTO SPONSOR ( name, email, password, phone, address, point_value ) ";
     sstr << "VALUES ( \"" << name << "\", \"" << email << "\", \"";
-    sstr << password << "\", \""<< phone << "\", \""<< point_value << "\" );";
+    sstr << password << "\", \""<< phone << "\", \"" << address << "\", \""<< point_value << "\" );";
 
     //Execute statement
     std::cout << "Attempting statement: " << sstr.str() << std::endl;
@@ -507,7 +508,7 @@ Sponsor* Database::getSponsor(std::string id){
   }
 }
   
-void Database::updateSponsor(std::string id, std::string name, std::string email, std::string password, std::string phone, std::string point_value, std::vector<int> &catalogs, std::vector<int> &drivers){
+void Database::updateSponsor(std::string id, std::string name, std::string email, std::string password, std::string phone, std::string address, std::string point_value, std::vector<int> &catalogs, std::vector<int> &drivers){
   try {
     //update based on id
     std::stringstream sstr;
@@ -516,6 +517,7 @@ void Database::updateSponsor(std::string id, std::string name, std::string email
     sstr << "email = \'" << email << "\', ";
     sstr << "password = \'" << password << "\', ";
     sstr << "phone = \'" << phone << "\', ";
+    sstr << "address = \'" << address << "\', ";
     sstr << "point_value = \'" << point_value << "\' ";
     sstr << "WHERE id = \'" << id << "\';";
 
@@ -682,14 +684,14 @@ void Database::removeAdmin(std::string id){
 }
 
 void Database::createAdmin(std::string name, std::string email, std::string password, 
-  std::string phone){
+  std::string phone, std::string address){
 
   try {
     //Build statement
     std::stringstream sstr;
-    sstr << "INSERT INTO ADMIN ( name, email, password, phone ) ";
+    sstr << "INSERT INTO ADMIN ( name, email, password, phone, address ) ";
     sstr << "VALUES ( \"" << name << "\", \"" << email << "\", \"";
-    sstr << password << "\", \""<< phone << "\" );";
+    sstr << password << "\", \""<< phone << "\", \""<< address << "\" );";
 
     //Execute statement
     std::cout << "Attempting statement: " << sstr.str() << std::endl;
@@ -814,7 +816,7 @@ Admin* Database::getAdmin(std::string id){
   }
 }
    
-void Database::updateAdmin(std::string id, std::string name, std::string email, std::string password, std::string phone){
+void Database::updateAdmin(std::string id, std::string name, std::string email, std::string password, std::string phone, std::string address){
   try {
     //update based on id
     std::stringstream sstr;
@@ -823,6 +825,7 @@ void Database::updateAdmin(std::string id, std::string name, std::string email, 
     sstr << "email = \'" << email << "\', ";
     sstr << "password = \'" << password << "\', ";
     sstr << "phone = \'" << phone << "\' ";
+    sstr << "address = \'" << address << "\' ";
     sstr << "WHERE id = \'" << id << "\';";
 
     std::cout << "Attempting statement: " << sstr.str() << std::endl;

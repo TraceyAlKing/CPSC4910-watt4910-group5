@@ -28,31 +28,35 @@ public:
    std::string executeStatement();
 
    //Driver calls
-   void createDriver(std::string name, std::string email, std::string password, std::string phone, std::string points);
+   void createDriver(std::string name, std::string email, std::string password, std::string phone, 
+      std::string address, std::string points);
    Driver* getDriver(std::string id);
    void removeDriver(std::string id);
    void getDrivers(std::map<int, Driver*>* add_to_driver_list);
    void updateDriver(std::string id, std::string name, std::string email, std::string password, std::string phone, 
-         std::string license_num, std::string license_plate_num);
+      std::string address, std::string license_num, std::string license_plate_num);
    int getPoints(int d_id, std::map<int,int> &pointmap);
    int getDriverSponsors(int d_id, std::vector<int> &sponsorvec);
    void updatePoints(int d_id, std::map<int,int> &pointmap);
 
    
    //Sponsor calls
-   void createSponsor(std::string name, std::string email, std::string password, std::string phone, std::string point_value);
+   void createSponsor(std::string name, std::string email, std::string password, std::string phone, 
+      std::string address, std::string point_value);
    Sponsor* getSponsor(std::string id);
    void removeSponsor(std::string id);
    void getSponsors(std::map<int, Sponsor*>* add_to_sponsor_list);
-   void updateSponsor(std::string id, std::string name, std::string email, std::string password, std::string phone, std::string point_value, std::vector<int> &catalogs, std::vector<int> &drivers);
+   void updateSponsor(std::string id, std::string name, std::string email, std::string password, 
+      std::string phone, std::string address, std::string point_value, 
+      std::vector<int> &catalogs, std::vector<int> &drivers);
    void getSponsorDrivers(std::string sid, std::vector<int> &drivers);
 
    //Admin calls
-   void createAdmin(std::string name, std::string email, std::string password, std::string phone);
+   void createAdmin(std::string name, std::string email, std::string password, std::string phone, std::string address);
    Admin* getAdmin(std::string id);
    void removeAdmin(std::string id);
    void getAdmins(std::map<int, Admin*>* add_to_admin_list);
-   void updateAdmin(std::string id, std::string name, std::string email, std::string password, std::string phone);
+   void updateAdmin(std::string id, std::string name, std::string email, std::string password, std::string phone, std::string address);
 
    //Amazon Item calls
    void createAmazonItem(std::string name, std::string price, std::string description, std::string url);
