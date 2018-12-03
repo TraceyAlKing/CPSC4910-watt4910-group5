@@ -27,11 +27,11 @@ void CreateDriver::on_AddDriver_clicked() {
     string email = ui->email->text().toStdString();
     string password = ui->password->text().toStdString();
 
-    Driver* driver = dbi->createDriver(name, email, password, phone, address, "0");
+    Driver* driver = dbi->createDriver(name, email, password, phone, address, ln, lp);
     driver->addSponsor(sponsor->getID());
     sponsor->addDriver(driver->getID());
 
-    dbi->update(driver);
-    dbi->update(sponsor);
+    //dbi->update(driver);
+    //dbi->update(sponsor);
     this->close();
 }

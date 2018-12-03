@@ -114,8 +114,8 @@ void DatabaseInterface::update(Sponsor* obj){
 }
 
 Driver* DatabaseInterface::createDriver(std::string name, std::string email, std::string password, std::string phone, 
-      std::string address, std::string points){
-  User* new_driver = db().createDriver(name, email, password, phone, address, points);
+      std::string address, std::string license_num, std::string license_plate_num){
+  User* new_driver = db().createDriver(name, email, password, phone, address, license_num, license_plate_num);
   int id = static_cast<Driver*>(new_driver)->getID();
   driver_list_.emplace(id, static_cast<Driver*>(new_driver));
   return driver_list_[id];

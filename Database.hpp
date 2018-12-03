@@ -29,7 +29,7 @@ public:
 
    //Driver calls
    User* createDriver(std::string name, std::string email, std::string password, std::string phone, 
-      std::string address, std::string points);
+      std::string address, std::string license_num, std::string license_plate_num);
    Driver* getDriver(std::string id);
    void removeDriver(std::string id);
    void getDrivers(std::map<int, Driver*>* add_to_driver_list);

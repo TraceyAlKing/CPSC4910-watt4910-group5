@@ -27,7 +27,7 @@ public:
 
    //Create functions
    Driver* createDriver(std::string name, std::string email, std::string password, std::string phone, 
-      std::string address, std::string points);
+      std::string address, std::string license_num, std::string license_plate_num);
 
    //Avoid these functions unless the admin needs them
    std::map<int, Driver*>& getAllDrivers();

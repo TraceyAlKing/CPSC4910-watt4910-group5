@@ -52,13 +52,16 @@ void Database::removeDriver(std::string id){
   }
 }
 User* Database::createDriver(std::string name, std::string email, std::string password, 
-  std::string phone, std::string address, std::string points){
+  std::string phone, std::string address, std::string license_num, std::string license_plate_num){
   try {
     //Build statement
     std::stringstream sstr;
-    sstr << "INSERT INTO DRIVER ( name, email, password, phone, address ) ";
+    sstr << "INSERT INTO DRIVER ( name, email, password, phone, address, license_num, license_plate_num ) ";
     sstr << "VALUES ( \"" << name << "\", \"" << email << "\", \"";
-    sstr << password << "\", \""<< phone << "\", \""<< address << "\" );";
+    sstr << password << "\", \""<< phone << "\", \""<< address << "\", "<< license_num << ", \""<< license_plate_num << "\" );";
+
+    //license_num       INT unsigned,
+    //license_plate_num VARCHAR(64),
 
     //Execute statement
     std::cout << "Attempting statement: " << sstr.str() << std::endl;
