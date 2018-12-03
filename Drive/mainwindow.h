@@ -44,6 +44,8 @@ private slots:
 
     void on_driver_table_cellClicked(int row, int column);
 
+    void on_tabWidget_currentChanged();
+
     void updateDriver();
     void updateSponsor();
     void updateAdmin();

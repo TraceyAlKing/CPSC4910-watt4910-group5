@@ -80,6 +80,7 @@ void MainWindow::on_pushButton_Login_2_clicked()
         std::vector<int> driversponsors;
         static_cast<Driver*>(CurrUser)->getSponsors(driversponsors);
         currSponsor = dbi.getSponsor(driversponsors[0]);
+        ui->driver_currSponsor->setText(QString::fromStdString(currSponsor->getName()));
 
        //ui->pointsValue_label->setNum((int)(static_cast<Driver*>(CurrUser)->getPoints()));
         ui->pointsValue_label->setNum(6);
@@ -96,15 +97,13 @@ void MainWindow::on_driver_Home_Button_clicked()
     std::vector<int> mysponsors;    //contains the sponsors of the driver
     static_cast<Driver*>(CurrUser)->getSponsors(mysponsors);
 
-    int catalog_id = curSponsor->getCatalog();
+    int catalog_id = currSponsor->getCatalog();
     Catalog* cata = dbi.getCatalog(catalog_id);
     // do stuff with catalog
 
 
 
     }
-    //
-}
 
 void MainWindow::on_driver_Logout_clicked()
 {
@@ -225,4 +224,21 @@ void MainWindow::updateSponsor()
 void MainWindow::updateAdmin()
 {
     dbi.update(static_cast<Admin*>(CurrUser));
+}
+
+void MainWindow::on_tabWidget_currentChanged() {
+    if(ui->tabWidget->currentIndex() == 0)
+    {
+        std::map<int, Driver*>& allDrivers =  dbi.getAllDrivers();
+        std::map<int, Admin*>& allAdmins = dbi.getAllAdmins();
+        std::map<int, Sponsor*>& allSponsors = dbi.getAllSponsors();
+        int len = allDrivers.size()+allAdmins.size()+allSponsors.size();
+        ui->admin_all_table->setRowCount(len);
+        for(int i = 0; i<len; i++)
+        {
+            QTableWidgetItem *newItem = new QTableWidgetItem();
+            newItem->setText(QString::fromStdString(allDrivers[i]->getName()));
+            ui->admin_all_table->setItem(i, 0, newItem);
+        }
+    }
 }

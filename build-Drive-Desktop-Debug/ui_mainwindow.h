@@ -76,12 +76,12 @@ public:
     QGroupBox *groupBox_4;
     QVBoxLayout *verticalLayout_15;
     QLabel *label;
-    QLabel *label_currSponsor;
+    QLabel *driver_currSponsor;
     QPushButton *pushButton_sponsorSwitch;
     QStackedWidget *stackedWidget_driver;
     QWidget *page_2;
     QHBoxLayout *horizontalLayout_9;
-    QTableWidget *tableWidget;
+    QTableWidget *driver_catalog;
     QWidget *driver_account;
     QGridLayout *gridLayout;
     QScrollArea *scrollArea;
@@ -117,6 +117,7 @@ public:
     QVBoxLayout *verticalLayout_7;
     QGroupBox *groupBox_2;
     QGroupBox *groupBox_3;
+    QPushButton *pushButton;
     QPushButton *pushButton_5;
     QStackedWidget *stackedWidget_sponsor;
     QWidget *page;
@@ -142,26 +143,26 @@ public:
     QWidget *tab;
     QVBoxLayout *verticalLayout_14;
     QHBoxLayout *horizontalLayout_5;
-    QLineEdit *lineEdit_10;
-    QPushButton *pushButton_admin_Search;
-    QTableWidget *tableWidget_5;
+    QLineEdit *all_search;
+    QPushButton *admin_search_button;
+    QTableWidget *admin_all_table;
     QWidget *tab_3;
     QVBoxLayout *verticalLayout_13;
     QHBoxLayout *horizontalLayout;
-    QLineEdit *lineEdit_9;
-    QPushButton *pushButton_admin_drivers_Search;
-    QTableWidget *tableWidget_6;
+    QLineEdit *driver_search;
+    QPushButton *driver_search_button;
+    QTableWidget *admin_drivers_table;
     QWidget *tab_2;
     QVBoxLayout *verticalLayout_12;
     QHBoxLayout *horizontalLayout_6;
-    QLineEdit *lineEdit_11;
-    QPushButton *pushButton_admin_sponsors_Search;
-    QTableWidget *tableWidget_7;
+    QLineEdit *sponsor_search;
+    QPushButton *sponsor_search_button;
+    QTableWidget *admin_sponsors_table;
     QWidget *tab_4;
     QVBoxLayout *verticalLayout_11;
     QHBoxLayout *horizontalLayout_7;
-    QLineEdit *lineEdit_12;
-    QPushButton *pushButton_products_Search;
+    QLineEdit *products_search;
+    QPushButton *products_search_button;
     QTableWidget *tableWidget_8;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -475,11 +476,11 @@ public:
 
         verticalLayout_15->addWidget(label);
 
-        label_currSponsor = new QLabel(groupBox_4);
-        label_currSponsor->setObjectName(QStringLiteral("label_currSponsor"));
-        label_currSponsor->setAlignment(Qt::AlignCenter);
+        driver_currSponsor = new QLabel(groupBox_4);
+        driver_currSponsor->setObjectName(QStringLiteral("driver_currSponsor"));
+        driver_currSponsor->setAlignment(Qt::AlignCenter);
 
-        verticalLayout_15->addWidget(label_currSponsor);
+        verticalLayout_15->addWidget(driver_currSponsor);
 
 
         verticalLayout_5->addWidget(groupBox_4);
@@ -505,10 +506,10 @@ public:
         horizontalLayout_9->setSpacing(6);
         horizontalLayout_9->setContentsMargins(11, 11, 11, 11);
         horizontalLayout_9->setObjectName(QStringLiteral("horizontalLayout_9"));
-        tableWidget = new QTableWidget(page_2);
-        tableWidget->setObjectName(QStringLiteral("tableWidget"));
+        driver_catalog = new QTableWidget(page_2);
+        driver_catalog->setObjectName(QStringLiteral("driver_catalog"));
 
-        horizontalLayout_9->addWidget(tableWidget);
+        horizontalLayout_9->addWidget(driver_catalog);
 
         stackedWidget_driver->addWidget(page_2);
         driver_account = new QWidget();
@@ -709,6 +710,11 @@ public:
 
         verticalLayout_7->addWidget(groupBox_3);
 
+        pushButton = new QPushButton(sponsor_home);
+        pushButton->setObjectName(QStringLiteral("pushButton"));
+
+        verticalLayout_7->addWidget(pushButton);
+
         pushButton_5 = new QPushButton(sponsor_home);
         pushButton_5->setObjectName(QStringLiteral("pushButton_5"));
         QSizePolicy sizePolicy7(QSizePolicy::Preferred, QSizePolicy::Fixed);
@@ -846,23 +852,23 @@ public:
         horizontalLayout_5 = new QHBoxLayout();
         horizontalLayout_5->setSpacing(6);
         horizontalLayout_5->setObjectName(QStringLiteral("horizontalLayout_5"));
-        lineEdit_10 = new QLineEdit(tab);
-        lineEdit_10->setObjectName(QStringLiteral("lineEdit_10"));
+        all_search = new QLineEdit(tab);
+        all_search->setObjectName(QStringLiteral("all_search"));
 
-        horizontalLayout_5->addWidget(lineEdit_10);
+        horizontalLayout_5->addWidget(all_search);
 
-        pushButton_admin_Search = new QPushButton(tab);
-        pushButton_admin_Search->setObjectName(QStringLiteral("pushButton_admin_Search"));
+        admin_search_button = new QPushButton(tab);
+        admin_search_button->setObjectName(QStringLiteral("admin_search_button"));
 
-        horizontalLayout_5->addWidget(pushButton_admin_Search);
+        horizontalLayout_5->addWidget(admin_search_button);
 
 
         verticalLayout_14->addLayout(horizontalLayout_5);
 
-        tableWidget_5 = new QTableWidget(tab);
-        tableWidget_5->setObjectName(QStringLiteral("tableWidget_5"));
+        admin_all_table = new QTableWidget(tab);
+        admin_all_table->setObjectName(QStringLiteral("admin_all_table"));
 
-        verticalLayout_14->addWidget(tableWidget_5);
+        verticalLayout_14->addWidget(admin_all_table);
 
         tabWidget->addTab(tab, QString());
         tab_3 = new QWidget();
@@ -874,23 +880,23 @@ public:
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setSpacing(6);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        lineEdit_9 = new QLineEdit(tab_3);
-        lineEdit_9->setObjectName(QStringLiteral("lineEdit_9"));
+        driver_search = new QLineEdit(tab_3);
+        driver_search->setObjectName(QStringLiteral("driver_search"));
 
-        horizontalLayout->addWidget(lineEdit_9);
+        horizontalLayout->addWidget(driver_search);
 
-        pushButton_admin_drivers_Search = new QPushButton(tab_3);
-        pushButton_admin_drivers_Search->setObjectName(QStringLiteral("pushButton_admin_drivers_Search"));
+        driver_search_button = new QPushButton(tab_3);
+        driver_search_button->setObjectName(QStringLiteral("driver_search_button"));
 
-        horizontalLayout->addWidget(pushButton_admin_drivers_Search);
+        horizontalLayout->addWidget(driver_search_button);
 
 
         verticalLayout_13->addLayout(horizontalLayout);
 
-        tableWidget_6 = new QTableWidget(tab_3);
-        tableWidget_6->setObjectName(QStringLiteral("tableWidget_6"));
+        admin_drivers_table = new QTableWidget(tab_3);
+        admin_drivers_table->setObjectName(QStringLiteral("admin_drivers_table"));
 
-        verticalLayout_13->addWidget(tableWidget_6);
+        verticalLayout_13->addWidget(admin_drivers_table);
 
         tabWidget->addTab(tab_3, QString());
         tab_2 = new QWidget();
@@ -902,23 +908,23 @@ public:
         horizontalLayout_6 = new QHBoxLayout();
         horizontalLayout_6->setSpacing(6);
         horizontalLayout_6->setObjectName(QStringLiteral("horizontalLayout_6"));
-        lineEdit_11 = new QLineEdit(tab_2);
-        lineEdit_11->setObjectName(QStringLiteral("lineEdit_11"));
+        sponsor_search = new QLineEdit(tab_2);
+        sponsor_search->setObjectName(QStringLiteral("sponsor_search"));
 
-        horizontalLayout_6->addWidget(lineEdit_11);
+        horizontalLayout_6->addWidget(sponsor_search);
 
-        pushButton_admin_sponsors_Search = new QPushButton(tab_2);
-        pushButton_admin_sponsors_Search->setObjectName(QStringLiteral("pushButton_admin_sponsors_Search"));
+        sponsor_search_button = new QPushButton(tab_2);
+        sponsor_search_button->setObjectName(QStringLiteral("sponsor_search_button"));
 
-        horizontalLayout_6->addWidget(pushButton_admin_sponsors_Search);
+        horizontalLayout_6->addWidget(sponsor_search_button);
 
 
         verticalLayout_12->addLayout(horizontalLayout_6);
 
-        tableWidget_7 = new QTableWidget(tab_2);
-        tableWidget_7->setObjectName(QStringLiteral("tableWidget_7"));
+        admin_sponsors_table = new QTableWidget(tab_2);
+        admin_sponsors_table->setObjectName(QStringLiteral("admin_sponsors_table"));
 
-        verticalLayout_12->addWidget(tableWidget_7);
+        verticalLayout_12->addWidget(admin_sponsors_table);
 
         tabWidget->addTab(tab_2, QString());
         tab_4 = new QWidget();
@@ -930,15 +936,15 @@ public:
         horizontalLayout_7 = new QHBoxLayout();
         horizontalLayout_7->setSpacing(6);
         horizontalLayout_7->setObjectName(QStringLiteral("horizontalLayout_7"));
-        lineEdit_12 = new QLineEdit(tab_4);
-        lineEdit_12->setObjectName(QStringLiteral("lineEdit_12"));
+        products_search = new QLineEdit(tab_4);
+        products_search->setObjectName(QStringLiteral("products_search"));
 
-        horizontalLayout_7->addWidget(lineEdit_12);
+        horizontalLayout_7->addWidget(products_search);
 
-        pushButton_products_Search = new QPushButton(tab_4);
-        pushButton_products_Search->setObjectName(QStringLiteral("pushButton_products_Search"));
+        products_search_button = new QPushButton(tab_4);
+        products_search_button->setObjectName(QStringLiteral("products_search_button"));
 
-        horizontalLayout_7->addWidget(pushButton_products_Search);
+        horizontalLayout_7->addWidget(products_search_button);
 
 
         verticalLayout_11->addLayout(horizontalLayout_7);
@@ -966,10 +972,10 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(2);
-        stackedWidget_driver->setCurrentIndex(1);
-        stackedWidget_sponsor->setCurrentIndex(1);
-        tabWidget->setCurrentIndex(3);
+        stackedWidget->setCurrentIndex(1);
+        stackedWidget_driver->setCurrentIndex(0);
+        stackedWidget_sponsor->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -994,7 +1000,7 @@ public:
         historyBox->setTitle(QString());
         groupBox_4->setTitle(QString());
         label->setText(QApplication::translate("MainWindow", "Current Sponsor", 0));
-        label_currSponsor->setText(QApplication::translate("MainWindow", "KFC", 0));
+        driver_currSponsor->setText(QApplication::translate("MainWindow", "KFC", 0));
         pushButton_sponsorSwitch->setText(QApplication::translate("MainWindow", "Switch Sponsor", 0));
         label_2->setText(QApplication::translate("MainWindow", "Name", 0));
         lineEdit_driver_name->setText(QApplication::translate("MainWindow", "Colonel Sanders", 0));
@@ -1020,6 +1026,7 @@ public:
         sponsor_Logout->setText(QApplication::translate("MainWindow", "Logout", 0));
         groupBox_2->setTitle(QString());
         groupBox_3->setTitle(QString());
+        pushButton->setText(QApplication::translate("MainWindow", "New Driver", 0));
         pushButton_5->setText(QApplication::translate("MainWindow", "All Requests", 0));
         label_16->setText(QApplication::translate("MainWindow", "Sponsor Name", 0));
         lineEdit_sponsor_name->setText(QApplication::translate("MainWindow", "Colonel Sanders", 0));
@@ -1032,13 +1039,13 @@ public:
         pushButton_sponsor_phone_Change->setText(QApplication::translate("MainWindow", "Change", 0));
         label_14->setText(QApplication::translate("MainWindow", "Address", 0));
         pushButton_sponsor_address_Add->setText(QApplication::translate("MainWindow", "Add", 0));
-        pushButton_admin_Search->setText(QApplication::translate("MainWindow", "Search", 0));
+        admin_search_button->setText(QApplication::translate("MainWindow", "Search", 0));
         tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("MainWindow", "All Users", 0));
-        pushButton_admin_drivers_Search->setText(QApplication::translate("MainWindow", "Search", 0));
+        driver_search_button->setText(QApplication::translate("MainWindow", "Search", 0));
         tabWidget->setTabText(tabWidget->indexOf(tab_3), QApplication::translate("MainWindow", "Drivers", 0));
-        pushButton_admin_sponsors_Search->setText(QApplication::translate("MainWindow", "Search", 0));
+        sponsor_search_button->setText(QApplication::translate("MainWindow", "Search", 0));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("MainWindow", "Sponsors", 0));
-        pushButton_products_Search->setText(QApplication::translate("MainWindow", "Search", 0));
+        products_search_button->setText(QApplication::translate("MainWindow", "Search", 0));
         tabWidget->setTabText(tabWidget->indexOf(tab_4), QApplication::translate("MainWindow", "Products", 0));
     } // retranslateUi
 
