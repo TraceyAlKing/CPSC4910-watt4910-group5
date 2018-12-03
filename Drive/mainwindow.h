@@ -84,7 +84,7 @@ private:
     std::map<int, Catalog*> catalog_list_;
     std::map<int, Item*> item_list_;
 
-    DatabaseInterface dbi;
+    DatabaseInterface* dbi;
 
 
 };

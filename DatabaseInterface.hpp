@@ -11,8 +11,7 @@
 
 class DatabaseInterface {
 public:
-   DatabaseInterface();
-   ~DatabaseInterface();
+   static DatabaseInterface& getInstance();
 
    Driver* getDriver(int id);
    Admin* getAdmin(int id);
@@ -48,6 +47,10 @@ public:
    bool findEmail(int id, std::string name);
 
 private:
+   DatabaseInterface();
+   ~DatabaseInterface();
+   DatabaseInterface(DatabaseInterface& other) = delete;
+   DatabaseInterface& operator=(DatabaseInterface& rhs) = delete;
    //HOW WE WILL HANDLE DATA: IMPORTANT
    //
    //How maps work:
@@ -72,5 +75,6 @@ private:
    std::map<int, Item*> item_list_;
 
 };
+DatabaseInterface& dbi();
 
 #endif //DATABASEINTERFACE_HPP

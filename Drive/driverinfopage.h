@@ -22,7 +22,7 @@ public:
     ~DriverInfoPage();
 
     void setDriver(Driver* temp);
-    void setSponsor(Sponsor* temp, DatabaseInterface dbinter);
+    void setSponsor(Sponsor* temp);
 
     void on_pushButton_driver_name_Change_clicked();
     void on_pushButton_driver_email_Change_clicked();
@@ -40,7 +40,7 @@ private:
     Ui::DriverInfoPage *ui;
     Driver* driver;
     Sponsor* sponsor;
-    DatabaseInterface dbi;
+    DatabaseInterface* dbi;
 };
 
 #endif // DRIVERINFOPAGE_H

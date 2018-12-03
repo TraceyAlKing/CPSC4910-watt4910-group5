@@ -1,5 +1,10 @@
 #include "DatabaseInterface.hpp"
 
+DatabaseInterface& DatabaseInterface::getInstance(){
+   static DatabaseInterface singleton;
+   return singleton;
+}
+
 DatabaseInterface::DatabaseInterface() : driver_list_(), admin_list_(), sponsor_list_(),
    catalog_list_(), item_list_()
 {
@@ -259,4 +264,8 @@ std::map<int, Admin*>& DatabaseInterface::getAllAdmins(){
 std::map<int, Sponsor*>& DatabaseInterface::getAllSponsors(){
    db().getSponsors(&sponsor_list_);
    return sponsor_list_;
+}
+
+DatabaseInterface& dbi(){
+  return DatabaseInterface::getInstance();
 }

@@ -22,12 +22,12 @@ public:
     explicit CreateDriver(QWidget *parent = nullptr);
     ~CreateDriver();
 
-    void setSponsor(Sponsor* temp, DatabaseInterface dbinter);
-    void addDriver();
+    void setSponsor(Sponsor* temp);
+    void addDriver_clicked();
 
 private:
     Ui::CreateDriver *ui;
-    DatabaseInterface dbi;
+    DatabaseInterface* dbi;
     Sponsor* sponsor;
 };
 

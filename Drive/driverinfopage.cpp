@@ -5,6 +5,7 @@ DriverInfoPage::DriverInfoPage(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::DriverInfoPage)
 {
+    dbi = &DatabaseInterface::getInstance();
     ui->setupUi(this);
 }
 
@@ -13,9 +14,8 @@ DriverInfoPage::~DriverInfoPage()
     delete ui;
 }
 
-void DriverInfoPage::setSponsor(Sponsor* temp, DatabaseInterface dbinter) {
+void DriverInfoPage::setSponsor(Sponsor* temp) {
     sponsor = temp;
-    dbi = dbinter;
 }
 
 void DriverInfoPage::setDriver(Driver* temp) {
@@ -70,5 +70,5 @@ void DriverInfoPage::on_pushButton_driver_address_Add_clicked()
 
 void DriverInfoPage::updateDriver()
 {
-    dbi.update(driver);
+    dbi->update(driver);
 }

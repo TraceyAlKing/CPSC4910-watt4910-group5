@@ -10,6 +10,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+    dbi = &DatabaseInterface::getInstance();
     QFontDatabase fontDB;
     fontDB.addApplicationFont(":/fonts/Axis_Extrabold.otf");
     fontDB.addApplicationFont(":/fonts/Agane 55 (roman) sign.ttf");
@@ -17,7 +18,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->stackedWidget->setCurrentIndex(0);
     ui->stackedWidget->showMaximized();
     ui->groupBox->setFixedSize(600,400);
-
 }
 
 MainWindow::~MainWindow()
@@ -79,7 +79,7 @@ void MainWindow::on_pushButton_Login_2_clicked()
         driver_list_[CurrUser->getID()] = static_cast<Driver*>(CurrUser);
         std::vector<int> driversponsors;
         static_cast<Driver*>(CurrUser)->getSponsors(driversponsors);
-        currSponsor = dbi.getSponsor(driversponsors[0]);
+        currSponsor = dbi->getSponsor(driversponsors[0]);
         ui->driver_currSponsor->setText(QString::fromStdString(currSponsor->getName()));
 
        ui->pointsValue_label->setNum((int)(static_cast<Driver*>(CurrUser)->getPoints(currSponsor->getID())));
@@ -134,7 +134,7 @@ void MainWindow::on_sponsor_Home_Button_clicked()
     static_cast<Sponsor*>(CurrUser)->getDrivers(Drivers_);
     for(int i = 0; i<len; i++)
     {
-        QString qstr = QString::fromStdString(dbi.getDriver(Drivers_[i])->getName());
+        QString qstr = QString::fromStdString(dbi->getDriver(Drivers_[i])->getName());
         QTableWidgetItem* newItem = new QTableWidgetItem(qstr, 0);
         ui->driver_table->setItem(i, 0, newItem);
     }
@@ -142,9 +142,9 @@ void MainWindow::on_sponsor_Home_Button_clicked()
 
 void MainWindow::on_driver_table_cellClicked(int row, int column)
 {
-    Driver* temp = dbi.getDriver(Drivers_[row]);
+    Driver* temp = dbi->getDriver(Drivers_[row]);
     DriverInfoPage d;
-    d.setSponsor(static_cast<Sponsor*>(CurrUser), dbi);
+    d.setSponsor(static_cast<Sponsor*>(CurrUser));
     d.setDriver(temp);
     d.setModal(true);
     d.exec();
@@ -205,25 +205,25 @@ void MainWindow::on_pushButton_driver_address_Add_clicked()
 
 void MainWindow::updateDriver()
 {
-    dbi.update(static_cast<Driver*>(CurrUser));
+    dbi->update(static_cast<Driver*>(CurrUser));
 }
 
 void MainWindow::updateSponsor()
 {
-    dbi.update(static_cast<Sponsor*>(CurrUser));
+    dbi->update(static_cast<Sponsor*>(CurrUser));
 }
 
 void MainWindow::updateAdmin()
 {
-    dbi.update(static_cast<Admin*>(CurrUser));
+    dbi->update(static_cast<Admin*>(CurrUser));
 }
 
 void MainWindow::on_tabWidget_currentChanged() {
     if(ui->tabWidget->currentIndex() == 0)
     {
-        std::map<int, Driver*>& allDrivers =  dbi.getAllDrivers();
-        std::map<int, Admin*>& allAdmins = dbi.getAllAdmins();
-        std::map<int, Sponsor*>& allSponsors = dbi.getAllSponsors();
+        std::map<int, Driver*>& allDrivers =  dbi->getAllDrivers();
+        std::map<int, Admin*>& allAdmins = dbi->getAllAdmins();
+        std::map<int, Sponsor*>& allSponsors = dbi->getAllSponsors();
         int len = allDrivers.size()+allAdmins.size()+allSponsors.size();
         ui->admin_all_table->setRowCount(len);
         ui->admin_all_table->setColumnCount(1);
@@ -249,7 +249,7 @@ void MainWindow::on_tabWidget_currentChanged() {
     }
     if(ui->tabWidget->currentIndex() == 1)
     {
-        std::map<int, Driver*>& allDrivers =  dbi.getAllDrivers();
+        std::map<int, Driver*>& allDrivers =  dbi->getAllDrivers();
         int len = allDrivers.size();
         ui->admin_drivers_table->setRowCount(len);
         ui->admin_drivers_table->setColumnCount(1);
@@ -262,7 +262,7 @@ void MainWindow::on_tabWidget_currentChanged() {
     }
     if(ui->tabWidget->currentIndex() == 2)
     {
-        std::map<int, Sponsor*>& allSponsors = dbi.getAllSponsors();
+        std::map<int, Sponsor*>& allSponsors = dbi->getAllSponsors();
         int len = allSponsors.size();
         ui->admin_sponsors_table->setRowCount(len);
         ui->admin_sponsors_table->setColumnCount(1);
@@ -275,7 +275,7 @@ void MainWindow::on_tabWidget_currentChanged() {
     }
     if(ui->tabWidget->currentIndex() == 3)
     {
-        std::map<int, Admin*>& allAdmins = dbi.getAllAdmins();
+        std::map<int, Admin*>& allAdmins = dbi->getAllAdmins();
         int len =allAdmins.size();
         ui->admin_admin_table->setRowCount(len);
         ui->admin_admin_table->setColumnCount(1);
@@ -296,7 +296,7 @@ void MainWindow::initDriverCatalog() {
     static_cast<Driver*>(CurrUser)->getSponsors(mysponsors);
 
     int catalog_id = currSponsor->getCatalog();
-    Catalog* cata = dbi.getCatalog(catalog_id);
+    Catalog* cata = dbi->getCatalog(catalog_id);
     // do stuff with catalog
     std::vector<Item*> items = cata->getItems();
     int len = items.size();
@@ -313,7 +313,7 @@ void MainWindow::initDriverCatalog() {
 void MainWindow::on_new_driver_clicked() {
 
     CreateDriver d;
-    d.setSponsor(static_cast<Sponsor*>(CurrUser), dbi);
+    d.setSponsor(static_cast<Sponsor*>(CurrUser));
     d.setModal(true);
     d.exec();
 }
