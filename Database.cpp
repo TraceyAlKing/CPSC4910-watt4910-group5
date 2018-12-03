@@ -89,41 +89,40 @@ void Database::getDrivers(std::map<int, Driver*>* add_to_driver_list){
 
     //Parse results
     int count = 0;
-    std::string id;
-    std::string name;
-    std::string email;
-    std::string password;
-    std::string phone;
-    std::string address;
-    std::string license_num;
-    std::string license_plate_num;
+    std::vector<std::string> id;
+    std::vector<std::string> name;
+    std::vector<std::string> email;
+    std::vector<std::string> password;
+    std::vector<std::string> phone;
+    std::vector<std::string> address;
+    std::vector<std::string> license_num;
+    std::vector<std::string> license_plate_num;
     while (res_->next()) {
       /* Access column data by alias or column name */
       std::cout << "\t-------------------------------------------" << std::endl;
       std::cout << "\tid: "<< res_->getString("id") << std::endl;
-      id = res_->getString("id");
+      id.push_back(res_->getString("id"));
       std::cout << "\tname: "<< res_->getString("name") << std::endl;
-      name = res_->getString("name");
+      name.push_back(res_->getString("name"));
       std::cout << "\temail: "<< res_->getString("email") << std::endl;
-      email = res_->getString("email");
+      email.push_back(res_->getString("email"));
       std::cout << "\tpassword: "<< res_->getString("password") << std::endl;
-      password = res_->getString("password");
+      password.push_back(res_->getString("password"));
       std::cout << "\tphone: "<< res_->getString("phone") << std::endl;
-      phone = res_->getString("phone");
+      phone.push_back(res_->getString("phone"));
       std::cout << "\taddress: "<< res_->getString("address") << std::endl;
-      address = res_->getString("address");
+      address.push_back(res_->getString("address"));
       std::cout << "\tlicense_num: "<< res_->getString("license_num") << std::endl;
-      license_num = res_->getString("license_num");
+      license_num.push_back(res_->getString("license_num"));
       std::cout << "\tlicense_plate_num: "<< res_->getString("license_plate_num") << std::endl;
-      license_plate_num = res_->getString("license_plate_num");
+      license_plate_num.push_back(res_->getString("license_plate_num"));
       count++;
-
-      auto search = add_to_driver_list->find(std::stoi(id));
-      if(search == add_to_driver_list->end())
-        add_to_driver_list->emplace(std::stoi(id), (new Driver(id, name, email, password, phone, 
-              address, "Available", license_num, license_plate_num)));
-      
     }
+    for(int i = 0; i < count; i++){
+      add_to_driver_list->emplace(std::stoi(id[i]), (new Driver(id[i], name[i], email[i], password[i], phone[i], 
+        address[i], "Available", license_num[i], license_plate_num[i])));
+    }
+
     std::cout << "\t-------------------------------------------" << std::endl;
     std::cout << "\tNumber of entries: " << count << std::endl;
     std::cout << "\t... MySQL replies: Success." << std::endl;
@@ -406,37 +405,36 @@ void Database::getSponsors(std::map<int, Sponsor*>* add_to_sponsor_list){
 
     //Parse results
     int count = 0;
-    std::vector<Sponsor*> return_sponsors;
-    std::string id;
-    std::string name;
-    std::string email;
-    std::string password;
-    std::string phone;
-    std::string address;
-    std::string point_value;
+    std::vector<std::string> id;
+    std::vector<std::string> name;
+    std::vector<std::string> email;
+    std::vector<std::string> password;
+    std::vector<std::string> phone;
+    std::vector<std::string> address;
+    std::vector<std::string> point_value;
     while (res_->next()) {
       /* Access column data by alias or column name */
       std::cout << "\t-------------------------------------------" << std::endl;
       std::cout << "\tid: "<< res_->getString("id") << std::endl;
-      id = res_->getString("id");
+      id.push_back(res_->getString("id"));
       std::cout << "\tname: "<< res_->getString("name") << std::endl;
-      name = res_->getString("name");
+      name.push_back(res_->getString("name"));
       std::cout << "\temail: "<< res_->getString("email") << std::endl;
-      email = res_->getString("email");
+      email.push_back(res_->getString("email"));
       std::cout << "\tpassword: "<< res_->getString("password") << std::endl;
-      password = res_->getString("password");
+      password.push_back(res_->getString("password"));
       std::cout << "\tphone: "<< res_->getString("phone") << std::endl;
-      phone = res_->getString("phone");
+      phone.push_back(res_->getString("phone"));
       std::cout << "\taddress: "<< res_->getString("address") << std::endl;
-      address = res_->getString("address");
+      address.push_back(res_->getString("address"));
       std::cout << "\tpoint_value: "<< res_->getString("point_value") << std::endl;
-      point_value = res_->getString("point_value");
+      point_value.push_back(res_->getString("point_value"));
       count++;
-
-      auto search = add_to_sponsor_list->find(std::stoi(id));
-      if(search == add_to_sponsor_list->end())
-        add_to_sponsor_list->emplace(std::stoi(id), new Sponsor(id, name, email, password, phone, address, point_value));
     }
+    for(int i = 0; i < count; i++){
+      add_to_sponsor_list->emplace(std::stoi(id[i]), new Sponsor(id[i], name[i], email[i], password[i], phone[i], address[i], point_value[i]));
+    }
+
     std::cout << "\t-------------------------------------------" << std::endl;
     std::cout << "\tNumber of entries: " << count << std::endl;
     std::cout << "\t... MySQL replies: Success." << std::endl;
@@ -746,9 +744,7 @@ void Database::getAdmins(std::map<int, Admin*>* add_to_admin_list){
       address = res_->getString("address");
       count++;
       
-      auto search = add_to_admin_list->find(std::stoi(id));
-      if(search == add_to_admin_list->end())
-        add_to_admin_list->emplace(std::stoi(id), new Admin(id, name, email, password, phone, address));
+      add_to_admin_list->emplace(std::stoi(id), new Admin(id, name, email, password, phone, address));
     }
     std::cout << "\t-------------------------------------------" << std::endl;
     std::cout << "\tNumber of entries: " << count << std::endl;
