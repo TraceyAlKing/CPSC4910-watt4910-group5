@@ -562,12 +562,12 @@ void Database::updateSponsor(std::string id, std::string name, std::string email
 
 
   for(auto it : toremove){
-    removeCatalog(*it);
+    removeCatalog(it);
   }
 
 
   for(auto it : toadd){
-    createCatalog(*it);
+    createCatalog(it);
   }
 
   std::vector<int> olddrivers;
@@ -594,6 +594,7 @@ void Database::updateSponsor(std::string id, std::string name, std::string email
     if(!found) toremove.push_back(it2);
   }
 
+  std::stringstream sstr;
   try{
     for(auto it : toremove){
       sstr << "DELETE FROM DRIVER_SPONSOR WHERE sponsor_id = \'" << id << "\' " << "AND driver_id = \'" << it << "\'";
