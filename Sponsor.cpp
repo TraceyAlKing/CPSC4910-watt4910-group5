@@ -13,7 +13,7 @@ Sponsor::Sponsor(std::string id, std::string name, std::string email, std::strin
 		std::string phone, std::string address, std::string point_value) : 
 		User(id, name, email, password, phone, address), point_value_(stoi(point_value))
 {
-	db().getSponsorCatalogs(id,Catalogs_);
+	db().getSponsorCatalogs(id,Catalog_);
 	db().getSponsorDrivers(id,Drivers_);
 
 }
@@ -288,6 +288,8 @@ std::vector<int>& Sponsor::getCatalogs(){
 
 int Sponsor::getNumCatalogs(){
 	return Catalogs_.size();
+int Sponsor::getCatalog(){
+	return Catalog_[0];
 }
 int Sponsor::getPV()
 {

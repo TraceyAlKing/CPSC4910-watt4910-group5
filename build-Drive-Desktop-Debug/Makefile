@@ -365,10 +365,19 @@ moc_mainwindow.cpp: ../User.hpp \
 		../Admin.hpp \
 		../Catalog.hpp \
 		../DatabaseInterface.hpp \
+		../Drive/driverinfo.h \
 		../Drive/mainwindow.h
 	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/will/cpsc4910/CPSC4910-watt4910-group5/Drive -I/home/will/cpsc4910/CPSC4910-watt4910-group5 -I/home/will/cpsc4910/CPSC4910-watt4910-group5/Drive/-I -I/include -I/home/will/cpsc4910/CPSC4910-watt4910-group5/Drive/-I -I/include/jdbc -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../Drive/mainwindow.h -o moc_mainwindow.cpp
 
-moc_driverinfo.cpp: ../Drive/driverinfo.h
+moc_driverinfo.cpp: ../User.hpp \
+		../Database.hpp \
+		../Item.hpp \
+		../Driver.hpp \
+		../Sponsor.hpp \
+		../Admin.hpp \
+		../Catalog.hpp \
+		../DatabaseInterface.hpp \
+		../Drive/driverinfo.h
 	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/will/cpsc4910/CPSC4910-watt4910-group5/Drive -I/home/will/cpsc4910/CPSC4910-watt4910-group5 -I/home/will/cpsc4910/CPSC4910-watt4910-group5/Drive/-I -I/include -I/home/will/cpsc4910/CPSC4910-watt4910-group5/Drive/-I -I/include/jdbc -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../Drive/driverinfo.h -o moc_driverinfo.cpp
 
 compiler_moc_source_make_all:
@@ -400,7 +409,8 @@ main.o: ../Drive/main.cpp ../Drive/mainwindow.h \
 		../Sponsor.hpp \
 		../Admin.hpp \
 		../Catalog.hpp \
-		../DatabaseInterface.hpp
+		../DatabaseInterface.hpp \
+		../Drive/driverinfo.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../Drive/main.cpp
 
 mainwindow.o: ../Drive/mainwindow.cpp ../Drive/mainwindow.h \
@@ -412,10 +422,19 @@ mainwindow.o: ../Drive/mainwindow.cpp ../Drive/mainwindow.h \
 		../Admin.hpp \
 		../Catalog.hpp \
 		../DatabaseInterface.hpp \
+		../Drive/driverinfo.h \
 		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../Drive/mainwindow.cpp
 
 driverinfo.o: ../Drive/driverinfo.cpp ../Drive/driverinfo.h \
+		../User.hpp \
+		../Database.hpp \
+		../Item.hpp \
+		../Driver.hpp \
+		../Sponsor.hpp \
+		../Admin.hpp \
+		../Catalog.hpp \
+		../DatabaseInterface.hpp \
 		ui_driverinfo.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o driverinfo.o ../Drive/driverinfo.cpp
 
@@ -467,7 +486,13 @@ Database.o: ../Database.cpp ../Database.hpp \
 		../Catalog.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Database.o ../Database.cpp
 
-Item.o: ../Item.cpp ../Item.hpp
+Item.o: ../Item.cpp ../Item.hpp \
+		../Database.hpp \
+		../Driver.hpp \
+		../User.hpp \
+		../Sponsor.hpp \
+		../Admin.hpp \
+		../Catalog.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Item.o ../Item.cpp
 
 DatabaseInterface.o: ../DatabaseInterface.cpp ../DatabaseInterface.hpp \
