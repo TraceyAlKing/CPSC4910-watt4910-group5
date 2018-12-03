@@ -560,14 +560,11 @@ void Database::updateSponsor(std::string id, std::string name, std::string email
     if(!found) toremove.push_back(it2);
   }
 
-
-  for(auto it : toremove){
-    removeCatalog(it);
+  for(int i=0; i<toremove.size();i++){
+  	removeCatalog(std::to_string(toremove[i]));
   }
-
-
-  for(auto it : toadd){
-    createCatalog(it);
+  for(int i=0; i<toadd.size();i++){
+  	createCatalog(std::to_string(toadd[i]));
   }
 
   std::vector<int> olddrivers;
@@ -623,7 +620,6 @@ void Database::updateSponsor(std::string id, std::string name, std::string email
     std::cout << "# ERR: " << e.what();
     std::cout << " (MySQL error code: " << e.getErrorCode();
     std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
-    return 0;
   }
 }
   
@@ -643,14 +639,13 @@ void Database::updateSponsor(std::string id, std::string name, std::string email
     while (res_->next()) {
       /* Access column data by alias or column name */
       std::cout << "\t-------------------------------------------" << std::endl;
-      std::cout << "\tsponsor: "<< res_->getString("sponsor_id") << std::endl;
-      drivers.push_back(res_->getInt(driver_id));
+      std::cout << "\tdriver: "<< res_->getString("driver_id") << std::endl;
+      drivers.push_back(res_->getInt("driver_id"));
 
 
     }
     std::cout << "\t-------------------------------------------" << std::endl;
     std::cout << "\t... MySQL replies: Success." << std::endl;
-    return count;
 
   } catch (sql::SQLException &e) {
     std::cout << "# ERR: SQLException in " << __FILE__;
@@ -1223,7 +1218,7 @@ void Database::updateCatalog(int cat_id, std::vector<int> &items){
   }
 }	
 
-void getSponsorCatalogs(std::string sid, std::vector<int> &catalogs){
+void Database::getSponsorCatalogs(std::string sid, std::vector<int> &catalogs){
   try {
     //Build statement
     std::stringstream sstr;
