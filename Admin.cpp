@@ -11,7 +11,7 @@ using namespace std;
 #include "Database.hpp"
 
 Admin::Admin(std::string id, std::string name, std::string email, std::string password,
-		std::string phone, std::string address) : User(id, name, email, password, phone, address) 
+		std::string phone, std::string address) : User(id, name, email, password, phone, address)
 {
 
 }
@@ -64,7 +64,7 @@ void Admin::saveAdmin()
 	string filename =  to_string(p);
 	const char* file = filename.c_str();
 	myfile.open(file);
-	
+
 	myfile << "Admin" << "\n";
 
 	myfile << getUsername() << "\n";
@@ -73,14 +73,14 @@ void Admin::saveAdmin()
 	myfile << getEmail() << "\n";
 	myfile << getPhone() << "\n";
 	myfile << "ADDRESS" << "\n";
-	
+
 	int n = getNumAddress();
 	string* addresses = getAddress();
 	for(int p = 0; p < n; p++)
 	{
 		myfile << addresses[p] << "\n";
 	}
-	
+
 		myfile << "ENDADDRESS" << "\n";
 }
 */
@@ -88,21 +88,21 @@ void Admin::updateAdmin(){
 
 	db().updateAdmin(std::to_string(getID()), getName(), getEmail(), getPassword(), std::to_string(getPhone()), getAddress());
 }
-/*
-void Admin::viewUser()
+
+/*void Admin::viewUser()
 {
 	string input;
 	cout << "Enter a user to view their info" << endl;
 	cin >> input;
 	bool yn = checkForUser(input);
-	
+
 	string str;
-	
+
 	bool add = true;
 	bool plate = true;
-	
+
 	ifstream in(input);
-	
+
 	if(yn == true)
 	{
 		int addrNum = 1;
@@ -136,7 +136,7 @@ void Admin::viewUser()
 						add = false;
 					}
 					else
-					{	
+					{
 						cout << "Address "<< addrNum << ": " << str << endl;
 						addrNum++;
 					}
@@ -150,11 +150,11 @@ void Admin::viewUser()
 						plate = false;
 					}
 					else
-					{	
+					{
 						cout << "Plate "<< pltNum << ": " << str << endl;
 						pltNum++;
 					}
-				}				
+				}
 		}
 		else if(str == "Sponsor")
 		{
@@ -180,7 +180,7 @@ void Admin::viewUser()
 						add = false;
 					}
 					else
-					{	
+					{
 						cout << "Address "<< addrNum << ": " << str << endl;
 						addrNum++;
 					}
@@ -194,11 +194,11 @@ void Admin::viewUser()
 						plate = false;
 					}
 					else
-					{	
+					{
 						cout << "Driver "<< pltNum << ": " << str << endl;
 						pltNum++;
 					}
-				}				
+				}
 		}
 		else if(str == "Admin")
 		{
@@ -222,7 +222,7 @@ void Admin::viewUser()
 						add = false;
 					}
 					else
-					{	
+					{
 						cout << "Address "<< addrNum << ": " << str << endl;
 						addrNum++;
 					}
@@ -233,21 +233,21 @@ void Admin::viewUser()
 			cout << "Something went wrong..." << endl;
 		}
 	}
-}
-*/
-bool Admin::checkForUser(string name) 
+}*/
+
+bool Admin::checkForUser(string name)
 {
 	string str;
 	ifstream in(name);
-	
-    if (FILE *file = fopen(name.c_str(), "r")) 
+
+    if (FILE *file = fopen(name.c_str(), "r"))
 	{
 		return true;
-    } 
-	else 
+    }
+	else
 	{
         return false;
-    }   
+    }
 }
 
 void Admin::listOfFiles()
@@ -274,7 +274,7 @@ void Admin::listOfUsernames()
    if (dir == NULL) {
       return;
    }
-   while ((entry = readdir(dir)) != NULL) 
+   while ((entry = readdir(dir)) != NULL)
    {
    		string name = entry->d_name;
 		ifstream in(name);
@@ -312,7 +312,7 @@ void Admin::listOfAdminUsernames()
    if (dir == NULL) {
       return;
    }
-   while ((entry = readdir(dir)) != NULL) 
+   while ((entry = readdir(dir)) != NULL)
    {
    		string name = entry->d_name;
 		ifstream in(name);
@@ -338,7 +338,7 @@ void Admin::viewAllDrivers()
    if (dir == NULL) {
       return;
    }
-   while ((entry = readdir(dir)) != NULL) 
+   while ((entry = readdir(dir)) != NULL)
    {
    		string name = entry->d_name;
 		ifstream in(name);
@@ -362,7 +362,7 @@ void Admin::viewAllSponsors()
    if (dir == NULL) {
       return;
    }
-   while ((entry = readdir(dir)) != NULL) 
+   while ((entry = readdir(dir)) != NULL)
    {
    		string name = entry->d_name;
 		ifstream in(name);
@@ -387,7 +387,7 @@ void Admin::viewAllAdmins()
    if (dir == NULL) {
       return;
    }
-   while ((entry = readdir(dir)) != NULL) 
+   while ((entry = readdir(dir)) != NULL)
    {
    		string name = entry->d_name;
 		ifstream in(name);
@@ -403,26 +403,16 @@ void Admin::viewAllAdmins()
    }
    closedir(dir);
 }
-*/
-/*
-void Admin::deleteUser()
+
+void Admin::deleteUser(string name)
 {
-	cout << "Type in user you want to delete" << endl;
-	string name, str;
-	cin >> name;
-	
+
 	ifstream in(name);
 	if(FILE *file = fopen(name.c_str(), "r"))
 		{
 				getline(in, str);
 				if(str == "Admin")
 				{
-					cout << name << " is an admin" << endl;
-					cout << "Are you sure you want to delete this user? (Y/N)" << endl;
-					char yn;
-					cin >> yn;
-					if(yn == 'Y')
-					{
 					if( remove(name.c_str()) != 0 )
 					{
     						perror( "Error deleting file" );
@@ -435,12 +425,6 @@ void Admin::deleteUser()
 				}
 				else if(str == "Driver")
 				{
-					cout << name << " is a driver" << endl;
-					cout << "Are you sure you want to delete this user? (Y/N)" << endl;
-					char yn;
-					cin >> yn;
-					if(yn == 'Y')
-					{
 					if( remove(name.c_str()) != 0 )
 					{
     						perror( "Error deleting file" );
@@ -448,17 +432,10 @@ void Admin::deleteUser()
  				 	else
 				 	{
     						puts( "File successfully deleted" );
-					}
 					}
 				}
 				else if(str == "Sponsor")
 				{
-					cout << name << " is a sponsor" << endl;
-					cout << "Are you sure you want to delete this user? (Y/N)" << endl;
-					char yn;
-					cin >> yn;
-					if(yn == 'Y')
-					{
 					if( remove(name.c_str()) != 0 )
 					{
     						perror( "Error deleting file" );
@@ -467,17 +444,9 @@ void Admin::deleteUser()
 				 	{
     						puts( "File successfully deleted" );
 					}
-					}
-				}
-				else
-				{
-					cout << "File found, but an error occured" << endl;
 				}
 		}
-		else
-		{
-			cout << "File not found" << endl;
-		}
+
 }
 */
 /* @TODO: add this code back, errors compiling
@@ -520,11 +489,11 @@ Admin Admin::setAdmin(string f)
 	bool add = false;
 	string addr[10];
 	int addrNum = 0;
-	
+
 		const char *buff = f.c_str();
 
 		ifstream in(buff);
-		
+
         Admin d = Admin();
 
 		string str;
@@ -596,9 +565,9 @@ Admin Admin::setAdmin(string f)
 	cout << "Drop Sponsor (Q)" << endl;
 	char v;
 	cin >> v;
-	
+
 	string input;
-	
+
 	if(v == 'J')
 	{
 		cout << "Type in new username" << endl;
@@ -664,16 +633,16 @@ Admin Admin::setAdmin(string f)
 		{
 			Sponsor s, s2;
 			cout << "Sponsor: " << h << endl;
-			
+
 			s = s2.setSponsor(h);
 			s.removeDriverWInput(to_string(name.getID()));
 			s.saveSponsor();
-			
+
 			//name.setSponsor("N/A");
 			name.saveDriver();
                         //cout << "Sponsor removed from Driver" << endl;
 		}
-	}	
+	}
 }
 
 void Admin::editAdmin(Admin name)
@@ -689,9 +658,9 @@ void Admin::editAdmin(Admin name)
         cout << "Update Address (U)" << endl;
 	char v;
         cin >> v;
-	
+
 	string input;
-	
+
 	if(v == 'Q')
 	{
 		cout << "Type in new username" << endl;
@@ -748,9 +717,9 @@ cout << "Choose aspect to edit" << endl;
 	cout << "Update Address (U)" << endl;
 	char v;
 	cin >> v;
-	
+
 	string input;
-	
+
 	if(v == 'Q')
 	{
 		cout << "Type in new username" << endl;
@@ -869,5 +838,3 @@ void changeStatus(Driver d)
 {
     d.switchStatus();
 }
-
-
