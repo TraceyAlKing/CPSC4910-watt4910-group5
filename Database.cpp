@@ -56,9 +56,9 @@ User* Database::createDriver(std::string name, std::string email, std::string pa
   try {
     //Build statement
     std::stringstream sstr;
-    sstr << "INSERT INTO DRIVER ( name, email, password, phone, address, points ) ";
+    sstr << "INSERT INTO DRIVER ( name, email, password, phone, address ) ";
     sstr << "VALUES ( \"" << name << "\", \"" << email << "\", \"";
-    sstr << password << "\", \""<< phone << "\", \""<< address << "\", \""<< points << "\" );";
+    sstr << password << "\", \""<< phone << "\", \""<< address << "\" );";
 
     //Execute statement
     std::cout << "Attempting statement: " << sstr.str() << std::endl;

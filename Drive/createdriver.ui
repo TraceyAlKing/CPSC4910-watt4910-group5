@@ -209,7 +209,7 @@ QPushButton:pressed {
     </widget>
    </item>
    <item>
-    <widget class="QPushButton" name="pushButton">
+    <widget class="QPushButton" name="AddDriver">
      <property name="text">
       <string>Add Driver</string>
      </property>

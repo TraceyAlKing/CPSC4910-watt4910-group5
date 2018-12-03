@@ -21,9 +21,10 @@ class CreateDriver : public QDialog
 public:
     explicit CreateDriver(QWidget *parent = nullptr);
     ~CreateDriver();
-
     void setSponsor(Sponsor* temp);
-    void addDriver_clicked();
+
+private slots:
+    void on_AddDriver_clicked();
 
 private:
     Ui::CreateDriver *ui;

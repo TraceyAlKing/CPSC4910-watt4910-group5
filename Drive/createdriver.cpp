@@ -18,7 +18,7 @@ void CreateDriver::setSponsor(Sponsor* temp) {
     sponsor = temp;
 }
 
-void CreateDriver::addDriver_clicked() {
+void CreateDriver::on_AddDriver_clicked() {
     string name = ui->name->text().toStdString();
     string phone = ui->phone->text().toStdString();
     string lp = ui->lp->text().toStdString();

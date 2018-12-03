@@ -45,7 +45,7 @@ public:
     QLineEdit *phone;
     QLabel *label_5;
     QLineEdit *password;
-    QPushButton *pushButton;
+    QPushButton *AddDriver;
 
     void setupUi(QDialog *CreateDriver)
     {
@@ -186,10 +186,10 @@ public:
 
         verticalLayout_2->addWidget(groupBox);
 
-        pushButton = new QPushButton(CreateDriver);
-        pushButton->setObjectName(QStringLiteral("pushButton"));
+        AddDriver = new QPushButton(CreateDriver);
+        AddDriver->setObjectName(QStringLiteral("AddDriver"));
 
-        verticalLayout_2->addWidget(pushButton);
+        verticalLayout_2->addWidget(AddDriver);
 
 
         retranslateUi(CreateDriver);
@@ -209,7 +209,7 @@ public:
         label_7->setText(QApplication::translate("CreateDriver", "License Plate Number", nullptr));
         label_2->setText(QApplication::translate("CreateDriver", "Phone Number", nullptr));
         label_5->setText(QApplication::translate("CreateDriver", "Password", nullptr));
-        pushButton->setText(QApplication::translate("CreateDriver", "Add Driver", nullptr));
+        AddDriver->setText(QApplication::translate("CreateDriver", "Add Driver", nullptr));
     } // retranslateUi
 
 };

@@ -645,8 +645,8 @@ border-radius : 14px;</string>
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>720</width>
-                 <height>764</height>
+                 <width>270</width>
+                 <height>706</height>
                 </rect>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_9">

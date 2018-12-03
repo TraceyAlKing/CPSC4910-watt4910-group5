@@ -49,13 +49,13 @@ private slots:
 
     void on_tabWidget_currentChanged();
 
+    void initDriverCatalog();
+
+private:
     void updateDriver();
     void updateSponsor();
     void updateAdmin();
 
-    void initDriverCatalog();
-
-private:
     Ui::MainWindow *ui;
     User* CurrUser;
     std::vector<int> Drivers_;
