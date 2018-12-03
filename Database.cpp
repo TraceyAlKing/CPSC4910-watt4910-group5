@@ -545,38 +545,33 @@ void Database::updateSponsor(std::string id, std::string name, std::string email
 
   for(auto it1 : catalogs){
     found = false;
-    for(auto it2 : olditems){
+    for(auto it2 : oldcatalogs){
       if(it1==it2) found = true;
     }
     if(!found) toadd.push_back(it1);
   }
 
 
-  for(auto it2 : olditems){
+  for(auto it2 : oldcatalogs){
     found = false;
-    for(auto it1 : items){
+    for(auto it1 : catalogs){
       if(it2==it1) found = true;
     }
     if(!found) toremove.push_back(it2);
   }
 
-  sstr.str(std::string());
-
-  for(auto it : toremove){
-    removeCatalog(it);
+  for(int i=0; i<toremove.size();i++){
+  	removeCatalog(std::to_string(toremove[i]));
   }
-
-  sstr.str(std::string());
-
-  for(auto it : toadd){
-    createCatalog(it);
+  for(int i=0; i<toadd.size();i++){
+  	createCatalog(std::to_string(toadd[i]));
   }
 
   std::vector<int> olddrivers;
   toremove.clear();
   toadd.clear();
 
-  getDriverSponsors(id,olddrivers);
+  getDriverSponsors(std::stoi(id),olddrivers);
 
 
   for(auto it1 : drivers){
@@ -596,6 +591,7 @@ void Database::updateSponsor(std::string id, std::string name, std::string email
     if(!found) toremove.push_back(it2);
   }
 
+  std::stringstream sstr;
   try{
     for(auto it : toremove){
       sstr << "DELETE FROM DRIVER_SPONSOR WHERE sponsor_id = \'" << id << "\' " << "AND driver_id = \'" << it << "\'";
@@ -624,11 +620,10 @@ void Database::updateSponsor(std::string id, std::string name, std::string email
     std::cout << "# ERR: " << e.what();
     std::cout << " (MySQL error code: " << e.getErrorCode();
     std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
-    return 0;
   }
 }
   
- void getSponsorDrivers(std::string sid, std::vector<int> &drivers){
+ void Database::getSponsorDrivers(std::string sid, std::vector<int> &drivers){
   try {
     //Build statement
     std::stringstream sstr;
@@ -644,14 +639,13 @@ void Database::updateSponsor(std::string id, std::string name, std::string email
     while (res_->next()) {
       /* Access column data by alias or column name */
       std::cout << "\t-------------------------------------------" << std::endl;
-      std::cout << "\tsponsor: "<< res_->getString("sponsor_id") << std::endl;
-      drivers.push_back(res_->getInt(driver_id));
+      std::cout << "\tdriver: "<< res_->getString("driver_id") << std::endl;
+      drivers.push_back(res_->getInt("driver_id"));
 
 
     }
     std::cout << "\t-------------------------------------------" << std::endl;
     std::cout << "\t... MySQL replies: Success." << std::endl;
-    return count;
 
   } catch (sql::SQLException &e) {
     std::cout << "# ERR: SQLException in " << __FILE__;
@@ -1224,7 +1218,7 @@ void Database::updateCatalog(int cat_id, std::vector<int> &items){
   }
 }	
 
-void getSponsorCatalogs(std::string sid, std::vector<int> &catalogs){
+void Database::getSponsorCatalogs(std::string sid, std::vector<int> &catalogs){
   try {
     //Build statement
     std::stringstream sstr;

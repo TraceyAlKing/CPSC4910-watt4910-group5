@@ -73,9 +73,13 @@ void MainWindow::on_pushButton_Login_2_clicked()
     }else if(isDriver){
         ui->stackedWidget->setCurrentIndex(1);
         ui->stackedWidget_driver->setCurrentIndex(0);
+        currSponsor=0;
 
         CurrUser = temp;
         driver_list_[CurrUser->getID()] = static_cast<Driver*>(CurrUser);
+        std::vector<int> driversponsors;
+        static_cast<Driver*>(CurrUser)->getSponsors(driversponsors);
+        currSponsor = dbi.getSponsor(driversponsors[0]);
 
        //ui->pointsValue_label->setNum((int)(static_cast<Driver*>(CurrUser)->getPoints()));
         ui->pointsValue_label->setNum(6);
@@ -113,30 +117,12 @@ void MainWindow::on_driver_Account_clicked()
     ui->lineEdit_driver_name->setText(QString::fromStdString(static_cast<Driver*>(CurrUser)->getName()));
     ui->lineEdit_driver_email->setText(QString::fromStdString(static_cast<Driver*>(CurrUser)->getEmail()));
     //@TODO: Need to fix the sponsors
-    //std::vector<int> driversponsors;
-    //static_cast<Driver*>(CurrUser)->getSponsors(&driversponsors);
-    //ui->driver_sponsor_label->setText(QString::number(driversponsors));
-    ui->driver_sponsor_label->setText("Placeholder");
-    //
+    ui->driver_sponsor_label->setText(QString::fromStdString(currSponsor->getName()));
+
     ui->lineEdit_driver_ln->setText(QString::fromStdString(std::to_string(static_cast<Driver*>(CurrUser)->getLicenseNum())));
     ui->lineEdit_driver_phone->setText(QString::fromStdString(std::to_string(static_cast<Driver*>(CurrUser)->getPhone())));
-
-    int* LPNum_ = static_cast<Driver*>(CurrUser)->getPlates();
-    for(int i = 0; i<static_cast<Driver*>(CurrUser)->getLNumNum(); i++)
-    {
-        QTableWidgetItem *newItem = new QTableWidgetItem();
-        newItem->setText(QString::fromStdString(std::to_string(LPNum_[i])));
-        ui->tableWidget_LPNum->setItem(i, 0, newItem);
-    }
-
-
-    string* address_ = static_cast<Driver*>(CurrUser)->getAddress();
-    for(int i = 0; i<static_cast<Driver*>(CurrUser)->getNumAddress(); i++)
-    {
-        QTableWidgetItem *newItem = new QTableWidgetItem();
-        newItem->setText(QString::fromStdString(address_[i]));
-        ui->tableWidget_driver_address->setItem(i, 0, newItem);
-    }
+    ui->lineEdit_driver_LP->setText(QString::fromStdString(std::to_string(static_cast<Driver*>(CurrUser)->getFirstPlate())));
+    ui->lineEdit_driver_address->setText(QString::fromStdString(static_cast<Driver*>(CurrUser)->getAddress()));
 }
 
 void MainWindow::on_sponsor_Logout_clicked()
@@ -166,7 +152,7 @@ void MainWindow::on_sponsor_Home_Button_clicked()
 
 void MainWindow::on_driver_table_cellClicked(int row, int column)
 {
-    Driver temp = dbi.getDriver(Drivers_[row]);
+    Driver* temp = dbi.getDriver(Drivers_[row]);
     DriverInfo d;
     d.setSponsor(static_cast<Sponsor*>(CurrUser));
     d.setDriver(temp);
@@ -222,7 +208,7 @@ void MainWindow::on_pushButton_driver_address_Add_clicked()
 {
     QString newAddress = ui->lineEdit_driver_address->text();
     std::string address = newAddress.toStdString();
-    static_cast<Driver*>(CurrUser)->addAddress(address);
+    static_cast<Driver*>(CurrUser)->setAddress(address);
     updateDriver();
 }
 
