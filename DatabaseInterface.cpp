@@ -80,10 +80,11 @@ void DatabaseInterface::update(Driver* obj){
    std::string email = obj->getEmail();
    std::string password = obj->getPassword();
    std::string phone = std::to_string(obj->getPhone());
+   std::string address = obj->getAddress();
    std::string license_num = std::to_string(obj->getLicenseNum());
    std::string license_plate_num = std::to_string(obj->getFirstPlate());
 
-   db().updateDriver(id, name, email, password, phone, license_num, license_plate_num);
+   db().updateDriver(id, name, email, password, phone, address, license_num, license_plate_num);
 }
 void DatabaseInterface::update(Admin* obj){
    std::string id = std::to_string(obj->getID());
@@ -91,18 +92,20 @@ void DatabaseInterface::update(Admin* obj){
    std::string email = obj->getEmail();
    std::string password = obj->getPassword();
    std::string phone = std::to_string(obj->getPhone());
+   std::string address = obj->getAddress();
 
-   db().updateAdmin(id, name, email, password, phone);
+   db().updateAdmin(id, name, email, password, phone, address);
 }
 void DatabaseInterface::update(Sponsor* obj){
-   std::string id = std::to_string(obj->getID());
-   std::string name = obj->getName();
-   std::string email = obj->getEmail();
-   std::string password = obj->getPassword();
-   std::string phone = std::to_string(obj->getPhone());
-   std::string point_value = std::to_string(obj->getPV());
-
-   db().updateSponsor(id, name, email, password, phone, point_value);
+  db().updateSponsor( std::to_string(obj->getID()), 
+    obj->getName(),
+    obj->getEmail(), 
+    obj->getPassword(), 
+    std::to_string(obj->getPhone()),
+    obj->getAddress(), 
+    std::to_string(obj->getPV()), 
+    (obj->getCatalogs()), 
+    (obj->getDrivers()));
 }
 /*
 bool DatabaseInterface::findAdmin(int id)

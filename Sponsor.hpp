@@ -33,8 +33,10 @@ public:
 	bool checkForDriver(string name);
 	int getSponNum();
    void getDrivers(std::vector<int>& drivers);
+   std::vector<int>& getDrivers();
    int getNumDrivers();
    void getCatalogs(std::vector<int> &catalogs);
+   std::vector<int>& getCatalogs();
    int getNumCatalogs();
 	
 	//Sponsor setSponsor(string f);

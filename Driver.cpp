@@ -165,7 +165,7 @@ void Driver::updateDriver(){
 
 	//no points as they no worky
    db().updateDriver(std::to_string(getID()), getName(), getEmail(), getPassword(), 
-   	std::to_string(getPhone()), std::to_string(LNum_), std::to_string(LPNum_[0]));
+   	std::to_string(getPhone()), getAddress(), std::to_string(LNum_), std::to_string(LPNum_[0]));
 	db().updatePoints(getID(), points_map_);
 }
 

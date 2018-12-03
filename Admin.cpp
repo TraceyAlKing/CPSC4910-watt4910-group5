@@ -86,7 +86,7 @@ void Admin::saveAdmin()
 */
 void Admin::updateAdmin(){
 
-	db().updateAdmin(std::to_string(getID()), getName(), getEmail(), getPassword(), std::to_string(getPhone()));
+	db().updateAdmin(std::to_string(getID()), getName(), getEmail(), getPassword(), std::to_string(getPhone()), getAddress());
 }
 /*
 void Admin::viewUser()
