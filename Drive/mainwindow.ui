@@ -73,7 +73,7 @@ QStackedWidget{ background: qlineargradient(x1:0, y1:0, x2:1, y2:1,  stop:0 #202
        </size>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="login_page">
        <property name="sizeIncrement">
@@ -572,7 +572,7 @@ border-radius : 14px;</string>
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLabel" name="label_currSponsor">
+                 <widget class="QLabel" name="driver_currSponsor">
                   <property name="text">
                    <string>KFC</string>
                   </property>
@@ -599,12 +599,12 @@ border-radius : 14px;</string>
         <item>
          <widget class="QStackedWidget" name="stackedWidget_driver">
           <property name="currentIndex">
-           <number>1</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="page_2">
            <layout class="QHBoxLayout" name="horizontalLayout_9">
             <item>
-             <widget class="QTableWidget" name="tableWidget"/>
+             <widget class="QTableWidget" name="driver_catalog"/>
             </item>
            </layout>
           </widget>
@@ -623,8 +623,8 @@ border-radius : 14px;</string>
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>270</width>
-                 <height>586</height>
+                 <width>769</width>
+                 <height>644</height>
                 </rect>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -1011,6 +1011,13 @@ border-radius : 14px;</string>
              </widget>
             </item>
             <item>
+             <widget class="QPushButton" name="pushButton">
+              <property name="text">
+               <string>New Driver</string>
+              </property>
+             </widget>
+            </item>
+            <item>
              <widget class="QPushButton" name="pushButton_5">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -1044,7 +1051,7 @@ border-radius : 14px;</string>
           <widget class="QWidget" name="page">
            <layout class="QVBoxLayout" name="verticalLayout_6">
             <item>
-             <widget class="QTableWidget" name="driver_catalog">
+             <widget class="QTableWidget" name="driver_table">
               <property name="rowCount">
                <number>1</number>
               </property>
@@ -1247,7 +1254,7 @@ border-radius : 14px;</string>
         <item>
          <widget class="QTabWidget" name="tabWidget">
           <property name="currentIndex">
-           <number>3</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="tab">
            <attribute name="title">
@@ -1257,10 +1264,10 @@ border-radius : 14px;</string>
             <item>
              <layout class="QHBoxLayout" name="horizontalLayout_5">
               <item>
-               <widget class="QLineEdit" name="lineEdit_10"/>
+               <widget class="QLineEdit" name="all_search"/>
               </item>
               <item>
-               <widget class="QPushButton" name="pushButton_admin_Search">
+               <widget class="QPushButton" name="admin_search_button">
                 <property name="text">
                  <string>Search</string>
                 </property>
@@ -1269,7 +1276,7 @@ border-radius : 14px;</string>
              </layout>
             </item>
             <item>
-             <widget class="QTableWidget" name="tableWidget_5"/>
+             <widget class="QTableWidget" name="admin_all_table"/>
             </item>
            </layout>
           </widget>
@@ -1281,10 +1288,10 @@ border-radius : 14px;</string>
             <item>
              <layout class="QHBoxLayout" name="horizontalLayout">
               <item>
-               <widget class="QLineEdit" name="lineEdit_9"/>
+               <widget class="QLineEdit" name="driver_search"/>
               </item>
               <item>
-               <widget class="QPushButton" name="pushButton_admin_drivers_Search">
+               <widget class="QPushButton" name="driver_search_button">
                 <property name="text">
                  <string>Search</string>
                 </property>
@@ -1293,7 +1300,7 @@ border-radius : 14px;</string>
              </layout>
             </item>
             <item>
-             <widget class="QTableWidget" name="tableWidget_6"/>
+             <widget class="QTableWidget" name="admin_drivers_table"/>
             </item>
            </layout>
           </widget>
@@ -1305,10 +1312,10 @@ border-radius : 14px;</string>
             <item>
              <layout class="QHBoxLayout" name="horizontalLayout_6">
               <item>
-               <widget class="QLineEdit" name="lineEdit_11"/>
+               <widget class="QLineEdit" name="sponsor_search"/>
               </item>
               <item>
-               <widget class="QPushButton" name="pushButton_admin_sponsors_Search">
+               <widget class="QPushButton" name="sponsor_search_button">
                 <property name="text">
                  <string>Search</string>
                 </property>
@@ -1317,7 +1324,7 @@ border-radius : 14px;</string>
              </layout>
             </item>
             <item>
-             <widget class="QTableWidget" name="tableWidget_7"/>
+             <widget class="QTableWidget" name="admin_sponsors_table"/>
             </item>
            </layout>
           </widget>
@@ -1329,10 +1336,10 @@ border-radius : 14px;</string>
             <item>
              <layout class="QHBoxLayout" name="horizontalLayout_7">
               <item>
-               <widget class="QLineEdit" name="lineEdit_12"/>
+               <widget class="QLineEdit" name="products_search"/>
               </item>
               <item>
-               <widget class="QPushButton" name="pushButton_products_Search">
+               <widget class="QPushButton" name="products_search_button">
                 <property name="text">
                  <string>Search</string>
                 </property>
