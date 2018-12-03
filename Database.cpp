@@ -51,7 +51,7 @@ void Database::removeDriver(std::string id){
     std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
   }
 }
-void Database::createDriver(std::string name, std::string email, std::string password, 
+User* Database::createDriver(std::string name, std::string email, std::string password, 
   std::string phone, std::string address, std::string points){
   try {
     //Build statement
@@ -66,6 +66,8 @@ void Database::createDriver(std::string name, std::string email, std::string pas
     stmt_->execute(sstr.str());
     std::cout << "\t... MySQL replies: Success." << std::endl;
 
+    return findFromLogin(email, password);
+
   } catch (sql::SQLException &e) {
     std::cout << "# ERR: SQLException in " << __FILE__;
     std::cout << "(" << __FUNCTION__ << ") on line "
@@ -73,6 +75,7 @@ void Database::createDriver(std::string name, std::string email, std::string pas
     std::cout << "# ERR: " << e.what();
     std::cout << " (MySQL error code: " << e.getErrorCode();
     std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
+    return NULL;
   }
 }
 void Database::getDrivers(std::map<int, Driver*>* add_to_driver_list){
@@ -1270,6 +1273,10 @@ std::string Database::executeUnguardedStatement(std::string str){
     std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
     return "Error: SQLException";
    }
+}
+
+User* Database::findFromLogin(std::string input_email, std::string input_password){
+  return login(input_email, input_password);
 }
 
 User* Database::login(std::string input_email, std::string input_password){

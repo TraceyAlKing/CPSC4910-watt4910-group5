@@ -26,6 +26,10 @@ public:
    void update(Catalog* obj);
    void update(Item* obj);
 
+   //Create functions
+   Driver* createDriver(std::string name, std::string email, std::string password, std::string phone, 
+      std::string address, std::string points);
+
    //Avoid these functions unless the admin needs them
    std::map<int, Driver*>& getAllDrivers();
    std::map<int, Admin*>& getAllAdmins();

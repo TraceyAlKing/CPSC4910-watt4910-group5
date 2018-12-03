@@ -107,6 +107,14 @@ void DatabaseInterface::update(Sponsor* obj){
     (obj->getCatalogs()), 
     (obj->getDrivers()));
 }
+
+Driver* DatabaseInterface::createDriver(std::string name, std::string email, std::string password, std::string phone, 
+      std::string address, std::string points){
+  User* new_driver = db().createDriver(name, email, password, phone, address, points);
+  int id = static_cast<Driver*>(new_driver)->getID();
+  driver_list_.emplace(id, static_cast<Driver*>(new_driver));
+  return driver_list_[id];
+}
 /*
 bool DatabaseInterface::findAdmin(int id)
 {

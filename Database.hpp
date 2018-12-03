@@ -28,7 +28,7 @@ public:
    std::string executeStatement();
 
    //Driver calls
-   void createDriver(std::string name, std::string email, std::string password, std::string phone, 
+   User* createDriver(std::string name, std::string email, std::string password, std::string phone, 
       std::string address, std::string points);
    Driver* getDriver(std::string id);
    void removeDriver(std::string id);
@@ -82,6 +82,7 @@ public:
    //returns 0 on failure, if greater than 0, then it's a success
    //    returns 1 if driver, 2 if sponsor, 3 if admin
    User* login(std::string input_email, std::string input_password);  
+   User* findFromLogin(std::string input_email, std::string input_password);
 private:
    Database();
    ~Database();
