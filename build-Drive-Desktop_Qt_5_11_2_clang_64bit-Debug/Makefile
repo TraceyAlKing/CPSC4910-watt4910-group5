@@ -60,9 +60,11 @@ SOURCES       = ../Drive/main.cpp \
 		../Catalog.cpp \
 		../Database.cpp \
 		../Item.cpp \
-		../DatabaseInterface.cpp qrc_fonts.cpp \
+		../DatabaseInterface.cpp \
+		../Drive/catalogitem.cpp qrc_fonts.cpp \
 		moc_mainwindow.cpp \
-		moc_driverinfo.cpp
+		moc_driverinfo.cpp \
+		moc_catalogitem.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
 		driverinfo.o \
@@ -74,9 +76,11 @@ OBJECTS       = main.o \
 		Database.o \
 		Item.o \
 		DatabaseInterface.o \
+		catalogitem.o \
 		qrc_fonts.o \
 		moc_mainwindow.o \
-		moc_driverinfo.o
+		moc_driverinfo.o \
+		moc_catalogitem.o
 DIST          = /Users/tracey/Applications/Qt/5.11.2/clang_64/mkspecs/features/spec_pre.prf \
 		/Users/tracey/Applications/Qt/5.11.2/clang_64/mkspecs/qdevice.pri \
 		/Users/tracey/Applications/Qt/5.11.2/clang_64/mkspecs/features/device_config.prf \
@@ -275,7 +279,8 @@ DIST          = /Users/tracey/Applications/Qt/5.11.2/clang_64/mkspecs/features/s
 		../Database.hpp \
 		../Item.hpp \
 		../Catalog.hpp \
-		../DatabaseInterface.hpp ../Drive/main.cpp \
+		../DatabaseInterface.hpp \
+		../Drive/catalogitem.h ../Drive/main.cpp \
 		../Drive/mainwindow.cpp \
 		../Drive/driverinfo.cpp \
 		../Driver.cpp \
@@ -285,7 +290,8 @@ DIST          = /Users/tracey/Applications/Qt/5.11.2/clang_64/mkspecs/features/s
 		../Catalog.cpp \
 		../Database.cpp \
 		../Item.cpp \
-		../DatabaseInterface.cpp
+		../DatabaseInterface.cpp \
+		../Drive/catalogitem.cpp
 QMAKE_TARGET  = Drive
 DESTDIR       = 
 TARGET        = Drive.app/Contents/MacOS/Drive
@@ -302,7 +308,7 @@ include /Users/tracey/Applications/Qt/5.11.2/clang_64/mkspecs/features/mac/sdk.m
 first: all
 ####### Build rules
 
-$(TARGET): ui_mainwindow.h ui_driverinfo.h $(OBJECTS)  
+$(TARGET): ui_mainwindow.h ui_driverinfo.h ui_catalogitem.h $(OBJECTS)  
 	@test -d Drive.app/Contents/MacOS/ || mkdir -p Drive.app/Contents/MacOS/
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
@@ -726,9 +732,9 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../Drive/fonts.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /Users/tracey/Applications/Qt/5.11.2/clang_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../Drive/mainwindow.h ../Drive/driverinfo.h ../Driver.hpp ../Sponsor.hpp ../User.hpp ../Admin.hpp ../Database.hpp ../Item.hpp ../Catalog.hpp ../DatabaseInterface.hpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../Drive/main.cpp ../Drive/mainwindow.cpp ../Drive/driverinfo.cpp ../Driver.cpp ../Sponsor.cpp ../User.cpp ../Admin.cpp ../Catalog.cpp ../Database.cpp ../Item.cpp ../DatabaseInterface.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../Drive/mainwindow.ui ../Drive/driverinfo.ui $(DISTDIR)/
+	$(COPY_FILE) --parents ../Drive/mainwindow.h ../Drive/driverinfo.h ../Driver.hpp ../Sponsor.hpp ../User.hpp ../Admin.hpp ../Database.hpp ../Item.hpp ../Catalog.hpp ../DatabaseInterface.hpp ../Drive/catalogitem.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../Drive/main.cpp ../Drive/mainwindow.cpp ../Drive/driverinfo.cpp ../Driver.cpp ../Sponsor.cpp ../User.cpp ../Admin.cpp ../Catalog.cpp ../Database.cpp ../Item.cpp ../DatabaseInterface.cpp ../Drive/catalogitem.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../Drive/mainwindow.ui ../Drive/driverinfo.ui ../Drive/catalogitem.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -765,9 +771,9 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /Users/tracey/Applications/Qt/5.11.2/clang_64/mkspecs/features/data/dummy.cpp
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -pipe -stdlib=libc++ -g -std=gnu++11 $(EXPORT_ARCH_ARGS) -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk -mmacosx-version-min=10.11 -Wall -W -dM -E -o moc_predefs.h /Users/tracey/Applications/Qt/5.11.2/clang_64/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_mainwindow.cpp moc_driverinfo.cpp
+compiler_moc_header_make_all: moc_mainwindow.cpp moc_driverinfo.cpp moc_catalogitem.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_mainwindow.cpp moc_driverinfo.cpp
+	-$(DEL_FILE) moc_mainwindow.cpp moc_driverinfo.cpp moc_catalogitem.cpp
 moc_mainwindow.cpp: /Users/tracey/Applications/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
 		/Users/tracey/Applications/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
 		../User.hpp \
@@ -1093,6 +1099,7 @@ moc_mainwindow.cpp: /Users/tracey/Applications/Qt/5.11.2/clang_64/lib/QtWidgets.
 		../Admin.hpp \
 		../Catalog.hpp \
 		../DatabaseInterface.hpp \
+		../Drive/driverinfo.h \
 		../Drive/mainwindow.h \
 		moc_predefs.h \
 		/Users/tracey/Applications/Qt/5.11.2/clang_64/bin/moc
@@ -1100,18 +1107,348 @@ moc_mainwindow.cpp: /Users/tracey/Applications/Qt/5.11.2/clang_64/lib/QtWidgets.
 
 moc_driverinfo.cpp: /Users/tracey/Applications/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
 		/Users/tracey/Applications/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		../User.hpp \
+		../Database.hpp \
+		/usr/local/mysql-connector-c++/include/jdbc/mysql_connection.h \
+		/usr/local/mysql-connector-c++/include/jdbc/cppconn/connection.h \
+		/usr/local/mysql-connector-c++/include/jdbc/cppconn/build_config.h \
+		/usr/local/mysql-connector-c++/include/jdbc/cppconn/warning.h \
+		/usr/local/mysql-connector-c++/include/jdbc/cppconn/sqlstring.h \
+		/usr/local/mysql-connector-c++/include/jdbc/cppconn/variant.h \
+		/usr/local/mysql-connector-c++/include/jdbc/cppconn/exception.h \
+		/usr/local/include/boost/shared_ptr.hpp \
+		/usr/local/include/boost/smart_ptr/shared_ptr.hpp \
+		/usr/local/include/boost/config.hpp \
+		/usr/local/include/boost/config/user.hpp \
+		/usr/local/include/boost/config/detail/select_compiler_config.hpp \
+		/usr/local/include/boost/config/compiler/nvcc.hpp \
+		/usr/local/include/boost/config/compiler/gcc_xml.hpp \
+		/usr/local/include/boost/config/compiler/cray.hpp \
+		/usr/local/include/boost/config/compiler/common_edg.hpp \
+		/usr/local/include/boost/config/compiler/comeau.hpp \
+		/usr/local/include/boost/config/compiler/pathscale.hpp \
+		/usr/local/include/boost/config/compiler/clang.hpp \
+		/usr/local/include/boost/config/compiler/intel.hpp \
+		/usr/local/include/boost/config/compiler/visualc.hpp \
+		/usr/local/include/boost/config/pragma_message.hpp \
+		/usr/local/include/boost/config/helper_macros.hpp \
+		/usr/local/include/boost/config/compiler/gcc.hpp \
+		/usr/local/include/boost/config/compiler/digitalmars.hpp \
+		/usr/local/include/boost/config/compiler/kai.hpp \
+		/usr/local/include/boost/config/compiler/sgi_mipspro.hpp \
+		/usr/local/include/boost/config/compiler/compaq_cxx.hpp \
+		/usr/local/include/boost/config/compiler/greenhills.hpp \
+		/usr/local/include/boost/config/compiler/codegear.hpp \
+		/usr/local/include/boost/config/compiler/borland.hpp \
+		/usr/local/include/boost/config/compiler/metrowerks.hpp \
+		/usr/local/include/boost/config/compiler/sunpro_cc.hpp \
+		/usr/local/include/boost/config/compiler/hp_acc.hpp \
+		/usr/local/include/boost/config/compiler/mpw.hpp \
+		/usr/local/include/boost/config/compiler/xlcpp_zos.hpp \
+		/usr/local/include/boost/config/compiler/xlcpp.hpp \
+		/usr/local/include/boost/config/compiler/vacpp.hpp \
+		/usr/local/include/boost/config/compiler/pgi.hpp \
+		/usr/local/include/boost/config/detail/select_stdlib_config.hpp \
+		/usr/local/include/boost/config/stdlib/stlport.hpp \
+		/usr/local/include/boost/config/stdlib/libcomo.hpp \
+		/usr/local/include/boost/config/no_tr1/utility.hpp \
+		/usr/local/include/boost/config/stdlib/roguewave.hpp \
+		/usr/local/include/boost/config/stdlib/libcpp.hpp \
+		/usr/local/include/boost/config/stdlib/libstdcpp3.hpp \
+		/usr/local/include/boost/config/stdlib/sgi.hpp \
+		/usr/local/include/boost/config/stdlib/msl.hpp \
+		/usr/local/include/boost/config/detail/posix_features.hpp \
+		/usr/local/include/boost/config/stdlib/xlcpp_zos.hpp \
+		/usr/local/include/boost/config/stdlib/vacpp.hpp \
+		/usr/local/include/boost/config/stdlib/modena.hpp \
+		/usr/local/include/boost/config/stdlib/dinkumware.hpp \
+		/usr/local/include/boost/config/detail/select_platform_config.hpp \
+		/usr/local/include/boost/config/platform/linux.hpp \
+		/usr/local/include/boost/config/platform/bsd.hpp \
+		/usr/local/include/boost/config/platform/solaris.hpp \
+		/usr/local/include/boost/config/platform/irix.hpp \
+		/usr/local/include/boost/config/platform/hpux.hpp \
+		/usr/local/include/boost/config/platform/cygwin.hpp \
+		/usr/local/include/boost/config/platform/win32.hpp \
+		/usr/local/include/boost/config/platform/beos.hpp \
+		/usr/local/include/boost/config/platform/macos.hpp \
+		/usr/local/include/boost/config/platform/zos.hpp \
+		/usr/local/include/boost/config/platform/aix.hpp \
+		/usr/local/include/boost/config/platform/amigaos.hpp \
+		/usr/local/include/boost/config/platform/qnxnto.hpp \
+		/usr/local/include/boost/config/platform/vxworks.hpp \
+		/usr/local/include/boost/config/platform/symbian.hpp \
+		/usr/local/include/boost/config/platform/cray.hpp \
+		/usr/local/include/boost/config/platform/vms.hpp \
+		/usr/local/include/boost/config/detail/suffix.hpp \
+		/usr/local/include/boost/config/no_tr1/memory.hpp \
+		/usr/local/include/boost/assert.hpp \
+		/usr/local/include/boost/current_function.hpp \
+		/usr/local/include/boost/checked_delete.hpp \
+		/usr/local/include/boost/core/checked_delete.hpp \
+		/usr/local/include/boost/throw_exception.hpp \
+		/usr/local/include/boost/detail/workaround.hpp \
+		/usr/local/include/boost/config/workaround.hpp \
+		/usr/local/include/boost/exception/exception.hpp \
+		/usr/local/include/boost/smart_ptr/detail/shared_count.hpp \
+		/usr/local/include/boost/smart_ptr/bad_weak_ptr.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_counted_base.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_has_sync.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_counted_base_nt.hpp \
+		/usr/local/include/boost/detail/sp_typeinfo.hpp \
+		/usr/local/include/boost/core/typeinfo.hpp \
+		/usr/local/include/boost/core/demangle.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_counted_base_std_atomic.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_counted_base_spin.hpp \
+		/usr/local/include/boost/smart_ptr/detail/spinlock_pool.hpp \
+		/usr/local/include/boost/smart_ptr/detail/spinlock.hpp \
+		/usr/local/include/boost/smart_ptr/detail/spinlock_std_atomic.hpp \
+		/usr/local/include/boost/smart_ptr/detail/yield_k.hpp \
+		/usr/local/include/boost/predef.h \
+		/usr/local/include/boost/predef/language.h \
+		/usr/local/include/boost/predef/language/stdc.h \
+		/usr/local/include/boost/predef/version_number.h \
+		/usr/local/include/boost/predef/make.h \
+		/usr/local/include/boost/predef/detail/test.h \
+		/usr/local/include/boost/predef/language/stdcpp.h \
+		/usr/local/include/boost/predef/language/objc.h \
+		/usr/local/include/boost/predef/architecture.h \
+		/usr/local/include/boost/predef/architecture/alpha.h \
+		/usr/local/include/boost/predef/architecture/arm.h \
+		/usr/local/include/boost/predef/architecture/blackfin.h \
+		/usr/local/include/boost/predef/architecture/convex.h \
+		/usr/local/include/boost/predef/architecture/ia64.h \
+		/usr/local/include/boost/predef/architecture/m68k.h \
+		/usr/local/include/boost/predef/architecture/mips.h \
+		/usr/local/include/boost/predef/architecture/parisc.h \
+		/usr/local/include/boost/predef/architecture/ppc.h \
+		/usr/local/include/boost/predef/architecture/pyramid.h \
+		/usr/local/include/boost/predef/architecture/rs6k.h \
+		/usr/local/include/boost/predef/architecture/sparc.h \
+		/usr/local/include/boost/predef/architecture/superh.h \
+		/usr/local/include/boost/predef/architecture/sys370.h \
+		/usr/local/include/boost/predef/architecture/sys390.h \
+		/usr/local/include/boost/predef/architecture/x86.h \
+		/usr/local/include/boost/predef/architecture/x86/32.h \
+		/usr/local/include/boost/predef/architecture/x86/64.h \
+		/usr/local/include/boost/predef/architecture/z.h \
+		/usr/local/include/boost/predef/compiler.h \
+		/usr/local/include/boost/predef/compiler/borland.h \
+		/usr/local/include/boost/predef/detail/comp_detected.h \
+		/usr/local/include/boost/predef/compiler/clang.h \
+		/usr/local/include/boost/predef/compiler/comeau.h \
+		/usr/local/include/boost/predef/compiler/compaq.h \
+		/usr/local/include/boost/predef/compiler/diab.h \
+		/usr/local/include/boost/predef/compiler/digitalmars.h \
+		/usr/local/include/boost/predef/compiler/dignus.h \
+		/usr/local/include/boost/predef/compiler/edg.h \
+		/usr/local/include/boost/predef/compiler/ekopath.h \
+		/usr/local/include/boost/predef/compiler/gcc_xml.h \
+		/usr/local/include/boost/predef/compiler/gcc.h \
+		/usr/local/include/boost/predef/compiler/greenhills.h \
+		/usr/local/include/boost/predef/compiler/hp_acc.h \
+		/usr/local/include/boost/predef/compiler/iar.h \
+		/usr/local/include/boost/predef/compiler/ibm.h \
+		/usr/local/include/boost/predef/compiler/intel.h \
+		/usr/local/include/boost/predef/compiler/kai.h \
+		/usr/local/include/boost/predef/compiler/llvm.h \
+		/usr/local/include/boost/predef/compiler/metaware.h \
+		/usr/local/include/boost/predef/compiler/metrowerks.h \
+		/usr/local/include/boost/predef/compiler/microtec.h \
+		/usr/local/include/boost/predef/compiler/mpw.h \
+		/usr/local/include/boost/predef/compiler/palm.h \
+		/usr/local/include/boost/predef/compiler/pgi.h \
+		/usr/local/include/boost/predef/compiler/sgi_mipspro.h \
+		/usr/local/include/boost/predef/compiler/sunpro.h \
+		/usr/local/include/boost/predef/compiler/tendra.h \
+		/usr/local/include/boost/predef/compiler/visualc.h \
+		/usr/local/include/boost/predef/compiler/watcom.h \
+		/usr/local/include/boost/predef/library.h \
+		/usr/local/include/boost/predef/library/c.h \
+		/usr/local/include/boost/predef/library/c/_prefix.h \
+		/usr/local/include/boost/predef/detail/_cassert.h \
+		/usr/local/include/boost/predef/library/c/cloudabi.h \
+		/usr/local/include/boost/predef/library/c/gnu.h \
+		/usr/local/include/boost/predef/library/c/uc.h \
+		/usr/local/include/boost/predef/library/c/vms.h \
+		/usr/local/include/boost/predef/library/c/zos.h \
+		/usr/local/include/boost/predef/library/std.h \
+		/usr/local/include/boost/predef/library/std/_prefix.h \
+		/usr/local/include/boost/predef/detail/_exception.h \
+		/usr/local/include/boost/predef/library/std/cxx.h \
+		/usr/local/include/boost/predef/library/std/dinkumware.h \
+		/usr/local/include/boost/predef/library/std/libcomo.h \
+		/usr/local/include/boost/predef/library/std/modena.h \
+		/usr/local/include/boost/predef/library/std/msl.h \
+		/usr/local/include/boost/predef/library/std/roguewave.h \
+		/usr/local/include/boost/predef/library/std/sgi.h \
+		/usr/local/include/boost/predef/library/std/stdcpp3.h \
+		/usr/local/include/boost/predef/library/std/stlport.h \
+		/usr/local/include/boost/predef/library/std/vacpp.h \
+		/usr/local/include/boost/predef/os.h \
+		/usr/local/include/boost/predef/os/aix.h \
+		/usr/local/include/boost/predef/detail/os_detected.h \
+		/usr/local/include/boost/predef/os/amigaos.h \
+		/usr/local/include/boost/predef/os/android.h \
+		/usr/local/include/boost/predef/os/beos.h \
+		/usr/local/include/boost/predef/os/bsd.h \
+		/usr/local/include/boost/predef/os/macos.h \
+		/usr/local/include/boost/predef/os/ios.h \
+		/usr/local/include/boost/predef/os/bsd/bsdi.h \
+		/usr/local/include/boost/predef/os/bsd/dragonfly.h \
+		/usr/local/include/boost/predef/os/bsd/free.h \
+		/usr/local/include/boost/predef/os/bsd/open.h \
+		/usr/local/include/boost/predef/os/bsd/net.h \
+		/usr/local/include/boost/predef/os/cygwin.h \
+		/usr/local/include/boost/predef/os/haiku.h \
+		/usr/local/include/boost/predef/os/hpux.h \
+		/usr/local/include/boost/predef/os/irix.h \
+		/usr/local/include/boost/predef/os/linux.h \
+		/usr/local/include/boost/predef/os/os400.h \
+		/usr/local/include/boost/predef/os/qnxnto.h \
+		/usr/local/include/boost/predef/os/solaris.h \
+		/usr/local/include/boost/predef/os/unix.h \
+		/usr/local/include/boost/predef/os/vms.h \
+		/usr/local/include/boost/predef/os/windows.h \
+		/usr/local/include/boost/predef/other.h \
+		/usr/local/include/boost/predef/other/endian.h \
+		/usr/local/include/boost/predef/platform.h \
+		/usr/local/include/boost/predef/platform/cloudabi.h \
+		/usr/local/include/boost/predef/detail/platform_detected.h \
+		/usr/local/include/boost/predef/platform/mingw.h \
+		/usr/local/include/boost/predef/platform/mingw32.h \
+		/usr/local/include/boost/predef/platform/mingw64.h \
+		/usr/local/include/boost/predef/platform/windows_uwp.h \
+		/usr/local/include/boost/predef/platform/windows_desktop.h \
+		/usr/local/include/boost/predef/platform/windows_phone.h \
+		/usr/local/include/boost/predef/platform/windows_server.h \
+		/usr/local/include/boost/predef/platform/windows_store.h \
+		/usr/local/include/boost/predef/platform/windows_system.h \
+		/usr/local/include/boost/predef/platform/windows_runtime.h \
+		/usr/local/include/boost/predef/platform/ios.h \
+		/usr/local/include/boost/predef/hardware.h \
+		/usr/local/include/boost/predef/hardware/simd.h \
+		/usr/local/include/boost/predef/hardware/simd/x86.h \
+		/usr/local/include/boost/predef/hardware/simd/x86/versions.h \
+		/usr/local/include/boost/predef/hardware/simd/x86_amd.h \
+		/usr/local/include/boost/predef/hardware/simd/x86_amd/versions.h \
+		/usr/local/include/boost/predef/hardware/simd/arm.h \
+		/usr/local/include/boost/predef/hardware/simd/arm/versions.h \
+		/usr/local/include/boost/predef/hardware/simd/ppc.h \
+		/usr/local/include/boost/predef/hardware/simd/ppc/versions.h \
+		/usr/local/include/boost/predef/version.h \
+		/usr/local/include/boost/smart_ptr/detail/spinlock_sync.hpp \
+		/usr/local/include/boost/smart_ptr/detail/spinlock_pt.hpp \
+		/usr/local/include/boost/smart_ptr/detail/spinlock_gcc_arm.hpp \
+		/usr/local/include/boost/smart_ptr/detail/spinlock_w32.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_interlocked.hpp \
+		/usr/local/include/boost/smart_ptr/detail/spinlock_nt.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_counted_base_pt.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_counted_base_clang.hpp \
+		/usr/local/include/boost/cstdint.hpp \
+		/usr/local/include/boost/limits.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_counted_base_snc_ps3.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_counted_base_gcc_x86.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_counted_base_acc_ia64.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_counted_base_gcc_ia64.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_counted_base_vacpp_ppc.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_counted_base_cw_ppc.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_counted_base_gcc_ppc.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_counted_base_gcc_mips.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_counted_base_sync.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_counted_base_gcc_sparc.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_counted_base_w32.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_counted_base_aix.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_counted_impl.hpp \
+		/usr/local/include/boost/core/addressof.hpp \
+		/usr/local/include/boost/smart_ptr/detail/quick_allocator.hpp \
+		/usr/local/include/boost/smart_ptr/detail/lightweight_mutex.hpp \
+		/usr/local/include/boost/smart_ptr/detail/lwm_nop.hpp \
+		/usr/local/include/boost/smart_ptr/detail/lwm_pthreads.hpp \
+		/usr/local/include/boost/smart_ptr/detail/lwm_win32_cs.hpp \
+		/usr/local/include/boost/type_traits/type_with_alignment.hpp \
+		/usr/local/include/boost/type_traits/alignment_of.hpp \
+		/usr/local/include/boost/type_traits/intrinsics.hpp \
+		/usr/local/include/boost/type_traits/detail/config.hpp \
+		/usr/local/include/boost/version.hpp \
+		/usr/local/include/boost/type_traits/is_same.hpp \
+		/usr/local/include/boost/type_traits/integral_constant.hpp \
+		/usr/local/include/boost/type_traits/is_reference.hpp \
+		/usr/local/include/boost/type_traits/is_lvalue_reference.hpp \
+		/usr/local/include/boost/type_traits/is_rvalue_reference.hpp \
+		/usr/local/include/boost/type_traits/is_volatile.hpp \
+		/usr/local/include/boost/type_traits/is_void.hpp \
+		/usr/local/include/boost/type_traits/is_pod.hpp \
+		/usr/local/include/boost/type_traits/is_scalar.hpp \
+		/usr/local/include/boost/type_traits/is_arithmetic.hpp \
+		/usr/local/include/boost/type_traits/is_integral.hpp \
+		/usr/local/include/boost/type_traits/is_floating_point.hpp \
+		/usr/local/include/boost/type_traits/is_enum.hpp \
+		/usr/local/include/boost/type_traits/add_reference.hpp \
+		/usr/local/include/boost/type_traits/is_convertible.hpp \
+		/usr/local/include/boost/type_traits/is_complete.hpp \
+		/usr/local/include/boost/type_traits/remove_reference.hpp \
+		/usr/local/include/boost/type_traits/is_function.hpp \
+		/usr/local/include/boost/type_traits/detail/is_function_ptr_helper.hpp \
+		/usr/local/include/boost/type_traits/detail/is_function_ptr_tester.hpp \
+		/usr/local/include/boost/type_traits/detail/yes_no_type.hpp \
+		/usr/local/include/boost/type_traits/is_array.hpp \
+		/usr/local/include/boost/static_assert.hpp \
+		/usr/local/include/boost/type_traits/is_abstract.hpp \
+		/usr/local/include/boost/type_traits/is_class.hpp \
+		/usr/local/include/boost/type_traits/is_union.hpp \
+		/usr/local/include/boost/type_traits/is_polymorphic.hpp \
+		/usr/local/include/boost/type_traits/add_lvalue_reference.hpp \
+		/usr/local/include/boost/type_traits/add_rvalue_reference.hpp \
+		/usr/local/include/boost/type_traits/declval.hpp \
+		/usr/local/include/boost/type_traits/is_pointer.hpp \
+		/usr/local/include/boost/type_traits/is_member_pointer.hpp \
+		/usr/local/include/boost/type_traits/is_member_function_pointer.hpp \
+		/usr/local/include/boost/type_traits/detail/is_mem_fun_pointer_impl.hpp \
+		/usr/local/include/boost/type_traits/remove_cv.hpp \
+		/usr/local/include/boost/type_traits/detail/is_mem_fun_pointer_tester.hpp \
+		/usr/local/include/boost/type_traits/conditional.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_disable_deprecated.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_convertible.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_nullptr_t.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_noexcept.hpp \
+		/usr/local/include/boost/smart_ptr/detail/operator_bool.hpp \
+		/usr/local/include/boost/smart_ptr/detail/local_sp_deleter.hpp \
+		/usr/local/include/boost/smart_ptr/detail/local_counted_base.hpp \
+		/usr/local/include/boost/scoped_ptr.hpp \
+		/usr/local/include/boost/smart_ptr/scoped_ptr.hpp \
+		/usr/local/mysql-connector-c++/include/jdbc/mysql_driver.h \
+		/usr/local/mysql-connector-c++/include/jdbc/cppconn/driver.h \
+		/usr/local/mysql-connector-c++/include/jdbc/cppconn/resultset.h \
+		/usr/local/mysql-connector-c++/include/jdbc/cppconn/config.h \
+		/usr/local/mysql-connector-c++/include/jdbc/cppconn/resultset_metadata.h \
+		/usr/local/mysql-connector-c++/include/jdbc/cppconn/datatype.h \
+		/usr/local/mysql-connector-c++/include/jdbc/cppconn/statement.h \
+		../Item.hpp \
+		../Driver.hpp \
+		../Sponsor.hpp \
+		../Admin.hpp \
+		../Catalog.hpp \
+		../DatabaseInterface.hpp \
 		../Drive/driverinfo.h \
 		moc_predefs.h \
 		/Users/tracey/Applications/Qt/5.11.2/clang_64/bin/moc
 	/Users/tracey/Applications/Qt/5.11.2/clang_64/bin/moc $(DEFINES) --include /Users/tracey/Documents/School/CPSC4910/ProjectGitRepo/build-Drive-Desktop_Qt_5_11_2_clang_64bit-Debug/moc_predefs.h -I/Users/tracey/Applications/Qt/5.11.2/clang_64/mkspecs/macx-clang -I/Users/tracey/Documents/School/CPSC4910/ProjectGitRepo/Drive -I/Users/tracey/Documents/School/CPSC4910/ProjectGitRepo -I/Users/tracey/Documents/School/CPSC4910/ProjectGitRepo/Drive/-I -I/usr/local/mysql-connector-c++/include -I/Users/tracey/Documents/School/CPSC4910/ProjectGitRepo/Drive/-I -I/usr/local/mysql-connector-c++/include/jdbc -I/Users/tracey/Documents/School/CPSC4910/ProjectGitRepo/Drive/-I -I/usr/local/include -I/Users/tracey/Applications/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers -I/Users/tracey/Applications/Qt/5.11.2/clang_64/lib/QtGui.framework/Headers -I/Users/tracey/Applications/Qt/5.11.2/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/tracey/Applications/Qt/5.11.2/clang_64/lib ../Drive/driverinfo.h -o moc_driverinfo.cpp
 
+moc_catalogitem.cpp: /Users/tracey/Applications/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		/Users/tracey/Applications/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../Drive/catalogitem.h \
+		moc_predefs.h \
+		/Users/tracey/Applications/Qt/5.11.2/clang_64/bin/moc
+	/Users/tracey/Applications/Qt/5.11.2/clang_64/bin/moc $(DEFINES) --include /Users/tracey/Documents/School/CPSC4910/ProjectGitRepo/build-Drive-Desktop_Qt_5_11_2_clang_64bit-Debug/moc_predefs.h -I/Users/tracey/Applications/Qt/5.11.2/clang_64/mkspecs/macx-clang -I/Users/tracey/Documents/School/CPSC4910/ProjectGitRepo/Drive -I/Users/tracey/Documents/School/CPSC4910/ProjectGitRepo -I/Users/tracey/Documents/School/CPSC4910/ProjectGitRepo/Drive/-I -I/usr/local/mysql-connector-c++/include -I/Users/tracey/Documents/School/CPSC4910/ProjectGitRepo/Drive/-I -I/usr/local/mysql-connector-c++/include/jdbc -I/Users/tracey/Documents/School/CPSC4910/ProjectGitRepo/Drive/-I -I/usr/local/include -I/Users/tracey/Applications/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers -I/Users/tracey/Applications/Qt/5.11.2/clang_64/lib/QtGui.framework/Headers -I/Users/tracey/Applications/Qt/5.11.2/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/tracey/Applications/Qt/5.11.2/clang_64/lib ../Drive/catalogitem.h -o moc_catalogitem.cpp
+
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_mainwindow.h ui_driverinfo.h
+compiler_uic_make_all: ui_mainwindow.h ui_driverinfo.h ui_catalogitem.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_mainwindow.h ui_driverinfo.h
+	-$(DEL_FILE) ui_mainwindow.h ui_driverinfo.h ui_catalogitem.h
 ui_mainwindow.h: ../Drive/mainwindow.ui \
 		/Users/tracey/Applications/Qt/5.11.2/clang_64/bin/uic
 	/Users/tracey/Applications/Qt/5.11.2/clang_64/bin/uic ../Drive/mainwindow.ui -o ui_mainwindow.h
@@ -1119,6 +1456,10 @@ ui_mainwindow.h: ../Drive/mainwindow.ui \
 ui_driverinfo.h: ../Drive/driverinfo.ui \
 		/Users/tracey/Applications/Qt/5.11.2/clang_64/bin/uic
 	/Users/tracey/Applications/Qt/5.11.2/clang_64/bin/uic ../Drive/driverinfo.ui -o ui_driverinfo.h
+
+ui_catalogitem.h: ../Drive/catalogitem.ui \
+		/Users/tracey/Applications/Qt/5.11.2/clang_64/bin/uic
+	/Users/tracey/Applications/Qt/5.11.2/clang_64/bin/uic ../Drive/catalogitem.ui -o ui_catalogitem.h
 
 compiler_rez_source_make_all:
 compiler_rez_source_clean:
@@ -1458,6 +1799,7 @@ main.o: ../Drive/main.cpp ../Drive/mainwindow.h \
 		../Admin.hpp \
 		../Catalog.hpp \
 		../DatabaseInterface.hpp \
+		../Drive/driverinfo.h \
 		/Users/tracey/Applications/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers/QApplication \
 		/Users/tracey/Applications/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers/qapplication.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../Drive/main.cpp
@@ -1788,6 +2130,7 @@ mainwindow.o: ../Drive/mainwindow.cpp ../Drive/mainwindow.h \
 		../Admin.hpp \
 		../Catalog.hpp \
 		../DatabaseInterface.hpp \
+		../Drive/driverinfo.h \
 		ui_mainwindow.h \
 		/Users/tracey/Applications/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
 		/Users/tracey/Applications/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
@@ -1800,6 +2143,329 @@ mainwindow.o: ../Drive/mainwindow.cpp ../Drive/mainwindow.h \
 driverinfo.o: ../Drive/driverinfo.cpp ../Drive/driverinfo.h \
 		/Users/tracey/Applications/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
 		/Users/tracey/Applications/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		../User.hpp \
+		../Database.hpp \
+		/usr/local/mysql-connector-c++/include/jdbc/mysql_connection.h \
+		/usr/local/mysql-connector-c++/include/jdbc/cppconn/connection.h \
+		/usr/local/mysql-connector-c++/include/jdbc/cppconn/build_config.h \
+		/usr/local/mysql-connector-c++/include/jdbc/cppconn/warning.h \
+		/usr/local/mysql-connector-c++/include/jdbc/cppconn/sqlstring.h \
+		/usr/local/mysql-connector-c++/include/jdbc/cppconn/variant.h \
+		/usr/local/mysql-connector-c++/include/jdbc/cppconn/exception.h \
+		/usr/local/include/boost/shared_ptr.hpp \
+		/usr/local/include/boost/smart_ptr/shared_ptr.hpp \
+		/usr/local/include/boost/config.hpp \
+		/usr/local/include/boost/config/user.hpp \
+		/usr/local/include/boost/config/detail/select_compiler_config.hpp \
+		/usr/local/include/boost/config/compiler/nvcc.hpp \
+		/usr/local/include/boost/config/compiler/gcc_xml.hpp \
+		/usr/local/include/boost/config/compiler/cray.hpp \
+		/usr/local/include/boost/config/compiler/common_edg.hpp \
+		/usr/local/include/boost/config/compiler/comeau.hpp \
+		/usr/local/include/boost/config/compiler/pathscale.hpp \
+		/usr/local/include/boost/config/compiler/clang.hpp \
+		/usr/local/include/boost/config/compiler/intel.hpp \
+		/usr/local/include/boost/config/compiler/visualc.hpp \
+		/usr/local/include/boost/config/pragma_message.hpp \
+		/usr/local/include/boost/config/helper_macros.hpp \
+		/usr/local/include/boost/config/compiler/gcc.hpp \
+		/usr/local/include/boost/config/compiler/digitalmars.hpp \
+		/usr/local/include/boost/config/compiler/kai.hpp \
+		/usr/local/include/boost/config/compiler/sgi_mipspro.hpp \
+		/usr/local/include/boost/config/compiler/compaq_cxx.hpp \
+		/usr/local/include/boost/config/compiler/greenhills.hpp \
+		/usr/local/include/boost/config/compiler/codegear.hpp \
+		/usr/local/include/boost/config/compiler/borland.hpp \
+		/usr/local/include/boost/config/compiler/metrowerks.hpp \
+		/usr/local/include/boost/config/compiler/sunpro_cc.hpp \
+		/usr/local/include/boost/config/compiler/hp_acc.hpp \
+		/usr/local/include/boost/config/compiler/mpw.hpp \
+		/usr/local/include/boost/config/compiler/xlcpp_zos.hpp \
+		/usr/local/include/boost/config/compiler/xlcpp.hpp \
+		/usr/local/include/boost/config/compiler/vacpp.hpp \
+		/usr/local/include/boost/config/compiler/pgi.hpp \
+		/usr/local/include/boost/config/detail/select_stdlib_config.hpp \
+		/usr/local/include/boost/config/stdlib/stlport.hpp \
+		/usr/local/include/boost/config/stdlib/libcomo.hpp \
+		/usr/local/include/boost/config/no_tr1/utility.hpp \
+		/usr/local/include/boost/config/stdlib/roguewave.hpp \
+		/usr/local/include/boost/config/stdlib/libcpp.hpp \
+		/usr/local/include/boost/config/stdlib/libstdcpp3.hpp \
+		/usr/local/include/boost/config/stdlib/sgi.hpp \
+		/usr/local/include/boost/config/stdlib/msl.hpp \
+		/usr/local/include/boost/config/detail/posix_features.hpp \
+		/usr/local/include/boost/config/stdlib/xlcpp_zos.hpp \
+		/usr/local/include/boost/config/stdlib/vacpp.hpp \
+		/usr/local/include/boost/config/stdlib/modena.hpp \
+		/usr/local/include/boost/config/stdlib/dinkumware.hpp \
+		/usr/local/include/boost/config/detail/select_platform_config.hpp \
+		/usr/local/include/boost/config/platform/linux.hpp \
+		/usr/local/include/boost/config/platform/bsd.hpp \
+		/usr/local/include/boost/config/platform/solaris.hpp \
+		/usr/local/include/boost/config/platform/irix.hpp \
+		/usr/local/include/boost/config/platform/hpux.hpp \
+		/usr/local/include/boost/config/platform/cygwin.hpp \
+		/usr/local/include/boost/config/platform/win32.hpp \
+		/usr/local/include/boost/config/platform/beos.hpp \
+		/usr/local/include/boost/config/platform/macos.hpp \
+		/usr/local/include/boost/config/platform/zos.hpp \
+		/usr/local/include/boost/config/platform/aix.hpp \
+		/usr/local/include/boost/config/platform/amigaos.hpp \
+		/usr/local/include/boost/config/platform/qnxnto.hpp \
+		/usr/local/include/boost/config/platform/vxworks.hpp \
+		/usr/local/include/boost/config/platform/symbian.hpp \
+		/usr/local/include/boost/config/platform/cray.hpp \
+		/usr/local/include/boost/config/platform/vms.hpp \
+		/usr/local/include/boost/config/detail/suffix.hpp \
+		/usr/local/include/boost/config/no_tr1/memory.hpp \
+		/usr/local/include/boost/assert.hpp \
+		/usr/local/include/boost/current_function.hpp \
+		/usr/local/include/boost/checked_delete.hpp \
+		/usr/local/include/boost/core/checked_delete.hpp \
+		/usr/local/include/boost/throw_exception.hpp \
+		/usr/local/include/boost/detail/workaround.hpp \
+		/usr/local/include/boost/config/workaround.hpp \
+		/usr/local/include/boost/exception/exception.hpp \
+		/usr/local/include/boost/smart_ptr/detail/shared_count.hpp \
+		/usr/local/include/boost/smart_ptr/bad_weak_ptr.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_counted_base.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_has_sync.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_counted_base_nt.hpp \
+		/usr/local/include/boost/detail/sp_typeinfo.hpp \
+		/usr/local/include/boost/core/typeinfo.hpp \
+		/usr/local/include/boost/core/demangle.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_counted_base_std_atomic.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_counted_base_spin.hpp \
+		/usr/local/include/boost/smart_ptr/detail/spinlock_pool.hpp \
+		/usr/local/include/boost/smart_ptr/detail/spinlock.hpp \
+		/usr/local/include/boost/smart_ptr/detail/spinlock_std_atomic.hpp \
+		/usr/local/include/boost/smart_ptr/detail/yield_k.hpp \
+		/usr/local/include/boost/predef.h \
+		/usr/local/include/boost/predef/language.h \
+		/usr/local/include/boost/predef/language/stdc.h \
+		/usr/local/include/boost/predef/version_number.h \
+		/usr/local/include/boost/predef/make.h \
+		/usr/local/include/boost/predef/detail/test.h \
+		/usr/local/include/boost/predef/language/stdcpp.h \
+		/usr/local/include/boost/predef/language/objc.h \
+		/usr/local/include/boost/predef/architecture.h \
+		/usr/local/include/boost/predef/architecture/alpha.h \
+		/usr/local/include/boost/predef/architecture/arm.h \
+		/usr/local/include/boost/predef/architecture/blackfin.h \
+		/usr/local/include/boost/predef/architecture/convex.h \
+		/usr/local/include/boost/predef/architecture/ia64.h \
+		/usr/local/include/boost/predef/architecture/m68k.h \
+		/usr/local/include/boost/predef/architecture/mips.h \
+		/usr/local/include/boost/predef/architecture/parisc.h \
+		/usr/local/include/boost/predef/architecture/ppc.h \
+		/usr/local/include/boost/predef/architecture/pyramid.h \
+		/usr/local/include/boost/predef/architecture/rs6k.h \
+		/usr/local/include/boost/predef/architecture/sparc.h \
+		/usr/local/include/boost/predef/architecture/superh.h \
+		/usr/local/include/boost/predef/architecture/sys370.h \
+		/usr/local/include/boost/predef/architecture/sys390.h \
+		/usr/local/include/boost/predef/architecture/x86.h \
+		/usr/local/include/boost/predef/architecture/x86/32.h \
+		/usr/local/include/boost/predef/architecture/x86/64.h \
+		/usr/local/include/boost/predef/architecture/z.h \
+		/usr/local/include/boost/predef/compiler.h \
+		/usr/local/include/boost/predef/compiler/borland.h \
+		/usr/local/include/boost/predef/detail/comp_detected.h \
+		/usr/local/include/boost/predef/compiler/clang.h \
+		/usr/local/include/boost/predef/compiler/comeau.h \
+		/usr/local/include/boost/predef/compiler/compaq.h \
+		/usr/local/include/boost/predef/compiler/diab.h \
+		/usr/local/include/boost/predef/compiler/digitalmars.h \
+		/usr/local/include/boost/predef/compiler/dignus.h \
+		/usr/local/include/boost/predef/compiler/edg.h \
+		/usr/local/include/boost/predef/compiler/ekopath.h \
+		/usr/local/include/boost/predef/compiler/gcc_xml.h \
+		/usr/local/include/boost/predef/compiler/gcc.h \
+		/usr/local/include/boost/predef/compiler/greenhills.h \
+		/usr/local/include/boost/predef/compiler/hp_acc.h \
+		/usr/local/include/boost/predef/compiler/iar.h \
+		/usr/local/include/boost/predef/compiler/ibm.h \
+		/usr/local/include/boost/predef/compiler/intel.h \
+		/usr/local/include/boost/predef/compiler/kai.h \
+		/usr/local/include/boost/predef/compiler/llvm.h \
+		/usr/local/include/boost/predef/compiler/metaware.h \
+		/usr/local/include/boost/predef/compiler/metrowerks.h \
+		/usr/local/include/boost/predef/compiler/microtec.h \
+		/usr/local/include/boost/predef/compiler/mpw.h \
+		/usr/local/include/boost/predef/compiler/palm.h \
+		/usr/local/include/boost/predef/compiler/pgi.h \
+		/usr/local/include/boost/predef/compiler/sgi_mipspro.h \
+		/usr/local/include/boost/predef/compiler/sunpro.h \
+		/usr/local/include/boost/predef/compiler/tendra.h \
+		/usr/local/include/boost/predef/compiler/visualc.h \
+		/usr/local/include/boost/predef/compiler/watcom.h \
+		/usr/local/include/boost/predef/library.h \
+		/usr/local/include/boost/predef/library/c.h \
+		/usr/local/include/boost/predef/library/c/_prefix.h \
+		/usr/local/include/boost/predef/detail/_cassert.h \
+		/usr/local/include/boost/predef/library/c/cloudabi.h \
+		/usr/local/include/boost/predef/library/c/gnu.h \
+		/usr/local/include/boost/predef/library/c/uc.h \
+		/usr/local/include/boost/predef/library/c/vms.h \
+		/usr/local/include/boost/predef/library/c/zos.h \
+		/usr/local/include/boost/predef/library/std.h \
+		/usr/local/include/boost/predef/library/std/_prefix.h \
+		/usr/local/include/boost/predef/detail/_exception.h \
+		/usr/local/include/boost/predef/library/std/cxx.h \
+		/usr/local/include/boost/predef/library/std/dinkumware.h \
+		/usr/local/include/boost/predef/library/std/libcomo.h \
+		/usr/local/include/boost/predef/library/std/modena.h \
+		/usr/local/include/boost/predef/library/std/msl.h \
+		/usr/local/include/boost/predef/library/std/roguewave.h \
+		/usr/local/include/boost/predef/library/std/sgi.h \
+		/usr/local/include/boost/predef/library/std/stdcpp3.h \
+		/usr/local/include/boost/predef/library/std/stlport.h \
+		/usr/local/include/boost/predef/library/std/vacpp.h \
+		/usr/local/include/boost/predef/os.h \
+		/usr/local/include/boost/predef/os/aix.h \
+		/usr/local/include/boost/predef/detail/os_detected.h \
+		/usr/local/include/boost/predef/os/amigaos.h \
+		/usr/local/include/boost/predef/os/android.h \
+		/usr/local/include/boost/predef/os/beos.h \
+		/usr/local/include/boost/predef/os/bsd.h \
+		/usr/local/include/boost/predef/os/macos.h \
+		/usr/local/include/boost/predef/os/ios.h \
+		/usr/local/include/boost/predef/os/bsd/bsdi.h \
+		/usr/local/include/boost/predef/os/bsd/dragonfly.h \
+		/usr/local/include/boost/predef/os/bsd/free.h \
+		/usr/local/include/boost/predef/os/bsd/open.h \
+		/usr/local/include/boost/predef/os/bsd/net.h \
+		/usr/local/include/boost/predef/os/cygwin.h \
+		/usr/local/include/boost/predef/os/haiku.h \
+		/usr/local/include/boost/predef/os/hpux.h \
+		/usr/local/include/boost/predef/os/irix.h \
+		/usr/local/include/boost/predef/os/linux.h \
+		/usr/local/include/boost/predef/os/os400.h \
+		/usr/local/include/boost/predef/os/qnxnto.h \
+		/usr/local/include/boost/predef/os/solaris.h \
+		/usr/local/include/boost/predef/os/unix.h \
+		/usr/local/include/boost/predef/os/vms.h \
+		/usr/local/include/boost/predef/os/windows.h \
+		/usr/local/include/boost/predef/other.h \
+		/usr/local/include/boost/predef/other/endian.h \
+		/usr/local/include/boost/predef/platform.h \
+		/usr/local/include/boost/predef/platform/cloudabi.h \
+		/usr/local/include/boost/predef/detail/platform_detected.h \
+		/usr/local/include/boost/predef/platform/mingw.h \
+		/usr/local/include/boost/predef/platform/mingw32.h \
+		/usr/local/include/boost/predef/platform/mingw64.h \
+		/usr/local/include/boost/predef/platform/windows_uwp.h \
+		/usr/local/include/boost/predef/platform/windows_desktop.h \
+		/usr/local/include/boost/predef/platform/windows_phone.h \
+		/usr/local/include/boost/predef/platform/windows_server.h \
+		/usr/local/include/boost/predef/platform/windows_store.h \
+		/usr/local/include/boost/predef/platform/windows_system.h \
+		/usr/local/include/boost/predef/platform/windows_runtime.h \
+		/usr/local/include/boost/predef/platform/ios.h \
+		/usr/local/include/boost/predef/hardware.h \
+		/usr/local/include/boost/predef/hardware/simd.h \
+		/usr/local/include/boost/predef/hardware/simd/x86.h \
+		/usr/local/include/boost/predef/hardware/simd/x86/versions.h \
+		/usr/local/include/boost/predef/hardware/simd/x86_amd.h \
+		/usr/local/include/boost/predef/hardware/simd/x86_amd/versions.h \
+		/usr/local/include/boost/predef/hardware/simd/arm.h \
+		/usr/local/include/boost/predef/hardware/simd/arm/versions.h \
+		/usr/local/include/boost/predef/hardware/simd/ppc.h \
+		/usr/local/include/boost/predef/hardware/simd/ppc/versions.h \
+		/usr/local/include/boost/predef/version.h \
+		/usr/local/include/boost/smart_ptr/detail/spinlock_sync.hpp \
+		/usr/local/include/boost/smart_ptr/detail/spinlock_pt.hpp \
+		/usr/local/include/boost/smart_ptr/detail/spinlock_gcc_arm.hpp \
+		/usr/local/include/boost/smart_ptr/detail/spinlock_w32.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_interlocked.hpp \
+		/usr/local/include/boost/smart_ptr/detail/spinlock_nt.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_counted_base_pt.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_counted_base_clang.hpp \
+		/usr/local/include/boost/cstdint.hpp \
+		/usr/local/include/boost/limits.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_counted_base_snc_ps3.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_counted_base_gcc_x86.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_counted_base_acc_ia64.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_counted_base_gcc_ia64.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_counted_base_vacpp_ppc.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_counted_base_cw_ppc.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_counted_base_gcc_ppc.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_counted_base_gcc_mips.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_counted_base_sync.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_counted_base_gcc_sparc.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_counted_base_w32.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_counted_base_aix.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_counted_impl.hpp \
+		/usr/local/include/boost/core/addressof.hpp \
+		/usr/local/include/boost/smart_ptr/detail/quick_allocator.hpp \
+		/usr/local/include/boost/smart_ptr/detail/lightweight_mutex.hpp \
+		/usr/local/include/boost/smart_ptr/detail/lwm_nop.hpp \
+		/usr/local/include/boost/smart_ptr/detail/lwm_pthreads.hpp \
+		/usr/local/include/boost/smart_ptr/detail/lwm_win32_cs.hpp \
+		/usr/local/include/boost/type_traits/type_with_alignment.hpp \
+		/usr/local/include/boost/type_traits/alignment_of.hpp \
+		/usr/local/include/boost/type_traits/intrinsics.hpp \
+		/usr/local/include/boost/type_traits/detail/config.hpp \
+		/usr/local/include/boost/version.hpp \
+		/usr/local/include/boost/type_traits/is_same.hpp \
+		/usr/local/include/boost/type_traits/integral_constant.hpp \
+		/usr/local/include/boost/type_traits/is_reference.hpp \
+		/usr/local/include/boost/type_traits/is_lvalue_reference.hpp \
+		/usr/local/include/boost/type_traits/is_rvalue_reference.hpp \
+		/usr/local/include/boost/type_traits/is_volatile.hpp \
+		/usr/local/include/boost/type_traits/is_void.hpp \
+		/usr/local/include/boost/type_traits/is_pod.hpp \
+		/usr/local/include/boost/type_traits/is_scalar.hpp \
+		/usr/local/include/boost/type_traits/is_arithmetic.hpp \
+		/usr/local/include/boost/type_traits/is_integral.hpp \
+		/usr/local/include/boost/type_traits/is_floating_point.hpp \
+		/usr/local/include/boost/type_traits/is_enum.hpp \
+		/usr/local/include/boost/type_traits/add_reference.hpp \
+		/usr/local/include/boost/type_traits/is_convertible.hpp \
+		/usr/local/include/boost/type_traits/is_complete.hpp \
+		/usr/local/include/boost/type_traits/remove_reference.hpp \
+		/usr/local/include/boost/type_traits/is_function.hpp \
+		/usr/local/include/boost/type_traits/detail/is_function_ptr_helper.hpp \
+		/usr/local/include/boost/type_traits/detail/is_function_ptr_tester.hpp \
+		/usr/local/include/boost/type_traits/detail/yes_no_type.hpp \
+		/usr/local/include/boost/type_traits/is_array.hpp \
+		/usr/local/include/boost/static_assert.hpp \
+		/usr/local/include/boost/type_traits/is_abstract.hpp \
+		/usr/local/include/boost/type_traits/is_class.hpp \
+		/usr/local/include/boost/type_traits/is_union.hpp \
+		/usr/local/include/boost/type_traits/is_polymorphic.hpp \
+		/usr/local/include/boost/type_traits/add_lvalue_reference.hpp \
+		/usr/local/include/boost/type_traits/add_rvalue_reference.hpp \
+		/usr/local/include/boost/type_traits/declval.hpp \
+		/usr/local/include/boost/type_traits/is_pointer.hpp \
+		/usr/local/include/boost/type_traits/is_member_pointer.hpp \
+		/usr/local/include/boost/type_traits/is_member_function_pointer.hpp \
+		/usr/local/include/boost/type_traits/detail/is_mem_fun_pointer_impl.hpp \
+		/usr/local/include/boost/type_traits/remove_cv.hpp \
+		/usr/local/include/boost/type_traits/detail/is_mem_fun_pointer_tester.hpp \
+		/usr/local/include/boost/type_traits/conditional.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_disable_deprecated.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_convertible.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_nullptr_t.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_noexcept.hpp \
+		/usr/local/include/boost/smart_ptr/detail/operator_bool.hpp \
+		/usr/local/include/boost/smart_ptr/detail/local_sp_deleter.hpp \
+		/usr/local/include/boost/smart_ptr/detail/local_counted_base.hpp \
+		/usr/local/include/boost/scoped_ptr.hpp \
+		/usr/local/include/boost/smart_ptr/scoped_ptr.hpp \
+		/usr/local/mysql-connector-c++/include/jdbc/mysql_driver.h \
+		/usr/local/mysql-connector-c++/include/jdbc/cppconn/driver.h \
+		/usr/local/mysql-connector-c++/include/jdbc/cppconn/resultset.h \
+		/usr/local/mysql-connector-c++/include/jdbc/cppconn/config.h \
+		/usr/local/mysql-connector-c++/include/jdbc/cppconn/resultset_metadata.h \
+		/usr/local/mysql-connector-c++/include/jdbc/cppconn/datatype.h \
+		/usr/local/mysql-connector-c++/include/jdbc/cppconn/statement.h \
+		../Item.hpp \
+		../Driver.hpp \
+		../Sponsor.hpp \
+		../Admin.hpp \
+		../Catalog.hpp \
+		../DatabaseInterface.hpp \
 		ui_driverinfo.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o driverinfo.o ../Drive/driverinfo.cpp
 
@@ -4075,6 +4741,12 @@ DatabaseInterface.o: ../DatabaseInterface.cpp ../DatabaseInterface.hpp \
 		../Catalog.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o DatabaseInterface.o ../DatabaseInterface.cpp
 
+catalogitem.o: ../Drive/catalogitem.cpp ../Drive/catalogitem.h \
+		/Users/tracey/Applications/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		/Users/tracey/Applications/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		ui_catalogitem.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o catalogitem.o ../Drive/catalogitem.cpp
+
 qrc_fonts.o: qrc_fonts.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_fonts.o qrc_fonts.cpp
 
@@ -4083,6 +4755,9 @@ moc_mainwindow.o: moc_mainwindow.cpp
 
 moc_driverinfo.o: moc_driverinfo.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_driverinfo.o moc_driverinfo.cpp
+
+moc_catalogitem.o: moc_catalogitem.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_catalogitem.o moc_catalogitem.cpp
 
 ####### Install
 
