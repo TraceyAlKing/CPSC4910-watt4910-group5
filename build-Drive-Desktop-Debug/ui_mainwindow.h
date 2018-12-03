@@ -158,6 +158,12 @@ public:
     QLineEdit *sponsor_search;
     QPushButton *sponsor_search_button;
     QTableWidget *admin_sponsors_table;
+    QWidget *tab_5;
+    QVBoxLayout *verticalLayout_16;
+    QHBoxLayout *horizontalLayout_10;
+    QLineEdit *admin_search;
+    QPushButton *admin_search_button_2;
+    QTableWidget *admin_admin_table;
     QWidget *tab_4;
     QVBoxLayout *verticalLayout_11;
     QHBoxLayout *horizontalLayout_7;
@@ -927,6 +933,34 @@ public:
         verticalLayout_12->addWidget(admin_sponsors_table);
 
         tabWidget->addTab(tab_2, QString());
+        tab_5 = new QWidget();
+        tab_5->setObjectName(QStringLiteral("tab_5"));
+        verticalLayout_16 = new QVBoxLayout(tab_5);
+        verticalLayout_16->setSpacing(6);
+        verticalLayout_16->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_16->setObjectName(QStringLiteral("verticalLayout_16"));
+        horizontalLayout_10 = new QHBoxLayout();
+        horizontalLayout_10->setSpacing(6);
+        horizontalLayout_10->setObjectName(QStringLiteral("horizontalLayout_10"));
+        admin_search = new QLineEdit(tab_5);
+        admin_search->setObjectName(QStringLiteral("admin_search"));
+
+        horizontalLayout_10->addWidget(admin_search);
+
+        admin_search_button_2 = new QPushButton(tab_5);
+        admin_search_button_2->setObjectName(QStringLiteral("admin_search_button_2"));
+
+        horizontalLayout_10->addWidget(admin_search_button_2);
+
+
+        verticalLayout_16->addLayout(horizontalLayout_10);
+
+        admin_admin_table = new QTableWidget(tab_5);
+        admin_admin_table->setObjectName(QStringLiteral("admin_admin_table"));
+
+        verticalLayout_16->addWidget(admin_admin_table);
+
+        tabWidget->addTab(tab_5, QString());
         tab_4 = new QWidget();
         tab_4->setObjectName(QStringLiteral("tab_4"));
         verticalLayout_11 = new QVBoxLayout(tab_4);
@@ -972,10 +1006,10 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(1);
+        stackedWidget->setCurrentIndex(3);
         stackedWidget_driver->setCurrentIndex(0);
         stackedWidget_sponsor->setCurrentIndex(0);
-        tabWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(3);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -1045,6 +1079,8 @@ public:
         tabWidget->setTabText(tabWidget->indexOf(tab_3), QApplication::translate("MainWindow", "Drivers", 0));
         sponsor_search_button->setText(QApplication::translate("MainWindow", "Search", 0));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("MainWindow", "Sponsors", 0));
+        admin_search_button_2->setText(QApplication::translate("MainWindow", "Search", 0));
+        tabWidget->setTabText(tabWidget->indexOf(tab_5), QApplication::translate("MainWindow", "Admins", 0));
         products_search_button->setText(QApplication::translate("MainWindow", "Search", 0));
         tabWidget->setTabText(tabWidget->indexOf(tab_4), QApplication::translate("MainWindow", "Products", 0));
     } // retranslateUi

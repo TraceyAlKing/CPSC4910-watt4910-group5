@@ -234,11 +234,28 @@ void MainWindow::on_tabWidget_currentChanged() {
         std::map<int, Sponsor*>& allSponsors = dbi.getAllSponsors();
         int len = allDrivers.size()+allAdmins.size()+allSponsors.size();
         ui->admin_all_table->setRowCount(len);
-        for(int i = 0; i<len; i++)
+
+        int i = 0;
+        while(i<allDrivers.size())
         {
             QTableWidgetItem *newItem = new QTableWidgetItem();
             newItem->setText(QString::fromStdString(allDrivers[i]->getName()));
             ui->admin_all_table->setItem(i, 0, newItem);
+            i++;
+        }
+        while(i<allDrivers.size()+allSponsors.size())
+        {
+            QTableWidgetItem *newItem = new QTableWidgetItem();
+            newItem->setText(QString::fromStdString(allSponsors[i]->getName()));
+            ui->admin_all_table->setItem(i, 0, newItem);
+            i++;
+        }
+        while(i<len)
+        {
+            QTableWidgetItem *newItem = new QTableWidgetItem();
+            newItem->setText(QString::fromStdString(allAdmins[i]->getName()));
+            ui->admin_all_table->setItem(i, 0, newItem);
+            i++;
         }
     }
     if(ui->tabWidget->currentIndex() == 1)
@@ -250,7 +267,7 @@ void MainWindow::on_tabWidget_currentChanged() {
         {
             QTableWidgetItem *newItem = new QTableWidgetItem();
             newItem->setText(QString::fromStdString(allDrivers[i]->getName()));
-            ui->admin_drivers_table->setItem(i, 0, newItem);
+            ui->admin_all_table->setItem(i, 0, newItem);
         }
     }
     if(ui->tabWidget->currentIndex() == 2)
