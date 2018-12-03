@@ -25,7 +25,7 @@ public:
 	void registerAdmin();
 	void saveAdmin();
 	void updateAdmin();
-	void viewUser();
+        //void viewUser();
 	
 	bool checkForUser(string name);
 	
@@ -36,7 +36,7 @@ public:
 	void viewAllSponsors();
 	void viewAllAdmins();
 	
-	void deleteUser();
+        void deleteUser(string name);
 	
 	void listOfFiles();
 	

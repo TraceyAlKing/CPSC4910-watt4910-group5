@@ -97,7 +97,7 @@ void MainWindow::on_driver_Home_Button_clicked()
     std::vector<int> mysponsors;    //contains the sponsors of the driver
     static_cast<Driver*>(CurrUser)->getSponsors(mysponsors);
 
-    int catalog_id = currSponsor->getCatalogs();
+    int catalog_id = currSponsor->getCatalog();
     Catalog* cata = dbi.getCatalog(catalog_id);
     // do stuff with catalog
 
@@ -234,28 +234,25 @@ void MainWindow::on_tabWidget_currentChanged() {
         std::map<int, Sponsor*>& allSponsors = dbi.getAllSponsors();
         int len = allDrivers.size()+allAdmins.size()+allSponsors.size();
         ui->admin_all_table->setRowCount(len);
+        ui->admin_all_table->setColumnCount(1);
 
-        int i = 0;
-        while(i<allDrivers.size())
+        for(auto it : allDrivers)
         {
             QTableWidgetItem *newItem = new QTableWidgetItem();
-            newItem->setText(QString::fromStdString(allDrivers[i]->getName()));
-            ui->admin_all_table->setItem(i, 0, newItem);
-            i++;
+            newItem->setText(QString::fromStdString(it.second->getName()));
+            ui->admin_all_table->setItem(it.second->getID(), 0, newItem);
         }
-        while(i<allDrivers.size()+allSponsors.size())
+        for(auto it : allSponsors)
         {
             QTableWidgetItem *newItem = new QTableWidgetItem();
-            newItem->setText(QString::fromStdString(allSponsors[i]->getName()));
-            ui->admin_all_table->setItem(i, 0, newItem);
-            i++;
+            newItem->setText(QString::fromStdString(it.second->getName()));
+            ui->admin_all_table->setItem(it.second->getID(), 0, newItem);
         }
-        while(i<len)
+        for(auto it : allAdmins)
         {
             QTableWidgetItem *newItem = new QTableWidgetItem();
-            newItem->setText(QString::fromStdString(allAdmins[i]->getName()));
-            ui->admin_all_table->setItem(i, 0, newItem);
-            i++;
+            newItem->setText(QString::fromStdString(it.second->getName()));
+            ui->admin_all_table->setItem(it.second->getID(), 0, newItem);
         }
     }
     if(ui->tabWidget->currentIndex() == 1)
@@ -263,11 +260,12 @@ void MainWindow::on_tabWidget_currentChanged() {
         std::map<int, Driver*>& allDrivers =  dbi.getAllDrivers();
         int len = allDrivers.size();
         ui->admin_drivers_table->setRowCount(len);
-        for(int i = 0; i<len; i++)
+        ui->admin_drivers_table->setColumnCount(1);
+        for(auto it : allDrivers)
         {
             QTableWidgetItem *newItem = new QTableWidgetItem();
-            newItem->setText(QString::fromStdString(allDrivers[i]->getName()));
-            ui->admin_all_table->setItem(i, 0, newItem);
+            newItem->setText(QString::fromStdString(it.second->getName()));
+            ui->admin_drivers_table->setItem(it.second->getID(), 0, newItem);
         }
     }
     if(ui->tabWidget->currentIndex() == 2)
@@ -275,11 +273,12 @@ void MainWindow::on_tabWidget_currentChanged() {
         std::map<int, Sponsor*>& allSponsors = dbi.getAllSponsors();
         int len = allSponsors.size();
         ui->admin_sponsors_table->setRowCount(len);
-        for(int i = 0; i<len; i++)
+        ui->admin_sponsors_table->setColumnCount(1);
+        for(auto it : allSponsors)
         {
             QTableWidgetItem *newItem = new QTableWidgetItem();
-            newItem->setText(QString::fromStdString(allSponsors[i]->getName()));
-            ui->admin_sponsors_table->setItem(i, 0, newItem);
+            newItem->setText(QString::fromStdString(it.second->getName()));
+            ui->admin_sponsors_table->setItem(it.second->getID(), 0, newItem);
         }
     }
     if(ui->tabWidget->currentIndex() == 3)
@@ -287,11 +286,12 @@ void MainWindow::on_tabWidget_currentChanged() {
         std::map<int, Admin*>& allAdmins = dbi.getAllAdmins();
         int len =allAdmins.size();
         ui->admin_admin_table->setRowCount(len);
-        for(int i = 0; i<len; i++)
+        ui->admin_admin_table->setColumnCount(1);
+        for(auto it : allAdmins)
         {
             QTableWidgetItem *newItem = new QTableWidgetItem();
-            newItem->setText(QString::fromStdString(allAdmins[i]->getName()));
-            ui->admin_admin_table->setItem(i, 0, newItem);
+            newItem->setText(QString::fromStdString(it.second->getName()));
+            ui->admin_admin_table->setItem(it.second->getID(), 0, newItem);
         }
     }
 }

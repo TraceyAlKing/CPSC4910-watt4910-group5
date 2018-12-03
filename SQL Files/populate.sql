@@ -11,10 +11,13 @@ INSERT INTO SPONSOR ( id, name, email, password, phone, address, point_value )
    VALUES ( 3, "Bobo Dunkins Trucking CO", "Bobo@Bobostrucking.com", "bobodoesntneedapassword", 8641396348, "226 Trucker Circuit", 1 );
 
 INSERT INTO SPONSOR ( id, name, email, password, phone, address, point_value ) 
-   VALUES ( 4, "Get Trucked", "Jimbo@gettrucked.net", "Truckmedaddy", 7748992486, "987 Not A Real Road", 1 );
+   VALUES ( 4, "Five Trucks", "Jimbo@fivetrucks.net", "trucking", 7748992486, "987 Not A Real Road", 1 );
 
 INSERT INTO SPONSOR ( id, name, email, password, phone, address, point_value ) 
    VALUES ( 5, "Easy Roads", "Admin@easyroads.net", "driveaway", 1232487695, "32 I Cant Believe Its Not A Real Road", 1 );
+
+INSERT INTO SPONSOR ( id, name, email, password, phone, address, point_value ) 
+   VALUES ( 6, "Im not a Freight", "dave@freight.gov ", "everyone", 7539518420, "119 Dirt Road", 1 );
 
 
 INSERT INTO DRIVER ( id, name, email, password, phone, address, license_num, license_plate_num) 
@@ -36,7 +39,7 @@ INSERT INTO DRIVER ( id, name, email, password, phone, address, license_num, lic
    VALUES ( 6, "Pete Danhill", "Pdanhill@userspace.net", "turkeysandwich", 7778889999, "87 Will You Let Me Go Court", 103382645, "918167" );
 
 INSERT INTO DRIVER ( id, name, email, password, phone, address, license_num, license_plate_num) 
-   VALUES ( 7, "Oswaldo Moriss", "Oswaldo@howdidigetthis.net", "dontlickme", 8641396348, "90 Nooo Court", 103972513, "817852" );
+   VALUES ( 7, "Oswaldo Moriss", "Oswaldo@howdidigetthis.net", "twohotdogs", 8641396348, "90 Nooo Court", 103972513, "817852" );
 
 INSERT INTO DRIVER ( id, name, email, password, phone, address, license_num, license_plate_num) 
    VALUES ( 8, "Pete Jimbo", "thejimbonator@yahoo.com", "jimbonthesenuts", 2248976425, "807 We Will Not Let You Go Lane", 059472625, "817726" );
@@ -46,6 +49,12 @@ INSERT INTO DRIVER ( id, name, email, password, phone, address, license_num, lic
 
 INSERT INTO DRIVER ( id, name, email, password, phone, address, license_num, license_plate_num) 
    VALUES ( 10, "Bob Sagget", "Saggenator226@hotmail.com", "iliketosag", 2288753951, "789 Very Very Frightening Road", 104826153, "912927" );
+
+INSERT INTO DRIVER ( id, name, email, password, phone, address, license_num, license_plate_num) 
+   VALUES ( 11, "Justin Beiper", "jbaby@yahoo.com", "beleiper", 7419630258, "456 Combo Breaker Blvd", 102826153, "645927" );
+
+INSERT INTO DRIVER ( id, name, email, password, phone, address, license_num, license_plate_num) 
+   VALUES ( 12, "Doug Dimmadome", "doug@dimmadome.com", "dimmapassword", 1479630258, "456 Dimma Drive", 102286153, "753694" );
 
 INSERT INTO DRIVER_SPONSOR(driver_id, sponsor_id, points)
    VALUES (1,1,82);
@@ -83,6 +92,12 @@ INSERT INTO DRIVER_SPONSOR(driver_id, sponsor_id, points)
 INSERT INTO DRIVER_SPONSOR(driver_id, sponsor_id, points)
    VALUES (10,2,79);
 
+INSERT INTO DRIVER_SPONSOR(driver_id, sponsor_id, points)
+   VALUES (11,6,189);
+
+INSERT INTO DRIVER_SPONSOR(driver_id, sponsor_id, points)
+   VALUES (12,6,2674);
+
 
 INSERT INTO ADMIN ( id, name, email, password, phone, address) 
    VALUES ( 1, "btharmo", "btharmo@clemson.edu", "btharmo", 1234567890, "32 Do You Even Lift Lane" );
@@ -92,7 +107,7 @@ INSERT INTO ADMIN ( id, name, email, password, phone)
 
 
 INSERT INTO AMAZON_ITEM ( name, price, description, url) 
-   VALUES ( "test", 0.0, "totallyreal", "real.com/real" );
+   VALUES ( "Zuzuro Lunch Bag Insulated Cooler Lunch Box ", 28.95, "UNSURPASSED QUALITY: The interior is furnished with extra thick peva lining, EPA foam and high-quality metal hardware.", "https://www.amazon.com/Zuzuro-Lunch-Insulated-Cooler-Compartment/dp/B079DZ2L1F/ref=sr_1_8?ie=UTF8&qid=1543808429&sr=8-8&keywords=lunchbox" );
 
 INSERT INTO AMAZON_ITEM ( name, price, description, url) 
    VALUES ( "EEZ-Y Compact Travel Umbrella w/Windproof Double Canopy Construction - Auto Open/Close Button", 22.95, "EEZ-Y is an ultra-intelligent brand that redesigns and redefines high-quality products, making them better and smarter, EEZ-Y-er to use!
@@ -119,31 +134,37 @@ INSERT INTO AMAZON_ITEM ( name, price, description, url)
 INSERT INTO AMAZON_ITEM ( name, price, description, url) 
    VALUES ( "Solimo Exfoliating Body Wash, 18 Fluid Ounce (Pack of 4)", 10.35, "Four 18-fluid ounce bottles of exfoliating body wash, Molasses ans shea butter help exfoliate and moisturize skin while cleansing", "https://www.amazon.com/Amazon-Brand-Solimo-Exfoliating-Fluid/dp/B07CJMJRPM/ref=lp_18294627011_1_15_a_it?srs=18294627011&ie=UTF8&qid=1542147329&sr=8-15" );
 INSERT INTO AMAZON_ITEM ( name, price, description, url) 
-   VALUES ( "JOOLA 4-Player Indoor Table Tennis Hit Set", 15.99, "totallyreal", "real.com/real" );
+   VALUES ( "JOOLA 4-Player Indoor Table Tennis Hit Set", 29.95, "All inclusive table tennis set has everything you need to start a game.", "https://www.amazon.com/JOOLA-4-Player-Rackets-Paddles-Carrying/dp/B0012QNHKG/ref=sr_1_3?ie=UTF8&qid=1543807955&sr=8-3&keywords=JOOLA+4-Player+Indoor+Table+Tennis+Hit+Set" );
 INSERT INTO AMAZON_ITEM ( name, price, description, url) 
    VALUES ( "BEDSURE Sherpa Fleece Blanket ", 14.95, "BEDSURE Dual Sided Super Soft Blanket with Fleece Face and Plush Sherpa reverse offers you different senses of softness to improve your sleep with one side of smooth and fluffy to the other - Bring you ultimate soft and warmth with 220 GSM Fleece top and 280 GSM Sherpa reverse blanket .", "https://www.amazon.com/BEDSURE-Sherpa-Fleece-Blanket-Microfiber/dp/B01LEWILYE/ref=gbps_tit_s-5_5baf_016bd14e?smid=A3LDROY0BE4ISH&pf_rd_p=a7e1c818-e7bc-4318-ae47-1f5300505baf&pf_rd_s=slot-5&pf_rd_t=701&pf_rd_i=gb_main&pf_rd_m=ATVPDKIKX0DER&pf_rd_r=G78HSV6V757J3HYHRW6Z" );
+INSERT INTO AMAZON_ITEM ( name, price, description, url) 
+   VALUES ( "Stonewall Kitchen Favorite 4 Piece Jam Collection", 31.95, "Our four favorite jams are just right for spreading on pancakes, breakfast breads and pastries or as a glaze for meat dishes", "https://www.amazon.com/Stonewall-Kitchen-Collection-Raspberry-Strawberry/dp/B00WGTECUC/ref=sr_1_3_a_it?ie=UTF8&qid=1543806784&sr=8-3&keywords=jam" );
 
 
 INSERT INTO AMAZON_ITEM_IMAGE (image_path, amazon_item_id)
-	VALUES("umbrella.jpg", 1);
+   VALUES("lunchbox.jpg", 1);
 INSERT INTO AMAZON_ITEM_IMAGE (image_path, amazon_item_id)
-	VALUES("Bluetooth.jpg", 2);
+	VALUES("umbrella.jpg", 2);
 INSERT INTO AMAZON_ITEM_IMAGE (image_path, amazon_item_id)
-	VALUES("leather_bag.jpg", 1);
+	VALUES("Bluetooth.jpg", 3);
 INSERT INTO AMAZON_ITEM_IMAGE (image_path, amazon_item_id)
-	VALUES("screen_protector.jpg", 1);
+	VALUES("leather_bag.jpg", 4);
 INSERT INTO AMAZON_ITEM_IMAGE (image_path, amazon_item_id)
-	VALUES("tennis_table.jpg", 1);
+	VALUES("screen_protector.jpg", 5);
 INSERT INTO AMAZON_ITEM_IMAGE (image_path, amazon_item_id)
-	VALUES("toilet_paper.jpg", 1);
+	VALUES("tennis_table.jpg", 6);
 INSERT INTO AMAZON_ITEM_IMAGE (image_path, amazon_item_id)
-	VALUES("cookware.jpg", 1);
+	VALUES("toilet_paper.jpg", 7);
 INSERT INTO AMAZON_ITEM_IMAGE (image_path, amazon_item_id)
-	VALUES("body_wash.jpg", 1);
+	VALUES("cookware.jpg", 8);
 INSERT INTO AMAZON_ITEM_IMAGE (image_path, amazon_item_id)
-	VALUES("tennis_set.jpg", 1);
+	VALUES("body_wash.jpg", 9);
 INSERT INTO AMAZON_ITEM_IMAGE (image_path, amazon_item_id)
-	VALUES("blanket.jpg", 1);
+	VALUES("tennis_set.jpg", 10);
+INSERT INTO AMAZON_ITEM_IMAGE (image_path, amazon_item_id)
+	VALUES("blanket.jpg", 11);
+INSERT INTO AMAZON_ITEM_IMAGE (image_path, amazon_item_id)
+   VALUES("jam.jpg", 12);
 
 INSERT INTO CATALOG ( my_sponsor_id) 
    VALUES ( 1 );
@@ -151,11 +172,51 @@ INSERT INTO CATALOG ( my_sponsor_id)
 INSERT INTO CATALOG ( my_sponsor_id) 
    VALUES ( 2 );
 
+INSERT INTO CATALOG ( my_sponsor_id) 
+   VALUES ( 3 );
+
+INSERT INTO CATALOG ( my_sponsor_id) 
+   VALUES ( 4 );
+
+INSERT INTO CATALOG ( my_sponsor_id) 
+   VALUES ( 5 );
+
+INSERT INTO CATALOG ( my_sponsor_id) 
+   VALUES ( 6 );
+
 INSERT INTO CATALOG_AMAZON_ITEM ( my_catalog_id,  my_amazon_item_id) 
    VALUES ( 1,1 );
 
 INSERT INTO CATALOG_AMAZON_ITEM ( my_catalog_id,  my_amazon_item_id) 
    VALUES ( 1,2 );
+
+INSERT INTO CATALOG_AMAZON_ITEM ( my_catalog_id,  my_amazon_item_id) 
+   VALUES ( 1,3 );
+
+INSERT INTO CATALOG_AMAZON_ITEM ( my_catalog_id,  my_amazon_item_id) 
+   VALUES ( 1,4 );
+
+INSERT INTO CATALOG_AMAZON_ITEM ( my_catalog_id,  my_amazon_item_id) 
+   VALUES ( 1,5 );
+
+INSERT INTO CATALOG_AMAZON_ITEM ( my_catalog_id,  my_amazon_item_id) 
+   VALUES ( 1,6 );
+
+INSERT INTO CATALOG_AMAZON_ITEM ( my_catalog_id,  my_amazon_item_id) 
+   VALUES ( 1,7 );
+
+INSERT INTO CATALOG_AMAZON_ITEM ( my_catalog_id,  my_amazon_item_id) 
+   VALUES ( 1,8 );
+
+INSERT INTO CATALOG_AMAZON_ITEM ( my_catalog_id,  my_amazon_item_id) 
+   VALUES ( 1,9 );
+
+INSERT INTO CATALOG_AMAZON_ITEM ( my_catalog_id,  my_amazon_item_id) 
+   VALUES ( 1,10 );
+
+INSERT INTO CATALOG_AMAZON_ITEM ( my_catalog_id,  my_amazon_item_id) 
+   VALUES ( 1,11 );
+
 
 INSERT INTO CATALOG_AMAZON_ITEM ( my_catalog_id,  my_amazon_item_id) 
    VALUES ( 2,1 );
@@ -171,3 +232,89 @@ INSERT INTO CATALOG_AMAZON_ITEM ( my_catalog_id,  my_amazon_item_id)
 
 INSERT INTO CATALOG_AMAZON_ITEM ( my_catalog_id,  my_amazon_item_id) 
    VALUES ( 2,5 );
+
+INSERT INTO CATALOG_AMAZON_ITEM ( my_catalog_id,  my_amazon_item_id) 
+   VALUES ( 2,6 );
+
+
+INSERT INTO CATALOG_AMAZON_ITEM ( my_catalog_id,  my_amazon_item_id) 
+   VALUES ( 3,7 );
+
+INSERT INTO CATALOG_AMAZON_ITEM ( my_catalog_id,  my_amazon_item_id) 
+   VALUES ( 3,8 );
+
+INSERT INTO CATALOG_AMAZON_ITEM ( my_catalog_id,  my_amazon_item_id) 
+   VALUES ( 3,9 );
+
+INSERT INTO CATALOG_AMAZON_ITEM ( my_catalog_id,  my_amazon_item_id) 
+   VALUES ( 3,5 );
+
+
+
+INSERT INTO CATALOG_AMAZON_ITEM ( my_catalog_id,  my_amazon_item_id) 
+   VALUES ( 4,1 );
+
+INSERT INTO CATALOG_AMAZON_ITEM ( my_catalog_id,  my_amazon_item_id) 
+   VALUES ( 4,2 );
+
+INSERT INTO CATALOG_AMAZON_ITEM ( my_catalog_id,  my_amazon_item_id) 
+   VALUES ( 4,3 );
+
+INSERT INTO CATALOG_AMAZON_ITEM ( my_catalog_id,  my_amazon_item_id) 
+   VALUES ( 4,4 );
+
+INSERT INTO CATALOG_AMAZON_ITEM ( my_catalog_id,  my_amazon_item_id) 
+   VALUES ( 4,5 );
+
+INSERT INTO CATALOG_AMAZON_ITEM ( my_catalog_id,  my_amazon_item_id) 
+   VALUES ( 4,6 );
+
+INSERT INTO CATALOG_AMAZON_ITEM ( my_catalog_id,  my_amazon_item_id) 
+   VALUES ( 4,7 );
+
+INSERT INTO CATALOG_AMAZON_ITEM ( my_catalog_id,  my_amazon_item_id) 
+   VALUES ( 4,8 );
+
+INSERT INTO CATALOG_AMAZON_ITEM ( my_catalog_id,  my_amazon_item_id) 
+   VALUES ( 4,9 );
+
+INSERT INTO CATALOG_AMAZON_ITEM ( my_catalog_id,  my_amazon_item_id) 
+   VALUES ( 4,10 );
+
+INSERT INTO CATALOG_AMAZON_ITEM ( my_catalog_id,  my_amazon_item_id) 
+   VALUES ( 4,11 );
+
+
+INSERT INTO CATALOG_AMAZON_ITEM ( my_catalog_id,  my_amazon_item_id) 
+   VALUES ( 5,1 );
+
+INSERT INTO CATALOG_AMAZON_ITEM ( my_catalog_id,  my_amazon_item_id) 
+   VALUES ( 5,2 );
+
+INSERT INTO CATALOG_AMAZON_ITEM ( my_catalog_id,  my_amazon_item_id) 
+   VALUES ( 5,3 );
+
+INSERT INTO CATALOG_AMAZON_ITEM ( my_catalog_id,  my_amazon_item_id) 
+   VALUES ( 5,4 );
+
+INSERT INTO CATALOG_AMAZON_ITEM ( my_catalog_id,  my_amazon_item_id) 
+   VALUES ( 5,5 );
+
+
+INSERT INTO CATALOG_AMAZON_ITEM ( my_catalog_id,  my_amazon_item_id) 
+   VALUES ( 6,6 );
+
+INSERT INTO CATALOG_AMAZON_ITEM ( my_catalog_id,  my_amazon_item_id) 
+   VALUES ( 6,7 );
+
+INSERT INTO CATALOG_AMAZON_ITEM ( my_catalog_id,  my_amazon_item_id) 
+   VALUES ( 6,8 );
+
+INSERT INTO CATALOG_AMAZON_ITEM ( my_catalog_id,  my_amazon_item_id) 
+   VALUES ( 6,9 );
+
+INSERT INTO CATALOG_AMAZON_ITEM ( my_catalog_id,  my_amazon_item_id) 
+   VALUES ( 6,10 );
+
+INSERT INTO CATALOG_AMAZON_ITEM ( my_catalog_id,  my_amazon_item_id) 
+   VALUES ( 6,11 );

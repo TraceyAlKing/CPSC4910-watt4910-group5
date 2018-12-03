@@ -88,7 +88,7 @@ void Sponsor::saveSponsor()
 
 void Sponsor::updateSponsor(){
 
-	db().updateSponsor(std::to_string(getID()), getName(), getEmail(), getPassword(), std::to_string(getPhone()), getAddress(), std::to_string(getPV()), Catalogs_, Drivers_);
+    db().updateSponsor(std::to_string(getID()), getName(), getEmail(), getPassword(), std::to_string(getPhone()), getAddress(), std::to_string(getPV()), getCatalogs(), getDrivers());
 }
 
 void Sponsor::addDriver(int id)
@@ -277,7 +277,7 @@ void Sponsor::changePoints(int input, int i)
 int Sponsor::getNumDrivers(){
 	return Drivers_.size();
 }
-
+/*
 void Sponsor::getCatalogs(std::vector<int> &catalogs){
 	for(auto it : Catalogs_)
 		catalogs.push_back(it);
@@ -288,6 +288,11 @@ std::vector<int>& Sponsor::getCatalogs(){
 
 int Sponsor::getNumCatalogs(){
 	return Catalogs_.size();
+}
+*/
+std::vector<int>& Sponsor::getCatalogs(){
+    return Catalog_;
+}
 int Sponsor::getCatalog(){
 	return Catalog_[0];
 }
