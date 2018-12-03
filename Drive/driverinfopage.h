@@ -22,13 +22,25 @@ public:
     ~DriverInfoPage();
 
     void setDriver(Driver* temp);
-    void setSponsor(Sponsor* temp);
+    void setSponsor(Sponsor* temp, DatabaseInterface dbinter);
+
+    void on_pushButton_driver_name_Change_clicked();
+    void on_pushButton_driver_email_Change_clicked();
+    void on_pushButton_driver_ln_Change_clicked();
+    void on_pushButton_driver_phone_Change_clicked();
+    void on_pushButton_driver_LP_Add_clicked();
+    void on_pushButton_driver_address_Add_clicked();
+    void on_add_points_clicked();
+    void on_subtract_points_clicked();
+
+    void updateDriver();
 
 
 private:
     Ui::DriverInfoPage *ui;
     Driver* driver;
     Sponsor* sponsor;
+    DatabaseInterface dbi;
 };
 
 #endif // DRIVERINFOPAGE_H

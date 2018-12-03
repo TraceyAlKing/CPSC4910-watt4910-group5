@@ -34,30 +34,30 @@ public:
     QGridLayout *gridLayout;
     QVBoxLayout *verticalLayout_3;
     QLabel *label;
-    QLineEdit *name_label;
+    QLineEdit *lineEdit_driver_name;
     QPushButton *pushButton_driver_name_Change;
     QLabel *label_3;
-    QLineEdit *email_label;
+    QLineEdit *lineEdit_driver_email;
     QPushButton *pushButton_driver_email_Change;
     QLabel *label_5;
     QLabel *points_label;
     QVBoxLayout *verticalLayout_2;
-    QLineEdit *lineEdit_pointUpdate;
+    QLineEdit *lineEdit_driver_points;
     QHBoxLayout *horizontalLayout;
     QPushButton *add_points;
     QPushButton *subtract_points;
     QLabel *label_6;
-    QLineEdit *ln_label;
+    QLineEdit *lineEdit_driver_ln;
     QPushButton *pushButton_driver_ln_Change;
     QLabel *label_7;
-    QLineEdit *lp_label;
+    QLineEdit *lineEdit_driver_lp;
     QPushButton *pushButton_driver_lp_Change;
     QVBoxLayout *verticalLayout_5;
     QLabel *label_2;
     QTableWidget *tableWidget_3;
     QVBoxLayout *verticalLayout_4;
     QLabel *label_4;
-    QLineEdit *address_label;
+    QLineEdit *lineEdit_driver_address;
     QPushButton *pushButton_driver_address_Add;
 
     void setupUi(QDialog *DriverInfoPage)
@@ -109,10 +109,10 @@ public:
 
         verticalLayout_3->addWidget(label);
 
-        name_label = new QLineEdit(groupBox);
-        name_label->setObjectName(QStringLiteral("name_label"));
+        lineEdit_driver_name = new QLineEdit(groupBox);
+        lineEdit_driver_name->setObjectName(QStringLiteral("lineEdit_driver_name"));
 
-        verticalLayout_3->addWidget(name_label);
+        verticalLayout_3->addWidget(lineEdit_driver_name);
 
         pushButton_driver_name_Change = new QPushButton(groupBox);
         pushButton_driver_name_Change->setObjectName(QStringLiteral("pushButton_driver_name_Change"));
@@ -125,10 +125,10 @@ public:
 
         verticalLayout_3->addWidget(label_3);
 
-        email_label = new QLineEdit(groupBox);
-        email_label->setObjectName(QStringLiteral("email_label"));
+        lineEdit_driver_email = new QLineEdit(groupBox);
+        lineEdit_driver_email->setObjectName(QStringLiteral("lineEdit_driver_email"));
 
-        verticalLayout_3->addWidget(email_label);
+        verticalLayout_3->addWidget(lineEdit_driver_email);
 
         pushButton_driver_email_Change = new QPushButton(groupBox);
         pushButton_driver_email_Change->setObjectName(QStringLiteral("pushButton_driver_email_Change"));
@@ -155,10 +155,10 @@ public:
 
         verticalLayout_2 = new QVBoxLayout();
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
-        lineEdit_pointUpdate = new QLineEdit(groupBox);
-        lineEdit_pointUpdate->setObjectName(QStringLiteral("lineEdit_pointUpdate"));
+        lineEdit_driver_points = new QLineEdit(groupBox);
+        lineEdit_driver_points->setObjectName(QStringLiteral("lineEdit_driver_points"));
 
-        verticalLayout_2->addWidget(lineEdit_pointUpdate);
+        verticalLayout_2->addWidget(lineEdit_driver_points);
 
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
@@ -184,10 +184,10 @@ public:
 
         verticalLayout_3->addWidget(label_6);
 
-        ln_label = new QLineEdit(groupBox);
-        ln_label->setObjectName(QStringLiteral("ln_label"));
+        lineEdit_driver_ln = new QLineEdit(groupBox);
+        lineEdit_driver_ln->setObjectName(QStringLiteral("lineEdit_driver_ln"));
 
-        verticalLayout_3->addWidget(ln_label);
+        verticalLayout_3->addWidget(lineEdit_driver_ln);
 
         pushButton_driver_ln_Change = new QPushButton(groupBox);
         pushButton_driver_ln_Change->setObjectName(QStringLiteral("pushButton_driver_ln_Change"));
@@ -200,10 +200,10 @@ public:
 
         verticalLayout_3->addWidget(label_7);
 
-        lp_label = new QLineEdit(groupBox);
-        lp_label->setObjectName(QStringLiteral("lp_label"));
+        lineEdit_driver_lp = new QLineEdit(groupBox);
+        lineEdit_driver_lp->setObjectName(QStringLiteral("lineEdit_driver_lp"));
 
-        verticalLayout_3->addWidget(lp_label);
+        verticalLayout_3->addWidget(lineEdit_driver_lp);
 
         pushButton_driver_lp_Change = new QPushButton(groupBox);
         pushButton_driver_lp_Change->setObjectName(QStringLiteral("pushButton_driver_lp_Change"));
@@ -237,10 +237,10 @@ public:
 
         verticalLayout_4->addWidget(label_4);
 
-        address_label = new QLineEdit(groupBox);
-        address_label->setObjectName(QStringLiteral("address_label"));
+        lineEdit_driver_address = new QLineEdit(groupBox);
+        lineEdit_driver_address->setObjectName(QStringLiteral("lineEdit_driver_address"));
 
-        verticalLayout_4->addWidget(address_label);
+        verticalLayout_4->addWidget(lineEdit_driver_address);
 
         pushButton_driver_address_Add = new QPushButton(groupBox);
         pushButton_driver_address_Add->setObjectName(QStringLiteral("pushButton_driver_address_Add"));
@@ -269,7 +269,7 @@ public:
         pushButton_driver_email_Change->setText(QApplication::translate("DriverInfoPage", "Change", 0));
         label_5->setText(QApplication::translate("DriverInfoPage", "Points", 0));
         points_label->setText(QApplication::translate("DriverInfoPage", "0", 0));
-        lineEdit_pointUpdate->setText(QApplication::translate("DriverInfoPage", "Update points", 0));
+        lineEdit_driver_points->setText(QApplication::translate("DriverInfoPage", "Update points", 0));
         add_points->setText(QApplication::translate("DriverInfoPage", "Add", 0));
         subtract_points->setText(QApplication::translate("DriverInfoPage", "Subtract", 0));
         label_6->setText(QApplication::translate("DriverInfoPage", "License Number", 0));

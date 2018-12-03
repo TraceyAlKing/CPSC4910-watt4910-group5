@@ -65,7 +65,7 @@ QPushButton:pressed {
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="name_label"/>
+         <widget class="QLineEdit" name="lineEdit_driver_name"/>
         </item>
         <item>
          <widget class="QPushButton" name="pushButton_driver_name_Change">
@@ -92,7 +92,7 @@ QPushButton:pressed {
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="email_label"/>
+         <widget class="QLineEdit" name="lineEdit_driver_email"/>
         </item>
         <item>
          <widget class="QPushButton" name="pushButton_driver_email_Change">
@@ -137,7 +137,7 @@ QPushButton:pressed {
         <item>
          <layout class="QVBoxLayout" name="verticalLayout_2">
           <item>
-           <widget class="QLineEdit" name="lineEdit_pointUpdate">
+           <widget class="QLineEdit" name="lineEdit_driver_points">
             <property name="text">
              <string>Update points</string>
             </property>
@@ -181,7 +181,7 @@ QPushButton:pressed {
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="ln_label"/>
+         <widget class="QLineEdit" name="lineEdit_driver_ln"/>
         </item>
         <item>
          <widget class="QPushButton" name="pushButton_driver_ln_Change">
@@ -208,7 +208,7 @@ QPushButton:pressed {
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="lp_label"/>
+         <widget class="QLineEdit" name="lineEdit_driver_lp"/>
         </item>
         <item>
          <widget class="QPushButton" name="pushButton_driver_lp_Change">
@@ -263,7 +263,7 @@ QPushButton:pressed {
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="address_label"/>
+         <widget class="QLineEdit" name="lineEdit_driver_address"/>
         </item>
         <item>
          <widget class="QPushButton" name="pushButton_driver_address_Add">

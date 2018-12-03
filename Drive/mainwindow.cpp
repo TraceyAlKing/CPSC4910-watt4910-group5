@@ -144,7 +144,7 @@ void MainWindow::on_driver_table_cellClicked(int row, int column)
 {
     Driver* temp = dbi.getDriver(Drivers_[row]);
     DriverInfoPage d;
-    d.setSponsor(static_cast<Sponsor*>(CurrUser));
+    d.setSponsor(static_cast<Sponsor*>(CurrUser), dbi);
     d.setDriver(temp);
     d.setModal(true);
     d.exec();
