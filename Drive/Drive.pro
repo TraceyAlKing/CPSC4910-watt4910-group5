@@ -35,7 +35,8 @@ SOURCES += \
     ../Catalog.cpp \
     ../Database.cpp \
     ../Item.cpp \
-    ../DatabaseInterface.cpp
+    ../DatabaseInterface.cpp \
+    catalogitem.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -47,11 +48,13 @@ HEADERS += \
     ../Database.hpp \
     ../Item.hpp \
     ../Catalog.hpp \
-    ../DatabaseInterface.hpp
+    ../DatabaseInterface.hpp \
+    catalogitem.h
 
 FORMS += \
     mainwindow.ui \
-    driverinfo.ui
+    driverinfo.ui \
+    catalogitem.ui
 
 INCLUDEPATH += ../
 DEPENDPATH += $${INCLUDEPATH}
