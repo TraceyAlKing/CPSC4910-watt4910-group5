@@ -208,8 +208,6 @@ public:
 "\n"
 "QPushButton:pressed {\n"
 "  background-color: #203C6B;\n"
-"  box-shadow: 0 5px #666;\n"
-"  transform: translateY(4px);\n"
 "}"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
@@ -1031,8 +1029,8 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(0);
-        stackedWidget_driver->setCurrentIndex(1);
+        stackedWidget->setCurrentIndex(1);
+        stackedWidget_driver->setCurrentIndex(0);
         stackedWidget_sponsor->setCurrentIndex(1);
         tabWidget->setCurrentIndex(3);
 
