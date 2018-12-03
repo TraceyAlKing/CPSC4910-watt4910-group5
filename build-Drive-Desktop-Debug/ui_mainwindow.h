@@ -96,7 +96,6 @@ public:
     QLabel *label_7;
     QLabel *driver_sponsor_label;
     QLabel *label_5;
-    QTableWidget *tableWidget_LPNum;
     QLineEdit *lineEdit_driver_LP;
     QPushButton *pushButton_driver_LP_Add;
     QLabel *label_6;
@@ -106,7 +105,6 @@ public:
     QLineEdit *lineEdit_driver_phone;
     QPushButton *pushButton_driver_phone_Change;
     QLabel *label_10;
-    QTableWidget *tableWidget_driver_address;
     QLineEdit *lineEdit_driver_address;
     QPushButton *pushButton_driver_address_Add;
     QWidget *sponsor_home;
@@ -136,8 +134,7 @@ public:
     QLineEdit *lineEdit_sponsor_phone;
     QPushButton *pushButton_sponsor_phone_Change;
     QLabel *label_14;
-    QTableWidget *tableWidget_sponsor_address;
-    QLineEdit *lineEdit_6;
+    QLineEdit *lineEdit_sponsor_address;
     QPushButton *pushButton_sponsor_address_Add;
     QWidget *page_3;
     QHBoxLayout *horizontalLayout_8;
@@ -526,14 +523,21 @@ public:
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 769, 796));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 769, 644));
         verticalLayout_9 = new QVBoxLayout(scrollAreaWidgetContents);
         verticalLayout_9->setSpacing(6);
         verticalLayout_9->setContentsMargins(11, 11, 11, 11);
         verticalLayout_9->setObjectName(QStringLiteral("verticalLayout_9"));
         label_2 = new QLabel(scrollAreaWidgetContents);
         label_2->setObjectName(QStringLiteral("label_2"));
-        label_2->setFont(font);
+        QFont font5;
+        font5.setFamily(QString::fromUtf8("Agan\303\250 S"));
+        font5.setPointSize(16);
+        font5.setBold(false);
+        font5.setItalic(false);
+        font5.setUnderline(true);
+        font5.setWeight(50);
+        label_2->setFont(font5);
 
         verticalLayout_9->addWidget(label_2);
 
@@ -551,7 +555,7 @@ public:
 
         label_4 = new QLabel(scrollAreaWidgetContents);
         label_4->setObjectName(QStringLiteral("label_4"));
-        label_4->setFont(font);
+        label_4->setFont(font5);
 
         verticalLayout_9->addWidget(label_4);
 
@@ -569,7 +573,7 @@ public:
 
         label_7 = new QLabel(scrollAreaWidgetContents);
         label_7->setObjectName(QStringLiteral("label_7"));
-        label_7->setFont(font);
+        label_7->setFont(font5);
 
         verticalLayout_9->addWidget(label_7);
 
@@ -581,20 +585,9 @@ public:
 
         label_5 = new QLabel(scrollAreaWidgetContents);
         label_5->setObjectName(QStringLiteral("label_5"));
-        label_5->setFont(font);
+        label_5->setFont(font5);
 
         verticalLayout_9->addWidget(label_5);
-
-        tableWidget_LPNum = new QTableWidget(scrollAreaWidgetContents);
-        if (tableWidget_LPNum->columnCount() < 1)
-            tableWidget_LPNum->setColumnCount(1);
-        if (tableWidget_LPNum->rowCount() < 10)
-            tableWidget_LPNum->setRowCount(10);
-        tableWidget_LPNum->setObjectName(QStringLiteral("tableWidget_LPNum"));
-        tableWidget_LPNum->setRowCount(10);
-        tableWidget_LPNum->setColumnCount(1);
-
-        verticalLayout_9->addWidget(tableWidget_LPNum);
 
         lineEdit_driver_LP = new QLineEdit(scrollAreaWidgetContents);
         lineEdit_driver_LP->setObjectName(QStringLiteral("lineEdit_driver_LP"));
@@ -610,7 +603,7 @@ public:
 
         label_6 = new QLabel(scrollAreaWidgetContents);
         label_6->setObjectName(QStringLiteral("label_6"));
-        label_6->setFont(font);
+        label_6->setFont(font5);
 
         verticalLayout_9->addWidget(label_6);
 
@@ -627,7 +620,7 @@ public:
 
         label_9 = new QLabel(scrollAreaWidgetContents);
         label_9->setObjectName(QStringLiteral("label_9"));
-        label_9->setFont(font);
+        label_9->setFont(font5);
 
         verticalLayout_9->addWidget(label_9);
 
@@ -645,24 +638,9 @@ public:
 
         label_10 = new QLabel(scrollAreaWidgetContents);
         label_10->setObjectName(QStringLiteral("label_10"));
-        label_10->setFont(font);
+        label_10->setFont(font5);
 
         verticalLayout_9->addWidget(label_10);
-
-        tableWidget_driver_address = new QTableWidget(scrollAreaWidgetContents);
-        if (tableWidget_driver_address->columnCount() < 1)
-            tableWidget_driver_address->setColumnCount(1);
-        if (tableWidget_driver_address->rowCount() < 10)
-            tableWidget_driver_address->setRowCount(10);
-        QTableWidgetItem *__qtablewidgetitem = new QTableWidgetItem();
-        tableWidget_driver_address->setItem(0, 0, __qtablewidgetitem);
-        tableWidget_driver_address->setObjectName(QStringLiteral("tableWidget_driver_address"));
-        tableWidget_driver_address->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
-        tableWidget_driver_address->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContents);
-        tableWidget_driver_address->setRowCount(10);
-        tableWidget_driver_address->setColumnCount(1);
-
-        verticalLayout_9->addWidget(tableWidget_driver_address);
 
         lineEdit_driver_address = new QLineEdit(scrollAreaWidgetContents);
         lineEdit_driver_address->setObjectName(QStringLiteral("lineEdit_driver_address"));
@@ -776,7 +754,7 @@ public:
         verticalLayout_8->setObjectName(QStringLiteral("verticalLayout_8"));
         label_16 = new QLabel(sponsor_home_2);
         label_16->setObjectName(QStringLiteral("label_16"));
-        label_16->setFont(font);
+        label_16->setFont(font5);
 
         verticalLayout_8->addWidget(label_16);
 
@@ -794,7 +772,7 @@ public:
 
         label_17 = new QLabel(sponsor_home_2);
         label_17->setObjectName(QStringLiteral("label_17"));
-        label_17->setFont(font);
+        label_17->setFont(font5);
 
         verticalLayout_8->addWidget(label_17);
 
@@ -812,7 +790,7 @@ public:
 
         label_18 = new QLabel(sponsor_home_2);
         label_18->setObjectName(QStringLiteral("label_18"));
-        label_18->setFont(font);
+        label_18->setFont(font5);
 
         verticalLayout_8->addWidget(label_18);
 
@@ -830,26 +808,15 @@ public:
 
         label_14 = new QLabel(sponsor_home_2);
         label_14->setObjectName(QStringLiteral("label_14"));
-        label_14->setFont(font);
+        label_14->setFont(font5);
 
         verticalLayout_8->addWidget(label_14);
 
-        tableWidget_sponsor_address = new QTableWidget(sponsor_home_2);
-        if (tableWidget_sponsor_address->columnCount() < 1)
-            tableWidget_sponsor_address->setColumnCount(1);
-        if (tableWidget_sponsor_address->rowCount() < 10)
-            tableWidget_sponsor_address->setRowCount(10);
-        tableWidget_sponsor_address->setObjectName(QStringLiteral("tableWidget_sponsor_address"));
-        tableWidget_sponsor_address->setRowCount(10);
-        tableWidget_sponsor_address->setColumnCount(1);
+        lineEdit_sponsor_address = new QLineEdit(sponsor_home_2);
+        lineEdit_sponsor_address->setObjectName(QStringLiteral("lineEdit_sponsor_address"));
+        lineEdit_sponsor_address->setFont(font1);
 
-        verticalLayout_8->addWidget(tableWidget_sponsor_address);
-
-        lineEdit_6 = new QLineEdit(sponsor_home_2);
-        lineEdit_6->setObjectName(QStringLiteral("lineEdit_6"));
-        lineEdit_6->setFont(font1);
-
-        verticalLayout_8->addWidget(lineEdit_6);
+        verticalLayout_8->addWidget(lineEdit_sponsor_address);
 
         pushButton_sponsor_address_Add = new QPushButton(sponsor_home_2);
         pushButton_sponsor_address_Add->setObjectName(QStringLiteral("pushButton_sponsor_address_Add"));
@@ -1000,9 +967,9 @@ public:
         retranslateUi(MainWindow);
 
         stackedWidget->setCurrentIndex(2);
-        stackedWidget_driver->setCurrentIndex(0);
-        stackedWidget_sponsor->setCurrentIndex(0);
-        tabWidget->setCurrentIndex(0);
+        stackedWidget_driver->setCurrentIndex(1);
+        stackedWidget_sponsor->setCurrentIndex(1);
+        tabWidget->setCurrentIndex(3);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -1037,7 +1004,7 @@ public:
         pushButton_driver_Email_Change->setText(QApplication::translate("MainWindow", "Change", 0));
         label_7->setText(QApplication::translate("MainWindow", "Sponsor", 0));
         driver_sponsor_label->setText(QApplication::translate("MainWindow", "KFC Drivers Inc. LLC Co. & Sons", 0));
-        label_5->setText(QApplication::translate("MainWindow", "License Plate Numbers", 0));
+        label_5->setText(QApplication::translate("MainWindow", "License Plate Number", 0));
         pushButton_driver_LP_Add->setText(QApplication::translate("MainWindow", "Add", 0));
         label_6->setText(QApplication::translate("MainWindow", "License Number", 0));
         lineEdit_driver_ln->setText(QApplication::translate("MainWindow", "1234567890", 0));
@@ -1045,12 +1012,7 @@ public:
         label_9->setText(QApplication::translate("MainWindow", "Phone Number", 0));
         lineEdit_driver_phone->setText(QApplication::translate("MainWindow", "1-800-867-5309", 0));
         pushButton_driver_phone_Change->setText(QApplication::translate("MainWindow", "Change", 0));
-        label_10->setText(QApplication::translate("MainWindow", "Addresses", 0));
-
-        const bool __sortingEnabled = tableWidget_driver_address->isSortingEnabled();
-        tableWidget_driver_address->setSortingEnabled(false);
-        tableWidget_driver_address->setSortingEnabled(__sortingEnabled);
-
+        label_10->setText(QApplication::translate("MainWindow", "Address", 0));
         pushButton_driver_address_Add->setText(QApplication::translate("MainWindow", "Add", 0));
         sponsor_Home_Button->setText(QApplication::translate("MainWindow", "Home", 0));
         sponsor_Products->setText(QApplication::translate("MainWindow", "Products", 0));
@@ -1068,7 +1030,7 @@ public:
         label_18->setText(QApplication::translate("MainWindow", "Phone Number", 0));
         lineEdit_sponsor_phone->setText(QApplication::translate("MainWindow", "1-800-867-5309", 0));
         pushButton_sponsor_phone_Change->setText(QApplication::translate("MainWindow", "Change", 0));
-        label_14->setText(QApplication::translate("MainWindow", "Addresses", 0));
+        label_14->setText(QApplication::translate("MainWindow", "Address", 0));
         pushButton_sponsor_address_Add->setText(QApplication::translate("MainWindow", "Add", 0));
         pushButton_admin_Search->setText(QApplication::translate("MainWindow", "Search", 0));
         tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("MainWindow", "All Users", 0));

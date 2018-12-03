@@ -52,6 +52,7 @@ private:
     Ui::MainWindow *ui;
     User* CurrUser;
     std::vector<int> Drivers_;
+    Sponsor* currSponsor;
 
     //HOW WE WILL HANDLE DATA: IMPORTANT
     //
