@@ -87,6 +87,19 @@ void MainWindow::on_pushButton_Login_2_clicked()
 void MainWindow::on_driver_Home_Button_clicked()
 {
     ui->stackedWidget_driver->setCurrentIndex(0);
+
+    //Catalog code
+    std::vector<int> mysponsors;    //contains the sponsors of the driver
+    static_cast<Driver*>(CurrUser)->getSponsors(mysponsors);
+
+    int catalog_id = curSponsor->getCatalog();
+    Catalog* cata = dbi.getCatalog(catalog_id);
+    // do stuff with catalog
+
+
+
+    }
+    //
 }
 
 void MainWindow::on_driver_Logout_clicked()

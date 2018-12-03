@@ -623,8 +623,8 @@ border-radius : 14px;</string>
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>769</width>
-                 <height>644</height>
+                 <width>270</width>
+                 <height>586</height>
                 </rect>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -1039,12 +1039,12 @@ border-radius : 14px;</string>
         <item>
          <widget class="QStackedWidget" name="stackedWidget_sponsor">
           <property name="currentIndex">
-           <number>1</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="page">
            <layout class="QVBoxLayout" name="verticalLayout_6">
             <item>
-             <widget class="QTableWidget" name="driver_table">
+             <widget class="QTableWidget" name="driver_catalog">
               <property name="rowCount">
                <number>1</number>
               </property>

@@ -36,26 +36,31 @@ public:
     QGridLayout *gridLayout;
     QVBoxLayout *verticalLayout_3;
     QLabel *label;
-    QLabel *name_label;
+    QLineEdit *name_label;
+    QPushButton *pushButton_driver_name_Change;
     QLabel *label_3;
-    QLabel *email_label;
-    QLabel *points_label;
+    QLineEdit *email_label;
+    QPushButton *pushButton_driver_email_Change;
     QLabel *label_5;
+    QLabel *points_label;
     QVBoxLayout *verticalLayout_2;
-    QLineEdit *lineEdit;
+    QLineEdit *lineEdit_pointUpdate;
     QHBoxLayout *horizontalLayout;
     QPushButton *add_points;
     QPushButton *subtract_points;
     QLabel *label_6;
-    QLabel *label_8;
+    QLineEdit *ln_label;
+    QPushButton *pushButton_driver_ln_Change;
     QLabel *label_7;
-    QTableWidget *tableWidget;
+    QLineEdit *lp_label;
+    QPushButton *pushButton_driver_lp_Change;
     QVBoxLayout *verticalLayout_5;
     QLabel *label_2;
     QTableWidget *tableWidget_3;
     QVBoxLayout *verticalLayout_4;
     QLabel *label_4;
-    QTableWidget *tableWidget_2;
+    QLineEdit *address_label;
+    QPushButton *pushButton_driver_address_Add;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -64,6 +69,17 @@ public:
         if (DriverInfo->objectName().isEmpty())
             DriverInfo->setObjectName(QStringLiteral("DriverInfo"));
         DriverInfo->resize(800, 600);
+        DriverInfo->setStyleSheet(QString::fromUtf8("#MainWindow { font: 16pt \"Agan\303\250 S\"; }\n"
+"#MainWindow { background-color : #9CAFD1  }\n"
+"QPushButton {color : white;\n"
+"background-color : #3562B0;\n"
+"border-radius: 10px;}\n"
+"QPushButton{ font: 81 14pt \"AXIS Extra Bold\";}\n"
+"#pushButton_Login_2{ font: 81 18pt \"AXIS Extra Bold\";\n"
+"border-radius: 25px; }\n"
+"QGroupBox{ background-color : #EEEEEE;}\n"
+"QLabel{  font: 16pt \"Agan\303\250 S\"; }\n"
+"QStackedWidget{ background: qlineargradient(x1:0, y1:0, x2:1, y2:1,  stop:0 #202020, stop: 0.4 #303030, stop:1 #353535)}"));
         centralwidget = new QWidget(DriverInfo);
         centralwidget->setObjectName(QStringLiteral("centralwidget"));
         verticalLayout = new QVBoxLayout(centralwidget);
@@ -77,18 +93,25 @@ public:
         label = new QLabel(groupBox);
         label->setObjectName(QStringLiteral("label"));
         QFont font;
-        font.setPointSize(12);
+        font.setFamily(QString::fromUtf8("Agan\303\250 S"));
+        font.setPointSize(16);
+        font.setBold(false);
+        font.setItalic(false);
+        font.setUnderline(true);
+        font.setWeight(50);
         label->setFont(font);
 
         verticalLayout_3->addWidget(label);
 
-        name_label = new QLabel(groupBox);
+        name_label = new QLineEdit(groupBox);
         name_label->setObjectName(QStringLiteral("name_label"));
-        QFont font1;
-        font1.setPointSize(14);
-        name_label->setFont(font1);
 
         verticalLayout_3->addWidget(name_label);
+
+        pushButton_driver_name_Change = new QPushButton(groupBox);
+        pushButton_driver_name_Change->setObjectName(QStringLiteral("pushButton_driver_name_Change"));
+
+        verticalLayout_3->addWidget(pushButton_driver_name_Change);
 
         label_3 = new QLabel(groupBox);
         label_3->setObjectName(QStringLiteral("label_3"));
@@ -96,17 +119,15 @@ public:
 
         verticalLayout_3->addWidget(label_3);
 
-        email_label = new QLabel(groupBox);
+        email_label = new QLineEdit(groupBox);
         email_label->setObjectName(QStringLiteral("email_label"));
-        email_label->setFont(font1);
 
         verticalLayout_3->addWidget(email_label);
 
-        points_label = new QLabel(groupBox);
-        points_label->setObjectName(QStringLiteral("points_label"));
-        points_label->setFont(font1);
+        pushButton_driver_email_Change = new QPushButton(groupBox);
+        pushButton_driver_email_Change->setObjectName(QStringLiteral("pushButton_driver_email_Change"));
 
-        verticalLayout_3->addWidget(points_label);
+        verticalLayout_3->addWidget(pushButton_driver_email_Change);
 
         label_5 = new QLabel(groupBox);
         label_5->setObjectName(QStringLiteral("label_5"));
@@ -114,12 +135,24 @@ public:
 
         verticalLayout_3->addWidget(label_5);
 
+        points_label = new QLabel(groupBox);
+        points_label->setObjectName(QStringLiteral("points_label"));
+        QFont font1;
+        font1.setFamily(QString::fromUtf8("Agan\303\250 S"));
+        font1.setPointSize(16);
+        font1.setBold(false);
+        font1.setItalic(false);
+        font1.setWeight(50);
+        points_label->setFont(font1);
+
+        verticalLayout_3->addWidget(points_label);
+
         verticalLayout_2 = new QVBoxLayout();
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
-        lineEdit = new QLineEdit(groupBox);
-        lineEdit->setObjectName(QStringLiteral("lineEdit"));
+        lineEdit_pointUpdate = new QLineEdit(groupBox);
+        lineEdit_pointUpdate->setObjectName(QStringLiteral("lineEdit_pointUpdate"));
 
-        verticalLayout_2->addWidget(lineEdit);
+        verticalLayout_2->addWidget(lineEdit_pointUpdate);
 
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
@@ -145,11 +178,15 @@ public:
 
         verticalLayout_3->addWidget(label_6);
 
-        label_8 = new QLabel(groupBox);
-        label_8->setObjectName(QStringLiteral("label_8"));
-        label_8->setFont(font1);
+        ln_label = new QLineEdit(groupBox);
+        ln_label->setObjectName(QStringLiteral("ln_label"));
 
-        verticalLayout_3->addWidget(label_8);
+        verticalLayout_3->addWidget(ln_label);
+
+        pushButton_driver_ln_Change = new QPushButton(groupBox);
+        pushButton_driver_ln_Change->setObjectName(QStringLiteral("pushButton_driver_ln_Change"));
+
+        verticalLayout_3->addWidget(pushButton_driver_ln_Change);
 
         label_7 = new QLabel(groupBox);
         label_7->setObjectName(QStringLiteral("label_7"));
@@ -157,10 +194,15 @@ public:
 
         verticalLayout_3->addWidget(label_7);
 
-        tableWidget = new QTableWidget(groupBox);
-        tableWidget->setObjectName(QStringLiteral("tableWidget"));
+        lp_label = new QLineEdit(groupBox);
+        lp_label->setObjectName(QStringLiteral("lp_label"));
 
-        verticalLayout_3->addWidget(tableWidget);
+        verticalLayout_3->addWidget(lp_label);
+
+        pushButton_driver_lp_Change = new QPushButton(groupBox);
+        pushButton_driver_lp_Change->setObjectName(QStringLiteral("pushButton_driver_lp_Change"));
+
+        verticalLayout_3->addWidget(pushButton_driver_lp_Change);
 
 
         gridLayout->addLayout(verticalLayout_3, 0, 0, 2, 1);
@@ -189,10 +231,15 @@ public:
 
         verticalLayout_4->addWidget(label_4);
 
-        tableWidget_2 = new QTableWidget(groupBox);
-        tableWidget_2->setObjectName(QStringLiteral("tableWidget_2"));
+        address_label = new QLineEdit(groupBox);
+        address_label->setObjectName(QStringLiteral("address_label"));
 
-        verticalLayout_4->addWidget(tableWidget_2);
+        verticalLayout_4->addWidget(address_label);
+
+        pushButton_driver_address_Add = new QPushButton(groupBox);
+        pushButton_driver_address_Add->setObjectName(QStringLiteral("pushButton_driver_address_Add"));
+
+        verticalLayout_4->addWidget(pushButton_driver_address_Add);
 
 
         gridLayout->addLayout(verticalLayout_4, 1, 1, 1, 1);
@@ -203,7 +250,7 @@ public:
         DriverInfo->setCentralWidget(centralwidget);
         menubar = new QMenuBar(DriverInfo);
         menubar->setObjectName(QStringLiteral("menubar"));
-        menubar->setGeometry(QRect(0, 0, 800, 17));
+        menubar->setGeometry(QRect(0, 0, 800, 22));
         DriverInfo->setMenuBar(menubar);
         statusbar = new QStatusBar(DriverInfo);
         statusbar->setObjectName(QStringLiteral("statusbar"));
@@ -219,19 +266,21 @@ public:
         DriverInfo->setWindowTitle(QApplication::translate("DriverInfo", "MainWindow", nullptr));
         groupBox->setTitle(QString());
         label->setText(QApplication::translate("DriverInfo", "Name", nullptr));
-        name_label->setText(QApplication::translate("DriverInfo", "Emilio Estevez", nullptr));
+        pushButton_driver_name_Change->setText(QApplication::translate("DriverInfo", "Change", nullptr));
         label_3->setText(QApplication::translate("DriverInfo", "Email", nullptr));
-        email_label->setText(QApplication::translate("DriverInfo", "iwasinthebreakfastclub@yahoo.com", nullptr));
-        points_label->setText(QApplication::translate("DriverInfo", "0", nullptr));
+        pushButton_driver_email_Change->setText(QApplication::translate("DriverInfo", "Change", nullptr));
         label_5->setText(QApplication::translate("DriverInfo", "Points", nullptr));
-        lineEdit->setText(QApplication::translate("DriverInfo", "Update points", nullptr));
+        points_label->setText(QApplication::translate("DriverInfo", "0", nullptr));
+        lineEdit_pointUpdate->setText(QApplication::translate("DriverInfo", "Update points", nullptr));
         add_points->setText(QApplication::translate("DriverInfo", "Add", nullptr));
         subtract_points->setText(QApplication::translate("DriverInfo", "Subtract", nullptr));
         label_6->setText(QApplication::translate("DriverInfo", "License Number", nullptr));
-        label_8->setText(QApplication::translate("DriverInfo", "TextLabel", nullptr));
-        label_7->setText(QApplication::translate("DriverInfo", "License Plate Numbers", nullptr));
+        pushButton_driver_ln_Change->setText(QApplication::translate("DriverInfo", "Change", nullptr));
+        label_7->setText(QApplication::translate("DriverInfo", "License Plate Number", nullptr));
+        pushButton_driver_lp_Change->setText(QApplication::translate("DriverInfo", "Change", nullptr));
         label_2->setText(QApplication::translate("DriverInfo", "Recent Orders", nullptr));
-        label_4->setText(QApplication::translate("DriverInfo", "Addresses", nullptr));
+        label_4->setText(QApplication::translate("DriverInfo", "Address", nullptr));
+        pushButton_driver_address_Add->setText(QApplication::translate("DriverInfo", "Change", nullptr));
     } // retranslateUi
 
 };
