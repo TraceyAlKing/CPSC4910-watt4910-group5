@@ -13,6 +13,8 @@ Sponsor::Sponsor(std::string id, std::string name, std::string email, std::strin
 		std::string phone, std::string address, std::string point_value) : 
 		User(id, name, email, password, phone, address), point_value_(stoi(point_value))
 {
+	db().getSponsorCatalogs(id,Catalogs_);
+	db().getSponsorDrivers(id,Drivers_);
 
 }
 Sponsor::Sponsor(const Sponsor& other) : User(other), point_value_(other.point_value_)
@@ -86,7 +88,7 @@ void Sponsor::saveSponsor()
 
 void Sponsor::updateSponsor(){
 
-	db().updateSponsor(std::to_string(getID()), getName(), getEmail(), getPassword(), std::to_string(getPhone()), std::to_string(getPV()));
+	db().updateSponsor(std::to_string(getID()), getName(), getEmail(), getPassword(), std::to_string(getPhone()), std::to_string(getPV()), Catalogs_, Drivers_);
 }
 
 void Sponsor::addDriver(int id)
@@ -272,6 +274,13 @@ int Sponsor::getNumDrivers(){
 	return Drivers_.size();
 }
 
+void Sponsor::getCatalogs(std::vector<int> &catalogs){
+	for(auto it : Catalogs_)
+		catalogs.push_back(it);
+}
+int Sponsor::getNumCatalogs(){
+	return Catalogs_.size();
+}
 int Sponsor::getPV()
 {
     return point_value_;

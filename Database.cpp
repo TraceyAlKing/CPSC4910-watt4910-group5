@@ -507,7 +507,7 @@ Sponsor* Database::getSponsor(std::string id){
   }
 }
   
-void Database::updateSponsor(std::string id, std::string name, std::string email, std::string password, std::string phone, std::string point_value){
+void Database::updateSponsor(std::string id, std::string name, std::string email, std::string password, std::string phone, std::string point_value, std::vector<int> &catalogs, std::vector<int> &drivers){
   try {
     //update based on id
     std::stringstream sstr;
@@ -532,7 +532,131 @@ void Database::updateSponsor(std::string id, std::string name, std::string email
     std::cout << " (MySQL error code: " << e.getErrorCode();
     std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
   }
+
+  //here we update the catalog list
+
+  std::vector<int> oldcatalogs;
+  std::vector<int> toremove;
+  std::vector<int> toadd;
+
+  getSponsorCatalogs(id,oldcatalogs);
+
+  bool found;
+
+  for(auto it1 : catalogs){
+    found = false;
+    for(auto it2 : oldcatalogs){
+      if(it1==it2) found = true;
+    }
+    if(!found) toadd.push_back(it1);
+  }
+
+
+  for(auto it2 : oldcatalogs){
+    found = false;
+    for(auto it1 : catalogs){
+      if(it2==it1) found = true;
+    }
+    if(!found) toremove.push_back(it2);
+  }
+
+  for(int i=0; i<toremove.size();i++){
+  	removeCatalog(std::to_string(toremove[i]));
+  }
+  for(int i=0; i<toadd.size();i++){
+  	createCatalog(std::to_string(toadd[i]));
+  }
+
+  std::vector<int> olddrivers;
+  toremove.clear();
+  toadd.clear();
+
+  getDriverSponsors(std::stoi(id),olddrivers);
+
+
+  for(auto it1 : drivers){
+    found = false;
+    for(auto it2 : olddrivers){
+      if(it1==it2) found = true;
+    }
+    if(!found) toadd.push_back(it1);
+  }
+
+
+  for(auto it2 : olddrivers){
+    found = false;
+    for(auto it1 : drivers){
+      if(it2==it1) found = true;
+    }
+    if(!found) toremove.push_back(it2);
+  }
+
+  std::stringstream sstr;
+  try{
+    for(auto it : toremove){
+      sstr << "DELETE FROM DRIVER_SPONSOR WHERE sponsor_id = \'" << id << "\' " << "AND driver_id = \'" << it << "\'";
+
+        std::cout << "Attempting statement: " << sstr.str() << std::endl;
+        stmt_ = con_->createStatement();
+        stmt_->execute(sstr.str());
+        std::cout << "\t... MySQL replies: Success." << std::endl;
+    }
+
+    sstr.str(std::string());
+
+    for(auto it : toadd){
+      sstr << "INSERT INTO CATALOG_AMAZON_ITEM (sponsor_id, driver_id, points ) VALUES ( \"" << id << "\", \"" << it << "\", 0);";
+
+        std::cout << "Attempting statement: " << sstr.str() << std::endl;
+        stmt_ = con_->createStatement();
+        stmt_->execute(sstr.str());
+        std::cout << "\t... MySQL replies: Success." << std::endl;
+    }
+
+  } catch (sql::SQLException &e) {
+    std::cout << "# ERR: SQLException in " << __FILE__;
+    std::cout << "(" << __FUNCTION__ << ") on line "
+       << __LINE__ << std::endl;
+    std::cout << "# ERR: " << e.what();
+    std::cout << " (MySQL error code: " << e.getErrorCode();
+    std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
+  }
 }
+  
+ void Database::getSponsorDrivers(std::string sid, std::vector<int> &drivers){
+  try {
+    //Build statement
+    std::stringstream sstr;
+    sstr << "SELECT driver_id FROM DRIVER_SPONSOR WHERE sponsor_id = " << "\"" << sid << "\";";
+
+    //Execute statement
+    std::cout << "Attempting statement: " << sstr.str() << std::endl;
+    stmt_ = con_->createStatement();
+    res_ = stmt_->executeQuery(sstr.str());
+    std::cout << "\t... MySQL replies: " << std::endl;
+
+    //Parse results
+    while (res_->next()) {
+      /* Access column data by alias or column name */
+      std::cout << "\t-------------------------------------------" << std::endl;
+      std::cout << "\tdriver: "<< res_->getString("driver_id") << std::endl;
+      drivers.push_back(res_->getInt("driver_id"));
+
+
+    }
+    std::cout << "\t-------------------------------------------" << std::endl;
+    std::cout << "\t... MySQL replies: Success." << std::endl;
+
+  } catch (sql::SQLException &e) {
+    std::cout << "# ERR: SQLException in " << __FILE__;
+    std::cout << "(" << __FUNCTION__ << ") on line "
+       << __LINE__ << std::endl;
+    std::cout << "# ERR: " << e.what();
+    std::cout << " (MySQL error code: " << e.getErrorCode();
+    std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
+  }
+
+ }
 
 void Database::removeAdmin(std::string id){
   try {
@@ -898,6 +1022,26 @@ std::vector<int> Database::getCatalogItems(std::string id){
 }
 
 void Database::removeCatalog(std::string id){
+
+  try {
+    //DELETE FROM somelog WHERE user = 'jcole'
+    std::stringstream sstr;
+    sstr << "DELETE FROM CATALOG_AMAZON_ITEM WHERE cat_id = \'";
+    sstr << id << "\';";
+
+    std::cout << "Attempting statement: " << sstr.str() << std::endl;
+    stmt_ = con_->createStatement();
+    stmt_->execute(sstr.str());
+    std::cout << "\t... MySQL replies: Success." << std::endl;
+
+  } catch (sql::SQLException &e) {
+    std::cout << "# ERR: SQLException in " << __FILE__;
+    std::cout << "(" << __FUNCTION__ << ") on line "
+       << __LINE__ << std::endl;
+    std::cout << "# ERR: " << e.what();
+    std::cout << " (MySQL error code: " << e.getErrorCode();
+    std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
+  }
   try {
     //DELETE FROM somelog WHERE user = 'jcole'
     std::stringstream sstr;
@@ -1074,6 +1218,36 @@ void Database::updateCatalog(int cat_id, std::vector<int> &items){
   }
 }	
 
+void Database::getSponsorCatalogs(std::string sid, std::vector<int> &catalogs){
+  try {
+    //Build statement
+    std::stringstream sstr;
+    sstr << "SELECT cat_id FROM CATALOG WHERE my_sponsor_id = " << "\"" << sid << "\";";
+
+    //Execute statement
+    std::cout << "Attempting statement: " << sstr.str() << std::endl;
+    stmt_ = con_->createStatement();
+    res_ = stmt_->executeQuery(sstr.str());
+
+    //Parse results
+    int count = 0;
+    while (res_->next()) {
+      /* Access column data by alias or column name */
+      catalogs.push_back(res_->getInt("cat_id"));
+      count++;
+    }
+    std::cout << "\t... MySQL replies: Success." << std::endl;
+
+  } catch (sql::SQLException &e) {
+    std::cout << "# ERR: SQLException in " << __FILE__;
+    std::cout << "(" << __FUNCTION__ << ") on line "
+       << __LINE__ << std::endl;
+    std::cout << "# ERR: " << e.what();
+    std::cout << " (MySQL error code: " << e.getErrorCode();
+    std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
+  }
+
+}
 
 std::string Database::executeUnguardedStatement(std::string str){
   try {
