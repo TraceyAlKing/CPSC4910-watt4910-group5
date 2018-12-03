@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>CatalogItem</class>
  <widget class="QDialog" name="CatalogItem">
@@ -5,13 +6,132 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>805</width>
+    <height>523</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">#MainWindow { font: 16pt &quot;Aganè S&quot;; }
+#MainWindow { background-color : #9CAFD1  }
+QPushButton {color : white;
+background-color : #3562B0;
+border-radius: 10px;}
+QPushButton{ font: 81 14pt &quot;AXIS Extra Bold&quot;;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+  padding: 10px 15px;}
+#pushButton_Login_2{ font: 81 18pt &quot;AXIS Extra Bold&quot;;
+border-radius: 25px; }
+QGroupBox{ background-color : #EEEEEE;}
+QLabel{  font: 16pt &quot;Aganè S&quot;; }
+QStackedWidget{ background: qlineargradient(x1:0, y1:0, x2:1, y2:1,  stop:0 #202020, stop: 0.4 #303030, stop:1 #353535)}
+
+
+
+QPushButton:hover {background-color: #2D5496}
+
+QPushButton:active {
+  background-color: #2D5496;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_2">
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QLabel" name="image">
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/images/61510352-holding-banana.jpg&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+       <property name="scaledContents">
+        <bool>true</bool>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QGroupBox" name="groupBox">
+       <property name="title">
+        <string/>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <widget class="QLabel" name="name">
+          <property name="text">
+           <string>Just a Big Banana</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="price">
+          <property name="font">
+           <font>
+            <family>Aganè S</family>
+            <pointsize>12</pointsize>
+            <weight>50</weight>
+            <italic>false</italic>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"> font: 12pt &quot;Aganè S&quot;;</string>
+          </property>
+          <property name="text">
+           <string>$32.99</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QTextEdit" name="description">
+          <property name="html">
+           <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;It's big.  It's a banana. Banana 2.0: new and improved.  Now with potassium.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="purchase">
+       <property name="styleSheet">
+        <string notr="true">font-size : 30px</string>
+       </property>
+       <property name="text">
+        <string>Purchase</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
  </widget>
  <resources/>
  <connections/>

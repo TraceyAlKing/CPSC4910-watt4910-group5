@@ -70,18 +70,32 @@ public:
     {
         if (DriverInfo->objectName().isEmpty())
             DriverInfo->setObjectName(QStringLiteral("DriverInfo"));
-        DriverInfo->resize(800, 600);
+        DriverInfo->resize(800, 687);
         DriverInfo->setStyleSheet(QString::fromUtf8("#MainWindow { font: 16pt \"Agan\303\250 S\"; }\n"
 "#MainWindow { background-color : #9CAFD1  }\n"
 "QPushButton {color : white;\n"
 "background-color : #3562B0;\n"
 "border-radius: 10px;}\n"
-"QPushButton{ font: 81 14pt \"AXIS Extra Bold\";}\n"
+"QPushButton{ font: 81 14pt \"AXIS Extra Bold\";\n"
+"  border: none;\n"
+"  border-radius: 15px;\n"
+"  box-shadow: 0 9px #999;\n"
+"  padding: 10px 15px;}\n"
 "#pushButton_Login_2{ font: 81 18pt \"AXIS Extra Bold\";\n"
 "border-radius: 25px; }\n"
 "QGroupBox{ background-color : #EEEEEE;}\n"
 "QLabel{  font: 16pt \"Agan\303\250 S\"; }\n"
-"QStackedWidget{ background: qlineargradient(x1:0, y1:0, x2:1, y2:1,  stop:0 #202020, stop: 0.4 #303030, stop:1 #353535)}"));
+"QStackedWidget{ background: qlineargradient(x1:0, y1:0, x2:1, y2:1,  stop:0 #202020, stop: 0.4 #303030, stop:1 #353535)}\n"
+"\n"
+"\n"
+"\n"
+"QPushButton:hover {background-color: #2D5496}\n"
+"\n"
+"QPushButton:active {\n"
+"  background-color: #2D5496;\n"
+"  box-shadow: 0 5px #666;\n"
+"  transform: translateY(4px);\n"
+"}"));
         centralwidget = new QWidget(DriverInfo);
         centralwidget->setObjectName(QStringLiteral("centralwidget"));
         verticalLayout = new QVBoxLayout(centralwidget);

@@ -11,7 +11,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     QFontDatabase fontDB;
-    fontDB.addApplicationFont(":/fonts/Axis Extrabold.otf");
+    fontDB.addApplicationFont(":/fonts/Axis_Extrabold.otf");
     fontDB.addApplicationFont(":/fonts/Agane 55 (roman) sign.ttf");
     ui->setupUi(this);
     ui->stackedWidget->setCurrentIndex(0);

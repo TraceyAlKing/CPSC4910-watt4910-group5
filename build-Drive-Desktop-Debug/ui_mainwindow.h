@@ -191,12 +191,26 @@ public:
 "QPushButton {color : white;\n"
 "background-color : #3562B0;\n"
 "border-radius: 10px;}\n"
-"QPushButton{ font: 81 14pt \"AXIS Extra Bold\";}\n"
+"QPushButton{ font: 81 14pt \"AXIS Extra Bold\";\n"
+"  border: none;\n"
+"  border-radius: 15px;\n"
+"  box-shadow: 0 9px #999;\n"
+"  padding: 10px 15px;}\n"
 "#pushButton_Login_2{ font: 81 18pt \"AXIS Extra Bold\";\n"
 "border-radius: 25px; }\n"
 "QGroupBox{ background-color : #EEEEEE;}\n"
 "QLabel{  font: 16pt \"Agan\303\250 S\"; }\n"
-"QStackedWidget{ background: qlineargradient(x1:0, y1:0, x2:1, y2:1,  stop:0 #202020, stop: 0.4 #303030, stop:1 #353535)}"));
+"QStackedWidget{ background: qlineargradient(x1:0, y1:0, x2:1, y2:1,  stop:0 #202020, stop: 0.4 #303030, stop:1 #353535)}\n"
+"\n"
+"\n"
+"\n"
+"QPushButton:hover {background-color: #2D5496}\n"
+"\n"
+"QPushButton:active {\n"
+"  background-color: #2D5496;\n"
+"  box-shadow: 0 5px #666;\n"
+"  transform: translateY(4px);\n"
+"}"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         centralWidget->setLayoutDirection(Qt::LeftToRight);
@@ -530,7 +544,7 @@ public:
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 769, 644));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 720, 764));
         verticalLayout_9 = new QVBoxLayout(scrollAreaWidgetContents);
         verticalLayout_9->setSpacing(6);
         verticalLayout_9->setContentsMargins(11, 11, 11, 11);
@@ -772,7 +786,6 @@ public:
 
         lineEdit_sponsor_name = new QLineEdit(sponsor_home_2);
         lineEdit_sponsor_name->setObjectName(QStringLiteral("lineEdit_sponsor_name"));
-        lineEdit_sponsor_name->setFont(font1);
 
         verticalLayout_8->addWidget(lineEdit_sponsor_name);
 
@@ -865,6 +878,7 @@ public:
 
         admin_search_button = new QPushButton(tab);
         admin_search_button->setObjectName(QStringLiteral("admin_search_button"));
+        admin_search_button->setStyleSheet(QStringLiteral("font-size : 30px"));
 
         horizontalLayout_5->addWidget(admin_search_button);
 
@@ -893,6 +907,7 @@ public:
 
         driver_search_button = new QPushButton(tab_3);
         driver_search_button->setObjectName(QStringLiteral("driver_search_button"));
+        driver_search_button->setStyleSheet(QStringLiteral("font-size : 30px"));
 
         horizontalLayout->addWidget(driver_search_button);
 
@@ -921,6 +936,7 @@ public:
 
         sponsor_search_button = new QPushButton(tab_2);
         sponsor_search_button->setObjectName(QStringLiteral("sponsor_search_button"));
+        sponsor_search_button->setStyleSheet(QStringLiteral("font-size : 30px"));
 
         horizontalLayout_6->addWidget(sponsor_search_button);
 
@@ -949,6 +965,7 @@ public:
 
         admin_search_button_2 = new QPushButton(tab_5);
         admin_search_button_2->setObjectName(QStringLiteral("admin_search_button_2"));
+        admin_search_button_2->setStyleSheet(QStringLiteral("font-size : 30px"));
 
         horizontalLayout_10->addWidget(admin_search_button_2);
 
@@ -977,6 +994,7 @@ public:
 
         products_search_button = new QPushButton(tab_4);
         products_search_button->setObjectName(QStringLiteral("products_search_button"));
+        products_search_button->setStyleSheet(QStringLiteral("font-size : 30px"));
 
         horizontalLayout_7->addWidget(products_search_button);
 
@@ -1006,9 +1024,9 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(3);
-        stackedWidget_driver->setCurrentIndex(0);
-        stackedWidget_sponsor->setCurrentIndex(0);
+        stackedWidget->setCurrentIndex(2);
+        stackedWidget_driver->setCurrentIndex(1);
+        stackedWidget_sponsor->setCurrentIndex(1);
         tabWidget->setCurrentIndex(3);
 
 
@@ -1063,7 +1081,6 @@ public:
         pushButton->setText(QApplication::translate("MainWindow", "New Driver", 0));
         pushButton_5->setText(QApplication::translate("MainWindow", "All Requests", 0));
         label_16->setText(QApplication::translate("MainWindow", "Sponsor Name", 0));
-        lineEdit_sponsor_name->setText(QApplication::translate("MainWindow", "Colonel Sanders", 0));
         pushButton_sponsor_Name_Change->setText(QApplication::translate("MainWindow", "Change", 0));
         label_17->setText(QApplication::translate("MainWindow", "Email", 0));
         lineEdit_sponsor_email->setText(QApplication::translate("MainWindow", "fingerlickingood@kfc.weebly.com", 0));
