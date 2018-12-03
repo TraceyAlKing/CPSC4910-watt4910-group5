@@ -309,3 +309,11 @@ void MainWindow::initDriverCatalog() {
         ui->driver_catalog->setItem(it->getId(), 0, newItem);
     }
 }
+
+void MainWindow::on_new_driver_clicked() {
+
+    CreateDriver d;
+    d.setSponsor(static_cast<Sponsor*>(CurrUser), dbi);
+    d.setModal(true);
+    d.exec();
+}

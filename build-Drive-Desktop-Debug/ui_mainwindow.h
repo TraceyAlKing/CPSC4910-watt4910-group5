@@ -117,7 +117,7 @@ public:
     QVBoxLayout *verticalLayout_7;
     QGroupBox *groupBox_2;
     QGroupBox *groupBox_3;
-    QPushButton *pushButton;
+    QPushButton *new_driver;
     QPushButton *pushButton_5;
     QStackedWidget *stackedWidget_sponsor;
     QWidget *page;
@@ -735,10 +735,10 @@ public:
 
         verticalLayout_7->addWidget(groupBox_3);
 
-        pushButton = new QPushButton(sponsor_home);
-        pushButton->setObjectName(QStringLiteral("pushButton"));
+        new_driver = new QPushButton(sponsor_home);
+        new_driver->setObjectName(QStringLiteral("new_driver"));
 
-        verticalLayout_7->addWidget(pushButton);
+        verticalLayout_7->addWidget(new_driver);
 
         pushButton_5 = new QPushButton(sponsor_home);
         pushButton_5->setObjectName(QStringLiteral("pushButton_5"));
@@ -1029,7 +1029,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(1);
+        stackedWidget->setCurrentIndex(2);
         stackedWidget_driver->setCurrentIndex(0);
         stackedWidget_sponsor->setCurrentIndex(1);
         tabWidget->setCurrentIndex(3);
@@ -1083,7 +1083,7 @@ public:
         sponsor_Logout->setText(QApplication::translate("MainWindow", "Logout", 0));
         groupBox_2->setTitle(QString());
         groupBox_3->setTitle(QString());
-        pushButton->setText(QApplication::translate("MainWindow", "New Driver", 0));
+        new_driver->setText(QApplication::translate("MainWindow", "New Driver", 0));
         pushButton_5->setText(QApplication::translate("MainWindow", "All Requests", 0));
         label_16->setText(QApplication::translate("MainWindow", "Sponsor Name", 0));
         pushButton_sponsor_Name_Change->setText(QApplication::translate("MainWindow", "Change", 0));
