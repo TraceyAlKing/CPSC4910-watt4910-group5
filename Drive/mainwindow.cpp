@@ -1,3 +1,4 @@
+#include <stdlib.h>
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QMessageBox>
@@ -72,9 +73,14 @@ void MainWindow::on_pushButton_Login_2_clicked()
     }else if(isDriver){
         ui->stackedWidget->setCurrentIndex(1);
         ui->stackedWidget_driver->setCurrentIndex(0);
+        currSponsor=0;
 
         CurrUser = temp;
         driver_list_[CurrUser->getID()] = static_cast<Driver*>(CurrUser);
+        std::vector<int> driversponsors;
+        static_cast<Driver*>(CurrUser)->getSponsors(driversponsors);
+        currSponsor = dbi.getSponsor(driversponsors[0]);
+        ui->driver_currSponsor->setText(QString::fromStdString(currSponsor->getName()));
 
        //ui->pointsValue_label->setNum((int)(static_cast<Driver*>(CurrUser)->getPoints()));
         ui->pointsValue_label->setNum(6);
@@ -86,7 +92,18 @@ void MainWindow::on_pushButton_Login_2_clicked()
 void MainWindow::on_driver_Home_Button_clicked()
 {
     ui->stackedWidget_driver->setCurrentIndex(0);
-}
+
+    //Catalog code
+    std::vector<int> mysponsors;    //contains the sponsors of the driver
+    static_cast<Driver*>(CurrUser)->getSponsors(mysponsors);
+
+    int catalog_id = currSponsor->getCatalog();
+    Catalog* cata = dbi.getCatalog(catalog_id);
+    // do stuff with catalog
+
+
+
+    }
 
 void MainWindow::on_driver_Logout_clicked()
 {
@@ -99,30 +116,12 @@ void MainWindow::on_driver_Account_clicked()
     ui->lineEdit_driver_name->setText(QString::fromStdString(static_cast<Driver*>(CurrUser)->getName()));
     ui->lineEdit_driver_email->setText(QString::fromStdString(static_cast<Driver*>(CurrUser)->getEmail()));
     //@TODO: Need to fix the sponsors
-    //std::vector<int> driversponsors;
-    //static_cast<Driver*>(CurrUser)->getSponsors(&driversponsors);
-    //ui->driver_sponsor_label->setText(QString::number(driversponsors));
-    ui->driver_sponsor_label->setText("Placeholder");
-    //
+    ui->driver_sponsor_label->setText(QString::fromStdString(currSponsor->getName()));
+
     ui->lineEdit_driver_ln->setText(QString::fromStdString(std::to_string(static_cast<Driver*>(CurrUser)->getLicenseNum())));
     ui->lineEdit_driver_phone->setText(QString::fromStdString(std::to_string(static_cast<Driver*>(CurrUser)->getPhone())));
-
-    int* LPNum_ = static_cast<Driver*>(CurrUser)->getPlates();
-    for(int i = 0; i<static_cast<Driver*>(CurrUser)->getLNumNum(); i++)
-    {
-        QTableWidgetItem *newItem = new QTableWidgetItem();
-        newItem->setText(QString::fromStdString(std::to_string(LPNum_[i])));
-        ui->tableWidget_LPNum->setItem(i, 0, newItem);
-    }
-
-
-    string* address_ = static_cast<Driver*>(CurrUser)->getAddress();
-    for(int i = 0; i<static_cast<Driver*>(CurrUser)->getNumAddress(); i++)
-    {
-        QTableWidgetItem *newItem = new QTableWidgetItem();
-        newItem->setText(QString::fromStdString(address_[i]));
-        ui->tableWidget_driver_address->setItem(i, 0, newItem);
-    }
+    ui->lineEdit_driver_LP->setText(QString::fromStdString(std::to_string(static_cast<Driver*>(CurrUser)->getFirstPlate())));
+    ui->lineEdit_driver_address->setText(QString::fromStdString(static_cast<Driver*>(CurrUser)->getAddress()));
 }
 
 void MainWindow::on_sponsor_Logout_clicked()
@@ -141,10 +140,10 @@ void MainWindow::on_sponsor_Home_Button_clicked()
     int len = static_cast<Sponsor*>(CurrUser)->getNumDrivers();
     ui->driver_table->setRowCount(len);
     //@TODO: add actual sponsors here
-    //Drivers_ = static_cast<Sponsor*>(CurrUser)->getDrivers();
+    static_cast<Sponsor*>(CurrUser)->getDrivers(Drivers_);
     for(int i = 0; i<len; i++)
     {
-        QString qstr = QString::fromStdString(Drivers_[i]);
+        QString qstr = QString::fromStdString(dbi.getDriver(Drivers_[i])->getName());
         QTableWidgetItem* newItem = new QTableWidgetItem(qstr, 0);
         ui->driver_table->setItem(i, 0, newItem);
     }
@@ -152,10 +151,94 @@ void MainWindow::on_sponsor_Home_Button_clicked()
 
 void MainWindow::on_driver_table_cellClicked(int row, int column)
 {
-    Driver* temp = db().getDriver(Drivers_[row]);
+    Driver* temp = dbi.getDriver(Drivers_[row]);
+    DriverInfo d;
+    d.setSponsor(static_cast<Sponsor*>(CurrUser));
+    d.setDriver(temp);
+    d.show();
 }
 
 void MainWindow::on_driver_History_Button_clicked()
 {
     QMessageBox::warning(this,"Login", "Invalid email and/or password", QMessageBox::Ok);
+}
+
+void MainWindow::on_pushButton_driver_name_Change_clicked()
+{
+    QString newName = ui->lineEdit_driver_name->text();
+    std::string name = newName.toStdString();
+    static_cast<Driver*>(CurrUser)->setName(name);
+    updateDriver();
+}
+
+void MainWindow::on_pushButton_driver_email_Change_clicked()
+{
+    QString newEmail = ui->lineEdit_driver_email->text();
+    std::string email = newEmail.toStdString();
+    static_cast<Driver*>(CurrUser)->setEmail(email);
+    updateDriver();
+}
+
+void MainWindow::on_pushButton_driver_phone_Change_clicked()
+{
+    QString newNumber = ui->lineEdit_driver_phone->text();
+    std::string number = newNumber.toStdString();
+    static_cast<Driver*>(CurrUser)->setPhone(number);
+    updateDriver();
+}
+
+void MainWindow::on_pushButton_driver_LP_Add_clicked()
+{
+    QString newLP = ui->lineEdit_driver_LP->text();
+    std::string lp = newLP.toStdString();
+    static_cast<Driver*>(CurrUser)->addLP(stoi(lp));
+    updateDriver();
+}
+
+void MainWindow::on_pushButton_driver_ln_Change_clicked()
+{
+    QString newLN = ui->lineEdit_driver_ln->text();
+    std::string ln = newLN.toStdString();
+    static_cast<Driver*>(CurrUser)->setLNum(stoi(ln));
+    updateDriver();
+}
+
+void MainWindow::on_pushButton_driver_address_Add_clicked()
+{
+    QString newAddress = ui->lineEdit_driver_address->text();
+    std::string address = newAddress.toStdString();
+    static_cast<Driver*>(CurrUser)->setAddress(address);
+    updateDriver();
+}
+
+void MainWindow::updateDriver()
+{
+    dbi.update(static_cast<Driver*>(CurrUser));
+}
+
+void MainWindow::updateSponsor()
+{
+    dbi.update(static_cast<Sponsor*>(CurrUser));
+}
+
+void MainWindow::updateAdmin()
+{
+    dbi.update(static_cast<Admin*>(CurrUser));
+}
+
+void MainWindow::on_tabWidget_currentChanged() {
+    if(ui->tabWidget->currentIndex() == 0)
+    {
+        std::map<int, Driver*>& allDrivers =  dbi.getAllDrivers();
+        std::map<int, Admin*>& allAdmins = dbi.getAllAdmins();
+        std::map<int, Sponsor*>& allSponsors = dbi.getAllSponsors();
+        int len = allDrivers.size()+allAdmins.size()+allSponsors.size();
+        ui->admin_all_table->setRowCount(len);
+        for(int i = 0; i<len; i++)
+        {
+            QTableWidgetItem *newItem = new QTableWidgetItem();
+            newItem->setText(QString::fromStdString(allDrivers[i]->getName()));
+            ui->admin_all_table->setItem(i, 0, newItem);
+        }
+    }
 }

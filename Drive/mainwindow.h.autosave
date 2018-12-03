@@ -44,8 +44,6 @@ private slots:
 
     void on_driver_table_cellClicked(int row, int column);
 
-    void on_tabWidget_currentChanged();
-
     void updateDriver();
     void updateSponsor();
     void updateAdmin();
@@ -53,8 +51,8 @@ private slots:
 private:
     Ui::MainWindow *ui;
     User* CurrUser;
+    //temporary variables
     std::vector<int> Drivers_;
-    Sponsor* currSponsor;
 
     //HOW WE WILL HANDLE DATA: IMPORTANT
     //
