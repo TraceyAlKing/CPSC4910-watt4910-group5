@@ -140,13 +140,14 @@ void MainWindow::on_sponsor_Home_Button_clicked()
     }
 }
 
-void MainWindow::on_driver_table_cellPressed(int row, int column)
+void MainWindow::on_driver_table_cellClicked(int row, int column)
 {
     Driver* temp = dbi.getDriver(Drivers_[row]);
-    DriverInfo d;
+    DriverInfoPage d;
     d.setSponsor(static_cast<Sponsor*>(CurrUser));
     d.setDriver(temp);
-    d.show();
+    d.setModal(true);
+    d.exec();
 }
 
 void MainWindow::on_driver_History_Button_clicked()
@@ -299,12 +300,12 @@ void MainWindow::initDriverCatalog() {
     // do stuff with catalog
     std::vector<Item*> items = cata->getItems();
     int len = items.size();
-    ui->admin_drivers_table->setRowCount(len);
-    ui->admin_drivers_table->setColumnCount(1);
+    ui->driver_catalog->setRowCount(len);
+    ui->driver_catalog->setColumnCount(1);
     for(auto it : items)
     {
         QTableWidgetItem *newItem = new QTableWidgetItem();
         newItem->setText(QString::fromStdString(it->getname()));
-        ui->admin_drivers_table->setItem(it->getId(), 0, newItem);
+        ui->driver_catalog->setItem(it->getId(), 0, newItem);
     }
 }

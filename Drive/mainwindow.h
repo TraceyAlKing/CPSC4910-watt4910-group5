@@ -11,7 +11,7 @@
 #include "Item.hpp"
 #include "Catalog.hpp"
 #include <map>
-#include <driverinfo.h>
+#include <driverinfopage.h>
 
 namespace Ui {
 class MainWindow;
@@ -42,7 +42,7 @@ private slots:
     void on_pushButton_driver_LP_Add_clicked();
     void on_pushButton_driver_address_Add_clicked();
 
-    void on_driver_table_cellPressed(int row, int column);
+    void on_driver_table_cellClicked(int row, int column);
 
     void on_tabWidget_currentChanged();
 
