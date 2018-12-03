@@ -35,28 +35,28 @@
    <enum>Qt::LeftToRight</enum>
   </property>
   <property name="styleSheet">
-   <string notr="true">#MainWindow { font: 16pt &quot;Aganè S&quot;; }
+   <string notr="true">#MainWindow { font: 16pt url(:/fonts/Agane 55 (roman) sign.ttf);}
 #MainWindow { background-color : #9CAFD1  }
 QPushButton {color : white;
 background-color : #3562B0;
 border-radius: 10px;}
-QPushButton{ font: 81 14pt &quot;AXIS Extra Bold&quot;;
+QPushButton{ font: 81 14pt;
+font-family: url(:/fonts/Axis_Extrabold.otf);
   border: none;
   border-radius: 15px;
   box-shadow: 0 9px #999;
   padding: 10px 15px;}
-#pushButton_Login_2{ font: 81 18pt &quot;AXIS Extra Bold&quot;;
+#pushButton_Login_2{ font: 81 18pt; 
+font-family: url(:/fonts/Axis_Extrabold.otf);
 border-radius: 25px; }
 QGroupBox{ background-color : #EEEEEE;}
 QLabel{  font: 16pt &quot;Aganè S&quot;; }
 QStackedWidget{ background: qlineargradient(x1:0, y1:0, x2:1, y2:1,  stop:0 #202020, stop: 0.4 #303030, stop:1 #353535)}
 
+QPushButton:hover {background-color: #3969BD}
 
-
-QPushButton:hover {background-color: #2D5496}
-
-QPushButton:active {
-  background-color: #2D5496;
+QPushButton:pressed {
+  background-color: #203C6B;
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }</string>
@@ -306,7 +306,7 @@ QPushButton:active {
              </property>
              <property name="font">
               <font>
-               <family>AXIS Extra Bold</family>
+               <family>:/fonts/Axis_Extrabold.otf</family>
                <pointsize>-1</pointsize>
                <weight>10</weight>
                <italic>false</italic>
@@ -357,7 +357,7 @@ QPushButton:active {
          <widget class="QLabel" name="logo">
           <property name="font">
            <font>
-            <family>AXIS Extra Bold</family>
+            <family>:/fonts/Axis_Extrabold.otf</family>
             <pointsize>-1</pointsize>
             <weight>10</weight>
             <italic>true</italic>
@@ -365,7 +365,8 @@ QPushButton:active {
            </font>
           </property>
           <property name="styleSheet">
-           <string notr="true">font: 81 52px &quot;AXIS Extra Bold&quot;;
+           <string notr="true">font: 81 52px;
+font-family: url(:/fonts/Axis_Extrabold.otf);
 font-style: italic; 
 background-color : #E84F37;
 color : white;</string>
@@ -506,7 +507,7 @@ border-radius : 14px;</string>
               <widget class="QPushButton" name="driver_Home_Button">
                <property name="font">
                 <font>
-                 <family>AXIS Extra Bold</family>
+                 <family>:/fonts/Axis_Extrabold.otf</family>
                  <pointsize>14</pointsize>
                  <weight>10</weight>
                  <italic>false</italic>
@@ -527,7 +528,7 @@ border-radius : 14px;</string>
                 <widget class="QPushButton" name="driver_Account">
                  <property name="font">
                   <font>
-                   <family>AXIS Extra Bold</family>
+                   <family>:/fonts/Axis_Extrabold.otf</family>
                    <pointsize>14</pointsize>
                    <weight>10</weight>
                    <italic>false</italic>
@@ -549,7 +550,7 @@ border-radius : 14px;</string>
                  </property>
                  <property name="font">
                   <font>
-                   <family>AXIS Extra Bold</family>
+                   <family>:/fonts/Axis_Extrabold.otf</family>
                    <pointsize>14</pointsize>
                    <weight>10</weight>
                    <italic>false</italic>
@@ -684,7 +685,7 @@ border-radius : 14px;</string>
                  <widget class="QPushButton" name="pushButton_driver__Name_Change">
                   <property name="font">
                    <font>
-                    <family>AXIS Extra Bold</family>
+                    <family>:/fonts/Axis_Extrabold.otf</family>
                     <pointsize>14</pointsize>
                     <weight>10</weight>
                     <italic>false</italic>
@@ -729,7 +730,7 @@ border-radius : 14px;</string>
                  <widget class="QPushButton" name="pushButton_driver_Email_Change">
                   <property name="font">
                    <font>
-                    <family>AXIS Extra Bold</family>
+                    <family>:/fonts/Axis_Extrabold.otf</family>
                     <pointsize>14</pointsize>
                     <weight>10</weight>
                     <italic>false</italic>
@@ -804,7 +805,7 @@ border-radius : 14px;</string>
                  <widget class="QPushButton" name="pushButton_driver_LP_Add">
                   <property name="font">
                    <font>
-                    <family>AXIS Extra Bold</family>
+                    <family>:/fonts/Axis_Extrabold.otf</family>
                     <pointsize>14</pointsize>
                     <weight>10</weight>
                     <italic>false</italic>
@@ -885,7 +886,7 @@ border-radius : 14px;</string>
                  <widget class="QPushButton" name="pushButton_driver_phone_Change">
                   <property name="font">
                    <font>
-                    <family>AXIS Extra Bold</family>
+                    <family>:/fonts/Axis_Extrabold.otf</family>
                     <pointsize>14</pointsize>
                     <weight>10</weight>
                     <italic>false</italic>
@@ -927,7 +928,7 @@ border-radius : 14px;</string>
                  <widget class="QPushButton" name="pushButton_driver_address_Add">
                   <property name="font">
                    <font>
-                    <family>AXIS Extra Bold</family>
+                    <family>:/fonts/Axis_Extrabold.otf</family>
                     <pointsize>14</pointsize>
                     <weight>10</weight>
                     <italic>false</italic>
@@ -957,7 +958,7 @@ border-radius : 14px;</string>
            <widget class="QPushButton" name="sponsor_Home_Button">
             <property name="font">
              <font>
-              <family>AXIS Extra Bold</family>
+              <family>:/fonts/Axis_Extrabold.otf</family>
               <pointsize>14</pointsize>
               <weight>10</weight>
               <italic>false</italic>
@@ -973,7 +974,7 @@ border-radius : 14px;</string>
            <widget class="QPushButton" name="sponsor_Products">
             <property name="font">
              <font>
-              <family>AXIS Extra Bold</family>
+              <family>:/fonts/Axis_Extrabold.otf</family>
               <pointsize>14</pointsize>
               <weight>10</weight>
               <italic>false</italic>
@@ -989,7 +990,7 @@ border-radius : 14px;</string>
            <widget class="QPushButton" name="sponsor_Account">
             <property name="font">
              <font>
-              <family>AXIS Extra Bold</family>
+              <family>:/fonts/Axis_Extrabold.otf</family>
               <pointsize>14</pointsize>
               <weight>10</weight>
               <italic>false</italic>
@@ -1005,7 +1006,7 @@ border-radius : 14px;</string>
            <widget class="QPushButton" name="sponsor_Logout">
             <property name="font">
              <font>
-              <family>AXIS Extra Bold</family>
+              <family>:/fonts/Axis_Extrabold.otf</family>
               <pointsize>14</pointsize>
               <weight>10</weight>
               <italic>false</italic>
@@ -1050,7 +1051,7 @@ border-radius : 14px;</string>
               </property>
               <property name="font">
                <font>
-                <family>AXIS Extra Bold</family>
+                <family>:/fonts/Axis_Extrabold.otf</family>
                 <pointsize>14</pointsize>
                 <weight>10</weight>
                 <italic>false</italic>
@@ -1113,7 +1114,7 @@ border-radius : 14px;</string>
              <widget class="QPushButton" name="pushButton_sponsor_Name_Change">
               <property name="font">
                <font>
-                <family>AXIS Extra Bold</family>
+                <family>:/fonts/Axis_Extrabold.otf</family>
                 <pointsize>14</pointsize>
                 <weight>10</weight>
                 <italic>false</italic>
@@ -1158,7 +1159,7 @@ border-radius : 14px;</string>
              <widget class="QPushButton" name="pushButton_sponsor_email_Change">
               <property name="font">
                <font>
-                <family>AXIS Extra Bold</family>
+                <family>:/fonts/Axis_Extrabold.otf</family>
                 <pointsize>14</pointsize>
                 <weight>10</weight>
                 <italic>false</italic>
@@ -1203,7 +1204,7 @@ border-radius : 14px;</string>
              <widget class="QPushButton" name="pushButton_sponsor_phone_Change">
               <property name="font">
                <font>
-                <family>AXIS Extra Bold</family>
+                <family>:/fonts/Axis_Extrabold.otf</family>
                 <pointsize>14</pointsize>
                 <weight>10</weight>
                 <italic>false</italic>
@@ -1245,7 +1246,7 @@ border-radius : 14px;</string>
              <widget class="QPushButton" name="pushButton_sponsor_address_Add">
               <property name="font">
                <font>
-                <family>AXIS Extra Bold</family>
+                <family>:/fonts/Axis_Extrabold.otf</family>
                 <pointsize>14</pointsize>
                 <weight>10</weight>
                 <italic>false</italic>
