@@ -70,18 +70,30 @@ public:
     {
         if (DriverInfo->objectName().isEmpty())
             DriverInfo->setObjectName(QStringLiteral("DriverInfo"));
-        DriverInfo->resize(800, 600);
-        DriverInfo->setStyleSheet(QString::fromUtf8("#MainWindow { font: 16pt \"Agan\303\250 S\"; }\n"
+        DriverInfo->resize(800, 687);
+        DriverInfo->setStyleSheet(QString::fromUtf8("#MainWindow { font: 16pt url(:/fonts/Agane 55 (roman) sign.ttf);}\n"
 "#MainWindow { background-color : #9CAFD1  }\n"
 "QPushButton {color : white;\n"
 "background-color : #3562B0;\n"
 "border-radius: 10px;}\n"
-"QPushButton{ font: 81 14pt \"AXIS Extra Bold\";}\n"
-"#pushButton_Login_2{ font: 81 18pt \"AXIS Extra Bold\";\n"
+"QPushButton{ font: 81 14pt;\n"
+"font-family: url(:/fonts/Axis_Extrabold.otf);\n"
+"  border: none;\n"
+"  border-radius: 15px;\n"
+"  box-shadow: 0 9px #999;\n"
+"  padding: 10px 15px;}\n"
+"#pushButton_Login_2{ font: 81 18pt; \n"
+"font-family: url(:/fonts/Axis_Extrabold.otf);\n"
 "border-radius: 25px; }\n"
 "QGroupBox{ background-color : #EEEEEE;}\n"
 "QLabel{  font: 16pt \"Agan\303\250 S\"; }\n"
-"QStackedWidget{ background: qlineargradient(x1:0, y1:0, x2:1, y2:1,  stop:0 #202020, stop: 0.4 #303030, stop:1 #353535)}"));
+"QStackedWidget{ background: qlineargradient(x1:0, y1:0, x2:1, y2:1,  stop:0 #202020, stop: 0.4 #303030, stop:1 #353535)}\n"
+"\n"
+"QPushButton:hover {background-color: #3969BD}\n"
+"\n"
+"QPushButton:pressed {\n"
+"  background-color: #203C6B;\n"
+"}"));
         centralwidget = new QWidget(DriverInfo);
         centralwidget->setObjectName(QStringLiteral("centralwidget"));
         verticalLayout = new QVBoxLayout(centralwidget);

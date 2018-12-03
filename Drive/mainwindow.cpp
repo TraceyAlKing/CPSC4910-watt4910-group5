@@ -11,7 +11,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     QFontDatabase fontDB;
-    fontDB.addApplicationFont(":/fonts/Axis Extrabold.otf");
+    fontDB.addApplicationFont(":/fonts/Axis_Extrabold.otf");
     fontDB.addApplicationFont(":/fonts/Agane 55 (roman) sign.ttf");
     ui->setupUi(this);
     ui->stackedWidget->setCurrentIndex(0);
@@ -82,8 +82,9 @@ void MainWindow::on_pushButton_Login_2_clicked()
         currSponsor = dbi.getSponsor(driversponsors[0]);
         ui->driver_currSponsor->setText(QString::fromStdString(currSponsor->getName()));
 
-       //ui->pointsValue_label->setNum((int)(static_cast<Driver*>(CurrUser)->getPoints()));
-        ui->pointsValue_label->setNum(6);
+       ui->pointsValue_label->setNum((int)(static_cast<Driver*>(CurrUser)->getPoints(currSponsor->getID())));
+       // ui->pointsValue_label->setNum(6);
+        initDriverCatalog();
     }else{
         QMessageBox::warning(this,"Login", "Invalid email and/or password", QMessageBox::Ok);
     }
@@ -92,17 +93,7 @@ void MainWindow::on_pushButton_Login_2_clicked()
 void MainWindow::on_driver_Home_Button_clicked()
 {
     ui->stackedWidget_driver->setCurrentIndex(0);
-
-    //Catalog code
-    std::vector<int> mysponsors;    //contains the sponsors of the driver
-    static_cast<Driver*>(CurrUser)->getSponsors(mysponsors);
-
-    int catalog_id = currSponsor->getCatalog();
-    Catalog* cata = dbi.getCatalog(catalog_id);
-    // do stuff with catalog
-
-
-
+    initDriverCatalog();
     }
 
 void MainWindow::on_driver_Logout_clicked()
@@ -149,7 +140,7 @@ void MainWindow::on_sponsor_Home_Button_clicked()
     }
 }
 
-void MainWindow::on_driver_table_cellClicked(int row, int column)
+void MainWindow::on_driver_table_cellPressed(int row, int column)
 {
     Driver* temp = dbi.getDriver(Drivers_[row]);
     DriverInfo d;
@@ -293,5 +284,27 @@ void MainWindow::on_tabWidget_currentChanged() {
             newItem->setText(QString::fromStdString(it.second->getName()));
             ui->admin_admin_table->setItem(it.second->getID(), 0, newItem);
         }
+    }
+}
+
+void MainWindow::initDriverCatalog() {
+
+
+    //Catalog code
+    std::vector<int> mysponsors;    //contains the sponsors of the driver
+    static_cast<Driver*>(CurrUser)->getSponsors(mysponsors);
+
+    int catalog_id = currSponsor->getCatalog();
+    Catalog* cata = dbi.getCatalog(catalog_id);
+    // do stuff with catalog
+    std::vector<Item*> items = cata->getItems();
+    int len = items.size();
+    ui->admin_drivers_table->setRowCount(len);
+    ui->admin_drivers_table->setColumnCount(1);
+    for(auto it : items)
+    {
+        QTableWidgetItem *newItem = new QTableWidgetItem();
+        newItem->setText(QString::fromStdString(it->getname()));
+        ui->admin_drivers_table->setItem(it->getId(), 0, newItem);
     }
 }

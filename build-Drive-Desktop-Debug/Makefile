@@ -58,9 +58,12 @@ SOURCES       = ../Drive/main.cpp \
 		../Catalog.cpp \
 		../Database.cpp \
 		../Item.cpp \
-		../DatabaseInterface.cpp qrc_fonts.cpp \
+		../DatabaseInterface.cpp \
+		../Drive/catalogitem.cpp qrc_fonts.cpp \
+		qrc_imgs.cpp \
 		moc_mainwindow.cpp \
-		moc_driverinfo.cpp
+		moc_driverinfo.cpp \
+		moc_catalogitem.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
 		driverinfo.o \
@@ -72,9 +75,12 @@ OBJECTS       = main.o \
 		Database.o \
 		Item.o \
 		DatabaseInterface.o \
+		catalogitem.o \
 		qrc_fonts.o \
+		qrc_imgs.o \
 		moc_mainwindow.o \
-		moc_driverinfo.o
+		moc_driverinfo.o \
+		moc_catalogitem.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/linux.conf \
@@ -142,7 +148,8 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		../Database.hpp \
 		../Item.hpp \
 		../Catalog.hpp \
-		../DatabaseInterface.hpp ../Drive/main.cpp \
+		../DatabaseInterface.hpp \
+		../Drive/catalogitem.h ../Drive/main.cpp \
 		../Drive/mainwindow.cpp \
 		../Drive/driverinfo.cpp \
 		../Driver.cpp \
@@ -152,7 +159,8 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		../Catalog.cpp \
 		../Database.cpp \
 		../Item.cpp \
-		../DatabaseInterface.cpp
+		../DatabaseInterface.cpp \
+		../Drive/catalogitem.cpp
 QMAKE_TARGET  = Drive
 DESTDIR       = #avoid trailing-slash linebreak
 TARGET        = Drive
@@ -180,7 +188,7 @@ first: all
 
 ####### Build rules
 
-$(TARGET): ui_mainwindow.h ui_driverinfo.h $(OBJECTS)  
+$(TARGET): ui_mainwindow.h ui_driverinfo.h ui_catalogitem.h $(OBJECTS)  
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
 Makefile: ../Drive/Drive.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64/qmake.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
@@ -243,6 +251,7 @@ Makefile: ../Drive/Drive.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64/
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf \
 		../Drive/Drive.pro \
 		../Drive/fonts.qrc \
+		../Drive/imgs.qrc \
 		/usr/lib/x86_64-linux-gnu/libQt5Widgets.prl \
 		/usr/lib/x86_64-linux-gnu/libQt5Gui.prl \
 		/usr/lib/x86_64-linux-gnu/libQt5Core.prl
@@ -307,6 +316,7 @@ Makefile: ../Drive/Drive.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64/
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf:
 ../Drive/Drive.pro:
 ../Drive/fonts.qrc:
+../Drive/imgs.qrc:
 /usr/lib/x86_64-linux-gnu/libQt5Widgets.prl:
 /usr/lib/x86_64-linux-gnu/libQt5Gui.prl:
 /usr/lib/x86_64-linux-gnu/libQt5Core.prl:
@@ -324,10 +334,10 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents ../Drive/fonts.qrc $(DISTDIR)/
-	$(COPY_FILE) --parents ../Drive/mainwindow.h ../Drive/driverinfo.h ../Driver.hpp ../Sponsor.hpp ../User.hpp ../Admin.hpp ../Database.hpp ../Item.hpp ../Catalog.hpp ../DatabaseInterface.hpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../Drive/main.cpp ../Drive/mainwindow.cpp ../Drive/driverinfo.cpp ../Driver.cpp ../Sponsor.cpp ../User.cpp ../Admin.cpp ../Catalog.cpp ../Database.cpp ../Item.cpp ../DatabaseInterface.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../Drive/mainwindow.ui ../Drive/driverinfo.ui $(DISTDIR)/
+	$(COPY_FILE) --parents ../Drive/fonts.qrc ../Drive/imgs.qrc $(DISTDIR)/
+	$(COPY_FILE) --parents ../Drive/mainwindow.h ../Drive/driverinfo.h ../Driver.hpp ../Sponsor.hpp ../User.hpp ../Admin.hpp ../Database.hpp ../Item.hpp ../Catalog.hpp ../DatabaseInterface.hpp ../Drive/catalogitem.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../Drive/main.cpp ../Drive/mainwindow.cpp ../Drive/driverinfo.cpp ../Driver.cpp ../Sponsor.cpp ../User.cpp ../Admin.cpp ../Catalog.cpp ../Database.cpp ../Item.cpp ../DatabaseInterface.cpp ../Drive/catalogitem.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../Drive/mainwindow.ui ../Drive/driverinfo.ui ../Drive/catalogitem.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -348,15 +358,20 @@ mocables: compiler_moc_header_make_all compiler_moc_source_make_all
 
 check: first
 
-compiler_rcc_make_all: qrc_fonts.cpp
+compiler_rcc_make_all: qrc_fonts.cpp qrc_imgs.cpp
 compiler_rcc_clean:
-	-$(DEL_FILE) qrc_fonts.cpp
-qrc_fonts.cpp: ../Drive/fonts.qrc
+	-$(DEL_FILE) qrc_fonts.cpp qrc_imgs.cpp
+qrc_fonts.cpp: ../Drive/fonts.qrc \
+		../Drive/Axis_Extrabold.otf
 	/usr/lib/x86_64-linux-gnu/qt5/bin/rcc -name fonts ../Drive/fonts.qrc -o qrc_fonts.cpp
 
-compiler_moc_header_make_all: moc_mainwindow.cpp moc_driverinfo.cpp
+qrc_imgs.cpp: ../Drive/imgs.qrc \
+		../Drive/61510352-holding-banana.jpg
+	/usr/lib/x86_64-linux-gnu/qt5/bin/rcc -name imgs ../Drive/imgs.qrc -o qrc_imgs.cpp
+
+compiler_moc_header_make_all: moc_mainwindow.cpp moc_driverinfo.cpp moc_catalogitem.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_mainwindow.cpp moc_driverinfo.cpp
+	-$(DEL_FILE) moc_mainwindow.cpp moc_driverinfo.cpp moc_catalogitem.cpp
 moc_mainwindow.cpp: ../User.hpp \
 		../Database.hpp \
 		../Item.hpp \
@@ -380,16 +395,22 @@ moc_driverinfo.cpp: ../User.hpp \
 		../Drive/driverinfo.h
 	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/will/cpsc4910/CPSC4910-watt4910-group5/Drive -I/home/will/cpsc4910/CPSC4910-watt4910-group5 -I/home/will/cpsc4910/CPSC4910-watt4910-group5/Drive/-I -I/include -I/home/will/cpsc4910/CPSC4910-watt4910-group5/Drive/-I -I/include/jdbc -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../Drive/driverinfo.h -o moc_driverinfo.cpp
 
+moc_catalogitem.cpp: ../Drive/catalogitem.h
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/will/cpsc4910/CPSC4910-watt4910-group5/Drive -I/home/will/cpsc4910/CPSC4910-watt4910-group5 -I/home/will/cpsc4910/CPSC4910-watt4910-group5/Drive/-I -I/include -I/home/will/cpsc4910/CPSC4910-watt4910-group5/Drive/-I -I/include/jdbc -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../Drive/catalogitem.h -o moc_catalogitem.cpp
+
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_mainwindow.h ui_driverinfo.h
+compiler_uic_make_all: ui_mainwindow.h ui_driverinfo.h ui_catalogitem.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_mainwindow.h ui_driverinfo.h
+	-$(DEL_FILE) ui_mainwindow.h ui_driverinfo.h ui_catalogitem.h
 ui_mainwindow.h: ../Drive/mainwindow.ui
 	/usr/lib/x86_64-linux-gnu/qt5/bin/uic ../Drive/mainwindow.ui -o ui_mainwindow.h
 
 ui_driverinfo.h: ../Drive/driverinfo.ui
 	/usr/lib/x86_64-linux-gnu/qt5/bin/uic ../Drive/driverinfo.ui -o ui_driverinfo.h
+
+ui_catalogitem.h: ../Drive/catalogitem.ui
+	/usr/lib/x86_64-linux-gnu/qt5/bin/uic ../Drive/catalogitem.ui -o ui_catalogitem.h
 
 compiler_yacc_decl_make_all:
 compiler_yacc_decl_clean:
@@ -505,14 +526,24 @@ DatabaseInterface.o: ../DatabaseInterface.cpp ../DatabaseInterface.hpp \
 		../Catalog.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o DatabaseInterface.o ../DatabaseInterface.cpp
 
+catalogitem.o: ../Drive/catalogitem.cpp ../Drive/catalogitem.h \
+		ui_catalogitem.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o catalogitem.o ../Drive/catalogitem.cpp
+
 qrc_fonts.o: qrc_fonts.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_fonts.o qrc_fonts.cpp
+
+qrc_imgs.o: qrc_imgs.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_imgs.o qrc_imgs.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp
 
 moc_driverinfo.o: moc_driverinfo.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_driverinfo.o moc_driverinfo.cpp
+
+moc_catalogitem.o: moc_catalogitem.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_catalogitem.o moc_catalogitem.cpp
 
 ####### Install
 

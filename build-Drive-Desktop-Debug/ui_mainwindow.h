@@ -41,6 +41,8 @@ public:
     QStackedWidget *stackedWidget;
     QWidget *login_page;
     QGridLayout *gridLayout_4;
+    QSpacerItem *horizontalSpacer_2;
+    QSpacerItem *horizontalSpacer;
     QGroupBox *groupBox;
     QVBoxLayout *verticalLayout_3;
     QVBoxLayout *verticalLayout_2;
@@ -52,11 +54,9 @@ public:
     QSpacerItem *verticalSpacer_4;
     QPushButton *pushButton_Login_2;
     QSpacerItem *verticalSpacer_3;
-    QSpacerItem *verticalSpacer_2;
     QSpacerItem *verticalSpacer;
-    QSpacerItem *horizontalSpacer;
-    QSpacerItem *horizontalSpacer_2;
     QLabel *logo;
+    QSpacerItem *verticalSpacer_2;
     QWidget *driver_home;
     QHBoxLayout *horizontalLayout_3;
     QVBoxLayout *point_Layout;
@@ -186,17 +186,29 @@ public:
         MainWindow->setSizeIncrement(QSize(1, 1));
         MainWindow->setBaseSize(QSize(800, 600));
         MainWindow->setLayoutDirection(Qt::LeftToRight);
-        MainWindow->setStyleSheet(QString::fromUtf8("#MainWindow { font: 16pt \"Agan\303\250 S\"; }\n"
+        MainWindow->setStyleSheet(QString::fromUtf8("#MainWindow { font: 16pt url(:/fonts/Agane 55 (roman) sign.ttf);}\n"
 "#MainWindow { background-color : #9CAFD1  }\n"
 "QPushButton {color : white;\n"
 "background-color : #3562B0;\n"
 "border-radius: 10px;}\n"
-"QPushButton{ font: 81 14pt \"AXIS Extra Bold\";}\n"
-"#pushButton_Login_2{ font: 81 18pt \"AXIS Extra Bold\";\n"
+"QPushButton{ font: 81 14pt;\n"
+"font-family: url(:/fonts/Axis_Extrabold.otf);\n"
+"  border: none;\n"
+"  border-radius: 15px;\n"
+"  box-shadow: 0 9px #999;\n"
+"  padding: 10px 15px;}\n"
+"#pushButton_Login_2{ font: 81 18pt; \n"
+"font-family: url(:/fonts/Axis_Extrabold.otf);\n"
 "border-radius: 25px; }\n"
 "QGroupBox{ background-color : #EEEEEE;}\n"
 "QLabel{  font: 16pt \"Agan\303\250 S\"; }\n"
-"QStackedWidget{ background: qlineargradient(x1:0, y1:0, x2:1, y2:1,  stop:0 #202020, stop: 0.4 #303030, stop:1 #353535)}"));
+"QStackedWidget{ background: qlineargradient(x1:0, y1:0, x2:1, y2:1,  stop:0 #202020, stop: 0.4 #303030, stop:1 #353535)}\n"
+"\n"
+"QPushButton:hover {background-color: #3969BD}\n"
+"\n"
+"QPushButton:pressed {\n"
+"  background-color: #203C6B;\n"
+"}"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         centralWidget->setLayoutDirection(Qt::LeftToRight);
@@ -220,6 +232,14 @@ public:
         gridLayout_4->setSpacing(6);
         gridLayout_4->setContentsMargins(11, 11, 11, 11);
         gridLayout_4->setObjectName(QStringLiteral("gridLayout_4"));
+        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::MinimumExpanding, QSizePolicy::Minimum);
+
+        gridLayout_4->addItem(horizontalSpacer_2, 2, 3, 1, 1);
+
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::MinimumExpanding, QSizePolicy::Minimum);
+
+        gridLayout_4->addItem(horizontalSpacer, 2, 0, 1, 1);
+
         groupBox = new QGroupBox(login_page);
         groupBox->setObjectName(QStringLiteral("groupBox"));
         QSizePolicy sizePolicy2(QSizePolicy::Fixed, QSizePolicy::Fixed);
@@ -312,7 +332,7 @@ public:
         pushButton_Login_2->setMinimumSize(QSize(80, 16));
         pushButton_Login_2->setBaseSize(QSize(80, 16));
         QFont font2;
-        font2.setFamily(QStringLiteral("AXIS Extra Bold"));
+        font2.setFamily(QStringLiteral(":/fonts/Axis_Extrabold.otf"));
         font2.setBold(false);
         font2.setItalic(false);
         font2.setWeight(10);
@@ -329,31 +349,30 @@ public:
 
         gridLayout_4->addWidget(groupBox, 2, 1, 1, 2);
 
-        verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        gridLayout_4->addItem(verticalSpacer_2, 0, 1, 1, 1);
-
         verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
         gridLayout_4->addItem(verticalSpacer, 3, 2, 1, 1);
 
-        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::MinimumExpanding, QSizePolicy::Minimum);
-
-        gridLayout_4->addItem(horizontalSpacer, 2, 0, 1, 1);
-
-        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::MinimumExpanding, QSizePolicy::Minimum);
-
-        gridLayout_4->addItem(horizontalSpacer_2, 2, 3, 1, 1);
-
         logo = new QLabel(login_page);
         logo->setObjectName(QStringLiteral("logo"));
-        logo->setStyleSheet(QLatin1String("font: 81 52px \"AXIS Extra Bold\";\n"
+        QFont font3;
+        font3.setFamily(QStringLiteral(":/fonts/Axis_Extrabold.otf"));
+        font3.setBold(false);
+        font3.setItalic(true);
+        font3.setWeight(10);
+        logo->setFont(font3);
+        logo->setStyleSheet(QLatin1String("font: 81 52px;\n"
+"font-family: url(:/fonts/Axis_Extrabold.otf);\n"
 "font-style: italic; \n"
 "background-color : #E84F37;\n"
 "color : white;"));
         logo->setAlignment(Qt::AlignCenter);
 
         gridLayout_4->addWidget(logo, 1, 1, 1, 2);
+
+        verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        gridLayout_4->addItem(verticalSpacer_2, 0, 1, 1, 1);
 
         stackedWidget->addWidget(login_page);
         driver_home = new QWidget();
@@ -393,14 +412,14 @@ public:
         verticalLayout_10->setObjectName(QStringLiteral("verticalLayout_10"));
         pointsValue_label = new QLabel(pointbox_2);
         pointsValue_label->setObjectName(QStringLiteral("pointsValue_label"));
-        QFont font3;
-        font3.setFamily(QString::fromUtf8("Agan\303\250 S"));
-        font3.setPointSize(26);
-        font3.setBold(false);
-        font3.setItalic(false);
-        font3.setWeight(50);
-        pointsValue_label->setFont(font3);
-        pointsValue_label->setStyleSheet(QString::fromUtf8("font: 26pt \"Agan\303\250 S\";"));
+        QFont font4;
+        font4.setFamily(QStringLiteral("AXIS Extra Bold"));
+        font4.setPointSize(34);
+        font4.setBold(false);
+        font4.setItalic(false);
+        font4.setWeight(50);
+        pointsValue_label->setFont(font4);
+        pointsValue_label->setStyleSheet(QStringLiteral("font: 34pt \"AXIS Extra Bold\";"));
         pointsValue_label->setAlignment(Qt::AlignCenter);
 
         verticalLayout_10->addWidget(pointsValue_label);
@@ -425,13 +444,13 @@ public:
 
         driver_Home_Button = new QPushButton(pointBox);
         driver_Home_Button->setObjectName(QStringLiteral("driver_Home_Button"));
-        QFont font4;
-        font4.setFamily(QStringLiteral("AXIS Extra Bold"));
-        font4.setPointSize(14);
-        font4.setBold(false);
-        font4.setItalic(false);
-        font4.setWeight(10);
-        driver_Home_Button->setFont(font4);
+        QFont font5;
+        font5.setFamily(QStringLiteral(":/fonts/Axis_Extrabold.otf"));
+        font5.setPointSize(14);
+        font5.setBold(false);
+        font5.setItalic(false);
+        font5.setWeight(10);
+        driver_Home_Button->setFont(font5);
 
         verticalLayout_4->addWidget(driver_Home_Button);
 
@@ -441,7 +460,7 @@ public:
         horizontalLayout_2->setSizeConstraint(QLayout::SetMaximumSize);
         driver_Account = new QPushButton(pointBox);
         driver_Account->setObjectName(QStringLiteral("driver_Account"));
-        driver_Account->setFont(font4);
+        driver_Account->setFont(font5);
 
         horizontalLayout_2->addWidget(driver_Account);
 
@@ -452,7 +471,7 @@ public:
         sizePolicy6.setVerticalStretch(0);
         sizePolicy6.setHeightForWidth(driver_Logout->sizePolicy().hasHeightForWidth());
         driver_Logout->setSizePolicy(sizePolicy6);
-        driver_Logout->setFont(font4);
+        driver_Logout->setFont(font5);
 
         horizontalLayout_2->addWidget(driver_Logout);
 
@@ -530,21 +549,21 @@ public:
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 769, 644));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 720, 764));
         verticalLayout_9 = new QVBoxLayout(scrollAreaWidgetContents);
         verticalLayout_9->setSpacing(6);
         verticalLayout_9->setContentsMargins(11, 11, 11, 11);
         verticalLayout_9->setObjectName(QStringLiteral("verticalLayout_9"));
         label_2 = new QLabel(scrollAreaWidgetContents);
         label_2->setObjectName(QStringLiteral("label_2"));
-        QFont font5;
-        font5.setFamily(QString::fromUtf8("Agan\303\250 S"));
-        font5.setPointSize(16);
-        font5.setBold(false);
-        font5.setItalic(false);
-        font5.setUnderline(true);
-        font5.setWeight(50);
-        label_2->setFont(font5);
+        QFont font6;
+        font6.setFamily(QString::fromUtf8("Agan\303\250 S"));
+        font6.setPointSize(16);
+        font6.setBold(false);
+        font6.setItalic(false);
+        font6.setUnderline(true);
+        font6.setWeight(50);
+        label_2->setFont(font6);
 
         verticalLayout_9->addWidget(label_2);
 
@@ -556,13 +575,13 @@ public:
 
         pushButton_driver__Name_Change = new QPushButton(scrollAreaWidgetContents);
         pushButton_driver__Name_Change->setObjectName(QStringLiteral("pushButton_driver__Name_Change"));
-        pushButton_driver__Name_Change->setFont(font4);
+        pushButton_driver__Name_Change->setFont(font5);
 
         verticalLayout_9->addWidget(pushButton_driver__Name_Change);
 
         label_4 = new QLabel(scrollAreaWidgetContents);
         label_4->setObjectName(QStringLiteral("label_4"));
-        label_4->setFont(font5);
+        label_4->setFont(font6);
 
         verticalLayout_9->addWidget(label_4);
 
@@ -574,13 +593,13 @@ public:
 
         pushButton_driver_Email_Change = new QPushButton(scrollAreaWidgetContents);
         pushButton_driver_Email_Change->setObjectName(QStringLiteral("pushButton_driver_Email_Change"));
-        pushButton_driver_Email_Change->setFont(font4);
+        pushButton_driver_Email_Change->setFont(font5);
 
         verticalLayout_9->addWidget(pushButton_driver_Email_Change);
 
         label_7 = new QLabel(scrollAreaWidgetContents);
         label_7->setObjectName(QStringLiteral("label_7"));
-        label_7->setFont(font5);
+        label_7->setFont(font6);
 
         verticalLayout_9->addWidget(label_7);
 
@@ -592,7 +611,7 @@ public:
 
         label_5 = new QLabel(scrollAreaWidgetContents);
         label_5->setObjectName(QStringLiteral("label_5"));
-        label_5->setFont(font5);
+        label_5->setFont(font6);
 
         verticalLayout_9->addWidget(label_5);
 
@@ -604,13 +623,13 @@ public:
 
         pushButton_driver_LP_Add = new QPushButton(scrollAreaWidgetContents);
         pushButton_driver_LP_Add->setObjectName(QStringLiteral("pushButton_driver_LP_Add"));
-        pushButton_driver_LP_Add->setFont(font4);
+        pushButton_driver_LP_Add->setFont(font5);
 
         verticalLayout_9->addWidget(pushButton_driver_LP_Add);
 
         label_6 = new QLabel(scrollAreaWidgetContents);
         label_6->setObjectName(QStringLiteral("label_6"));
-        label_6->setFont(font5);
+        label_6->setFont(font6);
 
         verticalLayout_9->addWidget(label_6);
 
@@ -627,7 +646,7 @@ public:
 
         label_9 = new QLabel(scrollAreaWidgetContents);
         label_9->setObjectName(QStringLiteral("label_9"));
-        label_9->setFont(font5);
+        label_9->setFont(font6);
 
         verticalLayout_9->addWidget(label_9);
 
@@ -639,13 +658,13 @@ public:
 
         pushButton_driver_phone_Change = new QPushButton(scrollAreaWidgetContents);
         pushButton_driver_phone_Change->setObjectName(QStringLiteral("pushButton_driver_phone_Change"));
-        pushButton_driver_phone_Change->setFont(font4);
+        pushButton_driver_phone_Change->setFont(font5);
 
         verticalLayout_9->addWidget(pushButton_driver_phone_Change);
 
         label_10 = new QLabel(scrollAreaWidgetContents);
         label_10->setObjectName(QStringLiteral("label_10"));
-        label_10->setFont(font5);
+        label_10->setFont(font6);
 
         verticalLayout_9->addWidget(label_10);
 
@@ -657,7 +676,7 @@ public:
 
         pushButton_driver_address_Add = new QPushButton(scrollAreaWidgetContents);
         pushButton_driver_address_Add->setObjectName(QStringLiteral("pushButton_driver_address_Add"));
-        pushButton_driver_address_Add->setFont(font4);
+        pushButton_driver_address_Add->setFont(font5);
 
         verticalLayout_9->addWidget(pushButton_driver_address_Add);
 
@@ -681,25 +700,25 @@ public:
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         sponsor_Home_Button = new QPushButton(sponsor_home);
         sponsor_Home_Button->setObjectName(QStringLiteral("sponsor_Home_Button"));
-        sponsor_Home_Button->setFont(font4);
+        sponsor_Home_Button->setFont(font5);
 
         verticalLayout->addWidget(sponsor_Home_Button);
 
         sponsor_Products = new QPushButton(sponsor_home);
         sponsor_Products->setObjectName(QStringLiteral("sponsor_Products"));
-        sponsor_Products->setFont(font4);
+        sponsor_Products->setFont(font5);
 
         verticalLayout->addWidget(sponsor_Products);
 
         sponsor_Account = new QPushButton(sponsor_home);
         sponsor_Account->setObjectName(QStringLiteral("sponsor_Account"));
-        sponsor_Account->setFont(font4);
+        sponsor_Account->setFont(font5);
 
         verticalLayout->addWidget(sponsor_Account);
 
         sponsor_Logout = new QPushButton(sponsor_home);
         sponsor_Logout->setObjectName(QStringLiteral("sponsor_Logout"));
-        sponsor_Logout->setFont(font4);
+        sponsor_Logout->setFont(font5);
 
         verticalLayout->addWidget(sponsor_Logout);
 
@@ -728,7 +747,7 @@ public:
         sizePolicy7.setVerticalStretch(0);
         sizePolicy7.setHeightForWidth(pushButton_5->sizePolicy().hasHeightForWidth());
         pushButton_5->setSizePolicy(sizePolicy7);
-        pushButton_5->setFont(font4);
+        pushButton_5->setFont(font5);
 
         verticalLayout_7->addWidget(pushButton_5);
 
@@ -766,25 +785,24 @@ public:
         verticalLayout_8->setObjectName(QStringLiteral("verticalLayout_8"));
         label_16 = new QLabel(sponsor_home_2);
         label_16->setObjectName(QStringLiteral("label_16"));
-        label_16->setFont(font5);
+        label_16->setFont(font6);
 
         verticalLayout_8->addWidget(label_16);
 
         lineEdit_sponsor_name = new QLineEdit(sponsor_home_2);
         lineEdit_sponsor_name->setObjectName(QStringLiteral("lineEdit_sponsor_name"));
-        lineEdit_sponsor_name->setFont(font1);
 
         verticalLayout_8->addWidget(lineEdit_sponsor_name);
 
         pushButton_sponsor_Name_Change = new QPushButton(sponsor_home_2);
         pushButton_sponsor_Name_Change->setObjectName(QStringLiteral("pushButton_sponsor_Name_Change"));
-        pushButton_sponsor_Name_Change->setFont(font4);
+        pushButton_sponsor_Name_Change->setFont(font5);
 
         verticalLayout_8->addWidget(pushButton_sponsor_Name_Change);
 
         label_17 = new QLabel(sponsor_home_2);
         label_17->setObjectName(QStringLiteral("label_17"));
-        label_17->setFont(font5);
+        label_17->setFont(font6);
 
         verticalLayout_8->addWidget(label_17);
 
@@ -796,13 +814,13 @@ public:
 
         pushButton_sponsor_email_Change = new QPushButton(sponsor_home_2);
         pushButton_sponsor_email_Change->setObjectName(QStringLiteral("pushButton_sponsor_email_Change"));
-        pushButton_sponsor_email_Change->setFont(font4);
+        pushButton_sponsor_email_Change->setFont(font5);
 
         verticalLayout_8->addWidget(pushButton_sponsor_email_Change);
 
         label_18 = new QLabel(sponsor_home_2);
         label_18->setObjectName(QStringLiteral("label_18"));
-        label_18->setFont(font5);
+        label_18->setFont(font6);
 
         verticalLayout_8->addWidget(label_18);
 
@@ -814,13 +832,13 @@ public:
 
         pushButton_sponsor_phone_Change = new QPushButton(sponsor_home_2);
         pushButton_sponsor_phone_Change->setObjectName(QStringLiteral("pushButton_sponsor_phone_Change"));
-        pushButton_sponsor_phone_Change->setFont(font4);
+        pushButton_sponsor_phone_Change->setFont(font5);
 
         verticalLayout_8->addWidget(pushButton_sponsor_phone_Change);
 
         label_14 = new QLabel(sponsor_home_2);
         label_14->setObjectName(QStringLiteral("label_14"));
-        label_14->setFont(font5);
+        label_14->setFont(font6);
 
         verticalLayout_8->addWidget(label_14);
 
@@ -832,7 +850,7 @@ public:
 
         pushButton_sponsor_address_Add = new QPushButton(sponsor_home_2);
         pushButton_sponsor_address_Add->setObjectName(QStringLiteral("pushButton_sponsor_address_Add"));
-        pushButton_sponsor_address_Add->setFont(font4);
+        pushButton_sponsor_address_Add->setFont(font5);
 
         verticalLayout_8->addWidget(pushButton_sponsor_address_Add);
 
@@ -865,6 +883,7 @@ public:
 
         admin_search_button = new QPushButton(tab);
         admin_search_button->setObjectName(QStringLiteral("admin_search_button"));
+        admin_search_button->setStyleSheet(QStringLiteral("font-size : 30px"));
 
         horizontalLayout_5->addWidget(admin_search_button);
 
@@ -893,6 +912,7 @@ public:
 
         driver_search_button = new QPushButton(tab_3);
         driver_search_button->setObjectName(QStringLiteral("driver_search_button"));
+        driver_search_button->setStyleSheet(QStringLiteral("font-size : 30px"));
 
         horizontalLayout->addWidget(driver_search_button);
 
@@ -921,6 +941,7 @@ public:
 
         sponsor_search_button = new QPushButton(tab_2);
         sponsor_search_button->setObjectName(QStringLiteral("sponsor_search_button"));
+        sponsor_search_button->setStyleSheet(QStringLiteral("font-size : 30px"));
 
         horizontalLayout_6->addWidget(sponsor_search_button);
 
@@ -949,6 +970,7 @@ public:
 
         admin_search_button_2 = new QPushButton(tab_5);
         admin_search_button_2->setObjectName(QStringLiteral("admin_search_button_2"));
+        admin_search_button_2->setStyleSheet(QStringLiteral("font-size : 30px"));
 
         horizontalLayout_10->addWidget(admin_search_button_2);
 
@@ -977,6 +999,7 @@ public:
 
         products_search_button = new QPushButton(tab_4);
         products_search_button->setObjectName(QStringLiteral("products_search_button"));
+        products_search_button->setStyleSheet(QStringLiteral("font-size : 30px"));
 
         horizontalLayout_7->addWidget(products_search_button);
 
@@ -1006,9 +1029,9 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(3);
+        stackedWidget->setCurrentIndex(1);
         stackedWidget_driver->setCurrentIndex(0);
-        stackedWidget_sponsor->setCurrentIndex(0);
+        stackedWidget_sponsor->setCurrentIndex(1);
         tabWidget->setCurrentIndex(3);
 
 
@@ -1063,7 +1086,6 @@ public:
         pushButton->setText(QApplication::translate("MainWindow", "New Driver", 0));
         pushButton_5->setText(QApplication::translate("MainWindow", "All Requests", 0));
         label_16->setText(QApplication::translate("MainWindow", "Sponsor Name", 0));
-        lineEdit_sponsor_name->setText(QApplication::translate("MainWindow", "Colonel Sanders", 0));
         pushButton_sponsor_Name_Change->setText(QApplication::translate("MainWindow", "Change", 0));
         label_17->setText(QApplication::translate("MainWindow", "Email", 0));
         lineEdit_sponsor_email->setText(QApplication::translate("MainWindow", "fingerlickingood@kfc.weebly.com", 0));
