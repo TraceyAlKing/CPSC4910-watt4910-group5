@@ -2,6 +2,13 @@
 #define CREATEDRIVER_H
 
 #include <QDialog>
+#include "User.hpp"
+#include "Database.hpp"
+#include "DatabaseInterface.hpp"
+#include "Driver.hpp"
+#include "Sponsor.hpp"
+#include "Admin.hpp"
+#include <stdlib.h>
 
 namespace Ui {
 class CreateDriver;
@@ -15,8 +22,13 @@ public:
     explicit CreateDriver(QWidget *parent = nullptr);
     ~CreateDriver();
 
+    void setSponsor(Sponsor* temp, DatabaseInterface dbinter);
+    void addDriver();
+
 private:
     Ui::CreateDriver *ui;
+    DatabaseInterface dbi;
+    Sponsor* sponsor;
 };
 
 #endif // CREATEDRIVER_H

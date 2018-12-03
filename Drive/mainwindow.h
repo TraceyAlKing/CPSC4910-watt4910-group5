@@ -10,6 +10,7 @@
 #include "Admin.hpp"
 #include "Item.hpp"
 #include "Catalog.hpp"
+#include <createdriver.h>
 #include <map>
 #include <driverinfopage.h>
 
@@ -43,6 +44,8 @@ private slots:
     void on_pushButton_driver_address_Add_clicked();
 
     void on_driver_table_cellClicked(int row, int column);
+
+    void on_new_driver_clicked();
 
     void on_tabWidget_currentChanged();
 
